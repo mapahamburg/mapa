@@ -1,9 +1,33 @@
 import { Logo } from "@/components/ui/Logo";
 
 const LINKS = [
-  ["Produkt", ["So funktioniert's", "Viertel", "Local Hosts", "App laden"]],
-  ["Unternehmen", ["Über uns", "Karriere", "Presse", "Kontakt"]],
-  ["Rechtliches", ["Impressum", "Datenschutz", "AGB", "Cookies"]],
+  [
+    "Produkt",
+    [
+      { label: "So funktioniert's", href: "/so-funktionierts" },
+      { label: "Viertel", href: "#" },
+      { label: "Local Hosts", href: "#" },
+      { label: "App laden", href: "#" },
+    ],
+  ],
+  [
+    "Unternehmen",
+    [
+      { label: "Über uns", href: "#" },
+      { label: "Karriere", href: "#" },
+      { label: "Presse", href: "#" },
+      { label: "Kontakt", href: "mailto:hallo@mapa.hamburg" },
+    ],
+  ],
+  [
+    "Rechtliches",
+    [
+      { label: "Impressum", href: "/impressum" },
+      { label: "Datenschutz", href: "/datenschutz" },
+      { label: "Hausregeln", href: "/hausregeln" },
+      { label: "Cookies", href: "/datenschutz#cookies" },
+    ],
+  ],
 ] as const;
 
 export function Footer() {
@@ -56,8 +80,8 @@ export function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {items.map((item) => (
                 <a
-                  key={item}
-                  href="#"
+                  key={item.label}
+                  href={item.href}
                   style={{
                     color: "var(--fg)",
                     textDecoration: "none",
@@ -65,7 +89,7 @@ export function Footer() {
                     fontFamily: "var(--font-ui)",
                   }}
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
             </div>

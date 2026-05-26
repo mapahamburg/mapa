@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { CookieBanner } from "@/components/ui/CookieBanner";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -36,7 +37,10 @@ export default function RootLayout({
       lang="de"
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <CookieBanner />
+        {children}
+      </body>
     </html>
   );
 }
