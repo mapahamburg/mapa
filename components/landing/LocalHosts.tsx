@@ -62,23 +62,23 @@ export function LocalHosts() {
             die das Viertel kennt, Treffen kuratiert und neue Familien willkommen
             heißt. Ehrenamtlich, mit Haltung.
           </p>
-          <button
-            type="button"
+          <a
+            href="/local-hosts"
             style={{
+              display: "inline-block",
               marginTop: 28,
               background: "var(--cobalt-500)",
               color: "var(--surface-page)",
-              border: "none",
+              textDecoration: "none",
               padding: "14px 24px",
               borderRadius: 999,
               fontFamily: "var(--font-ui)",
               fontSize: 15,
               fontWeight: 500,
-              cursor: "pointer",
             }}
           >
             Local Host werden →
-          </button>
+          </a>
         </div>
 
         {/* Right: host card */}
