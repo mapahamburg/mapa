@@ -2,6 +2,7 @@ import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
 import { WhatYouFind } from "@/components/landing/WhatYouFind";
 import { Districts } from "@/components/landing/Districts";
+import { StadtteilReel } from "@/components/landing/StadtteilReel";
 import { ForWhom } from "@/components/landing/ForWhom";
 import { LocalHosts } from "@/components/landing/LocalHosts";
 import { HowWeGrow } from "@/components/landing/HowWeGrow";
@@ -17,6 +18,7 @@ export default function LandingPage() {
       <Hero />
       <WhatYouFind />
       <Districts />
+      <StadtteilReel />
       <ForWhom />
       <LocalHosts />
       <HowWeGrow />
