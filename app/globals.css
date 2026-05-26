@@ -15,7 +15,7 @@
 
 /* Font variables injected by next/font at runtime */
 @theme inline {
-  --font-display: var(--font-geist-sans);
+  --font-display: var(--font-instrument);
   --font-ui: var(--font-geist-sans);
   --font-sans: var(--font-geist-sans);
 }
