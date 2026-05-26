@@ -10,7 +10,9 @@ import {
   Bookmark,
   User,
   ChevronDown,
+  LogOut,
 } from "lucide-react";
+import { logout } from "@/app/actions/auth";
 
 type NavItem = {
   id: string;
@@ -126,6 +128,42 @@ export function LeftNav() {
         </span>
         <ChevronDown size={14} strokeWidth={1.5} color="var(--ash-600)" />
       </button>
+
+      {/* Logout — pushed to bottom */}
+      <div style={{ marginTop: "auto", paddingTop: 16, borderTop: "1px solid var(--border-soft)" }}>
+        <form action={logout}>
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              background: "transparent",
+              border: "none",
+              padding: "10px 14px",
+              borderRadius: 12,
+              fontFamily: "var(--font-ui)",
+              fontSize: 14,
+              fontWeight: 400,
+              color: "var(--fg-muted)",
+              textAlign: "left",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.color = "var(--ink)";
+              (e.currentTarget as HTMLElement).style.background = "var(--surface-card)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.color = "var(--fg-muted)";
+              (e.currentTarget as HTMLElement).style.background = "transparent";
+            }}
+          >
+            <LogOut size={16} strokeWidth={1.5} />
+            Abmelden
+          </button>
+        </form>
+      </div>
     </nav>
   );
 }
