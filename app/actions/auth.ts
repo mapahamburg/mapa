@@ -64,7 +64,7 @@ export async function signup(
     if (error.message.includes("already registered")) {
       return { error: "Diese E-Mail ist bereits registriert." };
     }
-    return { error: "Registrierung fehlgeschlagen. Bitte versuch es erneut." };
+    return { error: `Fehler: ${error.message}` };
   }
 
   return { message: "confirm" };
