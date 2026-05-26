@@ -30,7 +30,8 @@ export async function login(
     return { error: "E-Mail oder Passwort stimmt nicht." };
   }
 
-  redirect("/feed");
+  const next = (formData.get("next") as string) || "/feed";
+  redirect(next);
 }
 
 // ─── Signup ───────────────────────────────────────────────────────────────────

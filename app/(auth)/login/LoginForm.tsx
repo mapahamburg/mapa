@@ -15,8 +15,8 @@ function SubmitButton() {
         width: "100%",
         padding: "14px 24px",
         backgroundColor: pending
-          ? "var(--mapa-sage-300)"
-          : "var(--mapa-sage-500)",
+          ? "var(--cobalt-200)"
+          : "var(--cobalt-500)",
         color: "#fff",
         border: "none",
         borderRadius: "var(--radius-m)",
@@ -52,7 +52,7 @@ const inputStyle: React.CSSProperties = {
   boxSizing: "border-box",
 };
 
-export function LoginForm() {
+export function LoginForm({ next }: { next?: string }) {
   const [state, formAction] = useActionState(login, {});
 
   return (
@@ -83,6 +83,7 @@ export function LoginForm() {
         action={formAction}
         style={{ display: "flex", flexDirection: "column", gap: "16px" }}
       >
+        {next && <input type="hidden" name="next" value={next} />}
         <div>
           <label
             htmlFor="email"
@@ -106,7 +107,7 @@ export function LoginForm() {
             placeholder="deine@email.de"
             style={inputStyle}
             onFocus={(e) => {
-              e.currentTarget.style.borderColor = "var(--mapa-sage-400)";
+              e.currentTarget.style.borderColor = "var(--cobalt-500)";
             }}
             onBlur={(e) => {
               e.currentTarget.style.borderColor = "var(--line)";
@@ -137,7 +138,7 @@ export function LoginForm() {
             placeholder="••••••••"
             style={inputStyle}
             onFocus={(e) => {
-              e.currentTarget.style.borderColor = "var(--mapa-sage-400)";
+              e.currentTarget.style.borderColor = "var(--cobalt-500)";
             }}
             onBlur={(e) => {
               e.currentTarget.style.borderColor = "var(--line)";
@@ -150,9 +151,9 @@ export function LoginForm() {
             role="alert"
             style={{
               fontSize: "13px",
-              color: "var(--mapa-clay-500)",
-              backgroundColor: "var(--mapa-peach-50)",
-              border: "1px solid var(--mapa-peach-100)",
+              color: "var(--danger)",
+              backgroundColor: "var(--cobalt-50)",
+              border: "1px solid var(--cobalt-200)",
               borderRadius: "var(--radius-s)",
               padding: "10px 14px",
               margin: 0,
@@ -177,7 +178,7 @@ export function LoginForm() {
         <Link
           href="/signup"
           style={{
-            color: "var(--mapa-sage-500)",
+            color: "var(--cobalt-500)",
             textDecoration: "none",
             fontWeight: 500,
           }}

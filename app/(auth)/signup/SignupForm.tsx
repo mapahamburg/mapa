@@ -15,8 +15,8 @@ function SubmitButton() {
         width: "100%",
         padding: "14px 24px",
         backgroundColor: pending
-          ? "var(--mapa-sage-300)"
-          : "var(--mapa-sage-500)",
+          ? "var(--cobalt-200)"
+          : "var(--cobalt-500)",
         color: "#fff",
         border: "none",
         borderRadius: "var(--radius-m)",
@@ -106,7 +106,7 @@ export function SignupForm() {
             placeholder="deine@email.de"
             style={inputStyle}
             onFocus={(e) => {
-              e.currentTarget.style.borderColor = "var(--mapa-sage-400)";
+              e.currentTarget.style.borderColor = "var(--cobalt-500)";
             }}
             onBlur={(e) => {
               e.currentTarget.style.borderColor = "var(--line)";
@@ -141,7 +141,7 @@ export function SignupForm() {
             placeholder="••••••••"
             style={inputStyle}
             onFocus={(e) => {
-              e.currentTarget.style.borderColor = "var(--mapa-sage-400)";
+              e.currentTarget.style.borderColor = "var(--cobalt-500)";
             }}
             onBlur={(e) => {
               e.currentTarget.style.borderColor = "var(--line)";
@@ -154,9 +154,9 @@ export function SignupForm() {
             role="alert"
             style={{
               fontSize: "13px",
-              color: "var(--mapa-clay-500)",
-              backgroundColor: "var(--mapa-peach-50)",
-              border: "1px solid var(--mapa-peach-100)",
+              color: "var(--danger)",
+              backgroundColor: "var(--cobalt-50)",
+              border: "1px solid var(--cobalt-200)",
               borderRadius: "var(--radius-s)",
               padding: "10px 14px",
               margin: 0,
@@ -179,7 +179,7 @@ export function SignupForm() {
           Mit der Registrierung stimmst du den{" "}
           <Link
             href="/hausregeln"
-            style={{ color: "var(--mapa-sage-500)", textDecoration: "none" }}
+            style={{ color: "var(--cobalt-500)", textDecoration: "none" }}
           >
             Hausregeln
           </Link>{" "}
@@ -199,7 +199,7 @@ export function SignupForm() {
         <Link
           href="/login"
           style={{
-            color: "var(--mapa-sage-500)",
+            color: "var(--cobalt-500)",
             textDecoration: "none",
             fontWeight: 500,
           }}
