@@ -516,8 +516,8 @@ export function OnboardingFlow() {
         {[
           "Sei freundlich, auch wenn du nicht zustimmst.",
           "Bleib beim Lokalen, bleib beim Praktischen.",
-          "Keine medizinischen Empfehlungen — Erfahrungen ja, Hebammen-Ersatz nein.",
-          "Empfehlungen sind echt — Selbstpromo wird offengelegt.",
+          "Keine medizinischen Empfehlungen. Erfahrungen ja, Hebammen-Ersatz nein.",
+          "Empfehlungen sind echt. Selbstpromo wird offengelegt.",
           "Sag Bescheid, wenn etwas nicht stimmt.",
         ].map((rule, i) => (
           <li
@@ -590,15 +590,15 @@ export function OnboardingFlow() {
         </div>
         <div onClick={() => setNewsletter((v) => !v)}>
           <p style={{ fontSize: "14px", fontWeight: 500, color: "var(--ink)", margin: "0 0 2px" }}>
-            Wöchentlicher Newsletter
+            Monatlicher Newsletter
           </p>
           <p style={{ fontSize: "13px", color: "var(--fg-subtle)", margin: 0, lineHeight: 1.5 }}>
-            Einmal pro Woche das Wichtigste aus deinem Stadtteil — kein Spam.
+            Einmal im Monat das Wichtigste aus deinem Stadtteil. Kein Spam.
           </p>
         </div>
       </label>
 
-      <SubmitButton label="Verstanden — ich bin dabei" />
+      <SubmitButton label="Verstanden, ich bin dabei" />
     </form>
   );
 
