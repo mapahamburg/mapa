@@ -16,7 +16,7 @@ const LINKS = [
       { label: "Über uns", href: "#" },
       { label: "Karriere", href: "#" },
       { label: "Presse", href: "#" },
-      { label: "Kontakt", href: "mailto:hallo@mapa.hamburg" },
+      { label: "Kontakt", href: "mailto:hey@mapa.hamburg" },
     ],
   ],
   [

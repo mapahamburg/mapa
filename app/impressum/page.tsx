@@ -30,7 +30,7 @@ export default function ImpressumPage() {
       </p>
 
       <h2 style={h2Style}>Kontakt</h2>
-      <p style={pStyle}>E-Mail: hallo@mapa.hamburg</p>
+      <p style={pStyle}>E-Mail: hey@mapa.hamburg</p>
 
       <h2 style={h2Style}>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
       <p style={pStyle}>

@@ -57,7 +57,7 @@ export default function DatenschutzPage() {
       <h2 style={h2Style}>1. Verantwortlicher</h2>
       <p style={pStyle}>
         Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist: Henry Bigalke,
-        Ludwigstr. 4, 20357 Hamburg, E-Mail: hallo@mapa.hamburg
+        Ludwigstr. 4, 20357 Hamburg, E-Mail: hey@mapa.hamburg
       </p>
 
       <h2 style={h2Style}>2. Erhobene Daten</h2>
