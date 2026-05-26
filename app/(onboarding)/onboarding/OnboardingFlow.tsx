@@ -115,6 +115,7 @@ export function OnboardingFlow() {
   const [username, setUsername] = useState("");
   const [stadtteil, setStadtteil] = useState("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [newsletter, setNewsletter] = useState(false);
 
   const [state, formAction] = useActionState(createProfile, {});
 
@@ -483,6 +484,7 @@ export function OnboardingFlow() {
       <input type="hidden" name="first_name" value={firstName} />
       <input type="hidden" name="username" value={username} />
       <input type="hidden" name="stadtteil" value={stadtteil} />
+      <input type="hidden" name="newsletter_optin" value={newsletter ? "true" : "false"} />
       {selectedInterests.map((interest) => (
         <input key={interest} type="hidden" name="interests" value={interest} />
       ))}
@@ -547,6 +549,54 @@ export function OnboardingFlow() {
           {state.error}
         </p>
       )}
+
+      {/* Newsletter opt-in */}
+      <label
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "12px",
+          padding: "14px",
+          background: "var(--surface-card)",
+          border: "1px solid var(--border)",
+          borderRadius: "var(--radius-md)",
+          cursor: "pointer",
+          marginBottom: "16px",
+          transition: "border-color 150ms ease",
+          borderColor: newsletter ? "var(--cobalt-300)" : "var(--border)",
+        }}
+      >
+        <div
+          style={{
+            width: 20,
+            height: 20,
+            borderRadius: 5,
+            border: newsletter ? "none" : "1.5px solid var(--border)",
+            background: newsletter ? "var(--cobalt-500)" : "transparent",
+            flexShrink: 0,
+            marginTop: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "all 150ms ease",
+          }}
+          onClick={() => setNewsletter((v) => !v)}
+        >
+          {newsletter && (
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          )}
+        </div>
+        <div onClick={() => setNewsletter((v) => !v)}>
+          <p style={{ fontSize: "14px", fontWeight: 500, color: "var(--ink)", margin: "0 0 2px" }}>
+            Wöchentlicher Newsletter
+          </p>
+          <p style={{ fontSize: "13px", color: "var(--fg-subtle)", margin: 0, lineHeight: 1.5 }}>
+            Einmal pro Woche das Wichtigste aus deinem Stadtteil — kein Spam.
+          </p>
+        </div>
+      </label>
 
       <SubmitButton label="Verstanden — ich bin dabei" />
     </form>

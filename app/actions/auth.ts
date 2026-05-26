@@ -92,10 +92,11 @@ export async function createProfile(
 
   if (!user) redirect("/login");
 
-  const first_name = (formData.get("first_name") as string).trim();
-  const username   = (formData.get("username")   as string).trim().toLowerCase();
-  const stadtteil  = formData.get("stadtteil") as string;
-  const interests  = formData.getAll("interests") as string[];
+  const first_name       = (formData.get("first_name") as string).trim();
+  const username         = (formData.get("username")   as string).trim().toLowerCase();
+  const stadtteil        = formData.get("stadtteil") as string;
+  const interests        = formData.getAll("interests") as string[];
+  const newsletter_optin = formData.get("newsletter_optin") === "true";
 
   if (!first_name) return { error: "Bitte gib deinen Vornamen ein." };
   if (!username || !/^[a-z0-9_.]{3,20}$/.test(username))
@@ -108,6 +109,7 @@ export async function createProfile(
     username,
     stadtteil,
     interests,
+    newsletter_optin,
   });
 
   if (error) {
