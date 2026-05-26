@@ -265,3 +265,24 @@ small,
   letter-spacing: -0.045em;
   line-height: 1;
 }
+
+/* ─── Logo slot-reel animation ─── */
+@keyframes slot-reel {
+  0%   { transform: translateY(-120%); }
+  65%  { transform: translateY(6%); }
+  80%  { transform: translateY(-2%); }
+  100% { transform: translateY(0%); }
+}
+
+.slot-clip {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: inherit;
+}
+
+.slot-reel {
+  display: inline-block;
+  animation: slot-reel 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.25s;
+}

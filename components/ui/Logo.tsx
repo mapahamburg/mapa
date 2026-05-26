@@ -73,15 +73,23 @@ export function Logo({
         </span>
         {city && (
           <span
+            className="slot-clip"
             style={{
               fontSize: size,
-              fontWeight: 400,
-              letterSpacing: "-0.02em",
-              color,
               marginLeft: "0.35em",
+              height: "1.15em",
             }}
           >
-            {city}
+            <span
+              className="slot-reel"
+              style={{
+                fontWeight: 400,
+                letterSpacing: "-0.02em",
+                color,
+              }}
+            >
+              {city}
+            </span>
           </span>
         )}
       </span>
