@@ -23,7 +23,9 @@ export function Nav() {
           justifyContent: "space-between",
         }}
       >
-        <Logo size={22} lockup />
+        <a href="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Logo size={22} lockup />
+        </a>
 
         <nav
           style={{
