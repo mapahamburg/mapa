@@ -4,7 +4,7 @@ import { useState } from "react";
 import { SmartPost, type Post } from "@/components/app/PostCard";
 
 const DISTRICTS = [
-  "Alle Viertel",
+  "Alle Stadtteile",
   "Eppendorf",
   "Winterhude",
   "Ottensen",
@@ -131,10 +131,10 @@ function SectionHeader({ children, action }: { children: React.ReactNode; action
 }
 
 export function FeedColumn() {
-  const [district, setDistrict] = useState("Alle Viertel");
+  const [district, setDistrict] = useState("Alle Stadtteile");
 
   const visible =
-    district === "Alle Viertel"
+    district === "Alle Stadtteile"
       ? POSTS
       : POSTS.filter((p) => p.district === district);
 
@@ -158,7 +158,7 @@ export function FeedColumn() {
         <div
           style={{ fontSize: 15, color: "var(--fg-muted)", marginTop: 4 }}
         >
-          Heute neu in deinem Viertel.
+          Heute neu in deinem Stadtteil.
         </div>
       </div>
 

@@ -262,7 +262,7 @@ export function OnboardingFlow() {
           marginBottom: "8px",
         }}
       >
-        In welchem Viertel lebst du?
+        In welchem Stadtteil lebst du?
       </h2>
       <p style={{ fontSize: "14px", color: "var(--fg-subtle)", marginBottom: "20px" }}>
         Dein Stadtteil bestimmt deinen Feed.

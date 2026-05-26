@@ -5,7 +5,7 @@ const LINKS = [
     "Produkt",
     [
       { label: "So funktioniert's", href: "/so-funktionierts" },
-      { label: "Viertel", href: "#" },
+      { label: "Stadtteile", href: "#" },
       { label: "Local Hosts", href: "#" },
       { label: "App laden", href: "#" },
     ],

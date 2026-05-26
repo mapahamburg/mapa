@@ -39,7 +39,7 @@ export function TopNav() {
         }}
       >
         <Search size={15} strokeWidth={1.5} />
-        Suche im Viertel …
+        Suche im Stadtteil …
       </div>
 
       <div style={{ flex: 1 }} />

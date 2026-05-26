@@ -50,7 +50,7 @@ export function StadtteilReel() {
             marginBottom: 40,
           }}
         >
-          Für jedes Viertel in Hamburg
+          Für jeden Stadtteil in Hamburg
         </div>
 
         {/* The reel */}

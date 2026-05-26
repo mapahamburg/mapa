@@ -88,7 +88,7 @@ export function LeftNav() {
           padding: "8px 14px",
         }}
       >
-        Dein Viertel
+        Dein Stadtteil
       </div>
       <button
         type="button"

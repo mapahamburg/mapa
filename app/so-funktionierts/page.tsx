@@ -6,13 +6,13 @@ const POST_TYPES = [
   {
     type: "empfehlung" as const,
     headline: "Empfehlung",
-    desc: "Du kennst ein gutes Familiencafé, eine tolle Hebamme oder den besten Spielplatz im Viertel. Teile es mit deinen Nachbarinnen.",
+    desc: "Du kennst ein gutes Familiencafé, eine tolle Hebamme oder den besten Spielplatz im Stadtteil. Teile es mit deinen Nachbarinnen.",
     example: `„DeliKate direkt am Hayns Park. Kinder willkommen, Kuchen hausgemacht."`,
   },
   {
     type: "frage" as const,
     headline: "Frage",
-    desc: "Du suchst Rat, eine Meinung oder einfach jemanden der eine Antwort kennt. Ohne Google, mit echten Menschen aus deinem Viertel.",
+    desc: "Du suchst Rat, eine Meinung oder einfach jemanden der eine Antwort kennt. Ohne Google, mit echten Menschen aus deinem Stadtteil.",
     example: `„Kennt jemand einen guten Kinderarzt in Winterhude, der noch Patienten annimmt?"`,
   },
   {
@@ -30,7 +30,7 @@ const POST_TYPES = [
   {
     type: "veranstaltung" as const,
     headline: "Veranstaltung",
-    desc: "Kinderflohmarkt, Lesung, Workshop. Veranstaltungen für Familien im Viertel — übersichtlich und lokal.",
+    desc: "Kinderflohmarkt, Lesung, Workshop. Veranstaltungen für Familien im Stadtteil — übersichtlich und lokal.",
     example: `„Familienflohmarkt in der Rindermarkthalle. Sa 9–14 Uhr, Eintritt frei."`,
   },
 ] as const;
@@ -71,7 +71,7 @@ export default function SoFunktionierts() {
             <br />
             Kein Lärm.
             <br />
-            Nur dein Viertel.
+            Nur dein Stadtteil.
           </h1>
           <p
             style={{
@@ -129,7 +129,7 @@ export default function SoFunktionierts() {
             }}
           >
             Der Feed zeigt Beiträge aus deinem Stadtteil — chronologisch, ohne
-            Ranking, ohne bezahlte Platzierungen. Du wählst welche Viertel du
+            Ranking, ohne bezahlte Platzierungen. Du wählst welche Stadtteile du
             siehst. Heute, diese Woche, alles: du behältst den Überblick.
           </p>
 
@@ -276,7 +276,7 @@ export default function SoFunktionierts() {
               lineHeight: 1.15,
             }}
           >
-            Ein Mensch pro Viertel.
+            Ein Mensch pro Stadtteil.
           </h2>
           <p
             style={{
@@ -288,7 +288,7 @@ export default function SoFunktionierts() {
             }}
           >
             Jeder Stadtteil hat einen Local Host — eine echte Person aus dem
-            Viertel, die mapa lebendig hält. Sie begrüßen neue Mitglieder,
+            Stadtteil, die mapa lebendig hält. Sie begrüßen neue Mitglieder,
             kuratieren Tipps und halten den Ton warm. Ehrenamtlich, mit Herzblut.
           </p>
           <div
@@ -301,7 +301,7 @@ export default function SoFunktionierts() {
             {[
               "Sie begrüßen jedes neue Mitglied persönlich.",
               "Sie moderieren ruhig, bevor Diskussionen kippen.",
-              "Sie kennen das Viertel besser als jeder Algorithmus.",
+              "Sie kennen den Stadtteil besser als jeder Algorithmus.",
             ].map((item) => (
               <div
                 key={item}
@@ -345,7 +345,7 @@ export default function SoFunktionierts() {
               lineHeight: 1.1,
             }}
           >
-            Bereit für dein Viertel?
+            Bereit für deinen Stadtteil?
           </h2>
           <p
             style={{

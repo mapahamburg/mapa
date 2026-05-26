@@ -45,7 +45,7 @@ export function LocalHosts() {
               color: "var(--ink)",
             }}
           >
-            Ein Mensch pro Viertel.
+            Ein Mensch pro Stadtteil.
             <br />
             echt, nicht algorithmisch.
           </h2>
@@ -59,7 +59,7 @@ export function LocalHosts() {
             }}
           >
             In jedem Stadtteil gibt es einen Local Host: eine engagierte Person,
-            die das Viertel kennt, Treffen kuratiert und neue Familien willkommen
+            die den Stadtteil kennt, Treffen kuratiert und neue Familien willkommen
             heißt. Ehrenamtlich, mit Haltung.
           </p>
           <a

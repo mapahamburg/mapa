@@ -63,7 +63,7 @@ function HeroVisual() {
           Hallo Lina.
         </div>
         <div style={{ fontSize: 11, color: "var(--fg-muted)", marginTop: 2 }}>
-          Heute neu in deinem Viertel.
+          Heute neu in deinem Stadtteil.
         </div>
 
         <div style={{ display: "flex", gap: 5, marginTop: 14 }}>

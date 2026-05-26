@@ -1,7 +1,7 @@
 const ITEMS = [
   ["Keine Likes-Wettbewerbe", "Du folgst Themen, nicht Menschen."],
   ["Keine Werbung im Feed", "Punkt."],
-  ["Kein Algorithmus, der dich länger fesselt", "Chronologisch. Dein Viertel zuerst."],
+  ["Kein Algorithmus, der dich länger fesselt", "Chronologisch. Dein Stadtteil zuerst."],
   ["Keine Foto-Pflicht", "Profile sind reduziert. Du teilst, was du willst."],
   ["Keine globalen Diskussionen", "mapa ist Hamburg. Lokal heißt lokal."],
 ] as const;

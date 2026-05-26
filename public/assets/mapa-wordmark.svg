@@ -1,0 +1,8 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 160" role="img" aria-label="mapa">
+  <defs>
+    
+  </defs>
+  <text class="letters" x="0" y="138" data-part="letters">mapa</text>
+  <circle cx="510" cy="120" r="22" fill="#1B3CF0" data-part="dot"></circle>
+</svg>

@@ -5,7 +5,7 @@ import { Avatar } from "@/components/ui/Avatar";
 export const metadata = {
   title: "Local Host werden — mapa",
   description:
-    "Gestalte mapa in deinem Stadtteil mit. Als Local Host bist du der Anker für neue Familien in deinem Viertel.",
+    "Gestalte mapa in deinem Stadtteil mit. Als Local Host bist du der Anker für neue Familien in deinem Stadtteil.",
 };
 
 const TASKS = [
@@ -26,7 +26,7 @@ const TASKS = [
   },
   {
     n: "04",
-    title: "Das Viertel kennen",
+    title: "Den Stadtteil kennen",
     body: "Du teilst dein lokales Wissen: die guten Cafés, die Hebammen mit Kapazität, die Spielplätze mit Schatten.",
   },
 ];
@@ -65,7 +65,7 @@ export default function LocalHostsPage() {
               textWrap: "balance" as const,
             }}
           >
-            Ein Mensch pro Viertel.
+            Ein Mensch pro Stadtteil.
             <br />
             Vielleicht du.
           </h1>
@@ -226,7 +226,7 @@ export default function LocalHostsPage() {
                 "Du hast selbst Kinder oder Kontakt zur Familienwelt.",
                 "Dir liegt ein freundlicher, ruhiger Umgangston am Herzen.",
                 "Du hast Lust, ein- bis zweimal pro Monat ein Treffen anzustoßen.",
-                "Du bist bereit, mapa in deinem Viertel bekannter zu machen.",
+                "Du bist bereit, mapa in deinem Stadtteil bekannter zu machen.",
               ].map((point) => (
                 <div
                   key={point}
@@ -362,7 +362,7 @@ export default function LocalHostsPage() {
               color: "var(--surface-page)",
             }}
           >
-            Lust, dein Viertel
+            Lust, deinen Stadtteil
             <br />
             mitzugestalten?
           </h2>

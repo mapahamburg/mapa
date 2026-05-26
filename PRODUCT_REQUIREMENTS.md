@@ -45,7 +45,7 @@
 | Magic Link Login | ☐ | Als Alternative zu Passwort — bevorzugte UX |
 | Password Reset | ☐ | Via Email |
 | Change Password | ☐ | In Account-Einstellungen |
-| Edit Profile | ☐ | Name, Viertel, Bio, Interessen |
+| Edit Profile | ☐ | Name, Stadtteil, Bio, Interessen |
 | Delete Account | ☐ | Vollständiger Flow inkl. Datenlöschung |
 | District Selection | ☐ | Onboarding + jederzeit änderbar |
 | Notification Settings | ☐ | Email-Präferenzen, später Push |
@@ -146,7 +146,7 @@
 |---|---|---|
 | Neue Antwort auf eigenen Beitrag | ✓ | ✓ |
 | Event in der Nähe | ✓ | ✓ |
-| Neuer Beitrag im Viertel | Digest (wöchentlich) | ✓ |
+| Neuer Beitrag im Stadtteil | Digest (wöchentlich) | ✓ |
 | Neue DM | ✓ | ✓ |
 | Gruppen-Aktivität | Digest | ✓ |
 | Moderations-Alert | ✓ (Hosts) | ✓ (Hosts) |

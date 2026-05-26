@@ -1,0 +1,8 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="mapa app icon">
+  <rect width="1024" height="1024" rx="224" fill="#1B3CF0"></rect>
+  <g transform="translate(212, 348)">
+    <text x="0" y="500" font-family="Geist, &#39;ABC Diatype&#39;, Inter, system-ui, sans-serif" font-weight="800" font-size="720" letter-spacing="-28" fill="#F1ECE2">m</text>
+    <circle cx="720" cy="420" r="78" fill="#F1ECE2"></circle>
+  </g>
+</svg>
