@@ -33,11 +33,15 @@ export function Nav() {
             fontSize: 14.5,
           }}
         >
-          {["So funktioniert's", "Viertel", "Local Hosts", "Über uns"].map(
-            (label) => (
+          {[
+            { label: "So funktioniert’s", href: "/so-funktionierts" },
+            { label: "Viertel", href: "#" },
+            { label: "Local Hosts", href: "#" },
+            { label: "Über uns", href: "#" },
+          ].map(({ label, href }) => (
               <a
                 key={label}
-                href="#"
+                href={href}
                 style={{
                   color: "var(--fg)",
                   textDecoration: "none",
@@ -46,8 +50,7 @@ export function Nav() {
               >
                 {label}
               </a>
-            )
-          )}
+          ))}
         </nav>
 
         <div
