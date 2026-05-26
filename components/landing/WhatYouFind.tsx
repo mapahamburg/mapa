@@ -59,22 +59,24 @@ export function WhatYouFind() {
           <div
             style={{
               fontSize: 12,
-              letterSpacing: "0.1em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--olive-700)",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
             }}
           >
             Was du auf mapa findest
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-ui)",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
               fontSize: 62,
               lineHeight: 1.0,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.015em",
               margin: "16px 0 0",
-              fontWeight: 600,
             }}
           >
             Alles, was lokales

@@ -46,10 +46,11 @@ export default function SoFunktionierts() {
           <div
             style={{
               fontSize: 12,
-              letterSpacing: "0.1em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--olive-700)",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
               marginBottom: 24,
             }}
           >
@@ -57,11 +58,12 @@ export default function SoFunktionierts() {
           </div>
           <h1
             style={{
-              fontFamily: "var(--font-ui)",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
               fontSize: 56,
-              fontWeight: 600,
               lineHeight: 1.05,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.02em",
               margin: 0,
             }}
           >
@@ -94,10 +96,11 @@ export default function SoFunktionierts() {
           <div
             style={{
               fontSize: 12,
-              letterSpacing: "0.1em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--olive-700)",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
               marginBottom: 20,
             }}
           >
@@ -105,10 +108,11 @@ export default function SoFunktionierts() {
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-ui)",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
               fontSize: 36,
-              fontWeight: 600,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.015em",
               margin: "0 0 20px",
               lineHeight: 1.15,
             }}
@@ -170,10 +174,11 @@ export default function SoFunktionierts() {
           <div
             style={{
               fontSize: 12,
-              letterSpacing: "0.1em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--olive-700)",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
               marginBottom: 20,
             }}
           >
@@ -181,10 +186,11 @@ export default function SoFunktionierts() {
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-ui)",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
               fontSize: 36,
-              fontWeight: 600,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.015em",
               margin: "0 0 48px",
               lineHeight: 1.15,
             }}
@@ -248,10 +254,11 @@ export default function SoFunktionierts() {
           <div
             style={{
               fontSize: 12,
-              letterSpacing: "0.1em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--olive-700)",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
               marginBottom: 20,
             }}
           >
@@ -259,10 +266,11 @@ export default function SoFunktionierts() {
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-ui)",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
               fontSize: 36,
-              fontWeight: 600,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.015em",
               color: "var(--ink)",
               margin: "0 0 20px",
               lineHeight: 1.15,
@@ -328,10 +336,11 @@ export default function SoFunktionierts() {
         <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
           <h2
             style={{
-              fontFamily: "var(--font-ui)",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
               fontSize: 44,
-              fontWeight: 600,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.015em",
               margin: "0 0 20px",
               lineHeight: 1.1,
             }}

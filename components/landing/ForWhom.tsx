@@ -23,22 +23,24 @@ export function ForWhom() {
           <div
             style={{
               fontSize: 12,
-              letterSpacing: "0.1em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--olive-700)",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
             }}
           >
             Für wen mapa ist
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-ui)",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
               fontSize: 58,
               lineHeight: 1.02,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.015em",
               margin: "16px 0 32px",
-              fontWeight: 600,
             }}
           >
             Für Eltern in Hamburg,
@@ -100,23 +102,25 @@ export function ForWhom() {
           <div
             style={{
               fontSize: 12,
-              letterSpacing: "0.1em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--olive-700)",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
             }}
           >
             Unsere Vision
           </div>
           <div
             style={{
-              fontFamily: "var(--font-ui)",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
               fontSize: 46,
               lineHeight: 1.1,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.015em",
               marginTop: 16,
               color: "var(--olive-700)",
-              fontWeight: 600,
             }}
           >
             Familien brauchen wieder

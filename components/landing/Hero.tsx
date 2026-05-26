@@ -291,10 +291,11 @@ export async function Hero() {
           <div
             style={{
               fontSize: 12,
-              letterSpacing: "0.1em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "var(--olive-700)",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
               marginBottom: 24,
             }}
           >
@@ -303,31 +304,28 @@ export async function Hero() {
 
           <h1
             style={{
-              fontFamily: "var(--font-ui)",
-              fontSize: 88,
-              lineHeight: 1.0,
-              letterSpacing: "-0.04em",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
+              fontSize: 84,
+              lineHeight: 1.05,
+              letterSpacing: "-0.02em",
               margin: 0,
               color: "var(--fg)",
-              fontWeight: 600,
+              textWrap: "balance" as const,
             }}
           >
-            Die lokale
-            <br />
-            Community für
-            <br />
-            Mamas und Papas{" "}
-            in Hamburg.
+            Die lokale Community für Mamas und Papas in Hamburg.
           </h1>
 
           <p
             style={{
               fontFamily: "var(--font-ui)",
               fontWeight: 400,
-              fontSize: 22,
-              lineHeight: 1.5,
-              letterSpacing: "-0.01em",
-              color: "var(--fg-muted)",
+              fontSize: 18,
+              lineHeight: 1.55,
+              letterSpacing: 0,
+              color: "var(--ash-v2-900)",
               marginTop: 28,
               maxWidth: 480,
             }}
