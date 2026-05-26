@@ -323,10 +323,14 @@ export async function Hero() {
 
           <p
             style={{
-              fontSize: 19,
-              lineHeight: 1.55,
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 300,
+              fontSize: 26,
+              lineHeight: 1.4,
+              letterSpacing: "0.01em",
               color: "var(--fg-muted)",
-              marginTop: 32,
+              marginTop: 28,
               maxWidth: 480,
             }}
           >
