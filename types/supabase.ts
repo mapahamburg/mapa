@@ -1,0 +1,187 @@
+/**
+ * Supabase database type definitions — hand-authored from 001_schema.sql.
+ * Replace with `npx supabase gen types typescript` once project is linked.
+ */
+
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
+export type PostType =
+  | "empfehlung"
+  | "frage"
+  | "treffen"
+  | "suche"
+  | "veranstaltung";
+
+export type Database = {
+  public: {
+    Tables: {
+      profiles: {
+        Row: {
+          id: string;
+          first_name: string;
+          stadtteil: string;
+          is_local_host: boolean;
+          bio: string | null;
+          can_help_with: string[];
+          looking_for: string[];
+          interests: string[];
+          joined_at: string;
+        };
+        Insert: {
+          id: string;
+          first_name: string;
+          stadtteil: string;
+          is_local_host?: boolean;
+          bio?: string | null;
+          can_help_with?: string[];
+          looking_for?: string[];
+          interests?: string[];
+          joined_at?: string;
+        };
+        Update: {
+          id?: string;
+          first_name?: string;
+          stadtteil?: string;
+          is_local_host?: boolean;
+          bio?: string | null;
+          can_help_with?: string[];
+          looking_for?: string[];
+          interests?: string[];
+          joined_at?: string;
+        };
+        Relationships: [];
+      };
+      posts: {
+        Row: {
+          id: string;
+          author_id: string;
+          type: PostType;
+          title: string;
+          body: string | null;
+          stadtteil: string;
+          meeting_location: string | null;
+          meeting_date: string | null;
+          min_age: number | null;
+          max_age: number | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          author_id: string;
+          type: PostType;
+          title: string;
+          body?: string | null;
+          stadtteil: string;
+          meeting_location?: string | null;
+          meeting_date?: string | null;
+          min_age?: number | null;
+          max_age?: number | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          author_id?: string;
+          type?: PostType;
+          title?: string;
+          body?: string | null;
+          stadtteil?: string;
+          meeting_location?: string | null;
+          meeting_date?: string | null;
+          min_age?: number | null;
+          max_age?: number | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "posts_author_id_fkey";
+            columns: ["author_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      comments: {
+        Row: {
+          id: string;
+          post_id: string;
+          author_id: string;
+          body: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          post_id: string;
+          author_id: string;
+          body: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          post_id?: string;
+          author_id?: string;
+          body?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "comments_post_id_fkey";
+            columns: ["post_id"];
+            isOneToOne: false;
+            referencedRelation: "posts";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "comments_author_id_fkey";
+            columns: ["author_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      saved_posts: {
+        Row: {
+          user_id: string;
+          post_id: string;
+          saved_at: string;
+        };
+        Insert: {
+          user_id: string;
+          post_id: string;
+          saved_at?: string;
+        };
+        Update: {
+          user_id?: string;
+          post_id?: string;
+          saved_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "saved_posts_post_id_fkey";
+            columns: ["post_id"];
+            isOneToOne: false;
+            referencedRelation: "posts";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "saved_posts_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+    };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+  };
+};

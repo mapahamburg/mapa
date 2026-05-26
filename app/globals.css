@@ -1,26 +1,270 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ─────────────────────────────────────────────────────────
+   MAPA Design System — Global Styles · v2
+   Source of truth: /export/system_v2/colors_and_type.css
 
+   v2 changes vs v1:
+   • cream lighter/warmer: #F2EBDE → #F5F1E8
+   • sage-500 softer/nordic: #6F855A → #98AD8B
+   • clay-500 softer: #C26A3F → #D88F68
+   • ink deeper: #221E18 → #171614
+   • New tokens: cream-deep, sand, harbor, cobalt, clay-700
+   • Headlines → Geist SemiBold (Instrument Serif is opt-in accent)
+   ───────────────────────────────────────────────────────── */
+
+/* Font variables injected by next/font at runtime */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --font-display: var(--font-instrument-serif);
+  --font-ui: var(--font-geist-sans);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Colour palette (v2) ─── */
+@theme {
+  /* Warm cream bases — never pure white */
+  --color-paper:      #FFFDF8;
+  --color-ivory:      #FAF6EE;
+  --color-cream:      #F5F1E8;   /* ★ v2 primary background */
+  --color-cream-deep: #EFE7DA;   /* v2: sunk surfaces */
+  --color-mist:       #EDE6D6;   /* form fields */
+  --color-sand:       #DCCFBF;   /* warm neutral accent */
+
+  /* Sage — primary brand (v2: lighter, more nordic) */
+  --color-sage-50:  #F2F5EC;
+  --color-sage-100: #E4EBD8;
+  --color-sage-200: #CFDABF;
+  --color-sage-300: #BAC9A6;
+  --color-sage-400: #A9BC95;
+  --color-sage-500: #98AD8B;   /* ★ v2 primary brand */
+  --color-sage-600: #6F855A;   /* hover / active */
+  --color-sage-700: #586B47;
+  --color-sage-800: #435238;
+
+  /* Peach / Clay — warm accent (v2: softer 500) */
+  --color-peach-50:  #FBF1E8;
+  --color-peach-100: #F6E0CC;
+  --color-peach-200: #EFC9AA;
+  --color-peach-300: #E6B187;
+  --color-peach-400: #DDA078;
+  --color-clay-500:  #D88F68;   /* ★ v2 accent */
+  --color-clay-600:  #C26A3F;   /* pressed */
+  --color-clay-700:  #A5552F;
+
+  /* Wordmark accents (posters / social / stickers only — product stays mono) */
+  --color-harbor: #4F6B86;   /* M in logo lockup */
+  --color-cobalt: #2F4A8F;   /* . in logo lockup */
+
+  /* Ink & Stone — warm type colours (v2: deeper ink) */
+  --color-ink:     #171614;   /* ★ v2 primary text */
+  --color-ink-2:   #3A352D;
+  --color-stone-1: #6B6457;
+  --color-stone-2: #948C7E;
+  --color-stone-3: #BFB7A6;
+
+  /* Lines & dividers */
+  --color-line:      #E0D8C6;
+  --color-line-soft: #EBE4D3;
+
+  /* Semantic states */
+  --color-success: #98AD8B;   /* sage-500 */
+  --color-warning: #C58B36;
+  --color-danger:  #B0533D;
+  --color-info:    #4F6B86;   /* harbor */
+
+  /* ─── Font sizes — display scale ─── */
+  --text-display-xl: 72px;
+  --text-display-l:  56px;
+  --text-display-m:  40px;
+  --text-display-s:  32px;
+  --text-display-xs: 26px;
+
+  /* ─── Border radii ─── */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-pill: 9999px;
+
+  /* ─── Shadows (warm, never black) ─── */
+  --shadow-xs: 0 1px 2px rgba(60, 48, 28, 0.05);
+  --shadow-s:  0 2px 6px rgba(60, 48, 28, 0.06), 0 1px 2px rgba(60, 48, 28, 0.04);
+  --shadow-m:  0 8px 20px -8px rgba(60, 48, 28, 0.12), 0 2px 6px rgba(60, 48, 28, 0.05);
+  --shadow-l:  0 20px 40px -18px rgba(60, 48, 28, 0.18), 0 4px 10px rgba(60, 48, 28, 0.06);
 }
 
+/* ─── Semantic aliases, motion, spacing ─── */
+:root {
+  /* Surfaces */
+  --bg:          var(--color-cream);
+  --bg-elevated: var(--color-ivory);
+  --bg-modal:    var(--color-paper);
+  --bg-sunk:     var(--color-cream-deep);
+  --bg-field:    var(--color-mist);       /* v2: form fields */
+
+  /* Foregrounds */
+  --fg:          var(--color-ink);
+  --fg-muted:    var(--color-stone-1);
+  --fg-subtle:   var(--color-stone-2);
+  --fg-on-sage:  var(--color-paper);
+  --fg-on-clay:  var(--color-paper);
+
+  /* Borders */
+  --border:      var(--color-line);
+  --border-soft: var(--color-line-soft);
+
+  /* Brand roles */
+  --primary:        var(--color-sage-500);
+  --primary-hover:  var(--color-sage-600);
+  --primary-soft:   var(--color-sage-100);
+  --accent:         var(--color-clay-500);
+  --accent-hover:   var(--color-clay-600);   /* v2: new */
+  --accent-soft:    var(--color-peach-100);
+
+  /* ─── --mapa-* aliases (used in component inline styles) ─── */
+  --mapa-paper:        #FFFDF8;
+  --mapa-ivory:        #FAF6EE;
+  --mapa-cream:        #F5F1E8;
+  --mapa-cream-deep:   #EFE7DA;
+  --mapa-mist:         #EDE6D6;
+  --mapa-sand-500:     #DCCFBF;
+  --mapa-harbor-500:   #4F6B86;
+  --mapa-cobalt-500:   #2F4A8F;
+  --mapa-sage-50:      #F2F5EC;
+  --mapa-sage-100:     #E4EBD8;
+  --mapa-sage-200:     #CFDABF;
+  --mapa-sage-300:     #BAC9A6;
+  --mapa-sage-400:     #A9BC95;
+  --mapa-sage-500:     #98AD8B;
+  --mapa-sage-600:     #6F855A;
+  --mapa-sage-700:     #586B47;
+  --mapa-sage-800:     #435238;
+  --mapa-peach-50:     #FBF1E8;
+  --mapa-peach-100:    #F6E0CC;
+  --mapa-peach-200:    #EFC9AA;
+  --mapa-peach-300:    #E6B187;
+  --mapa-peach-400:    #DDA078;
+  --mapa-clay-500:     #D88F68;
+  --mapa-clay-600:     #C26A3F;
+  --mapa-clay-700:     #A5552F;
+  --mapa-ink:          #171614;
+  --mapa-ink-2:        #3A352D;
+  --mapa-stone-1:      #6B6457;
+  --mapa-stone-2:      #948C7E;
+  --mapa-stone-3:      #BFB7A6;
+  --mapa-line:         #E0D8C6;
+  --mapa-line-soft:    #EBE4D3;
+  --mapa-success:      #98AD8B;
+  --mapa-warning:      #C58B36;
+  --mapa-danger:       #B0533D;
+  --mapa-info:         #4F6B86;
+
+  /* Font stacks (fallback for non-CSS / inline style contexts) */
+  --font-display: 'Instrument Serif', 'Georgia', serif;
+  --font-ui: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+
+  /* Motion */
+  --ease-soft: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:  120ms;
+  --dur-base:  200ms;
+  --dur-slow:  360ms;
+
+  /* Spacing (4px base — for inline style usage) */
+  --s-1: 4px;   --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
+  --s-5: 20px;  --s-6: 24px;  --s-7: 32px;  --s-8: 40px;
+  --s-9: 56px;  --s-10: 72px;
+
+  /* ─── Short-form aliases used in component inline styles ─── */
+  --bg-base:   var(--bg);
+  --bg-card:   var(--bg-elevated);
+  --line:      var(--border);
+  --radius-s:  var(--radius-sm);
+  --radius-m:  var(--radius-md);
+  --radius-l:  var(--radius-lg);
+}
+
+/* ─── Element defaults (v2) ─── */
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* v2: headlines → Geist SemiBold.
+   Instrument Serif Italic is opt-in via .editorial / .pull-quote. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--fg);
+}
+
+h1 { font-size: 40px; line-height: 1.05; letter-spacing: -0.02em; }
+h2 { font-size: 32px; }
+h3 { font-size: 26px; }
+h4 { font-size: 22px; }
+
+p {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--fg);
+  text-wrap: pretty;
+}
+
+small,
+.meta {
+  font-size: 14px;
+  color: var(--fg-muted);
+}
+
+/* ─── Utility classes ─── */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.font-ui {
+  font-family: var(--font-ui);
+}
+
+/* Editorial accent — the only time Instrument Serif Italic appears.
+   Use for: pull quotes, post titles in app feed, in-app nav logo. */
+.italic-display,
+.editorial,
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+
+/* Wordmark helper — apply to the brand mark in product UI */
+.wordmark {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1;
 }
