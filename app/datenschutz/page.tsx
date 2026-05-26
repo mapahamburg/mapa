@@ -56,8 +56,8 @@ export default function DatenschutzPage() {
     <LegalLayout eyebrow="Rechtliches" title="Datenschutz." lastUpdated="Mai 2026">
       <h2 style={h2Style}>1. Verantwortlicher</h2>
       <p style={pStyle}>
-        Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist: [Vorname Nachname],
-        [Adresse], E-Mail: hallo@mapa.hamburg
+        Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist: Henry Bigalke,
+        Ludwigstr. 4, 20357 Hamburg, E-Mail: hallo@mapa.hamburg
       </p>
 
       <h2 style={h2Style}>2. Erhobene Daten</h2>

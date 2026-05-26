@@ -22,11 +22,11 @@ export default function ImpressumPage() {
     <LegalLayout eyebrow="Rechtliches" title="Impressum." lastUpdated="Mai 2026">
       <h2 style={h2Style}>Angaben gemäß § 5 TMG</h2>
       <p style={pStyle}>
-        [Vorname Nachname]
+        Henry Bigalke
         <br />
-        [Straße Hausnummer]
+        Ludwigstr. 4
         <br />
-        [PLZ Hamburg]
+        20357 Hamburg
       </p>
 
       <h2 style={h2Style}>Kontakt</h2>
@@ -34,9 +34,11 @@ export default function ImpressumPage() {
 
       <h2 style={h2Style}>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
       <p style={pStyle}>
-        [Vorname Nachname]
+        Henry Bigalke
         <br />
-        [Adresse wie oben]
+        Ludwigstr. 4
+        <br />
+        20357 Hamburg
       </p>
 
       <h2 style={h2Style}>Haftungsausschluss</h2>
