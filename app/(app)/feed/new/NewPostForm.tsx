@@ -19,32 +19,32 @@ const POST_TYPES: {
   {
     value: "empfehlung",
     label: "Empfehlung",
-    bg: "var(--mapa-sage-100)",
-    color: "var(--mapa-sage-600, #4A6040)",
+    bg: "var(--cobalt-50)",
+    color: "var(--cobalt-700)",
   },
   {
     value: "frage",
     label: "Frage",
-    bg: "#E0EBF5",
-    color: "#2E6A9E",
+    bg: "var(--surface-card)",
+    color: "var(--ink)",
   },
   {
     value: "treffen",
     label: "Treffen",
-    bg: "var(--mapa-peach-100)",
-    color: "var(--mapa-clay-600, #A8502A)",
+    bg: "var(--ash-100)",
+    color: "var(--ash-900)",
   },
   {
     value: "suche",
     label: "Suche",
-    bg: "#EDE8DF",
-    color: "#7A6F63",
+    bg: "var(--ash-100)",
+    color: "var(--ash-900)",
   },
   {
     value: "veranstaltung",
     label: "Veranstaltung",
-    bg: "#EAE6F0",
-    color: "#5B4D8A",
+    bg: "var(--ash-100)",
+    color: "var(--ash-900)",
   },
 ];
 
@@ -70,8 +70,8 @@ function SubmitButton() {
       disabled={pending}
       style={{
         background: pending
-          ? "var(--mapa-sage-300, #A3B898)"
-          : "var(--mapa-sage-500)",
+          ? "var(--cobalt-200)"
+          : "var(--cobalt-500)",
         color: "#fff",
         border: "none",
         borderRadius: "var(--radius-pill, 999px)",
@@ -124,12 +124,12 @@ export function NewPostForm() {
   };
 
   const labelStyle: React.CSSProperties = {
-    fontFamily: "var(--font-ui)",
-    fontSize: 12,
+    fontFamily: "var(--font-mono)",
+    fontSize: 11,
     fontWeight: 600,
     color: "var(--fg-muted)",
     textTransform: "uppercase",
-    letterSpacing: "0.08em",
+    letterSpacing: "0.10em",
     marginBottom: 8,
     display: "block",
   };
@@ -137,9 +137,9 @@ export function NewPostForm() {
   return (
     <div
       style={{
-        background: "var(--bg-card)",
-        border: "1px solid var(--line)",
-        borderRadius: "var(--radius-l)",
+        background: "var(--surface-card)",
+        border: "1px solid var(--border)",
+        borderRadius: "var(--radius-xl)",
         padding: "36px 40px",
         maxWidth: 680,
         width: "100%",
@@ -149,11 +149,13 @@ export function NewPostForm() {
       <h1
         style={{
           fontFamily: "var(--font-display)",
+          fontStyle: "italic",
           fontSize: 28,
           fontWeight: 400,
-          color: "var(--fg)",
+          color: "var(--ink)",
           margin: "0 0 32px 0",
           lineHeight: 1.2,
+          letterSpacing: "-0.015em",
         }}
       >
         Neuer Beitrag
@@ -189,7 +191,7 @@ export function NewPostForm() {
                     color: isSelected ? pt.color : "var(--fg-muted)",
                     border: isSelected
                       ? `1.5px solid ${pt.color}`
-                      : "1.5px solid var(--line)",
+                      : "1.5px solid var(--border)",
                     borderRadius: "var(--radius-pill, 999px)",
                     padding: "7px 16px",
                     fontFamily: "var(--font-ui)",
@@ -262,11 +264,11 @@ export function NewPostForm() {
               display: "flex",
               justifyContent: "flex-end",
               marginTop: 4,
-              fontFamily: "var(--font-ui)",
-              fontSize: 12,
+              fontFamily: "var(--font-mono)",
+              fontSize: 11,
               color:
                 body.length > 1900
-                  ? "var(--mapa-clay-500)"
+                  ? "var(--cobalt-500)"
                   : "var(--fg-subtle)",
             }}
           >
@@ -278,13 +280,13 @@ export function NewPostForm() {
             <div
               style={{
                 marginTop: 12,
-                background: "var(--mapa-peach-50)",
-                border: "1px solid var(--mapa-peach-100)",
+                background: "var(--cobalt-50)",
+                border: "1px solid var(--cobalt-200)",
                 borderRadius: "var(--radius-m)",
                 padding: "12px 16px",
                 fontFamily: "var(--font-ui)",
                 fontSize: 13,
-                color: "var(--mapa-clay-500)",
+                color: "var(--cobalt-700)",
                 lineHeight: 1.55,
               }}
             >
@@ -293,7 +295,7 @@ export function NewPostForm() {
               <a
                 href="/hausregeln"
                 style={{
-                  color: "var(--mapa-clay-500)",
+                  color: "var(--cobalt-700)",
                   textDecoration: "underline",
                   textUnderlineOffset: 3,
                 }}
@@ -392,20 +394,20 @@ export function NewPostForm() {
               display: "flex",
               flexDirection: "column",
               gap: 20,
-              background: "var(--bg-card)",
-              border: "1px solid var(--line)",
-              borderRadius: "var(--radius-l)",
+              background: "var(--surface-page)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius-lg)",
               padding: 20,
             }}
           >
             <p
               style={{
-                fontFamily: "var(--font-ui)",
-                fontSize: 12,
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
                 fontWeight: 600,
                 color: "var(--fg-muted)",
                 textTransform: "uppercase",
-                letterSpacing: "0.08em",
+                letterSpacing: "0.10em",
                 margin: 0,
               }}
             >
@@ -527,9 +529,9 @@ export function NewPostForm() {
             style={{
               fontFamily: "var(--font-ui)",
               fontSize: 13.5,
-              color: "var(--mapa-clay-500)",
-              background: "var(--mapa-peach-50)",
-              border: "1px solid var(--mapa-peach-100)",
+              color: "var(--cobalt-700)",
+              background: "var(--cobalt-50)",
+              border: "1px solid var(--cobalt-200)",
               borderRadius: "var(--radius-m)",
               padding: "10px 14px",
               margin: 0,

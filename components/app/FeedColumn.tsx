@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { SmartPost, type Post } from "@/components/app/PostCard";
+import { SmartPost } from "@/components/app/PostCard";
+import type { FeedPost } from "@/types";
 
 const DISTRICTS = [
   "Alle Stadtteile",
@@ -14,86 +15,13 @@ const DISTRICTS = [
   "Hoheluft",
 ];
 
-const POSTS: Post[] = [
-  {
-    id: 1, type: "empfehlung", author: "Lina", district: "Eppendorf",
-    time: "vor 2 Std", section: "heute",
-    title: "DeliKate in der Schubackstraße ist ein echter Treffer.",
-    body: "Direkt am Hayns Park und beim Kinderplanschbecken. Wickeltisch, Hochstühle, ruhiger Hintergrund, und der Cappuccino ist auch noch gut. Wir waren letzte Woche da und hatten einen entspannten Vormittag.",
-    likes: 12, comments: 6,
-  },
-  {
-    id: 2, type: "treffen", author: "Mira", district: "Winterhude",
-    time: "vor 4 Std", section: "heute",
-    title: "Spielplatztreffen am Samstag. Wer kommt mit?",
-    body: "Wir treffen uns ab 10:30 am großen Spielplatz im Stadtpark. Kaffee und Kuchen bringen wir mit.",
-    meeting: { where: "Stadtpark Winterhude", when: "Sa 25. Mai · 10:30", age: "2–4 Jahre" },
-    likes: 24, comments: 11,
-  },
-  {
-    id: 3, type: "frage", author: "Jonas", district: "Ottensen",
-    time: "vor 6 Std", section: "heute",
-    title: "Kennt jemand eine ruhige Hebamme im Westen?",
-    likes: 4, comments: 8,
-  },
-  {
-    id: 10, type: "suche", author: "Anna", district: "Eimsbüttel",
-    time: "vor 7 Std", section: "heute",
-    title: "Suche Babysitter für nächsten Freitag, 18–22 Uhr.",
-    likes: 2, comments: 3,
-  },
-  {
-    id: 4, type: "empfehlung", author: "Sarah", district: "Eimsbüttel",
-    time: "gestern", section: "woche",
-    title: "Kursempfehlung: Babyschwimmen im Bartholomäus-Bad",
-    body: "Sehr kleine Gruppen, super Trainerin (Anke). Wartelistenstart immer Anfang des Quartals.",
-    likes: 18, comments: 4,
-  },
-  {
-    id: 5, type: "veranstaltung", author: "Tim", district: "Winterhude",
-    time: "gestern", section: "woche",
-    title: "Kinderflohmarkt im Goldbekhaus, Samstag",
-    body: "10:00 bis 14:00, Eintritt frei. Verkaufsstand kann man noch buchen.",
-    meeting: { where: "Goldbekhaus", when: "Sa 25. Mai · 10:00" },
-    likes: 9, comments: 2,
-  },
-  {
-    id: 6, type: "frage", author: "Nina", district: "Eppendorf",
-    time: "gestern", section: "woche",
-    title: "Wo bekommt ihr eure Kinderschuhe? Erste Schuhe stehen an.",
-    likes: 7, comments: 14,
-  },
-  {
-    id: 7, type: "empfehlung", author: "Tom", district: "Sternschanze",
-    time: "vor 2 Tagen", section: "woche",
-    title: "Familienarzt Dr. Berthold nimmt wieder Kinder auf.",
-    body: "Sehr ruhige Praxis, keine langen Wartezeiten. Anmeldung über die Webseite.",
-    likes: 22, comments: 5,
-  },
-  {
-    id: 8, type: "treffen", author: "Katja", district: "Hoheluft",
-    time: "vor 2 Tagen", section: "woche",
-    title: "Tragetuchtreff jeden Donnerstag.",
-    body: "Wir treffen uns regelmäßig im Café Mira, alle willkommen die mehr lernen wollen.",
-    meeting: { where: "Café Mira, Hoheluftchaussee", when: "Do 15:00, wöchentlich" },
-    likes: 14, comments: 6,
-  },
-  {
-    id: 9, type: "frage", author: "Rebecca", district: "Altona",
-    time: "vor 3 Tagen", section: "woche",
-    title: "Welche Kita habt ihr in Altona und wart ihr zufrieden?",
-    likes: 11, comments: 27,
-  },
-  {
-    id: 11, type: "empfehlung", author: "Sophia", district: "Winterhude",
-    time: "vor 4 Tagen", section: "woche",
-    title: "Bücherei Winterhude hat einen neuen Krabbelraum.",
-    body: "Sehr nett gemacht, viele Bücher zum Anfassen für die Kleinen. Auch eine Stillecke gibt es.",
-    likes: 16, comments: 3,
-  },
-];
-
-function SectionHeader({ children, action }: { children: React.ReactNode; action?: string }) {
+function SectionHeader({
+  children,
+  action,
+}: {
+  children: React.ReactNode;
+  action?: string;
+}) {
   return (
     <div
       style={{
@@ -109,6 +37,7 @@ function SectionHeader({ children, action }: { children: React.ReactNode; action
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           fontWeight: 600,
+          fontFamily: "var(--font-mono)",
           color: "var(--fg-muted)",
         }}
       >
@@ -118,7 +47,7 @@ function SectionHeader({ children, action }: { children: React.ReactNode; action
         <span
           style={{
             fontSize: 13,
-            color: "var(--mapa-sage-700)",
+            color: "var(--cobalt-500)",
             fontWeight: 500,
             cursor: "pointer",
           }}
@@ -130,13 +59,18 @@ function SectionHeader({ children, action }: { children: React.ReactNode; action
   );
 }
 
-export function FeedColumn() {
+interface FeedColumnProps {
+  posts: FeedPost[];
+  userName?: string;
+}
+
+export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
   const [district, setDistrict] = useState("Alle Stadtteile");
 
   const visible =
     district === "Alle Stadtteile"
-      ? POSTS
-      : POSTS.filter((p) => p.district === district);
+      ? posts
+      : posts.filter((p) => p.district === district);
 
   const heute = visible.filter((p) => p.section === "heute");
   const woche = visible.filter((p) => p.section === "woche");
@@ -148,16 +82,16 @@ export function FeedColumn() {
         <div
           style={{
             fontFamily: "var(--font-display)",
+            fontStyle: "italic",
             fontSize: 36,
             letterSpacing: "-0.025em",
             lineHeight: 1.05,
+            color: "var(--ink)",
           }}
         >
-          Hallo Lina.
+          Hallo {userName}.
         </div>
-        <div
-          style={{ fontSize: 15, color: "var(--fg-muted)", marginTop: 4 }}
-        >
+        <div style={{ fontSize: 15, color: "var(--fg-muted)", marginTop: 4 }}>
           Heute neu in deinem Stadtteil.
         </div>
       </div>
@@ -173,8 +107,8 @@ export function FeedColumn() {
             onClick={() => setDistrict(d)}
             style={{
               background:
-                district === d ? "var(--mapa-ink)" : "var(--mapa-ivory)",
-              color: district === d ? "var(--mapa-paper)" : "var(--fg)",
+                district === d ? "var(--ink)" : "var(--surface-card)",
+              color: district === d ? "#fff" : "var(--fg)",
               border: district === d ? "none" : "1px solid var(--border)",
               padding: "7px 14px",
               borderRadius: 999,
@@ -208,24 +142,58 @@ export function FeedColumn() {
         ))}
       </div>
 
-      {/* End of feed */}
-      <div style={{ textAlign: "center", padding: "48px 0 16px" }}>
+      {/* Empty state */}
+      {visible.length === 0 && (
         <div
           style={{
-            fontFamily: "var(--font-display)",
-            fontSize: 18,
-            color: "var(--fg-muted)",
-            letterSpacing: "-0.01em",
+            textAlign: "center",
+            padding: "64px 0",
           }}
         >
-          Das war&apos;s für jetzt.
+          <div
+            style={{
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontSize: 20,
+              color: "var(--fg-muted)",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Noch nichts hier.
+          </div>
+          <div
+            style={{
+              fontSize: 14,
+              color: "var(--fg-subtle)",
+              marginTop: 8,
+            }}
+          >
+            Sei die erste Person, die etwas in diesem Stadtteil teilt.
+          </div>
         </div>
-        <div
-          style={{ fontSize: 13, color: "var(--fg-subtle)", marginTop: 8 }}
-        >
-          Schau später wieder vorbei. Es kommen täglich neue Beiträge.
+      )}
+
+      {/* End of feed */}
+      {visible.length > 0 && (
+        <div style={{ textAlign: "center", padding: "48px 0 16px" }}>
+          <div
+            style={{
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontSize: 18,
+              color: "var(--fg-muted)",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Das war&apos;s für jetzt.
+          </div>
+          <div
+            style={{ fontSize: 13, color: "var(--fg-subtle)", marginTop: 8 }}
+          >
+            Schau später wieder vorbei. Es kommen täglich neue Beiträge.
+          </div>
         </div>
-      </div>
+      )}
     </main>
   );
 }

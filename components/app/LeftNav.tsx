@@ -35,7 +35,7 @@ export function LeftNav() {
     <nav
       style={{
         width: 240,
-        background: "var(--mapa-cream)",
+        background: "var(--surface-page)",
         padding: "32px 16px",
         borderRight: "1px solid var(--border-soft)",
         display: "flex",
@@ -55,14 +55,14 @@ export function LeftNav() {
           onClick={() => setActive(item.id)}
           style={{
             background:
-              active === item.id ? "var(--mapa-ivory)" : "transparent",
+              active === item.id ? "var(--surface-card)" : "transparent",
             border: "none",
             padding: "10px 14px",
             borderRadius: 12,
             fontFamily: "var(--font-ui)",
             fontSize: 14,
             fontWeight: active === item.id ? 500 : 400,
-            color: active === item.id ? "var(--fg)" : "var(--fg-muted)",
+            color: active === item.id ? "var(--ink)" : "var(--fg-muted)",
             textAlign: "left",
             cursor: "pointer",
             display: "flex",
@@ -86,6 +86,7 @@ export function LeftNav() {
           fontWeight: 600,
           color: "var(--fg-subtle)",
           padding: "8px 14px",
+          fontFamily: "var(--font-mono)",
         }}
       >
         Dein Stadtteil
@@ -93,7 +94,7 @@ export function LeftNav() {
       <button
         type="button"
         style={{
-          background: "var(--mapa-sage-100)",
+          background: "var(--forest-100)",
           border: "none",
           padding: "12px 14px",
           borderRadius: 12,
@@ -109,7 +110,7 @@ export function LeftNav() {
             width: 10,
             height: 10,
             borderRadius: 999,
-            background: "var(--mapa-sage-500)",
+            background: "var(--cobalt-500)",
             flexShrink: 0,
           }}
         />
@@ -117,13 +118,13 @@ export function LeftNav() {
           style={{
             fontSize: 14,
             fontWeight: 500,
-            color: "var(--mapa-sage-800)",
+            color: "var(--ink)",
             flex: 1,
           }}
         >
           Eppendorf
         </span>
-        <ChevronDown size={14} strokeWidth={1.5} color="var(--mapa-sage-700)" />
+        <ChevronDown size={14} strokeWidth={1.5} color="var(--ash-600)" />
       </button>
     </nav>
   );

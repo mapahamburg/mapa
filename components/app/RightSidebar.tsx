@@ -34,10 +34,10 @@ export function RightSidebar() {
       {/* Local Host card */}
       <div
         style={{
-          background: "var(--mapa-sage-100)",
+          background: "var(--forest-100)",
           borderRadius: 20,
           padding: 20,
-          border: "1px solid var(--mapa-sage-200)",
+          border: "1px solid var(--ash-200)",
         }}
       >
         <div
@@ -45,8 +45,9 @@ export function RightSidebar() {
             fontSize: 11,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
-            color: "var(--mapa-sage-700)",
+            color: "var(--forest-500)",
             fontWeight: 600,
+            fontFamily: "var(--font-mono)",
             marginBottom: 12,
           }}
         >
@@ -65,14 +66,15 @@ export function RightSidebar() {
             <div
               style={{
                 fontFamily: "var(--font-display)",
+                fontStyle: "italic",
                 fontSize: 19,
                 letterSpacing: "-0.01em",
-                color: "var(--mapa-sage-800)",
+                color: "var(--forest-700)",
               }}
             >
               Nadine
             </div>
-            <div style={{ fontSize: 12, color: "var(--mapa-sage-700)" }}>
+            <div style={{ fontSize: 12, color: "var(--forest-500)" }}>
               312 Familien begleitet
             </div>
           </div>
@@ -80,9 +82,10 @@ export function RightSidebar() {
         <div
           style={{
             fontFamily: "var(--font-display)",
+            fontStyle: "italic",
             fontSize: 15,
             lineHeight: 1.4,
-            color: "var(--mapa-sage-800)",
+            color: "var(--forest-700)",
             letterSpacing: "-0.005em",
           }}
         >
@@ -93,9 +96,9 @@ export function RightSidebar() {
           type="button"
           style={{
             marginTop: 14,
-            background: "var(--mapa-paper)",
-            color: "var(--mapa-sage-700)",
-            border: "1px solid var(--mapa-sage-200)",
+            background: "var(--surface-card)",
+            color: "var(--forest-500)",
+            border: "1px solid var(--ash-200)",
             padding: "8px 14px",
             borderRadius: 999,
             fontFamily: "var(--font-ui)",
@@ -111,7 +114,7 @@ export function RightSidebar() {
       {/* Treffen widget */}
       <div
         style={{
-          background: "var(--mapa-ivory)",
+          background: "var(--surface-card)",
           borderRadius: 20,
           border: "1px solid var(--border)",
           padding: 20,
@@ -131,6 +134,7 @@ export function RightSidebar() {
               letterSpacing: "0.12em",
               textTransform: "uppercase",
               fontWeight: 600,
+              fontFamily: "var(--font-mono)",
               color: "var(--fg-muted)",
             }}
           >
@@ -139,7 +143,7 @@ export function RightSidebar() {
           <span
             style={{
               fontSize: 12,
-              color: "var(--mapa-sage-700)",
+              color: "var(--cobalt-500)",
               fontWeight: 500,
               cursor: "pointer",
             }}
@@ -169,8 +173,8 @@ export function RightSidebar() {
                     width: 44,
                     textAlign: "center",
                     flexShrink: 0,
-                    background: "var(--mapa-peach-100)",
-                    color: "var(--mapa-clay-600)",
+                    background: "var(--cobalt-50)",
+                    color: "var(--cobalt-700)",
                     borderRadius: 10,
                     padding: "4px 0",
                     fontFamily: "var(--font-display)",
@@ -200,6 +204,7 @@ export function RightSidebar() {
                   <div
                     style={{
                       fontFamily: "var(--font-display)",
+                      fontStyle: "italic",
                       fontSize: 14.5,
                       letterSpacing: "-0.01em",
                       lineHeight: 1.3,
@@ -233,7 +238,7 @@ export function RightSidebar() {
       {/* Stats */}
       <div
         style={{
-          background: "var(--mapa-paper)",
+          background: "var(--surface-card)",
           borderRadius: 20,
           border: "1px solid var(--border)",
           padding: 20,
@@ -245,6 +250,7 @@ export function RightSidebar() {
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             fontWeight: 600,
+            fontFamily: "var(--font-mono)",
             color: "var(--fg-muted)",
           }}
         >
@@ -257,6 +263,7 @@ export function RightSidebar() {
                 fontFamily: "var(--font-display)",
                 fontSize: 28,
                 letterSpacing: "-0.02em",
+                color: "var(--ink)",
               }}
             >
               184
@@ -271,6 +278,7 @@ export function RightSidebar() {
                 fontFamily: "var(--font-display)",
                 fontSize: 28,
                 letterSpacing: "-0.02em",
+                color: "var(--ink)",
               }}
             >
               12

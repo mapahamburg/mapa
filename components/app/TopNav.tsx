@@ -7,7 +7,7 @@ export function TopNav() {
   return (
     <header
       style={{
-        background: "rgba(245, 241, 232, 0.92)",
+        background: "rgba(241, 236, 226, 0.92)",
         backdropFilter: "blur(20px) saturate(180%)",
         WebkitBackdropFilter: "blur(20px) saturate(180%)",
         borderBottom: "1px solid var(--border-soft)",
@@ -20,14 +20,14 @@ export function TopNav() {
         zIndex: 50,
       }}
     >
-      <Logo size={22} />
+      <Logo size={22} lockup />
 
       {/* Search */}
       <div
         style={{
           flex: 1,
           maxWidth: 480,
-          background: "var(--mapa-ivory)",
+          background: "var(--surface-card)",
           border: "1px solid var(--border)",
           borderRadius: 999,
           padding: "8px 16px",
@@ -48,8 +48,8 @@ export function TopNav() {
       <Link
         href="/feed/new"
         style={{
-          background: "var(--mapa-clay-500)",
-          color: "var(--mapa-paper)",
+          background: "var(--cobalt-500)",
+          color: "#fff",
           border: "none",
           padding: "8px 16px",
           borderRadius: 999,
@@ -72,7 +72,7 @@ export function TopNav() {
       <button
         type="button"
         style={{
-          background: "var(--mapa-ivory)",
+          background: "var(--surface-card)",
           border: "1px solid var(--border)",
           width: 36,
           height: 36,
@@ -94,8 +94,8 @@ export function TopNav() {
             width: 7,
             height: 7,
             borderRadius: 999,
-            background: "var(--mapa-clay-500)",
-            border: "1.5px solid var(--mapa-ivory)",
+            background: "var(--cobalt-500)",
+            border: "1.5px solid var(--surface-card)",
           }}
         />
       </button>

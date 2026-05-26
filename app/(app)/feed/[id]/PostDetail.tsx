@@ -11,85 +11,21 @@ import {
   Send,
   Heart,
 } from "lucide-react";
+import { Avatar } from "@/components/ui/Avatar";
 import { createComment, type CommentState } from "@/app/actions/comments";
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-type Author = {
-  name: string;
-  stadtteil?: string;
-  gradient: string;
-};
-
-type PostData = {
-  id: string;
-  type: string;
-  title: string;
-  body?: string;
-  author: Author;
-  stadtteil: string;
-  created_at: string;
-  comment_count: number;
-  meeting_location?: string;
-  meeting_date?: string;
-  min_age?: number;
-  max_age?: number;
-};
-
-type CommentData = {
-  id: string;
-  author: Author;
-  body: string;
-  created_at: string;
-};
+import type { PostDetail as PostDetailData, CommentItem } from "@/types";
 
 // ─── Post type pill config ────────────────────────────────────────────────────
 
-const TYPE_CONFIG: Record<
-  string,
-  { label: string; bg: string; fg: string }
-> = {
-  empfehlung:    { label: "Empfehlung",    bg: "#EAF0E6", fg: "#4A6741" },
-  frage:         { label: "Frage",         bg: "#E0EBF5", fg: "#2E6A9E" },
-  treffen:       { label: "Treffen",       bg: "#F5EBE0", fg: "#A0522D" },
-  suche:         { label: "Suche",         bg: "#EDE8DF", fg: "#7A6F63" },
-  veranstaltung: { label: "Veranstaltung", bg: "#EAE6F0", fg: "#5B4D8A" },
+const TYPE_CONFIG: Record<string, { label: string; bg: string; fg: string }> = {
+  empfehlung:    { label: "Empfehlung",    bg: "var(--cobalt-50)",    fg: "var(--cobalt-700)" },
+  frage:         { label: "Frage",         bg: "var(--surface-card)", fg: "var(--ink)" },
+  treffen:       { label: "Treffen",       bg: "var(--ash-100)",      fg: "var(--ash-900)" },
+  suche:         { label: "Suche",         bg: "var(--ash-100)",      fg: "var(--ash-900)" },
+  veranstaltung: { label: "Veranstaltung", bg: "var(--ash-100)",      fg: "var(--ash-900)" },
 };
 
-// ─── Avatar circle ────────────────────────────────────────────────────────────
-
-function GradientAvatar({
-  gradient,
-  name,
-  size,
-}: {
-  gradient: string;
-  name: string;
-  size: number;
-}) {
-  return (
-    <div
-      aria-hidden="true"
-      style={{
-        width: size,
-        height: size,
-        borderRadius: "var(--radius-pill)",
-        background: gradient,
-        flexShrink: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "var(--font-display)",
-        fontSize: size * 0.42,
-        color: "var(--mapa-paper)",
-      }}
-    >
-      {name[0]}
-    </div>
-  );
-}
-
-// ─── Composer ─────────────────────────────────────────────────────────────────
+// ─── Sticky comment composer ──────────────────────────────────────────────────
 
 function StickyComposer({ postId }: { postId: string }) {
   const [body, setBody] = useState("");
@@ -107,13 +43,10 @@ function StickyComposer({ postId }: { postId: string }) {
     el.style.height = `${Math.min(el.scrollHeight, 120)}px`;
   }
 
-  // Clear textarea on successful submission
   useEffect(() => {
     if (state.message) {
       setBody("");
-      if (textareaRef.current) {
-        textareaRef.current.style.height = "40px";
-      }
+      if (textareaRef.current) textareaRef.current.style.height = "40px";
     }
   }, [state.message]);
 
@@ -125,8 +58,8 @@ function StickyComposer({ postId }: { postId: string }) {
         left: 0,
         right: 0,
         zIndex: 50,
-        borderTop: "1px solid var(--mapa-line)",
-        background: "rgba(242, 235, 222, 0.92)",
+        borderTop: "1px solid var(--border-soft)",
+        background: "rgba(241, 236, 226, 0.92)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
         padding: "12px 16px",
@@ -149,7 +82,7 @@ function StickyComposer({ postId }: { postId: string }) {
           value={body}
           onChange={(e) => setBody(e.target.value)}
           onInput={handleInput}
-          placeholder="Schreib eine Antwort..."
+          placeholder="Schreib eine Antwort…"
           rows={1}
           style={{
             flex: 1,
@@ -161,18 +94,18 @@ function StickyComposer({ postId }: { postId: string }) {
             fontSize: 14,
             lineHeight: 1.5,
             color: "var(--fg)",
-            background: "var(--mapa-ivory)",
-            border: "1px solid var(--mapa-line)",
-            borderRadius: "var(--radius-m, 8px)",
+            background: "var(--surface-card)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius-md)",
             padding: "9px 14px",
             outline: "none",
             transition: "border-color var(--dur-base)",
           }}
           onFocus={(e) =>
-            (e.currentTarget.style.borderColor = "var(--mapa-sage-500)")
+            (e.currentTarget.style.borderColor = "var(--cobalt-500)")
           }
           onBlur={(e) =>
-            (e.currentTarget.style.borderColor = "var(--mapa-line)")
+            (e.currentTarget.style.borderColor = "var(--border)")
           }
           disabled={isPending}
         />
@@ -184,9 +117,7 @@ function StickyComposer({ postId }: { postId: string }) {
             width: 36,
             height: 36,
             borderRadius: "var(--radius-pill)",
-            background: body.trim()
-              ? "var(--mapa-sage-500)"
-              : "var(--mapa-sage-100)",
+            background: body.trim() ? "var(--cobalt-500)" : "var(--cobalt-50)",
             border: "none",
             display: "flex",
             alignItems: "center",
@@ -199,7 +130,7 @@ function StickyComposer({ postId }: { postId: string }) {
           <Send
             size={16}
             strokeWidth={1.5}
-            color={body.trim() ? "var(--mapa-paper)" : "var(--mapa-stone-2)"}
+            color={body.trim() ? "#fff" : "var(--ash-400)"}
           />
         </button>
       </form>
@@ -209,7 +140,7 @@ function StickyComposer({ postId }: { postId: string }) {
             maxWidth: 680,
             margin: "6px auto 0",
             fontSize: 12,
-            color: "var(--mapa-danger)",
+            color: "var(--danger)",
             fontFamily: "var(--font-ui)",
           }}
         >
@@ -226,8 +157,8 @@ export function PostDetail({
   post,
   comments,
 }: {
-  post: PostData;
-  comments: CommentData[];
+  post: PostDetailData;
+  comments: CommentItem[];
 }) {
   const [reacted, setReacted] = useState(false);
   const typeConfig = TYPE_CONFIG[post.type] ?? TYPE_CONFIG.empfehlung;
@@ -238,7 +169,7 @@ export function PostDetail({
         style={{
           maxWidth: 680,
           margin: "0 auto",
-          padding: "32px 0 80px",
+          padding: "32px 0 100px",
           fontFamily: "var(--font-ui)",
         }}
       >
@@ -252,35 +183,34 @@ export function PostDetail({
             textDecoration: "none",
             color: "var(--fg-subtle)",
             fontSize: 14,
-            fontFamily: "var(--font-ui)",
           }}
         >
           <ArrowLeft size={16} strokeWidth={1.5} />
-          Zurück
+          Zurück zum Feed
         </Link>
 
         {/* Post card */}
         <div
           style={{
-            background: "var(--bg-card, var(--mapa-ivory))",
-            border: "1px solid var(--mapa-line)",
-            borderRadius: "var(--radius-l, 12px)",
+            background: "var(--surface-card)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius-xl)",
             padding: 32,
-            boxShadow: "var(--shadow-m)",
-            marginTop: 16,
+            marginTop: 20,
           }}
         >
-          {/* Tag pill */}
+          {/* Type pill */}
           <span
             style={{
               display: "inline-block",
-              padding: "4px 11px",
+              padding: "4px 12px",
               borderRadius: "var(--radius-pill)",
               background: typeConfig.bg,
               color: typeConfig.fg,
               fontSize: 12,
               fontWeight: 500,
-              letterSpacing: 0.1,
+              fontFamily: "var(--font-ui)",
+              letterSpacing: "0.01em",
             }}
           >
             {typeConfig.label}
@@ -290,12 +220,13 @@ export function PostDetail({
           <h1
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: 28,
+              fontStyle: "italic",
+              fontSize: 30,
               fontWeight: 400,
-              lineHeight: 1.3,
+              lineHeight: 1.2,
               margin: "16px 0 0",
-              color: "var(--fg)",
-              letterSpacing: "-0.015em",
+              color: "var(--ink)",
+              letterSpacing: "-0.02em",
             }}
           >
             {post.title}
@@ -307,30 +238,14 @@ export function PostDetail({
               display: "flex",
               alignItems: "center",
               gap: 10,
-              marginTop: 14,
+              marginTop: 16,
             }}
           >
-            <GradientAvatar
-              gradient={post.author.gradient}
-              name={post.author.name}
-              size={40}
-            />
-            <span
-              style={{
-                fontSize: 14,
-                color: "var(--fg)",
-                fontFamily: "var(--font-ui)",
-              }}
-            >
-              {post.author.name}
+            <Avatar letter={post.author_name[0]} size={40} />
+            <span style={{ fontSize: 14, fontWeight: 500, color: "var(--fg)" }}>
+              {post.author_name}
             </span>
-            <span
-              style={{
-                fontSize: 13,
-                color: "var(--fg-subtle)",
-                fontFamily: "var(--font-ui)",
-              }}
-            >
+            <span style={{ fontSize: 13, color: "var(--fg-subtle)" }}>
               · {post.stadtteil} · {post.created_at}
             </span>
           </div>
@@ -343,7 +258,6 @@ export function PostDetail({
                 lineHeight: 1.7,
                 color: "var(--fg-muted)",
                 marginTop: 20,
-                fontFamily: "var(--font-ui)",
               }}
             >
               {post.body}
@@ -354,9 +268,9 @@ export function PostDetail({
           {(post.meeting_location || post.meeting_date) && (
             <div
               style={{
-                background: "var(--mapa-peach-50)",
-                border: "1px solid var(--mapa-peach-100)",
-                borderRadius: "var(--radius-m, 8px)",
+                background: "var(--surface-page-deep)",
+                border: "1px solid var(--border-soft)",
+                borderRadius: "var(--radius-md)",
                 padding: 16,
                 marginTop: 20,
                 display: "flex",
@@ -372,14 +286,9 @@ export function PostDetail({
                     gap: 8,
                     fontSize: 14,
                     color: "var(--fg-muted)",
-                    fontFamily: "var(--font-ui)",
                   }}
                 >
-                  <MapPin
-                    size={15}
-                    strokeWidth={1.5}
-                    color="var(--mapa-clay-500)"
-                  />
+                  <MapPin size={15} strokeWidth={1.5} color="var(--cobalt-500)" />
                   {post.meeting_location}
                 </div>
               )}
@@ -391,14 +300,9 @@ export function PostDetail({
                     gap: 8,
                     fontSize: 14,
                     color: "var(--fg-muted)",
-                    fontFamily: "var(--font-ui)",
                   }}
                 >
-                  <Calendar
-                    size={15}
-                    strokeWidth={1.5}
-                    color="var(--mapa-clay-500)"
-                  />
+                  <Calendar size={15} strokeWidth={1.5} color="var(--cobalt-500)" />
                   {post.meeting_date}
                 </div>
               )}
@@ -410,14 +314,9 @@ export function PostDetail({
                     gap: 8,
                     fontSize: 14,
                     color: "var(--fg-muted)",
-                    fontFamily: "var(--font-ui)",
                   }}
                 >
-                  <Users
-                    size={15}
-                    strokeWidth={1.5}
-                    color="var(--mapa-clay-500)"
-                  />
+                  <Users size={15} strokeWidth={1.5} color="var(--cobalt-500)" />
                   {post.min_age !== undefined && post.max_age !== undefined
                     ? `Kinder von ${post.min_age} bis ${post.max_age} Jahren`
                     : post.min_age !== undefined
@@ -433,7 +332,7 @@ export function PostDetail({
             style={{
               marginTop: 24,
               paddingTop: 20,
-              borderTop: "1px solid var(--mapa-line)",
+              borderTop: "1px solid var(--border)",
             }}
           >
             <button
@@ -450,15 +349,14 @@ export function PostDetail({
                 cursor: "pointer",
                 padding: "4px 0",
                 fontSize: 13,
-                fontFamily: "var(--font-ui)",
-                color: reacted ? "var(--mapa-sage-500)" : "var(--fg-subtle)",
+                color: reacted ? "var(--cobalt-500)" : "var(--fg-subtle)",
                 transition: "color var(--dur-base)",
               }}
             >
               <Heart
                 size={16}
                 strokeWidth={1.5}
-                fill={reacted ? "var(--mapa-sage-500)" : "none"}
+                fill={reacted ? "var(--cobalt-500)" : "none"}
               />
               Hilfreich
             </button>
@@ -472,7 +370,6 @@ export function PostDetail({
               fontSize: 15,
               fontWeight: 500,
               color: "var(--fg)",
-              fontFamily: "var(--font-ui)",
               margin: "0 0 16px",
             }}
           >
@@ -480,10 +377,9 @@ export function PostDetail({
             {comments.length === 1 ? "Antwort" : "Antworten"}
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {comments.map((comment) => (
               <article key={comment.id}>
-                {/* Comment author row */}
                 <div
                   style={{
                     display: "flex",
@@ -492,40 +388,23 @@ export function PostDetail({
                     marginBottom: 6,
                   }}
                 >
-                  <GradientAvatar
-                    gradient={comment.author.gradient}
-                    name={comment.author.name}
-                    size={32}
-                  />
+                  <Avatar letter={comment.author_name[0]} size={32} />
                   <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 500,
-                      color: "var(--fg)",
-                      fontFamily: "var(--font-ui)",
-                    }}
+                    style={{ fontSize: 13, fontWeight: 500, color: "var(--fg)" }}
                   >
-                    {comment.author.name}
+                    {comment.author_name}
                   </span>
-                  <span
-                    style={{
-                      fontSize: 12,
-                      color: "var(--fg-subtle)",
-                      fontFamily: "var(--font-ui)",
-                    }}
-                  >
+                  <span style={{ fontSize: 12, color: "var(--fg-subtle)" }}>
                     {comment.created_at}
                   </span>
                 </div>
-                {/* Comment body */}
                 <p
                   style={{
                     fontSize: 14,
-                    lineHeight: 1.6,
+                    lineHeight: 1.65,
                     color: "var(--fg-muted)",
                     margin: 0,
                     paddingLeft: 40,
-                    fontFamily: "var(--font-ui)",
                   }}
                 >
                   {comment.body}
@@ -535,7 +414,6 @@ export function PostDetail({
           </div>
         </section>
 
-        {/* Empty state when no comments */}
         {comments.length === 0 && (
           <div
             style={{
@@ -545,7 +423,6 @@ export function PostDetail({
               gap: 8,
               color: "var(--fg-subtle)",
               fontSize: 14,
-              fontFamily: "var(--font-ui)",
             }}
           >
             <MessageSquare size={16} strokeWidth={1.5} />
@@ -554,7 +431,6 @@ export function PostDetail({
         )}
       </article>
 
-      {/* Sticky composer */}
       <StickyComposer postId={post.id} />
     </>
   );

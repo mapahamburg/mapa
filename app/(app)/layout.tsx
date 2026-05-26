@@ -6,7 +6,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
       style={{
-        background: "var(--mapa-cream)",
+        background: "var(--surface-page)",
         minHeight: "100dvh",
         fontFamily: "var(--font-ui)",
         color: "var(--fg)",

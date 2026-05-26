@@ -10,7 +10,7 @@ export function MeetingChip({ where, when, age }: MeetingChipProps) {
   return (
     <div
       style={{
-        background: "var(--mapa-cream)",
+        background: "var(--surface-page-deep)",
         borderRadius: 12,
         padding: "12px 14px",
         fontSize: 13.5,

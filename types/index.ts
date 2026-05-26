@@ -1,3 +1,55 @@
+// ─── Feed / UI display types ──────────────────────────────────────────────────
+// These are the shaped, pre-formatted types used in components.
+// They are distinct from the raw DB row types in types/supabase.ts.
+
+/**
+ * A post as displayed in the feed list (PostCard / CompactPost).
+ * Pre-formatted for display: relative time, meeting block, etc.
+ */
+export interface FeedPost {
+  id:       string;
+  type:     PostType;
+  author:   string;       // first_name from profiles
+  district: string;       // stadtteil
+  time:     string;       // relative time string e.g. "vor 2 Std."
+  section:  "heute" | "woche";
+  title:    string;
+  body?:    string;
+  meeting?: {
+    where: string;
+    when:  string;
+    age?:  string;
+  };
+  likes:    number;       // reserved — always 0 until likes table ships
+  comments: number;
+}
+
+/**
+ * Full post data for the PostDetail page.
+ * meeting_date and meeting_location are already formatted strings.
+ */
+export interface PostDetail {
+  id:               string;
+  type:             string;
+  title:            string;
+  body?:            string;
+  author_name:      string;
+  stadtteil:        string;
+  created_at:       string;  // formatted relative time
+  meeting_location?: string;
+  meeting_date?:    string;  // formatted German date string
+  min_age?:         number;
+  max_age?:         number;
+}
+
+/** A single comment in the PostDetail view. */
+export interface CommentItem {
+  id:          string;
+  author_name: string;
+  body:        string;
+  created_at:  string;  // formatted relative time
+}
+
 // ─── Post types ──────────────────────────────────────────────────────────────
 
 export type PostType =

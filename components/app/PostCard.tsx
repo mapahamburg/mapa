@@ -5,23 +5,12 @@ import { Heart, MessageCircle, Bookmark } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Tag } from "@/components/ui/Tag";
 import { MeetingChip } from "@/components/app/MeetingChip";
-import type { PostType } from "@/components/ui/Tag";
+import type { FeedPost } from "@/types";
 
-export interface Post {
-  id: number;
-  type: PostType;
-  author: string;
-  district: string;
-  time: string;
-  section: "heute" | "woche";
-  title: string;
-  body?: string;
-  meeting?: { where: string; when: string; age?: string };
-  likes: number;
-  comments: number;
-}
+// Re-export so FeedColumn can import from one place
+export type { FeedPost as Post };
 
-export function PostCard({ post }: { post: Post }) {
+export function PostCard({ post }: { post: FeedPost }) {
   return (
     <Link
       href={`/feed/${post.id}`}
@@ -29,7 +18,7 @@ export function PostCard({ post }: { post: Post }) {
     >
     <div
       style={{
-        background: "var(--mapa-ivory)",
+        background: "var(--surface-card)",
         borderRadius: 20,
         border: "1px solid var(--border)",
         padding: 24,
@@ -37,7 +26,7 @@ export function PostCard({ post }: { post: Post }) {
         transition: `border-color var(--dur-base)`,
       }}
       onMouseEnter={(e) =>
-        (e.currentTarget.style.borderColor = "var(--mapa-sage-300)")
+        (e.currentTarget.style.borderColor = "var(--cobalt-200)")
       }
       onMouseLeave={(e) =>
         (e.currentTarget.style.borderColor = "var(--border)")
@@ -66,6 +55,7 @@ export function PostCard({ post }: { post: Post }) {
       <div
         style={{
           fontFamily: "var(--font-display)",
+          fontStyle: "italic",
           fontSize: 24,
           lineHeight: 1.2,
           letterSpacing: "-0.015em",
@@ -127,7 +117,7 @@ export function PostCard({ post }: { post: Post }) {
   );
 }
 
-export function CompactPost({ post }: { post: Post }) {
+export function CompactPost({ post }: { post: FeedPost }) {
   return (
     <Link
       href={`/feed/${post.id}`}
@@ -135,7 +125,7 @@ export function CompactPost({ post }: { post: Post }) {
     >
     <div
       style={{
-        background: "var(--mapa-paper)",
+        background: "var(--surface-card)",
         borderRadius: 16,
         border: "1px solid var(--border)",
         padding: "16px 20px",
@@ -146,7 +136,7 @@ export function CompactPost({ post }: { post: Post }) {
         transition: `border-color var(--dur-base)`,
       }}
       onMouseEnter={(e) =>
-        (e.currentTarget.style.borderColor = "var(--mapa-sage-300)")
+        (e.currentTarget.style.borderColor = "var(--cobalt-200)")
       }
       onMouseLeave={(e) =>
         (e.currentTarget.style.borderColor = "var(--border)")
@@ -172,6 +162,7 @@ export function CompactPost({ post }: { post: Post }) {
         <div
           style={{
             fontFamily: "var(--font-display)",
+            fontStyle: "italic",
             fontSize: 18,
             lineHeight: 1.25,
             letterSpacing: "-0.01em",
@@ -201,7 +192,7 @@ export function CompactPost({ post }: { post: Post }) {
   );
 }
 
-export function SmartPost({ post }: { post: Post }) {
+export function SmartPost({ post }: { post: FeedPost }) {
   if (post.type === "frage" || post.type === "suche")
     return <CompactPost post={post} />;
   return <PostCard post={post} />;
