@@ -48,7 +48,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "var(--olive-700)",
+              color: "var(--cobalt-500)",
               fontWeight: 500,
               fontFamily: "var(--font-mono)",
               marginBottom: 24,
@@ -98,7 +98,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "var(--olive-700)",
+              color: "var(--cobalt-500)",
               fontWeight: 500,
               fontFamily: "var(--font-mono)",
               marginBottom: 20,
@@ -176,7 +176,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "var(--olive-700)",
+              color: "var(--cobalt-500)",
               fontWeight: 500,
               fontFamily: "var(--font-mono)",
               marginBottom: 20,
@@ -256,7 +256,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "var(--olive-700)",
+              color: "var(--cobalt-500)",
               fontWeight: 500,
               fontFamily: "var(--font-mono)",
               marginBottom: 20,
@@ -319,7 +319,7 @@ export default function SoFunktionierts() {
                     width: 6,
                     height: 6,
                     borderRadius: 999,
-                    background: "var(--sage-v2-400)",
+                    background: "var(--cobalt-500)",
                     marginTop: 8,
                     flexShrink: 0,
                   }}
@@ -360,7 +360,7 @@ export default function SoFunktionierts() {
           <button
             type="button"
             style={{
-              background: "var(--olive-500)",
+              background: "var(--cobalt-500)",
               color: "var(--mapa-paper)",
               border: "none",
               padding: "16px 32px",

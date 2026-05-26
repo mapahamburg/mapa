@@ -81,9 +81,9 @@
   --color-info:    #4F6B86;   /* harbor */
 
   /* ─── v2 Surface tokens ─── */
-  --surface-page:        #F2ECE0;
-  --surface-page-deep:   #EBE4D4;
-  --surface-card:        #FAF5E9;
+  --surface-page:        #F1ECE2;
+  --surface-page-deep:   #E7E1D4;
+  --surface-card:        #FBF8F2;
   --surface-elevated:    #FFFFFF;
   --surface-ink:         #1C1A17;
 
@@ -116,6 +116,29 @@
   --ash-v2-400: #9C988C;
   --ash-v2-600: #6E6A5E;
   --ash-v2-900: #2E2A23;
+
+  /* ─── Cobalt v3 (Primary) ─────────────────────────── */
+  --cobalt-50:  #E6EBFE;
+  --cobalt-200: #A8B6F9;
+  --cobalt-500: #1B3CF0;
+  --cobalt-600: #1632CB;
+  --cobalt-700: #0F23A8;
+  --cobalt-900: #081773;
+
+  /* ─── Forest v3 (Secondary · sparsam) ─────────────── */
+  --forest-100: #DCE3DC;
+  --forest-500: #0E3B2E;
+  --forest-700: #08251B;
+
+  /* ─── Ash v3 (short names) ─────────────────────────── */
+  --ash-100: #E3DED2;
+  --ash-200: #CFCABE;
+  --ash-400: #9C988C;
+  --ash-600: #6E6A5E;
+  --ash-900: #2E2A23;
+
+  /* ─── Ink v3 ────────────────────────────────────────── */
+  --ink: #141312;
 
   /* ─── Type scale (v3 — Serif Display + Sans UI + Mono Label) ─── */
   --text-display-xl: 84px;   /* Hero Landing — Serif Italic */
@@ -179,7 +202,7 @@
 
   /* Foregrounds */
   --fg:          #1C1A17;
-  --fg-muted:    var(--ash-v2-600);
+  --fg-muted:    var(--ash-600);
   --fg-subtle:   var(--color-stone-2);
   --fg-on-sage:  var(--color-paper);
   --fg-on-clay:  var(--color-paper);
@@ -189,9 +212,9 @@
   --border-soft: var(--color-line-soft);
 
   /* Brand roles */
-  --primary:        var(--olive-500);
-  --primary-hover:  var(--olive-600);
-  --primary-soft:   var(--sage-v2-100);
+  --primary:        var(--cobalt-500);
+  --primary-hover:  var(--cobalt-600);
+  --primary-soft:   var(--cobalt-50);
   --accent:         var(--clay-v2-500);
   --accent-hover:   var(--clay-v2-600);
   --accent-soft:    var(--clay-v2-100);
@@ -254,6 +277,18 @@
   --mapa-ash-600:             #6E6A5E;
   --mapa-ash-200:             #CFCABE;
 
+  /* ─── v3 cobalt/forest aliases ─── */
+  --mapa-cobalt-50:   #E6EBFE;
+  --mapa-cobalt-500:  #1B3CF0;
+  --mapa-cobalt-600:  #1632CB;
+  --mapa-cobalt-700:  #0F23A8;
+  --mapa-forest-100:  #DCE3DC;
+  --mapa-forest-500:  #0E3B2E;
+  --mapa-forest-700:  #08251B;
+  --mapa-ash-100:     #E3DED2;
+  --mapa-ash-600-v3:  #6E6A5E;
+  --mapa-ash-900-v3:  #2E2A23;
+
   /* Font stacks (fallback for non-CSS / inline style contexts) */
   --font-display: 'Instrument Serif', 'Tiempos Headline', Georgia, serif;
   --font-ui:      'Geist', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
@@ -268,7 +303,7 @@
   --dur-slow:  320ms;
 
   /* Focus ring */
-  --focus-ring: color-mix(in oklab, var(--olive-500) 55%, white);
+  --focus-ring: color-mix(in oklab, var(--cobalt-500) 60%, white);
 
   /* ─── Short-form aliases used in component inline styles ─── */
   --bg-base:   var(--bg);
@@ -372,7 +407,7 @@ small,
   font-weight: 400;
   font-size: var(--text-body-l);
   line-height: 1.55;
-  color: var(--ash-v2-900);
+  color: var(--ash-900);
   text-wrap: pretty;
   max-width: 56ch;
 }
@@ -390,7 +425,7 @@ small,
   font-weight: 400;
   font-size: var(--text-body-s);
   line-height: 1.45;
-  color: var(--ash-v2-600);
+  color: var(--ash-600);
 }
 
 .type-button {
@@ -409,7 +444,7 @@ small,
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--olive-700);
+  color: var(--cobalt-500);
 }
 
 .type-mono-meta {
@@ -418,7 +453,7 @@ small,
   font-size: var(--text-mono-s);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ash-v2-600);
+  color: var(--ash-600);
 }
 
 /* Legacy / backward-compat aliases */
@@ -426,7 +461,7 @@ small,
 .font-ui       { font-family: var(--font-ui); }
 .editorial,
 .pull-quote    { font-family: var(--font-display); font-style: italic; font-weight: 400; line-height: 1.2; }
-.eyebrow       { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--olive-700); }
+.eyebrow       { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--cobalt-500); }
 
 /* Wordmark helper */
 .wordmark {

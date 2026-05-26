@@ -26,7 +26,7 @@ export function LocalHosts() {
               fontSize: 12,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "var(--olive-700)",
+              color: "var(--cobalt-500)",
               fontWeight: 500,
               fontFamily: "var(--font-mono)",
             }}
@@ -66,7 +66,7 @@ export function LocalHosts() {
             type="button"
             style={{
               marginTop: 28,
-              background: "var(--olive-500)",
+              background: "var(--cobalt-500)",
               color: "var(--surface-page)",
               border: "none",
               padding: "14px 24px",
@@ -84,7 +84,7 @@ export function LocalHosts() {
         {/* Right: host card */}
         <div
           style={{
-            background: "var(--mapa-paper)",
+            background: "var(--forest-100)",
             borderRadius: 28,
             padding: 32,
             color: "var(--fg)",

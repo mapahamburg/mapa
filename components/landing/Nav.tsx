@@ -79,7 +79,7 @@ export function Nav() {
           <button
             type="button"
             style={{
-              background: "var(--olive-500)",
+              background: "var(--cobalt-500)",
               color: "var(--mapa-paper)",
               border: "none",
               padding: "10px 18px",
