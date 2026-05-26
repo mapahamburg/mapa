@@ -3,10 +3,12 @@ interface LogoProps {
   color?: string;
   dotColor?: string;
   italic?: boolean;
-  /** Heavy variant: Geist 900, tight — Variante D/E */
+  /** Heavy variant: Geist 900, tight */
   heavy?: boolean;
-  /** Geist variant: uppercase MAPA. in Geist Bold */
+  /** Geist variant: uppercase MAPA. in Geist Bold, monochromatic */
   geist?: boolean;
+  /** Optional city suffix rendered in Geist Regular after the mark, e.g. "Hamburg" */
+  city?: string;
 }
 
 export function Logo({
@@ -16,6 +18,7 @@ export function Logo({
   italic = false,
   heavy = false,
   geist = false,
+  city,
 }: LogoProps) {
   if (heavy) {
     return (
@@ -41,18 +44,46 @@ export function Logo({
       <span
         style={{
           fontFamily: "var(--font-ui)",
-          fontSize: size,
-          fontWeight: 700,
           fontStyle: "normal",
           lineHeight: 1,
-          letterSpacing: "-0.04em",
           display: "inline-flex",
           alignItems: "baseline",
+          gap: 0,
         }}
       >
-        <span style={{ color: "var(--mapa-harbor-500)" }}>M</span>
-        <span style={{ color }}>APA</span>
-        <span style={{ color: dotColor }}>.</span>
+        <span
+          style={{
+            fontSize: size,
+            fontWeight: 700,
+            letterSpacing: "-0.04em",
+            color,
+          }}
+        >
+          MAPA
+        </span>
+        <span
+          style={{
+            fontSize: size,
+            fontWeight: 700,
+            letterSpacing: "-0.04em",
+            color: dotColor,
+          }}
+        >
+          .
+        </span>
+        {city && (
+          <span
+            style={{
+              fontSize: size,
+              fontWeight: 400,
+              letterSpacing: "-0.02em",
+              color,
+              marginLeft: "0.35em",
+            }}
+          >
+            {city}
+          </span>
+        )}
       </span>
     );
   }
@@ -60,7 +91,7 @@ export function Logo({
   return (
     <span
       style={{
-        fontFamily: "var(--font-display)",
+        fontFamily: "var(--font-ui)",
         fontSize: size,
         fontStyle: italic ? "italic" : "normal",
         lineHeight: 1,

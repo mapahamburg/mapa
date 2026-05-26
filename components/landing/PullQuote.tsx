@@ -4,14 +4,14 @@ export function PullQuote() {
       <div style={{ maxWidth: 920, margin: "0 auto", textAlign: "center" }}>
         <div
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-ui)",
+            fontWeight: 600,
             fontSize: 72,
             lineHeight: 1.1,
-            letterSpacing: "-0.02em",
+            letterSpacing: "-0.03em",
           }}
         >
-          „Frag mal auf mapa."
+          „Frag mal auf MAPA."
         </div>
         <p
           style={{
