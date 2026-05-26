@@ -71,7 +71,7 @@ export function AdminSidebar() {
     >
       {/* Logo + eyebrow */}
       <div style={{ marginBottom: 32 }}>
-        <Logo size={22} />
+        <Logo size={22} geist />
         <div
           style={{
             fontFamily: "var(--font-ui)",

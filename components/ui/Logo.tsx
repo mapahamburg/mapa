@@ -12,7 +12,7 @@ interface LogoProps {
 export function Logo({
   size = 28,
   color = "var(--fg)",
-  dotColor = "var(--mapa-clay-500)",
+  dotColor = "var(--mapa-cobalt-500)",
   italic = false,
   heavy = false,
   geist = false,
@@ -46,12 +46,13 @@ export function Logo({
           fontStyle: "normal",
           lineHeight: 1,
           letterSpacing: "-0.04em",
-          color,
           display: "inline-flex",
           alignItems: "baseline",
         }}
       >
-        MAPA<span style={{ color: dotColor }}>.</span>
+        <span style={{ color: "var(--mapa-harbor-500)" }}>M</span>
+        <span style={{ color }}>APA</span>
+        <span style={{ color: dotColor }}>.</span>
       </span>
     );
   }

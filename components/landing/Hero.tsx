@@ -317,8 +317,8 @@ export async function Hero() {
             <br />
             Community für
             <br />
-            Mamas und Papas{" "}
-            <span>in Hamburg.</span>
+            Familien{" "}
+            <span style={{ color: "var(--mapa-clay-500)" }}>in Hamburg.</span>
           </h1>
 
           <p

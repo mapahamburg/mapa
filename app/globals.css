@@ -15,7 +15,7 @@
 
 /* Font variables injected by next/font at runtime */
 @theme inline {
-  --font-display: var(--font-instrument-serif);
+  --font-display: var(--font-geist-sans);
   --font-ui: var(--font-geist-sans);
   --font-sans: var(--font-geist-sans);
 }
@@ -53,7 +53,7 @@
 
   /* Wordmark accents (posters / social / stickers only — product stays mono) */
   --color-harbor: #4F6B86;   /* M in logo lockup */
-  --color-cobalt: #2F4A8F;   /* . in logo lockup */
+  --color-cobalt: #3F5AA9;   /* . in logo lockup */
 
   /* Ink & Stone — warm type colours (v2: deeper ink) */
   --color-ink:     #171614;   /* ★ v2 primary text */
@@ -131,7 +131,7 @@
   --mapa-mist:         #EDE6D6;
   --mapa-sand-500:     #DCCFBF;
   --mapa-harbor-500:   #4F6B86;
-  --mapa-cobalt-500:   #2F4A8F;
+  --mapa-cobalt-500:   #3F5AA9;
   --mapa-sage-50:      #F2F5EC;
   --mapa-sage-100:     #E4EBD8;
   --mapa-sage-200:     #CFDABF;
@@ -162,7 +162,7 @@
   --mapa-info:         #4F6B86;
 
   /* Font stacks (fallback for non-CSS / inline style contexts) */
-  --font-display: 'Instrument Serif', 'Georgia', serif;
+  --font-display: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
   --font-ui: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
 
   /* Motion */
@@ -240,13 +240,10 @@ small,
   font-family: var(--font-ui);
 }
 
-/* Editorial accent — the only time Instrument Serif Italic appears.
-   Use for: pull quotes, post titles in app feed, in-app nav logo. */
 .italic-display,
 .editorial,
 .pull-quote {
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-ui);
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.4;

@@ -7,7 +7,7 @@ export function TopNav() {
   return (
     <header
       style={{
-        background: "rgba(242, 235, 222, 0.92)",
+        background: "rgba(245, 241, 232, 0.92)",
         backdropFilter: "blur(20px) saturate(180%)",
         WebkitBackdropFilter: "blur(20px) saturate(180%)",
         borderBottom: "1px solid var(--border-soft)",
@@ -20,7 +20,7 @@ export function TopNav() {
         zIndex: 50,
       }}
     >
-      <Logo size={22} />
+      <Logo size={22} geist />
 
       {/* Search */}
       <div

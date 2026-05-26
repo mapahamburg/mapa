@@ -53,7 +53,7 @@ export default function HausregelnPage() {
         }}
       >
         <Link href="/" style={{ textDecoration: "none" }}>
-          <Logo size={24} />
+          <Logo size={24} geist />
         </Link>
       </header>
 
@@ -218,7 +218,7 @@ export default function HausregelnPage() {
           textAlign: "center",
         }}
       >
-        <Logo size={16} />
+        <Logo size={16} geist />
         <p
           style={{
             fontFamily: "var(--font-ui)",

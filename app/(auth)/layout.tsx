@@ -16,7 +16,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
     >
       {/* Logo */}
       <div style={{ marginBottom: "40px" }}>
-        <Logo size={32} />
+        <Logo size={32} geist />
       </div>
 
       {/* Card */}

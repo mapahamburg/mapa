@@ -130,7 +130,7 @@ export function OnboardingFlow() {
   const stepWelcome = (
     <div style={{ textAlign: "center" }}>
       <div style={{ marginBottom: "24px" }}>
-        <Logo size={32} />
+        <Logo size={32} geist />
       </div>
       <h1
         style={{

@@ -45,7 +45,7 @@ export const colors = {
 
   // Wordmark accents (logo lockup: posters/social/stickers only)
   harbor:  '#4F6B86',  // M
-  cobalt:  '#2F4A8F',  // .
+  cobalt:  '#3F5AA9',  // .
 
   // Ink — text (v2: deeper)
   ink:     '#171614',  // ★ primary text
@@ -66,7 +66,7 @@ export const colors = {
 } as const;
 
 export const fonts = {
-  display: `'Instrument Serif', 'Georgia', serif`,  // editorial only
+  display: `'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif`,
   ui:      `'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif`,
 } as const;
 

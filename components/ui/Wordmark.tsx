@@ -1,24 +1,23 @@
 /**
  * MAPA Wordmark · v2
- * The locked color lockup: M Harbor · A Clay · P Sage · A Ink · . Cobalt
+ *
+ * Default: M Harbor · APA Ink · . Cobalt  — "quiet confidence"
+ * Full color (opt-in): M Harbor · A Clay · P Sage · A Ink · . Cobalt
  *
  * Usage:
- *   <Wordmark />                // default 72px color version (posters/social/stickers)
- *   <Wordmark size={120} />
- *   <Wordmark mono />           // monochrome ink (product UI default)
- *   <Wordmark mono="cream" />   // cream on dark surfaces
- *   <Wordmark mono="harbor" />  // harbor blue
- *
- * Note: the color variant is reserved for brand moments (posters, landing hero,
- * stickers). Product UI (nav, feed headers) always uses mono={true}.
+ *   <Wordmark />                 // default: M harbor, APA ink, . cobalt
+ *   <Wordmark fullColor />       // all five letters get unique brand colors
+ *   <Wordmark mono />            // all ink (e.g. dark print)
+ *   <Wordmark mono="cream" />    // cream on dark surfaces
  */
 import { colors } from '@/lib/tokens';
 
 type WordmarkProps = {
   size?: number;
-  /** Monochrome mode. Pass true for ink, or 'cream' / 'harbor' for alternate surfaces. */
+  /** Full five-color lockup — reserved for posters/social/stickers. */
+  fullColor?: boolean;
+  /** Monochrome override. true = ink, 'cream' = light surfaces, 'harbor' = harbor blue. */
   mono?: boolean | 'cream' | 'harbor';
-  dotColor?: string;
   className?: string;
 };
 
@@ -30,40 +29,53 @@ const MONO_PRESETS = {
 
 export function Wordmark({
   size = 72,
+  fullColor = false,
   mono,
-  dotColor,
   className,
 }: WordmarkProps) {
-  const c = mono
-    ? (typeof mono === 'string' ? MONO_PRESETS[mono] : MONO_PRESETS.true)
-    : null;
+  // Monochrome overrides everything
+  if (mono) {
+    const c = typeof mono === 'string' ? MONO_PRESETS[mono] : MONO_PRESETS.true;
+    return (
+      <span className={className} style={wrapStyle(size)} aria-label="MAPA">
+        <span style={{ color: c }}>MAPA</span>
+        <span style={{ color: c }}>.</span>
+      </span>
+    );
+  }
 
-  const letters = c
-    ? [c, c, c, c]
-    : [colors.harbor, colors.clay[500], colors.sage[500], colors.ink];
+  // Full five-color lockup (opt-in, for brand moments)
+  if (fullColor) {
+    return (
+      <span className={className} style={wrapStyle(size)} aria-label="MAPA">
+        <span style={{ color: colors.harbor }}>M</span>
+        <span style={{ color: colors.clay[500] }}>A</span>
+        <span style={{ color: colors.sage[500] }}>P</span>
+        <span style={{ color: colors.ink }}>A</span>
+        <span style={{ color: colors.cobalt }}>.</span>
+      </span>
+    );
+  }
 
-  const dot = dotColor ?? (c ?? colors.cobalt);
-
+  // Default: M=Harbor, APA=Ink, .=Cobalt — restrained, confident
   return (
-    <span
-      className={className}
-      style={{
-        fontFamily: `'Geist', sans-serif`,
-        fontWeight: 700,
-        fontSize: size,
-        letterSpacing: '-0.045em',
-        lineHeight: 1,
-        display: 'inline-flex',
-        alignItems: 'baseline',
-        whiteSpace: 'nowrap',
-      }}
-      aria-label="MAPA"
-    >
-      <span style={{ color: letters[0] }}>M</span>
-      <span style={{ color: letters[1] }}>A</span>
-      <span style={{ color: letters[2] }}>P</span>
-      <span style={{ color: letters[3] }}>A</span>
-      <span style={{ color: dot }}>.</span>
+    <span className={className} style={wrapStyle(size)} aria-label="MAPA">
+      <span style={{ color: colors.harbor }}>M</span>
+      <span style={{ color: colors.ink }}>APA</span>
+      <span style={{ color: colors.cobalt }}>.</span>
     </span>
   );
+}
+
+function wrapStyle(size: number): React.CSSProperties {
+  return {
+    fontFamily: `'Geist', sans-serif`,
+    fontWeight: 700,
+    fontSize: size,
+    letterSpacing: '-0.045em',
+    lineHeight: 1,
+    display: 'inline-flex',
+    alignItems: 'baseline',
+    whiteSpace: 'nowrap',
+  };
 }
