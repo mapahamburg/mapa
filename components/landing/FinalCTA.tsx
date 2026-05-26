@@ -5,7 +5,7 @@ export function FinalCTA() {
         style={{
           maxWidth: 1280,
           margin: "0 auto",
-          background: "var(--mapa-sage-500)",
+          background: "var(--color-cobalt)",
           borderRadius: 36,
           padding: "80px 64px",
           color: "var(--mapa-paper)",
@@ -48,7 +48,7 @@ export function FinalCTA() {
             type="button"
             style={{
               background: "var(--mapa-paper)",
-              color: "var(--mapa-sage-700)",
+              color: "var(--color-cobalt)",
               border: "none",
               padding: "18px 28px",
               borderRadius: 999,

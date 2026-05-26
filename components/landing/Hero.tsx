@@ -50,7 +50,7 @@ function HeroVisual() {
           overflow: "hidden",
         }}
       >
-        <Logo size={16} geist />
+        <Logo size={16} />
         <div
           style={{
             fontFamily: "var(--font-ui)",
@@ -347,7 +347,7 @@ export async function Hero() {
             <button
               type="button"
               style={{
-                background: "var(--mapa-sage-500)",
+                background: "var(--color-cobalt)",
                 color: "var(--mapa-paper)",
                 border: "none",
                 padding: "16px 28px",

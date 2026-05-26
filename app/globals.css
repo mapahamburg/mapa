@@ -25,7 +25,11 @@
   /* Warm cream bases — never pure white */
   --color-paper:      #FFFDF8;
   --color-ivory:      #FAF6EE;
-  --color-cream:      #F5F1E8;   /* ★ v2 primary background */
+  --color-cream:      #F1ECE2;   /* ★ v2 primary background */
+  --color-linen:      #F1ECE2;
+  --color-linen-2:    #E7E1D4;
+  --color-ash-4:      #C5C0B6;
+  --color-ash-7:      #8E8B83;
   --color-cream-deep: #EFE7DA;   /* v2: sunk surfaces */
   --color-mist:       #EDE6D6;   /* form fields */
   --color-sand:       #DCCFBF;   /* warm neutral accent */
@@ -53,10 +57,10 @@
 
   /* Wordmark accents (posters / social / stickers only — product stays mono) */
   --color-harbor: #4F6B86;   /* M in logo lockup */
-  --color-cobalt: #3F5AA9;   /* . in logo lockup */
+  --color-cobalt: #1B3CF0;   /* . in logo lockup */
 
   /* Ink & Stone — warm type colours (v2: deeper ink) */
-  --color-ink:     #171614;   /* ★ v2 primary text */
+  --color-ink:     #141312;   /* ★ v2 primary text */
   --color-ink-2:   #3A352D;
   --color-stone-1: #6B6457;
   --color-stone-2: #948C7E;
@@ -126,12 +130,12 @@
   /* ─── --mapa-* aliases (used in component inline styles) ─── */
   --mapa-paper:        #FFFDF8;
   --mapa-ivory:        #FAF6EE;
-  --mapa-cream:        #F5F1E8;
+  --mapa-cream:        #F1ECE2;
   --mapa-cream-deep:   #EFE7DA;
   --mapa-mist:         #EDE6D6;
   --mapa-sand-500:     #DCCFBF;
   --mapa-harbor-500:   #4F6B86;
-  --mapa-cobalt-500:   #3F5AA9;
+  --mapa-cobalt-500:   #1B3CF0;
   --mapa-sage-50:      #F2F5EC;
   --mapa-sage-100:     #E4EBD8;
   --mapa-sage-200:     #CFDABF;
@@ -149,7 +153,7 @@
   --mapa-clay-500:     #D88F68;
   --mapa-clay-600:     #C26A3F;
   --mapa-clay-700:     #A5552F;
-  --mapa-ink:          #171614;
+  --mapa-ink:          #141312;
   --mapa-ink-2:        #3A352D;
   --mapa-stone-1:      #6B6457;
   --mapa-stone-2:      #948C7E;
@@ -286,4 +290,13 @@ small,
   display: inline-block;
   animation: slot-reel 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: 0.25s;
+}
+
+/* ─── Wordmark tittle hover ─── */
+.mapa-tittle {
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+}
+.mapa-wordmark:hover .mapa-tittle {
+  transform: scale(1.15);
 }

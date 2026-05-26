@@ -23,7 +23,7 @@ export function Nav() {
           justifyContent: "space-between",
         }}
       >
-        <Logo size={22} geist city="Hamburg" />
+        <Logo size={22} />
 
         <nav
           style={{
@@ -79,7 +79,7 @@ export function Nav() {
           <button
             type="button"
             style={{
-              background: "var(--mapa-sage-500)",
+              background: "var(--color-cobalt)",
               color: "var(--mapa-paper)",
               border: "none",
               padding: "10px 18px",
