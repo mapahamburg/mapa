@@ -55,6 +55,63 @@ const inputStyle: React.CSSProperties = {
 export function SignupForm() {
   const [state, formAction] = useActionState(signup, {});
 
+  // ─── E-Mail-Bestätigung abwarten ─────────────────────────────────────────
+  if (state.message === "confirm") {
+    return (
+      <div style={{ textAlign: "center" }}>
+        <div
+          style={{
+            width: 56,
+            height: 56,
+            borderRadius: "var(--radius-pill)",
+            background: "var(--cobalt-50)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "0 auto 24px",
+          }}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cobalt-500)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </div>
+        <h1
+          style={{
+            fontFamily: "var(--font-display)",
+            fontStyle: "italic",
+            fontSize: "26px",
+            fontWeight: 400,
+            color: "var(--ink)",
+            marginBottom: "12px",
+            lineHeight: 1.2,
+          }}
+        >
+          Fast geschafft.
+        </h1>
+        <p
+          style={{
+            fontSize: "15px",
+            color: "var(--fg-muted)",
+            lineHeight: 1.6,
+            marginBottom: "8px",
+          }}
+        >
+          Wir haben dir eine Bestätigungsmail geschickt.
+        </p>
+        <p
+          style={{
+            fontSize: "14px",
+            color: "var(--fg-subtle)",
+            lineHeight: 1.6,
+          }}
+        >
+          Klick auf den Link in der Mail um dein Konto zu aktivieren und dein Profil anzulegen.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <h1
@@ -204,7 +261,7 @@ export function SignupForm() {
             fontWeight: 500,
           }}
         >
-          Anmelden
+          Einloggen
         </Link>
       </p>
     </>

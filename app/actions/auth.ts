@@ -67,7 +67,7 @@ export async function signup(
     return { error: "Registrierung fehlgeschlagen. Bitte versuch es erneut." };
   }
 
-  redirect("/onboarding");
+  return { message: "confirm" };
 }
 
 // ─── Logout ───────────────────────────────────────────────────────────────────
