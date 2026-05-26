@@ -36,8 +36,8 @@ export function Nav() {
           }}
         >
           {[
+            { label: "Feed", href: "/feed" },
             { label: "So funktioniert’s", href: "/so-funktionierts" },
-            { label: "Stadtteile", href: "#" },
             { label: "Local Hosts", href: "/local-hosts" },
             { label: "Über uns", href: "#" },
           ].map(({ label, href }) => (
