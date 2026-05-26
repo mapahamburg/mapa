@@ -21,10 +21,10 @@ function StepDots({ total, current }: { total: number; current: number }) {
             borderRadius: "3px",
             backgroundColor:
               i < current
-                ? "var(--mapa-sage-400)"
+                ? "var(--cobalt-400)"
                 : i === current
-                ? "var(--mapa-sage-500)"
-                : "var(--line)",
+                ? "var(--cobalt-500)"
+                : "var(--border)",
             transition: "all 200ms ease",
           }}
         />
@@ -44,7 +44,7 @@ function SubmitButton({ label }: { label: string }) {
       style={{
         width: "100%",
         padding: "14px 24px",
-        backgroundColor: pending ? "var(--mapa-sage-300)" : "var(--mapa-sage-500)",
+        backgroundColor: pending ? "var(--cobalt-300)" : "var(--cobalt-500)",
         color: "#fff",
         border: "none",
         borderRadius: "var(--radius-m)",
@@ -84,9 +84,9 @@ function InterestChip({
       style={{
         padding: "9px 16px",
         borderRadius: "var(--radius-pill)",
-        border: selected ? "1.5px solid var(--mapa-sage-500)" : "1.5px solid var(--line)",
-        backgroundColor: selected ? "var(--mapa-sage-50)" : "var(--bg-card)",
-        color: selected ? "var(--mapa-sage-600)" : "var(--fg-muted)",
+        border: selected ? "1.5px solid var(--cobalt-500)" : "1.5px solid var(--border)",
+        backgroundColor: selected ? "var(--cobalt-50)" : "var(--surface-card)",
+        color: selected ? "var(--forest-700)" : "var(--fg-muted)",
         fontFamily: "var(--font-ui)",
         fontSize: "14px",
         fontWeight: selected ? 500 : 400,
@@ -98,7 +98,7 @@ function InterestChip({
       }}
     >
       {selected && (
-        <Check size={13} strokeWidth={2.5} style={{ color: "var(--mapa-sage-500)" }} />
+        <Check size={13} strokeWidth={2.5} style={{ color: "var(--cobalt-500)" }} />
       )}
       {label}
     </button>
@@ -164,7 +164,7 @@ export function OnboardingFlow() {
         onClick={next}
         style={{
           padding: "14px 40px",
-          backgroundColor: "var(--mapa-sage-500)",
+          backgroundColor: "var(--cobalt-500)",
           color: "#fff",
           border: "none",
           borderRadius: "var(--radius-m)",
@@ -212,8 +212,8 @@ export function OnboardingFlow() {
         style={{
           width: "100%",
           padding: "12px 14px",
-          backgroundColor: "var(--bg-base)",
-          border: "1px solid var(--line)",
+          backgroundColor: "var(--surface-card)",
+          border: "1px solid var(--border)",
           borderRadius: "var(--radius-m)",
           fontFamily: "var(--font-ui)",
           fontSize: "15px",
@@ -223,10 +223,10 @@ export function OnboardingFlow() {
           marginBottom: "20px",
         }}
         onFocus={(e) => {
-          e.currentTarget.style.borderColor = "var(--mapa-sage-400)";
+          e.currentTarget.style.borderColor = "var(--cobalt-400)";
         }}
         onBlur={(e) => {
-          e.currentTarget.style.borderColor = "var(--line)";
+          e.currentTarget.style.borderColor = "var(--border)";
         }}
       />
       <button
@@ -236,7 +236,7 @@ export function OnboardingFlow() {
         style={{
           width: "100%",
           padding: "14px 24px",
-          backgroundColor: firstName.trim() ? "var(--mapa-sage-500)" : "var(--mapa-sage-200)",
+          backgroundColor: firstName.trim() ? "var(--cobalt-500)" : "var(--cobalt-100)",
           color: "#fff",
           border: "none",
           borderRadius: "var(--radius-m)",
@@ -375,14 +375,14 @@ export function OnboardingFlow() {
               textAlign: "left",
               border:
                 stadtteil === s
-                  ? "1.5px solid var(--mapa-sage-500)"
-                  : "1.5px solid var(--line)",
+                  ? "1.5px solid var(--cobalt-500)"
+                  : "1.5px solid var(--border)",
               borderRadius: "var(--radius-m)",
               backgroundColor:
-                stadtteil === s ? "var(--mapa-sage-50)" : "var(--bg-card)",
+                stadtteil === s ? "var(--cobalt-50)" : "var(--surface-card)",
               fontFamily: "var(--font-ui)",
               fontSize: "14px",
-              color: stadtteil === s ? "var(--mapa-sage-600)" : "var(--fg-muted)",
+              color: stadtteil === s ? "var(--forest-700)" : "var(--fg-muted)",
               fontWeight: stadtteil === s ? 500 : 400,
               cursor: "pointer",
               transition: "all 150ms ease",
@@ -399,7 +399,7 @@ export function OnboardingFlow() {
         style={{
           width: "100%",
           padding: "14px 24px",
-          backgroundColor: stadtteil ? "var(--mapa-sage-500)" : "var(--mapa-sage-200)",
+          backgroundColor: stadtteil ? "var(--cobalt-500)" : "var(--cobalt-100)",
           color: "#fff",
           border: "none",
           borderRadius: "var(--radius-m)",
@@ -455,7 +455,7 @@ export function OnboardingFlow() {
         style={{
           width: "100%",
           padding: "14px 24px",
-          backgroundColor: "var(--mapa-sage-500)",
+          backgroundColor: "var(--cobalt-500)",
           color: "#fff",
           border: "none",
           borderRadius: "var(--radius-m)",
@@ -538,7 +538,7 @@ export function OnboardingFlow() {
           role="alert"
           style={{
             fontSize: "13px",
-            color: "var(--mapa-clay-500)",
+            color: "var(--danger)",
             backgroundColor: "var(--mapa-peach-50)",
             border: "1px solid var(--mapa-peach-100)",
             borderRadius: "var(--radius-s)",
@@ -609,8 +609,8 @@ export function OnboardingFlow() {
       style={{
         width: "100%",
         maxWidth: "440px",
-        backgroundColor: "var(--bg-card)",
-        border: "1px solid var(--line)",
+        backgroundColor: "var(--surface-card)",
+        border: "1px solid var(--border)",
         borderRadius: "var(--radius-l)",
         padding: "40px 36px",
         boxShadow: "var(--shadow-m)",

@@ -5,7 +5,7 @@ export default function OnboardingLayout({ children }: { children: ReactNode }) 
     <div
       style={{
         minHeight: "100dvh",
-        backgroundColor: "var(--bg-base)",
+        backgroundColor: "var(--surface-page)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
