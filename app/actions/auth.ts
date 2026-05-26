@@ -93,15 +93,19 @@ export async function createProfile(
   if (!user) redirect("/login");
 
   const first_name = (formData.get("first_name") as string).trim();
-  const stadtteil = formData.get("stadtteil") as string;
-  const interests = formData.getAll("interests") as string[];
+  const username   = (formData.get("username")   as string).trim().toLowerCase();
+  const stadtteil  = formData.get("stadtteil") as string;
+  const interests  = formData.getAll("interests") as string[];
 
   if (!first_name) return { error: "Bitte gib deinen Vornamen ein." };
+  if (!username || !/^[a-z0-9_.]{3,20}$/.test(username))
+    return { error: "Ungültiger Benutzername." };
   if (!stadtteil) return { error: "Bitte wähle deinen Stadtteil." };
 
   const { error } = await supabase.from("profiles").insert({
     id: user.id,
     first_name,
+    username,
     stadtteil,
     interests,
   });

@@ -107,11 +107,12 @@ function InterestChip({
 
 // ─── Main onboarding component ────────────────────────────────────────────────
 
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 
 export function OnboardingFlow() {
   const [step, setStep] = useState(0);
   const [firstName, setFirstName] = useState("");
+  const [username, setUsername] = useState("");
   const [stadtteil, setStadtteil] = useState("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
@@ -250,7 +251,93 @@ export function OnboardingFlow() {
     </div>
   );
 
-  // ── Step 2: Stadtteil ────────────────────────────────────────────────────────
+  // ── Step 2: Username ─────────────────────────────────────────────────────────
+  const usernameValid = /^[a-z0-9_.]{3,20}$/.test(username);
+  const stepUsername = (
+    <div>
+      <h2
+        style={{
+          fontFamily: "var(--font-display)",
+          fontStyle: "italic",
+          fontSize: "24px",
+          fontWeight: 400,
+          color: "var(--ink)",
+          marginBottom: "8px",
+        }}
+      >
+        Such dir einen Namen.
+      </h2>
+      <p style={{ fontSize: "14px", color: "var(--fg-subtle)", marginBottom: "24px", lineHeight: 1.5 }}>
+        Kleinbuchstaben, Zahlen, Punkt oder Unterstrich. 3–20 Zeichen.
+      </p>
+      <div style={{ position: "relative", marginBottom: "8px" }}>
+        <span
+          style={{
+            position: "absolute",
+            left: "14px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            fontSize: "15px",
+            color: "var(--fg-subtle)",
+            fontFamily: "var(--font-mono)",
+            pointerEvents: "none",
+          }}
+        >
+          @
+        </span>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, ""))}
+          placeholder="dein.name"
+          autoFocus
+          maxLength={20}
+          style={{
+            width: "100%",
+            padding: "12px 14px 12px 28px",
+            backgroundColor: "var(--surface-card)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius-md)",
+            fontFamily: "var(--font-mono)",
+            fontSize: "15px",
+            color: "var(--ink)",
+            outline: "none",
+            boxSizing: "border-box",
+          }}
+          onFocus={(e) => { e.currentTarget.style.borderColor = "var(--cobalt-500)"; }}
+          onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border)"; }}
+        />
+      </div>
+      {username.length > 0 && !usernameValid && (
+        <p style={{ fontSize: "12px", color: "var(--danger)", marginBottom: "16px" }}>
+          Mindestens 3 Zeichen, nur a–z, 0–9, Punkt oder _.
+        </p>
+      )}
+      {username.length === 0 && <div style={{ marginBottom: "16px" }} />}
+      <button
+        type="button"
+        onClick={next}
+        disabled={!usernameValid}
+        style={{
+          width: "100%",
+          padding: "14px 24px",
+          backgroundColor: usernameValid ? "var(--cobalt-500)" : "var(--cobalt-100)",
+          color: usernameValid ? "#fff" : "var(--cobalt-300)",
+          border: "none",
+          borderRadius: "var(--radius-md)",
+          fontFamily: "var(--font-ui)",
+          fontSize: "15px",
+          fontWeight: 500,
+          cursor: usernameValid ? "pointer" : "not-allowed",
+          transition: "background-color 150ms ease",
+        }}
+      >
+        Weiter
+      </button>
+    </div>
+  );
+
+  // ── Step 3: Stadtteil ────────────────────────────────────────────────────────
   const stepStadtteil = (
     <div>
       <h2
@@ -394,6 +481,7 @@ export function OnboardingFlow() {
     <form action={formAction}>
       {/* Hidden fields carry all collected data */}
       <input type="hidden" name="first_name" value={firstName} />
+      <input type="hidden" name="username" value={username} />
       <input type="hidden" name="stadtteil" value={stadtteil} />
       {selectedInterests.map((interest) => (
         <input key={interest} type="hidden" name="interests" value={interest} />
@@ -464,7 +552,7 @@ export function OnboardingFlow() {
     </form>
   );
 
-  const steps = [stepWelcome, stepVorname, stepStadtteil, stepInteressen, stepHausregeln];
+  const steps = [stepWelcome, stepVorname, stepUsername, stepStadtteil, stepInteressen, stepHausregeln];
 
   return (
     <div
