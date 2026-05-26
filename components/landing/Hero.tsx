@@ -16,7 +16,7 @@ function HeroVisual() {
           width: "85%",
           height: 540,
           borderRadius: 32,
-          background: "var(--color-cobalt)",
+          background: "var(--clay-v2-200)",
         }}
       />
 
@@ -29,7 +29,7 @@ function HeroVisual() {
           width: 200,
           height: 200,
           borderRadius: 24,
-          background: "var(--color-green)",
+          background: "var(--sage-v2-200)",
         }}
       />
 
@@ -75,13 +75,13 @@ function HeroVisual() {
             <span
               key={label}
               style={{
-                background: active ? "var(--mapa-ink)" : "var(--color-linen-2)",
-                color: active ? "var(--mapa-paper)" : "var(--fg)",
+                background: active ? "var(--surface-ink)" : "var(--surface-card)",
+                color: active ? "var(--surface-page)" : "var(--ink)",
                 padding: "4px 10px",
                 borderRadius: 999,
                 fontSize: 10,
                 fontWeight: active ? 500 : 400,
-                border: active ? "none" : "1px solid var(--border)",
+                border: active ? "none" : "1px solid var(--ash-v2-200)",
               }}
             >
               {label}
@@ -93,10 +93,10 @@ function HeroVisual() {
         <div
           style={{
             marginTop: 14,
-            background: "var(--color-sage-soft)",
+            background: "var(--sage-v2-100)",
             borderRadius: 14,
             padding: 12,
-            border: "1px solid var(--color-sage)",
+            border: "1px solid var(--sage-v2-200)",
           }}
         >
           <div
@@ -104,7 +104,7 @@ function HeroVisual() {
               fontSize: 9,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "var(--color-green)",
+              color: "var(--olive-700)",
               fontWeight: 600,
             }}
           >
@@ -116,7 +116,7 @@ function HeroVisual() {
               fontWeight: 600,
               fontSize: 13,
               lineHeight: 1.25,
-              color: "var(--color-green)",
+              color: "var(--olive-700)",
               marginTop: 4,
             }}
           >
@@ -293,7 +293,7 @@ export async function Hero() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--color-green)",
+              color: "var(--olive-700)",
               fontWeight: 600,
               marginBottom: 24,
             }}
@@ -317,7 +317,7 @@ export async function Hero() {
             Community für
             <br />
             Mamas und Papas{" "}
-            <span style={{ color: "var(--color-cobalt)" }}>in Hamburg.</span>
+            in Hamburg.
           </h1>
 
           <p
@@ -346,7 +346,7 @@ export async function Hero() {
             <button
               type="button"
               style={{
-                background: "var(--color-cobalt)",
+                background: "var(--olive-500)",
                 color: "var(--mapa-paper)",
                 border: "none",
                 padding: "16px 28px",
@@ -391,7 +391,7 @@ export async function Hero() {
                 <div key={l} style={{ marginLeft: i === 0 ? 0 : -10 }}>
                   <div
                     style={{
-                      border: "2.5px solid var(--mapa-cream)",
+                      border: "2.5px solid var(--surface-page)",
                       borderRadius: 999,
                       display: "inline-block",
                     }}

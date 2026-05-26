@@ -48,7 +48,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--color-green)",
+              color: "var(--olive-700)",
               fontWeight: 600,
               marginBottom: 24,
             }}
@@ -96,7 +96,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--color-green)",
+              color: "var(--olive-700)",
               fontWeight: 600,
               marginBottom: 20,
             }}
@@ -172,7 +172,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--color-green)",
+              color: "var(--olive-700)",
               fontWeight: 600,
               marginBottom: 20,
             }}
@@ -243,14 +243,14 @@ export default function SoFunktionierts() {
       </section>
 
       {/* Local Hosts */}
-      <section style={{ background: "var(--color-green)", padding: "80px 48px" }}>
+      <section style={{ background: "var(--surface-page-deep)", padding: "80px 48px" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-100)",
+              color: "var(--olive-700)",
               fontWeight: 600,
               marginBottom: 20,
             }}
@@ -263,7 +263,7 @@ export default function SoFunktionierts() {
               fontSize: 36,
               fontWeight: 600,
               letterSpacing: "-0.02em",
-              color: "var(--mapa-paper)",
+              color: "var(--ink)",
               margin: "0 0 20px",
               lineHeight: 1.15,
             }}
@@ -274,7 +274,7 @@ export default function SoFunktionierts() {
             style={{
               fontSize: 17,
               lineHeight: 1.65,
-              color: "var(--mapa-sage-100)",
+              color: "var(--ash-v2-600)",
               margin: "0 0 32px",
               maxWidth: 580,
             }}
@@ -302,7 +302,7 @@ export default function SoFunktionierts() {
                   alignItems: "flex-start",
                   gap: 12,
                   fontSize: 15,
-                  color: "var(--mapa-paper)",
+                  color: "var(--ink)",
                   lineHeight: 1.5,
                 }}
               >
@@ -311,7 +311,7 @@ export default function SoFunktionierts() {
                     width: 6,
                     height: 6,
                     borderRadius: 999,
-                    background: "var(--mapa-sage-200)",
+                    background: "var(--sage-v2-400)",
                     marginTop: 8,
                     flexShrink: 0,
                   }}
@@ -351,7 +351,7 @@ export default function SoFunktionierts() {
           <button
             type="button"
             style={{
-              background: "var(--color-cobalt)",
+              background: "var(--olive-500)",
               color: "var(--mapa-paper)",
               border: "none",
               padding: "16px 32px",

@@ -1,13 +1,13 @@
 // New palette — flat bg + contrasting fg
 const GRADIENTS: { bg: string; fg: string }[] = [
-  { bg: "#0E3B2E", fg: "#F1ECE2" },  // green
-  { bg: "#1B3CF0", fg: "#FBF8F2" },  // cobalt
-  { bg: "#141312", fg: "#F1ECE2" },  // ink
-  { bg: "#BFCDB5", fg: "#0E3B2E" },  // sage
-  { bg: "#E7E1D4", fg: "#141312" },  // linen-2
-  { bg: "#D9E2D1", fg: "#0E3B2E" },  // sage-soft
-  { bg: "#0E3B2E", fg: "#BFCDB5" },  // green + sage text
-  { bg: "#1B3CF0", fg: "#F1ECE2" },  // cobalt variant
+  { bg: "#C9D5B8", fg: "#4A6440" },  // sage-200 + olive-700
+  { bg: "#F0C2A0", fg: "#A95636" },  // clay-200 + clay-600
+  { bg: "#6B8459", fg: "#F2ECE0" },  // olive-500 + surface-page
+  { bg: "#F6DEC6", fg: "#A95636" },  // clay-100 + clay-600
+  { bg: "#DFE7D2", fg: "#4A6440" },  // sage-100 + olive-700
+  { bg: "#1C1A17", fg: "#F2ECE0" },  // ink + surface-page
+  { bg: "#4A6440", fg: "#F2ECE0" },  // olive-700 + surface-page
+  { bg: "#DC8C66", fg: "#6B3320" },  // clay-400 + clay-900
 ];
 
 interface AvatarProps {

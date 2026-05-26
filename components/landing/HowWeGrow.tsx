@@ -63,7 +63,7 @@ export function HowWeGrow() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--color-green)",
+              color: "var(--olive-700)",
               fontWeight: 600,
             }}
           >
@@ -128,7 +128,7 @@ export function HowWeGrow() {
                     height: 64,
                     borderRadius: 999,
                     background: phase.active
-                      ? "var(--color-green)"
+                      ? "var(--olive-500)"
                       : phase.vision
                       ? "var(--mapa-peach-100)"
                       : "var(--mapa-ivory)",
@@ -203,12 +203,12 @@ export function HowWeGrow() {
                   <div
                     style={{
                       background: phase.active
-                        ? "var(--color-sage-soft)"
+                        ? "var(--sage-v2-100)"
                         : phase.vision
                         ? "var(--mapa-peach-100)"
                         : "var(--mapa-paper)",
                       color: phase.active
-                        ? "var(--color-green)"
+                        ? "var(--olive-700)"
                         : phase.vision
                         ? "var(--mapa-clay-600)"
                         : "var(--fg-muted)",

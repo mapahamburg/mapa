@@ -7,7 +7,7 @@ interface LogoProps {
 export function Logo({
   size = 28,
   color = "var(--color-ink)",
-  dotColor = "var(--color-cobalt)",
+  dotColor = "var(--clay-v2-500)",
 }: LogoProps) {
   return (
     <span

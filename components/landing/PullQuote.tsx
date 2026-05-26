@@ -1,6 +1,6 @@
 export function PullQuote() {
   return (
-    <section style={{ background: "var(--mapa-cream)", padding: "120px 48px" }}>
+    <section style={{ background: "var(--surface-page-deep)", padding: "120px 48px" }}>
       <div style={{ maxWidth: 920, margin: "0 auto", textAlign: "center" }}>
         <div
           style={{

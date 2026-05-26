@@ -81,6 +81,43 @@
   --color-danger:  #B0533D;
   --color-info:    #4F6B86;   /* harbor */
 
+  /* ─── v2 Surface tokens ─── */
+  --surface-page:        #F2ECE0;
+  --surface-page-deep:   #EBE4D4;
+  --surface-card:        #FAF5E9;
+  --surface-elevated:    #FFFFFF;
+  --surface-ink:         #1C1A17;
+
+  /* ─── Olive / Forest (primary action) ─── */
+  --olive-50:  #E8EFE0;
+  --olive-200: #B8C9A4;
+  --olive-500: #6B8459;
+  --olive-600: #5C7A4F;
+  --olive-700: #4A6440;
+  --olive-900: #2E3F26;
+
+  /* ─── Sage v2 ─── */
+  --sage-v2-50:  #EDF2E6;
+  --sage-v2-100: #DFE7D2;
+  --sage-v2-200: #C9D5B8;
+  --sage-v2-400: #9FB48A;
+  --sage-v2-600: #6F8959;
+
+  /* ─── Clay v2 (Terracotta/Peach) ─── */
+  --clay-v2-100: #F6DEC6;
+  --clay-v2-200: #F0C2A0;
+  --clay-v2-400: #DC8C66;
+  --clay-v2-500: #C66B45;
+  --clay-v2-600: #A95636;
+  --clay-v2-900: #6B3320;
+
+  /* ─── Ash v2 ─── */
+  --ash-v2-100: #E3DED2;
+  --ash-v2-200: #CFCABE;
+  --ash-v2-400: #9C988C;
+  --ash-v2-600: #6E6A5E;
+  --ash-v2-900: #2E2A23;
+
   /* ─── Font sizes — display scale ─── */
   --text-display-xl: 72px;
   --text-display-l:  56px;
@@ -107,30 +144,30 @@
 /* ─── Semantic aliases, motion, spacing ─── */
 :root {
   /* Surfaces */
-  --bg:          var(--color-cream);
-  --bg-elevated: var(--color-ivory);
+  --bg:          var(--surface-page);
+  --bg-elevated: var(--surface-card);
   --bg-modal:    var(--color-paper);
   --bg-sunk:     var(--color-cream-deep);
   --bg-field:    var(--color-mist);       /* v2: form fields */
 
   /* Foregrounds */
-  --fg:          var(--color-ink);
-  --fg-muted:    var(--color-ash-7);
+  --fg:          #1C1A17;
+  --fg-muted:    var(--ash-v2-600);
   --fg-subtle:   var(--color-stone-2);
   --fg-on-sage:  var(--color-paper);
   --fg-on-clay:  var(--color-paper);
 
   /* Borders */
-  --border:      rgba(20, 19, 18, 0.10);
+  --border:      rgba(28, 26, 23, 0.10);
   --border-soft: var(--color-line-soft);
 
   /* Brand roles */
-  --primary:        var(--color-sage-500);
-  --primary-hover:  var(--color-sage-600);
-  --primary-soft:   var(--color-sage-100);
-  --accent:         var(--color-clay-500);
-  --accent-hover:   var(--color-clay-600);   /* v2: new */
-  --accent-soft:    var(--color-peach-100);
+  --primary:        var(--olive-500);
+  --primary-hover:  var(--olive-600);
+  --primary-soft:   var(--sage-v2-100);
+  --accent:         var(--clay-v2-500);
+  --accent-hover:   var(--clay-v2-600);
+  --accent-soft:    var(--clay-v2-100);
 
   /* ─── --mapa-* aliases (used in component inline styles) ─── */
   --mapa-paper:        #FBF8F2;
@@ -172,6 +209,23 @@
   --mapa-warning:      #C58B36;
   --mapa-danger:       #B0533D;
   --mapa-info:         #4F6B86;
+
+  /* ─── --mapa-* v2 aliases ─── */
+  --mapa-surface-page:        #F2ECE0;
+  --mapa-surface-page-deep:   #EBE4D4;
+  --mapa-surface-card:        #FAF5E9;
+  --mapa-surface-ink:         #1C1A17;
+  --mapa-olive-500:           #6B8459;
+  --mapa-olive-600:           #5C7A4F;
+  --mapa-olive-700:           #4A6440;
+  --mapa-sage-v2-100:         #DFE7D2;
+  --mapa-sage-v2-200:         #C9D5B8;
+  --mapa-clay-v2-100:         #F6DEC6;
+  --mapa-clay-v2-200:         #F0C2A0;
+  --mapa-clay-v2-500:         #C66B45;
+  --mapa-clay-v2-600:         #A95636;
+  --mapa-ash-600:             #6E6A5E;
+  --mapa-ash-200:             #CFCABE;
 
   /* Font stacks (fallback for non-CSS / inline style contexts) */
   --font-display: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;

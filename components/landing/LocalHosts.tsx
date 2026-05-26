@@ -4,9 +4,9 @@ export function LocalHosts() {
   return (
     <section
       style={{
-        background: "var(--color-green)",
+        background: "var(--surface-page-deep)",
         padding: "96px 48px",
-        color: "var(--mapa-paper)",
+        color: "var(--ink)",
       }}
     >
       <div
@@ -26,7 +26,7 @@ export function LocalHosts() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-100)",
+              color: "var(--olive-700)",
               fontWeight: 600,
             }}
           >
@@ -40,7 +40,7 @@ export function LocalHosts() {
               letterSpacing: "-0.03em",
               margin: "16px 0 0",
               fontWeight: 600,
-              color: "var(--mapa-paper)",
+              color: "var(--ink)",
             }}
           >
             Ein Mensch pro Viertel.
@@ -51,7 +51,7 @@ export function LocalHosts() {
             style={{
               fontSize: 17,
               lineHeight: 1.55,
-              color: "rgba(255,253,248,0.85)",
+              color: "var(--ash-v2-600)",
               marginTop: 24,
               maxWidth: 480,
             }}
@@ -64,8 +64,8 @@ export function LocalHosts() {
             type="button"
             style={{
               marginTop: 28,
-              background: "var(--mapa-paper)",
-              color: "var(--color-green)",
+              background: "var(--olive-500)",
+              color: "var(--surface-page)",
               border: "none",
               padding: "14px 24px",
               borderRadius: 999,

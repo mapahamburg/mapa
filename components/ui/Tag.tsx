@@ -1,12 +1,12 @@
 export type PostType = "empfehlung" | "frage" | "treffen" | "suche" | "veranstaltung" | "event";
 
 const TYPE_STYLES: Record<PostType, { label: string; bg: string; fg: string; border?: string }> = {
-  empfehlung:   { label: "Empfehlung",   bg: "var(--mapa-sage-100)",  fg: "var(--mapa-sage-700)" },
-  frage:        { label: "Frage",        bg: "var(--mapa-peach-100)", fg: "var(--mapa-clay-600)" },
-  treffen:      { label: "Treffen",      bg: "var(--mapa-mist)",      fg: "var(--mapa-ink-2)" },
-  suche:        { label: "Suche",        bg: "var(--mapa-paper)",     fg: "var(--mapa-stone-1)", border: "1px solid var(--border)" },
-  veranstaltung:{ label: "Veranstaltung",bg: "var(--mapa-peach-100)", fg: "var(--mapa-clay-600)" },
-  event:        { label: "Event",        bg: "var(--mapa-paper)",     fg: "var(--mapa-stone-1)", border: "1px solid var(--border)" },
+  empfehlung:   { label: "Empfehlung",    bg: "var(--sage-v2-100)",   fg: "var(--olive-700)" },
+  frage:        { label: "Frage",         bg: "var(--clay-v2-200)",   fg: "var(--clay-v2-600)" },
+  treffen:      { label: "Treffen",       bg: "var(--clay-v2-100)",   fg: "var(--clay-v2-600)" },
+  suche:        { label: "Suche",         bg: "var(--ash-v2-100)",    fg: "var(--ash-v2-900)",  border: "none" },
+  veranstaltung:{ label: "Veranstaltung", bg: "var(--ash-v2-100)",    fg: "var(--ash-v2-900)" },
+  event:        { label: "Event",         bg: "var(--ash-v2-100)",    fg: "var(--ash-v2-900)" },
 };
 
 interface TagProps {
