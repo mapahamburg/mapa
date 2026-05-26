@@ -22,7 +22,7 @@ export function Footer() {
       >
         {/* Brand */}
         <div>
-          <Logo size={18} geist />
+          <Logo size={18} />
           <p
             style={{
               fontSize: 13,

@@ -20,7 +20,7 @@ export function TopNav() {
         zIndex: 50,
       }}
     >
-      <Logo size={22} geist />
+      <Logo size={22} />
 
       {/* Search */}
       <div
