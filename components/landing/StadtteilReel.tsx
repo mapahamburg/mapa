@@ -25,7 +25,7 @@ export function StadtteilReel() {
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % STADTTEILE.length);
       setTick((t) => t + 1);
-    }, 2000);
+    }, 1600);
     return () => clearInterval(id);
   }, []);
 
@@ -70,12 +70,14 @@ export function StadtteilReel() {
           <span style={{ color: "var(--fg)" }}>MAPA</span>
           <span style={{ color: "var(--mapa-cobalt-500)" }}>.</span>
 
-          {/* Clip window */}
+          {/* Clip window — minWidth hält MAPA. stationär */}
           <span
             className="slot-clip"
             style={{
               marginLeft: "0.3em",
               height: "1.1em",
+              minWidth: "7em",
+              textAlign: "left",
             }}
           >
             <span
