@@ -23,7 +23,7 @@ export function Nav() {
           justifyContent: "space-between",
         }}
       >
-        <Logo size={22} />
+        <Logo size={22} lockup />
 
         <nav
           style={{
