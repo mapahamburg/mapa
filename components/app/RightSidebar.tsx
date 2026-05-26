@@ -80,7 +80,6 @@ export function RightSidebar() {
         <div
           style={{
             fontFamily: "var(--font-display)",
-            fontStyle: "italic",
             fontSize: 15,
             lineHeight: 1.4,
             color: "var(--mapa-sage-800)",

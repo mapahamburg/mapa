@@ -213,7 +213,6 @@ export function FeedColumn() {
         <div
           style={{
             fontFamily: "var(--font-display)",
-            fontStyle: "italic",
             fontSize: 18,
             color: "var(--fg-muted)",
             letterSpacing: "-0.01em",

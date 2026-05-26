@@ -151,7 +151,6 @@ export function NewPostForm() {
           fontFamily: "var(--font-display)",
           fontSize: 28,
           fontWeight: 400,
-          fontStyle: "italic",
           color: "var(--fg)",
           margin: "0 0 32px 0",
           lineHeight: 1.2,

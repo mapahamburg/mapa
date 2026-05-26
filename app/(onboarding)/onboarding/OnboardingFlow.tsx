@@ -136,7 +136,6 @@ export function OnboardingFlow() {
         style={{
           fontFamily: "var(--font-display)",
           fontSize: "30px",
-          fontStyle: "italic",
           fontWeight: 400,
           color: "var(--fg)",
           marginBottom: "12px",
