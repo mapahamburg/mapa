@@ -5,7 +5,7 @@ const ITEMS = [
     body: "Die besten Eisdielen, familienfreundliche Cafés, Spielplätze, Kurse und Orte in Hamburg. Ehrlich empfohlen von anderen Familien.",
     bg: "var(--mapa-ivory)",
     pillBg: "var(--mapa-sage-100)",
-    pillFg: "var(--mapa-sage-700)",
+    pillFg: "var(--color-green)",
   },
   {
     eyebrow: "Veranstaltungen",
@@ -29,7 +29,7 @@ const ITEMS = [
     body: "Lerne Familien aus deinem Stadtteil kennen, verabrede dich spontan und entdecke lokale Gruppen und Treffen.",
     bg: "var(--mapa-sage-100)",
     pillBg: "var(--mapa-paper)",
-    pillFg: "var(--mapa-sage-700)",
+    pillFg: "var(--color-green)",
   },
   {
     eyebrow: "Lokale Tipps",
@@ -61,7 +61,7 @@ export function WhatYouFind() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-700)",
+              color: "var(--color-green)",
               fontWeight: 600,
             }}
           >

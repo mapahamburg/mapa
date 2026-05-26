@@ -4,7 +4,7 @@ export function LocalHosts() {
   return (
     <section
       style={{
-        background: "var(--mapa-sage-500)",
+        background: "var(--color-green)",
         padding: "96px 48px",
         color: "var(--mapa-paper)",
       }}
@@ -65,7 +65,7 @@ export function LocalHosts() {
             style={{
               marginTop: 28,
               background: "var(--mapa-paper)",
-              color: "var(--mapa-sage-700)",
+              color: "var(--color-green)",
               border: "none",
               padding: "14px 24px",
               borderRadius: 999,

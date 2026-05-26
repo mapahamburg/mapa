@@ -88,8 +88,8 @@ export function ForWhom() {
         {/* Right: vision card */}
         <div
           style={{
-            background: "var(--mapa-sage-100)",
-            border: "1px solid var(--mapa-sage-200)",
+            background: "var(--color-sage-soft)",
+            border: "1px solid var(--color-sage)",
             borderRadius: 28,
             padding: 48,
             display: "flex",
@@ -102,7 +102,7 @@ export function ForWhom() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-700)",
+              color: "var(--color-green)",
               fontWeight: 600,
             }}
           >
@@ -115,7 +115,7 @@ export function ForWhom() {
               lineHeight: 1.1,
               letterSpacing: "-0.03em",
               marginTop: 16,
-              color: "var(--mapa-sage-800)",
+              color: "var(--color-green)",
               fontWeight: 600,
             }}
           >
@@ -127,7 +127,7 @@ export function ForWhom() {
             style={{
               fontSize: 16,
               lineHeight: 1.6,
-              color: "var(--mapa-sage-800)",
+              color: "var(--color-green)",
               marginTop: 24,
               maxWidth: 440,
             }}

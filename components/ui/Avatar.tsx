@@ -1,13 +1,14 @@
-// v2 palette — softer sage, warmer clay
-const GRADIENTS: Record<string, string> = {
-  L: "linear-gradient(135deg, #E4EBD8, #A9BC95)",  // sage 100 → 400
-  M: "linear-gradient(135deg, #F6E0CC, #E6B187)",  // peach 100 → 300
-  S: "linear-gradient(135deg, #EFC9AA, #C26A3F)",  // peach 200 → clay 600
-  J: "linear-gradient(135deg, #CFDABF, #6F855A)",  // sage 200 → sage 600
-  N: "linear-gradient(135deg, #E4EBD8, #98AD8B)",  // sage 100 → sage 500
-  T: "linear-gradient(135deg, #F6E0CC, #D88F68)",  // peach 100 → clay 500
-  A: "linear-gradient(135deg, #EDE6D6, #BFB7A6)",  // mist → stone 3
-};
+// New palette — flat bg + contrasting fg
+const GRADIENTS: { bg: string; fg: string }[] = [
+  { bg: "#0E3B2E", fg: "#F1ECE2" },  // green
+  { bg: "#1B3CF0", fg: "#FBF8F2" },  // cobalt
+  { bg: "#141312", fg: "#F1ECE2" },  // ink
+  { bg: "#BFCDB5", fg: "#0E3B2E" },  // sage
+  { bg: "#E7E1D4", fg: "#141312" },  // linen-2
+  { bg: "#D9E2D1", fg: "#0E3B2E" },  // sage-soft
+  { bg: "#0E3B2E", fg: "#BFCDB5" },  // green + sage text
+  { bg: "#1B3CF0", fg: "#F1ECE2" },  // cobalt variant
+];
 
 interface AvatarProps {
   letter: string;
@@ -15,20 +16,20 @@ interface AvatarProps {
 }
 
 export function Avatar({ letter, size = 40 }: AvatarProps) {
-  const bg = GRADIENTS[letter] ?? GRADIENTS.A;
+  const entry = GRADIENTS[letter.charCodeAt(0) % GRADIENTS.length];
   return (
     <div
       style={{
         width: size,
         height: size,
         borderRadius: 999,
-        background: bg,
+        background: entry.bg,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         fontFamily: "var(--font-display)",
         fontSize: size * 0.45,
-        color: "var(--mapa-paper)",
+        color: entry.fg,
         flexShrink: 0,
       }}
     >

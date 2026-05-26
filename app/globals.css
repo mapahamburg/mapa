@@ -23,7 +23,7 @@
 /* ─── Colour palette (v2) ─── */
 @theme {
   /* Warm cream bases — never pure white */
-  --color-paper:      #FFFDF8;
+  --color-paper:      #FBF8F2;
   --color-ivory:      #FAF6EE;
   --color-cream:      #F1ECE2;   /* ★ v2 primary background */
   --color-linen:      #F1ECE2;
@@ -44,6 +44,11 @@
   --color-sage-600: #6F855A;   /* hover / active */
   --color-sage-700: #586B47;
   --color-sage-800: #435238;
+
+  /* New palette tokens */
+  --color-green:     #0E3B2E;
+  --color-sage:      #BFCDB5;
+  --color-sage-soft: #D9E2D1;
 
   /* Peach / Clay — warm accent (v2: softer 500) */
   --color-peach-50:  #FBF1E8;
@@ -110,13 +115,13 @@
 
   /* Foregrounds */
   --fg:          var(--color-ink);
-  --fg-muted:    var(--color-stone-1);
+  --fg-muted:    var(--color-ash-7);
   --fg-subtle:   var(--color-stone-2);
   --fg-on-sage:  var(--color-paper);
   --fg-on-clay:  var(--color-paper);
 
   /* Borders */
-  --border:      var(--color-line);
+  --border:      rgba(20, 19, 18, 0.10);
   --border-soft: var(--color-line-soft);
 
   /* Brand roles */
@@ -128,9 +133,12 @@
   --accent-soft:    var(--color-peach-100);
 
   /* ─── --mapa-* aliases (used in component inline styles) ─── */
-  --mapa-paper:        #FFFDF8;
+  --mapa-paper:        #FBF8F2;
   --mapa-ivory:        #FAF6EE;
   --mapa-cream:        #F1ECE2;
+  --mapa-green:        #0E3B2E;
+  --mapa-sage:         #BFCDB5;
+  --mapa-sage-soft:    #D9E2D1;
   --mapa-cream-deep:   #EFE7DA;
   --mapa-mist:         #EDE6D6;
   --mapa-sand-500:     #DCCFBF;

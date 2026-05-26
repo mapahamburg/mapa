@@ -48,7 +48,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-700)",
+              color: "var(--color-green)",
               fontWeight: 600,
               marginBottom: 24,
             }}
@@ -96,7 +96,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-700)",
+              color: "var(--color-green)",
               fontWeight: 600,
               marginBottom: 20,
             }}
@@ -172,7 +172,7 @@ export default function SoFunktionierts() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-700)",
+              color: "var(--color-green)",
               fontWeight: 600,
               marginBottom: 20,
             }}
@@ -243,7 +243,7 @@ export default function SoFunktionierts() {
       </section>
 
       {/* Local Hosts */}
-      <section style={{ background: "var(--mapa-sage-500)", padding: "80px 48px" }}>
+      <section style={{ background: "var(--color-green)", padding: "80px 48px" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{

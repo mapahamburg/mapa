@@ -16,8 +16,7 @@ function HeroVisual() {
           width: "85%",
           height: 540,
           borderRadius: 32,
-          background:
-            "linear-gradient(160deg, #D88457 0%, #EFC4A1 55%, #F6DEC8 100%)",
+          background: "var(--color-cobalt)",
         }}
       />
 
@@ -30,7 +29,7 @@ function HeroVisual() {
           width: 200,
           height: 200,
           borderRadius: 24,
-          background: "linear-gradient(180deg, #A6B58D, #DDE3CE)",
+          background: "var(--color-green)",
         }}
       />
 
@@ -76,7 +75,7 @@ function HeroVisual() {
             <span
               key={label}
               style={{
-                background: active ? "var(--mapa-ink)" : "var(--mapa-ivory)",
+                background: active ? "var(--mapa-ink)" : "var(--color-linen-2)",
                 color: active ? "var(--mapa-paper)" : "var(--fg)",
                 padding: "4px 10px",
                 borderRadius: 999,
@@ -94,10 +93,10 @@ function HeroVisual() {
         <div
           style={{
             marginTop: 14,
-            background: "var(--mapa-sage-100)",
+            background: "var(--color-sage-soft)",
             borderRadius: 14,
             padding: 12,
-            border: "1px solid var(--mapa-sage-200)",
+            border: "1px solid var(--color-sage)",
           }}
         >
           <div
@@ -105,7 +104,7 @@ function HeroVisual() {
               fontSize: 9,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-700)",
+              color: "var(--color-green)",
               fontWeight: 600,
             }}
           >
@@ -117,7 +116,7 @@ function HeroVisual() {
               fontWeight: 600,
               fontSize: 13,
               lineHeight: 1.25,
-              color: "var(--mapa-sage-800)",
+              color: "var(--color-green)",
               marginTop: 4,
             }}
           >
@@ -294,7 +293,7 @@ export async function Hero() {
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-700)",
+              color: "var(--color-green)",
               fontWeight: 600,
               marginBottom: 24,
             }}
@@ -318,7 +317,7 @@ export async function Hero() {
             Community für
             <br />
             Mamas und Papas{" "}
-            <span style={{ color: "var(--mapa-clay-500)" }}>in Hamburg.</span>
+            <span style={{ color: "var(--color-cobalt)" }}>in Hamburg.</span>
           </h1>
 
           <p
