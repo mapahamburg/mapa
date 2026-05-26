@@ -76,7 +76,7 @@ export function Nav() {
               whiteSpace: "nowrap",
             }}
           >
-            Anmelden
+            Einloggen
           </a>
           <a
             href="/signup"
