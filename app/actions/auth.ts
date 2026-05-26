@@ -103,14 +103,15 @@ export async function createProfile(
     return { error: "Ungültiger Benutzername." };
   if (!stadtteil) return { error: "Bitte wähle deinen Stadtteil." };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { error } = await supabase.from("profiles").insert({
     id: user.id,
     first_name,
-    username,
     stadtteil,
     interests,
+    username,
     newsletter_optin,
-  });
+  } as any);
 
   if (error) {
     // Profile may already exist (e.g. user hit back and re-submitted).
