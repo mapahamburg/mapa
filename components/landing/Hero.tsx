@@ -341,22 +341,21 @@ export async function Hero() {
               alignItems: "center",
             }}
           >
-            <button
-              type="button"
+            <a
+              href="/signup"
               style={{
                 background: "var(--cobalt-500)",
                 color: "var(--mapa-paper)",
-                border: "none",
+                textDecoration: "none",
                 padding: "16px 28px",
                 borderRadius: 999,
                 fontFamily: "var(--font-ui)",
                 fontSize: 16,
                 fontWeight: 500,
-                cursor: "pointer",
               }}
             >
               Jetzt mitmachen
-            </button>
+            </a>
             <button
               type="button"
               style={{

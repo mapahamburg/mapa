@@ -357,22 +357,22 @@ export default function SoFunktionierts() {
           >
             mapa ist kostenlos, werbefrei und aktuell im Beta-Aufbau in Hamburg.
           </p>
-          <button
-            type="button"
+          <a
+            href="/signup"
             style={{
+              display: "inline-block",
               background: "var(--cobalt-500)",
               color: "var(--mapa-paper)",
-              border: "none",
+              textDecoration: "none",
               padding: "16px 32px",
               borderRadius: 999,
               fontFamily: "var(--font-ui)",
               fontSize: 16,
               fontWeight: 500,
-              cursor: "pointer",
             }}
           >
             Jetzt mitmachen
-          </button>
+          </a>
         </div>
       </section>
 

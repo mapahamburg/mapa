@@ -63,8 +63,8 @@ export function Nav() {
             flexShrink: 0,
           }}
         >
-          <button
-            type="button"
+          <a
+            href="/login"
             style={{
               background: "transparent",
               border: "none",
@@ -72,29 +72,28 @@ export function Nav() {
               fontFamily: "var(--font-ui)",
               fontSize: 14.5,
               color: "var(--fg)",
-              cursor: "pointer",
+              textDecoration: "none",
               whiteSpace: "nowrap",
             }}
           >
             Anmelden
-          </button>
-          <button
-            type="button"
+          </a>
+          <a
+            href="/signup"
             style={{
               background: "var(--cobalt-500)",
               color: "var(--mapa-paper)",
-              border: "none",
+              textDecoration: "none",
               padding: "10px 18px",
               borderRadius: 999,
               fontFamily: "var(--font-ui)",
               fontSize: 14,
               fontWeight: 500,
-              cursor: "pointer",
               whiteSpace: "nowrap",
             }}
           >
             mapa beitreten
-          </button>
+          </a>
         </div>
       </div>
     </header>
