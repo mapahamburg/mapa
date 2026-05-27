@@ -8,17 +8,8 @@ const ITEMS = [
 
 export function NotOnMapa() {
   return (
-    <section style={{ background: "var(--mapa-paper)", padding: "96px 48px" }}>
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 80,
-          alignItems: "flex-start",
-        }}
-      >
+    <section className="section-pad" style={{ background: "var(--mapa-paper)" }}>
+      <div className="col2-text" style={{ alignItems: "flex-start" }}>
         {/* Left: headline */}
         <div>
           <div
@@ -27,19 +18,19 @@ export function NotOnMapa() {
               letterSpacing: "0.1em",
               textTransform: "uppercase",
               color: "var(--mapa-clay-600)",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
             }}
           >
             Was mapa nicht ist
           </div>
           <h2
+            className="fs-h2-m"
             style={{
-              fontFamily: "var(--font-ui)",
-              fontSize: 62,
-              lineHeight: 1.0,
-              letterSpacing: "-0.03em",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
               margin: "16px 0 0",
-              fontWeight: 600,
+              fontWeight: 400,
             }}
           >
             Nicht alles muss
@@ -97,9 +88,9 @@ export function NotOnMapa() {
               </div>
               <div>
                 <div
+                  className="notonmapa-item"
                   style={{
                     fontFamily: "var(--font-ui)",
-                    fontSize: 23,
                     letterSpacing: "-0.02em",
                     fontWeight: 600,
                   }}

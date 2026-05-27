@@ -1,37 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Home,
   Map,
   Calendar,
   Users,
+  Circle,
   MapPin,
   Bookmark,
   User,
+  Settings,
   ChevronDown,
   LogOut,
 } from "lucide-react";
 import { logout } from "@/app/actions/auth";
 
 type NavItem = {
-  id: string;
+  href: string;
   label: string;
   icon: React.ReactNode;
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { id: "feed", label: "Feed", icon: <Home size={16} strokeWidth={1.5} /> },
-  { id: "map", label: "Karte", icon: <Map size={16} strokeWidth={1.5} /> },
-  { id: "events", label: "Veranstaltungen", icon: <Calendar size={16} strokeWidth={1.5} /> },
-  { id: "meetings", label: "Treffen", icon: <Users size={16} strokeWidth={1.5} /> },
-  { id: "hosts", label: "Local Hosts", icon: <MapPin size={16} strokeWidth={1.5} /> },
-  { id: "saved", label: "Gespeichert", icon: <Bookmark size={16} strokeWidth={1.5} /> },
-  { id: "profile", label: "Mein Profil", icon: <User size={16} strokeWidth={1.5} /> },
+  { href: "/feed",           label: "Feed",           icon: <Home     size={16} strokeWidth={1.5} /> },
+  { href: "/karte",          label: "Karte",          icon: <Map      size={16} strokeWidth={1.5} /> },
+  { href: "/veranstaltungen",label: "Veranstaltungen",icon: <Calendar size={16} strokeWidth={1.5} /> },
+  { href: "/treffen",        label: "Treffen",        icon: <Users    size={16} strokeWidth={1.5} /> },
+  { href: "/kreise",         label: "Kreise",         icon: <Circle   size={16} strokeWidth={1.5} /> },
+  { href: "/hosts",          label: "Local Hosts",    icon: <MapPin   size={16} strokeWidth={1.5} /> },
+  { href: "/gespeichert",    label: "Gespeichert",    icon: <Bookmark size={16} strokeWidth={1.5} /> },
+  { href: "/profil",         label: "Mein Profil",    icon: <User     size={16} strokeWidth={1.5} /> },
+  { href: "/einstellungen",  label: "Einstellungen",  icon: <Settings size={16} strokeWidth={1.5} /> },
 ];
 
 export function LeftNav() {
-  const [active, setActive] = useState("feed");
+  const pathname = usePathname();
 
   return (
     <nav
@@ -50,32 +55,34 @@ export function LeftNav() {
         flexShrink: 0,
       }}
     >
-      {NAV_ITEMS.map((item) => (
-        <button
-          key={item.id}
-          type="button"
-          onClick={() => setActive(item.id)}
-          style={{
-            background:
-              active === item.id ? "var(--surface-card)" : "transparent",
-            border: "none",
-            padding: "10px 14px",
-            borderRadius: 12,
-            fontFamily: "var(--font-ui)",
-            fontSize: 14,
-            fontWeight: active === item.id ? 500 : 400,
-            color: active === item.id ? "var(--ink)" : "var(--fg-muted)",
-            textAlign: "left",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-          }}
-        >
-          {item.icon}
-          {item.label}
-        </button>
-      ))}
+      {NAV_ITEMS.map((item) => {
+        const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            style={{
+              background: isActive ? "var(--surface-card)" : "transparent",
+              border: "none",
+              padding: "10px 14px",
+              borderRadius: 12,
+              fontFamily: "var(--font-ui)",
+              fontSize: 14,
+              fontWeight: isActive ? 500 : 400,
+              color: isActive ? "var(--ink)" : "var(--fg-muted)",
+              textAlign: "left",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              textDecoration: "none",
+            }}
+          >
+            {item.icon}
+            {item.label}
+          </Link>
+        );
+      })}
 
       <div style={{ height: 16 }} />
 
@@ -96,8 +103,8 @@ export function LeftNav() {
       <button
         type="button"
         style={{
-          background: "var(--forest-100)",
-          border: "none",
+          background: "var(--color-sunk)",
+          border: "1px solid var(--color-line)",
           padding: "12px 14px",
           borderRadius: 12,
           textAlign: "left",

@@ -34,10 +34,10 @@ export function RightSidebar() {
       {/* Local Host card */}
       <div
         style={{
-          background: "var(--forest-100)",
+          background: "var(--color-sunk)",
           borderRadius: 20,
           padding: 20,
-          border: "1px solid var(--ash-200)",
+          border: "1px solid var(--color-line)",
         }}
       >
         <div
@@ -45,7 +45,7 @@ export function RightSidebar() {
             fontSize: 11,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
-            color: "var(--forest-500)",
+            color: "var(--color-muted)",
             fontWeight: 600,
             fontFamily: "var(--font-mono)",
             marginBottom: 12,
@@ -69,12 +69,12 @@ export function RightSidebar() {
                 fontStyle: "italic",
                 fontSize: 19,
                 letterSpacing: "-0.01em",
-                color: "var(--forest-700)",
+                color: "var(--color-ink)",
               }}
             >
               Nadine
             </div>
-            <div style={{ fontSize: 12, color: "var(--forest-500)" }}>
+            <div style={{ fontSize: 12, color: "var(--color-muted)" }}>
               312 Familien begleitet
             </div>
           </div>
@@ -85,7 +85,7 @@ export function RightSidebar() {
             fontStyle: "italic",
             fontSize: 15,
             lineHeight: 1.4,
-            color: "var(--forest-700)",
+            color: "var(--color-ink-2)",
             letterSpacing: "-0.005em",
           }}
         >
@@ -96,9 +96,9 @@ export function RightSidebar() {
           type="button"
           style={{
             marginTop: 14,
-            background: "var(--surface-card)",
-            color: "var(--forest-500)",
-            border: "1px solid var(--ash-200)",
+            background: "var(--color-ivory)",
+            color: "var(--color-ink)",
+            border: "1px solid var(--color-line)",
             padding: "8px 14px",
             borderRadius: 999,
             fontFamily: "var(--font-ui)",
@@ -114,9 +114,9 @@ export function RightSidebar() {
       {/* Treffen widget */}
       <div
         style={{
-          background: "var(--surface-card)",
+          background: "var(--color-ivory)",
           borderRadius: 20,
-          border: "1px solid var(--border)",
+          border: "1px solid var(--color-line-soft)",
           padding: 20,
         }}
       >
@@ -135,7 +135,7 @@ export function RightSidebar() {
               textTransform: "uppercase",
               fontWeight: 600,
               fontFamily: "var(--font-mono)",
-              color: "var(--fg-muted)",
+              color: "var(--color-muted)",
             }}
           >
             Treffen diese Woche
@@ -143,7 +143,7 @@ export function RightSidebar() {
           <span
             style={{
               fontSize: 12,
-              color: "var(--cobalt-500)",
+              color: "var(--color-cobalt)",
               fontWeight: 500,
               cursor: "pointer",
             }}
@@ -160,7 +160,7 @@ export function RightSidebar() {
                 padding: "12px 0",
                 borderBottom:
                   i < TREFFEN.length - 1
-                    ? "1px solid var(--border-soft)"
+                    ? "1px solid var(--color-line-soft)"
                     : "none",
               }}
             >
@@ -173,8 +173,8 @@ export function RightSidebar() {
                     width: 44,
                     textAlign: "center",
                     flexShrink: 0,
-                    background: "var(--cobalt-50)",
-                    color: "var(--cobalt-700)",
+                    background: "var(--color-cobalt-soft)",
+                    color: "var(--color-cobalt-ink)",
                     borderRadius: 10,
                     padding: "4px 0",
                     fontFamily: "var(--font-display)",
@@ -219,7 +219,7 @@ export function RightSidebar() {
                   <div
                     style={{
                       fontSize: 11.5,
-                      color: "var(--fg-muted)",
+                      color: "var(--color-muted)",
                       marginTop: 4,
                       overflow: "hidden",
                       textOverflow: "ellipsis",
@@ -238,9 +238,9 @@ export function RightSidebar() {
       {/* Stats */}
       <div
         style={{
-          background: "var(--surface-card)",
+          background: "var(--color-ivory)",
           borderRadius: 20,
-          border: "1px solid var(--border)",
+          border: "1px solid var(--color-line-soft)",
           padding: 20,
         }}
       >
@@ -251,7 +251,7 @@ export function RightSidebar() {
             textTransform: "uppercase",
             fontWeight: 600,
             fontFamily: "var(--font-mono)",
-            color: "var(--fg-muted)",
+            color: "var(--color-muted)",
           }}
         >
           In Eppendorf
@@ -263,12 +263,12 @@ export function RightSidebar() {
                 fontFamily: "var(--font-display)",
                 fontSize: 28,
                 letterSpacing: "-0.02em",
-                color: "var(--ink)",
+                color: "var(--color-ink)",
               }}
             >
               184
             </div>
-            <div style={{ fontSize: 12, color: "var(--fg-muted)", marginTop: 2 }}>
+            <div style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 2 }}>
               Mitglieder
             </div>
           </div>
@@ -278,12 +278,12 @@ export function RightSidebar() {
                 fontFamily: "var(--font-display)",
                 fontSize: 28,
                 letterSpacing: "-0.02em",
-                color: "var(--ink)",
+                color: "var(--color-ink)",
               }}
             >
               12
             </div>
-            <div style={{ fontSize: 12, color: "var(--fg-muted)", marginTop: 2 }}>
+            <div style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 2 }}>
               diese Woche neu
             </div>
           </div>

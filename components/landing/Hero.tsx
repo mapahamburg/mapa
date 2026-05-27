@@ -93,10 +93,10 @@ function HeroVisual() {
         <div
           style={{
             marginTop: 14,
-            background: "var(--forest-100)",
+            background: "var(--color-sunk)",
             borderRadius: 14,
             padding: 12,
-            border: "1px solid var(--forest-100)",
+            border: "1px solid var(--color-line)",
           }}
         >
           <div
@@ -104,7 +104,7 @@ function HeroVisual() {
               fontSize: 9,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "var(--forest-700)",
+              color: "var(--color-cobalt)",
               fontWeight: 600,
             }}
           >
@@ -116,7 +116,7 @@ function HeroVisual() {
               fontWeight: 600,
               fontSize: 13,
               lineHeight: 1.25,
-              color: "var(--forest-500)",
+              color: "var(--color-ink)",
               marginTop: 4,
             }}
           >
@@ -275,17 +275,8 @@ export async function Hero() {
   const avatarLetters = ["L", "M", "S", "J", "N"] as const;
 
   return (
-    <section style={{ background: "var(--mapa-cream)", padding: "72px 48px 80px" }}>
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1.1fr 1fr",
-          gap: 64,
-          alignItems: "center",
-        }}
-      >
+    <section className="hero-section" style={{ background: "var(--mapa-cream)" }}>
+      <div className="hero-grid">
         {/* Left: copy */}
         <div>
           <div
@@ -303,13 +294,11 @@ export async function Hero() {
           </div>
 
           <h1
+            className="fs-hero"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 84,
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
               margin: 0,
               color: "var(--fg)",
               textWrap: "balance" as const,
@@ -319,28 +308,20 @@ export async function Hero() {
           </h1>
 
           <p
+            className="hero-lede"
             style={{
               fontFamily: "var(--font-ui)",
               fontWeight: 400,
-              fontSize: 18,
               lineHeight: 1.55,
               letterSpacing: 0,
               color: "var(--ash-v2-900)",
               marginTop: 28,
-              maxWidth: 480,
             }}
           >
             Mit Empfehlungen, Veranstaltungen, Treffen und ehrlichem Austausch.
           </p>
 
-          <div
-            style={{
-              marginTop: 36,
-              display: "flex",
-              gap: 12,
-              alignItems: "center",
-            }}
-          >
+          <div className="hero-btns">
             <a
               href="/signup"
               style={{
@@ -376,6 +357,7 @@ export async function Hero() {
 
           {/* Avatar stack + social proof */}
           <div
+            className="hero-social"
             style={{
               marginTop: 28,
               display: "flex",
@@ -415,7 +397,9 @@ export async function Hero() {
         </div>
 
         {/* Right: visual */}
-        <HeroVisual />
+        <div className="mob-hide">
+          <HeroVisual />
+        </div>
       </div>
     </section>
   );

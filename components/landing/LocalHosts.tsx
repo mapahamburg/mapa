@@ -3,22 +3,13 @@ import { Avatar } from "@/components/ui/Avatar";
 export function LocalHosts() {
   return (
     <section
+      className="section-pad"
       style={{
         background: "var(--surface-page-deep)",
-        padding: "96px 48px",
         color: "var(--ink)",
       }}
     >
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1.1fr 1fr",
-          gap: 80,
-          alignItems: "center",
-        }}
-      >
+      <div className="col2">
         {/* Left: copy */}
         <div>
           <div
@@ -34,13 +25,11 @@ export function LocalHosts() {
             Local Hosts
           </div>
           <h2
+            className="fs-h2"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 62,
-              lineHeight: 1.0,
-              letterSpacing: "-0.015em",
               margin: "16px 0 0",
               color: "var(--ink)",
             }}
@@ -84,7 +73,7 @@ export function LocalHosts() {
         {/* Right: host card */}
         <div
           style={{
-            background: "var(--forest-100)",
+            background: "var(--color-sunk)",
             borderRadius: 28,
             padding: 32,
             color: "var(--fg)",
@@ -101,12 +90,8 @@ export function LocalHosts() {
             <Avatar letter="N" size={72} />
             <div>
               <div
-                style={{
-                  fontFamily: "var(--font-ui)",
-                  fontSize: 32,
-                  letterSpacing: "-0.02em",
-                  fontWeight: 600,
-                }}
+                className="lh-name"
+                style={{ fontFamily: "var(--font-ui)" }}
               >
                 Nadine
               </div>
@@ -117,14 +102,8 @@ export function LocalHosts() {
           </div>
 
           <div
-            style={{
-              fontFamily: "var(--font-ui)",
-              fontWeight: 600,
-              fontSize: 22,
-              lineHeight: 1.35,
-              letterSpacing: "-0.01em",
-              color: "var(--fg)",
-            }}
+            className="host-quote"
+            style={{ color: "var(--fg)" }}
           >
             „Ich bin seit acht Jahren in Winterhude. Kenne die guten
             Spielplätze, die kinderfreundlichen Cafés, die Hebammen mit echtem
@@ -132,11 +111,9 @@ export function LocalHosts() {
           </div>
 
           <div
+            className="lh-stats-row"
             style={{
               marginTop: 24,
-              display: "flex",
-              gap: 24,
-              fontSize: 13,
               color: "var(--fg-muted)",
               paddingTop: 20,
               borderTop: "1px solid var(--border-soft)",

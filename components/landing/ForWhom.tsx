@@ -8,16 +8,8 @@ const POINTS = [
 
 export function ForWhom() {
   return (
-    <section style={{ background: "var(--mapa-cream)", padding: "96px 48px" }}>
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 96,
-        }}
-      >
+    <section className="section-pad" style={{ background: "var(--mapa-cream)" }}>
+      <div className="col2-text">
         {/* Left: list */}
         <div>
           <div
@@ -33,13 +25,11 @@ export function ForWhom() {
             Für wen mapa ist
           </div>
           <h2
+            className="fs-h2-m"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 58,
-              lineHeight: 1.02,
-              letterSpacing: "-0.015em",
               margin: "16px 0 32px",
             }}
           >
@@ -71,12 +61,10 @@ export function ForWhom() {
                   }}
                 />
                 <div
+                  className="for-whom-item"
                   style={{
                     fontFamily: "var(--font-ui)",
-                    fontSize: 26,
-                    lineHeight: 1.3,
-                    letterSpacing: "-0.02em",
-                    fontWeight: 600,
+                    fontWeight: 400,
                     color: "var(--fg)",
                   }}
                 >
@@ -89,11 +77,11 @@ export function ForWhom() {
 
         {/* Right: vision card */}
         <div
+          className="vision-pad"
           style={{
-            background: "var(--forest-100)",
-            border: "1px solid var(--forest-100)",
+            background: "var(--color-sunk)",
+            border: "1px solid var(--color-line)",
             borderRadius: 28,
-            padding: 48,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -112,15 +100,13 @@ export function ForWhom() {
             Unsere Vision
           </div>
           <div
+            className="fs-vision"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 46,
-              lineHeight: 1.1,
-              letterSpacing: "-0.015em",
               marginTop: 16,
-              color: "var(--forest-500)",
+              color: "var(--color-ink)",
             }}
           >
             Familien brauchen wieder
@@ -131,7 +117,7 @@ export function ForWhom() {
             style={{
               fontSize: 16,
               lineHeight: 1.6,
-              color: "var(--forest-500)",
+              color: "var(--color-muted)",
               marginTop: 24,
               maxWidth: 440,
             }}

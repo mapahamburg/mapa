@@ -13,28 +13,12 @@ export function Nav() {
         borderBottom: "1px solid var(--border-soft)",
       }}
     >
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          padding: "18px 48px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <div className="nav-inner-pad">
         <a href="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Logo size={22} lockup />
         </a>
 
-        <nav
-          style={{
-            display: "flex",
-            gap: 36,
-            fontFamily: "var(--font-ui)",
-            fontSize: 14.5,
-          }}
-        >
+        <nav className="nav-links">
           {[
             { label: "Feed", href: "/feed" },
             { label: "So funktioniert’s", href: "/so-funktionierts" },
@@ -63,33 +47,16 @@ export function Nav() {
             flexShrink: 0,
           }}
         >
-          <a
-            href="/login"
-            style={{
-              background: "transparent",
-              border: "none",
-              padding: "8px",
-              fontFamily: "var(--font-ui)",
-              fontSize: 14.5,
-              color: "var(--fg)",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-            }}
-          >
+          <a href="/login" className="nav-login">
             Einloggen
           </a>
           <a
             href="/signup"
+            className="nav-cta"
             style={{
               background: "var(--cobalt-500)",
               color: "var(--mapa-paper)",
-              textDecoration: "none",
-              padding: "10px 18px",
-              borderRadius: 999,
               fontFamily: "var(--font-ui)",
-              fontSize: 14,
-              fontWeight: 500,
-              whiteSpace: "nowrap",
             }}
           >
             mapa beitreten

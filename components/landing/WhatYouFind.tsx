@@ -53,7 +53,7 @@ const ITEMS = [
 
 export function WhatYouFind() {
   return (
-    <section style={{ background: "var(--mapa-paper)", padding: "96px 48px" }}>
+    <section className="section-pad" style={{ background: "var(--mapa-paper)" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
         <div style={{ maxWidth: 760 }}>
           <div
@@ -69,13 +69,11 @@ export function WhatYouFind() {
             Was du auf mapa findest
           </div>
           <h2
+            className="fs-h2"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 62,
-              lineHeight: 1.0,
-              letterSpacing: "-0.015em",
               margin: "16px 0 0",
             }}
           >
@@ -86,20 +84,16 @@ export function WhatYouFind() {
         </div>
 
         <div
-          style={{
-            marginTop: 64,
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 16,
-          }}
+          className="col3"
+          style={{ marginTop: 64 }}
         >
           {ITEMS.map((item) => (
             <div
               key={item.eyebrow}
+              className="card-pad wyf-card"
               style={{
                 background: item.bg,
                 borderRadius: 24,
-                padding: 32,
                 border:
                   item.bg === "var(--mapa-ink)"
                     ? "none"
@@ -107,8 +101,6 @@ export function WhatYouFind() {
                 color: item.color ?? "var(--fg)",
                 display: "flex",
                 flexDirection: "column",
-                gap: 16,
-                minHeight: 260,
               }}
             >
               <span
@@ -128,11 +120,9 @@ export function WhatYouFind() {
                 {item.eyebrow}
               </span>
               <h3
+                className="wyf-card-title"
                 style={{
                   fontFamily: "var(--font-ui)",
-                  fontSize: 30,
-                  lineHeight: 1.15,
-                  letterSpacing: "-0.02em",
                   margin: 0,
                   fontWeight: 600,
                 }}
@@ -140,9 +130,8 @@ export function WhatYouFind() {
                 {item.title}
               </h3>
               <p
+                className="wyf-card-body"
                 style={{
-                  fontSize: 15,
-                  lineHeight: 1.55,
                   color: item.bodyColor ?? "var(--fg-muted)",
                   margin: 0,
                 }}

@@ -1,15 +1,13 @@
 export function PullQuote() {
   return (
-    <section style={{ background: "var(--surface-page-deep)", padding: "120px 48px" }}>
+    <section className="section-pad-tall" style={{ background: "var(--surface-page-deep)" }}>
       <div style={{ maxWidth: 920, margin: "0 auto", textAlign: "center" }}>
         <div
+          className="fs-pq"
           style={{
             fontFamily: "var(--font-display)",
             fontStyle: "italic",
             fontWeight: 400,
-            fontSize: 72,
-            lineHeight: 1.1,
-            letterSpacing: "-0.01em",
           }}
         >
           „Frag mal auf mapa."

@@ -1,382 +1,273 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-/* ─────────────────────────────────────────────────────────
-   MAPA Design System — Global Styles · v3
-   Source of truth: design_handoff_mapa_logo_typographic/
-
-   v3 typography:
-   • Three-font system: Serif (display) · Sans (UI) · Mono (labels)
-   • Hero + Section Headlines → Instrument Serif Italic
-   • UI / Body / Buttons → Geist Sans
-   • Eyebrows / Metadata → Geist Mono
-   ───────────────────────────────────────────────────────── */
-
-/* Font variables injected by next/font at runtime */
+/* next/font variable injection */
 @theme inline {
   --font-display: var(--font-instrument);
   --font-ui:      var(--font-geist-sans);
   --font-sans:    var(--font-geist-sans);
+  --font-serif:   var(--font-instrument);
   --font-mono:    var(--font-geist-mono);
 }
 
-/* ─── Colour palette (v2) ─── */
+/* v3 design tokens */
 @theme {
-  /* Warm cream bases — never pure white */
-  --color-paper:      #FBF8F2;
-  --color-ivory:      #FAF6EE;
-  --color-cream:      #F1ECE2;   /* ★ v2 primary background */
-  --color-linen:      #F1ECE2;
-  --color-linen-2:    #E7E1D4;
-  --color-ash-4:      #C5C0B6;
-  --color-ash-7:      #8E8B83;
-  --color-cream-deep: #EFE7DA;   /* v2: sunk surfaces */
-  --color-mist:       #EDE6D6;   /* form fields */
-  --color-sand:       #DCCFBF;   /* warm neutral accent */
-
-  /* Sage — primary brand (v2: lighter, more nordic) */
-  --color-sage-50:  #F2F5EC;
-  --color-sage-100: #E4EBD8;
-  --color-sage-200: #CFDABF;
-  --color-sage-300: #BAC9A6;
-  --color-sage-400: #A9BC95;
-  --color-sage-500: #98AD8B;   /* ★ v2 primary brand */
-  --color-sage-600: #6F855A;   /* hover / active */
-  --color-sage-700: #586B47;
-  --color-sage-800: #435238;
-
-  /* New palette tokens */
-  --color-green:     #0E3B2E;
-  --color-sage:      #BFCDB5;
-  --color-sage-soft: #D9E2D1;
-
-  /* Peach / Clay — warm accent (v2: softer 500) */
-  --color-peach-50:  #FBF1E8;
-  --color-peach-100: #F6E0CC;
-  --color-peach-200: #EFC9AA;
-  --color-peach-300: #E6B187;
-  --color-peach-400: #DDA078;
-  --color-clay-500:  #D88F68;   /* ★ v2 accent */
-  --color-clay-600:  #C26A3F;   /* pressed */
-  --color-clay-700:  #A5552F;
-
-  /* Wordmark accents (posters / social / stickers only — product stays mono) */
-  --color-harbor: #4F6B86;   /* M in logo lockup */
-  --color-cobalt: #1B3CF0;   /* . in logo lockup */
-
-  /* Ink & Stone — warm type colours (v2: deeper ink) */
-  --color-ink:     #141312;   /* ★ v2 primary text */
-  --color-ink-2:   #3A352D;
-  --color-stone-1: #6B6457;
-  --color-stone-2: #948C7E;
-  --color-stone-3: #BFB7A6;
-
-  /* Lines & dividers */
+  /* Surfaces */
+  --color-paper:  #FFFDF8;
+  --color-ivory:  #FAF6EE;
+  --color-cream:  #F5F1E8;
+  --color-sunk:   #EFE7DA;
+  --color-field:  #EDE6D6;
+  /* Type */
+  --color-ink:    #171614;
+  --color-ink-2:  #3A352D;
+  --color-muted:  #6B6457;
+  --color-subtle: #948C7E;
+  --color-faint:  #BFB7A6;
+  /* Lines */
   --color-line:      #E0D8C6;
   --color-line-soft: #EBE4D3;
-
-  /* Semantic states */
-  --color-success: #98AD8B;   /* sage-500 */
+  /* Brand — Cobalt (Action) */
+  --color-cobalt:      #2540D6;
+  --color-cobalt-deep: #1A2EB0;
+  --color-cobalt-ink:  #1B33B5;
+  --color-cobalt-soft: #E2E6FB;
+  /* Brand — Sage (Local Host) */
+  --color-sage:      #98AD8B;
+  --color-sage-deep: #6F855A;
+  --color-sage-ink:  #455234;
+  --color-sage-soft: #DDE6D2;
+  /* Brand — Clay (Restraint) */
+  --color-clay:      #D88F68;
+  --color-clay-deep: #C26A3F;
+  --color-clay-ink:  #8B4220;
+  --color-clay-soft: #F6E0CC;
+  /* Semantic */
+  --color-success: #6F855A;
   --color-warning: #C58B36;
   --color-danger:  #B0533D;
-  --color-info:    #4F6B86;   /* harbor */
+  --color-info:    #1B33B5;
 
-  /* ─── v2 Surface tokens ─── */
-  --surface-page:        #F1ECE2;
-  --surface-page-deep:   #E7E1D4;
-  --surface-card:        #FBF8F2;
-  --surface-elevated:    #FFFFFF;
-  --surface-ink:         #1C1A17;
+  /* Font sizes — functional (Geist) */
+  --text-micro:   11px;
+  --text-caption: 12px;
+  --text-meta:    13px;
+  --text-body:    15px;
+  --text-lede:    17px;
+  --text-h4:      20px;
+  --text-h3:      24px;
+  --text-h2:      32px;
+  --text-h1:      40px;
+  /* Font sizes — editorial (Instrument Serif Italic only) */
+  --text-ed-s:  28px;
+  --text-ed-m:  40px;
+  --text-ed-l:  56px;
+  --text-ed-xl: 80px;
 
-  /* ─── Olive / Forest (primary action) ─── */
-  --olive-50:  #E8EFE0;
-  --olive-200: #B8C9A4;
-  --olive-500: #6B8459;
-  --olive-600: #5C7A4F;
-  --olive-700: #4A6440;
-  --olive-900: #2E3F26;
+  /* Border radius */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius:      12px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+  --radius-2xl:  36px;
+  --radius-pill: 999px;
 
-  /* ─── Sage v2 ─── */
-  --sage-v2-50:  #EDF2E6;
-  --sage-v2-100: #DFE7D2;
-  --sage-v2-200: #C9D5B8;
-  --sage-v2-400: #9FB48A;
-  --sage-v2-600: #6F8959;
+  /* Shadows (warm, never black) */
+  --shadow-card:  0 1px 2px rgba(60, 48, 28, 0.04);
+  --shadow-sm:    0 2px 6px rgba(60, 48, 28, 0.06), 0 1px 2px rgba(60, 48, 28, 0.04);
+  --shadow-md:    0 8px 20px -8px rgba(60, 48, 28, 0.12), 0 2px 6px rgba(60, 48, 28, 0.05);
+  --shadow-float: 0 18px 40px -22px rgba(23, 22, 20, 0.28), 0 2px 6px rgba(60, 48, 28, 0.06);
+  --shadow-lg:    0 30px 60px -30px rgba(23, 22, 20, 0.25), 0 4px 16px rgba(23, 22, 20, 0.06);
+  --shadow-focus: 0 0 0 3px rgba(37, 64, 214, 0.18);
 
-  /* ─── Clay v2 (Terracotta/Peach) ─── */
-  --clay-v2-100: #F6DEC6;
-  --clay-v2-200: #F0C2A0;
-  --clay-v2-400: #DC8C66;
-  --clay-v2-500: #C66B45;
-  --clay-v2-600: #A95636;
-  --clay-v2-900: #6B3320;
-
-  /* ─── Ash v2 ─── */
-  --ash-v2-100: #E3DED2;
-  --ash-v2-200: #CFCABE;
-  --ash-v2-400: #9C988C;
-  --ash-v2-600: #6E6A5E;
-  --ash-v2-900: #2E2A23;
-
-  /* ─── Cobalt v3 (Primary) ─────────────────────────── */
-  --cobalt-50:  #E6EBFE;
-  --cobalt-200: #A8B6F9;
-  --cobalt-500: #1B3CF0;
-  --cobalt-600: #1632CB;
-  --cobalt-700: #0F23A8;
-  --cobalt-900: #081773;
-
-  /* ─── Forest v3 (Secondary · sparsam) ─────────────── */
-  --forest-100: #DCE3DC;
-  --forest-500: #0E3B2E;
-  --forest-700: #08251B;
-
-  /* ─── Ash v3 (short names) ─────────────────────────── */
-  --ash-100: #E3DED2;
-  --ash-200: #CFCABE;
-  --ash-400: #9C988C;
-  --ash-600: #6E6A5E;
-  --ash-900: #2E2A23;
-
-  /* ─── Ink v3 ────────────────────────────────────────── */
-  --ink: #141312;
-
-  /* ─── Type scale (v3 — Serif Display + Sans UI + Mono Label) ─── */
-  --text-display-xl: 84px;   /* Hero Landing — Serif Italic */
-  --text-display-l:  64px;   /* Hero App / Section Lead */
-  --text-display-m:  48px;   /* Section Headline */
-  --text-display-s:  36px;   /* Editorial Pull */
-  --text-h1:         32px;
-  --text-h2:         24px;
-  --text-h3:         18px;
-  --text-body-l:     18px;
-  --text-body:       16px;
-  --text-body-s:     14px;
-  --text-tiny:       12px;
-  --text-eyebrow:    12px;   /* Mono uppercase */
-  --text-mono-s:     11px;
-  --text-mono-xs:    10px;
-
-  /* ─── Border radii (v3) ─── */
-  --radius-xs:   4px;    /* Tags */
-  --radius-sm:   8px;    /* Mono-Caption Pill */
-  --radius-md:   12px;   /* Buttons, Inputs */
-  --radius-lg:   16px;   /* Cards default */
-  --radius-xl:   20px;   /* Feature Cards, Modal */
-  --radius-2xl:  28px;   /* Large feature blocks */
-  --radius-pill: 999px;  /* Filter-Chips, Avatare */
-
-  /* ─── Spacing scale (4px base) ─── */
-  --space-1:   4px;
-  --space-2:   8px;
-  --space-3:  12px;
-  --space-4:  16px;
-  --space-5:  24px;
-  --space-6:  32px;
-  --space-7:  48px;
-  --space-8:  64px;
-  --space-9:  96px;
-  --space-10: 128px;
-
-  /* ─── Shadows (flat-first — cards border-only, modals/toasts shadow) ─── */
-  --shadow-none:  none;
-  --shadow-soft:  0 1px 2px rgba(28,26,23,0.04), 0 2px 8px rgba(28,26,23,0.04);
-  --shadow-pop:   0 4px 16px rgba(28,26,23,0.08);
-  --shadow-modal: 0 20px 60px -10px rgba(28,26,23,0.20);
-  --shadow-clay:  0 8px 24px rgba(198,107,69,0.32);  /* Compose-Bubble only */
-
-  /* keep legacy aliases */
-  --shadow-xs: var(--shadow-soft);
-  --shadow-s:  var(--shadow-soft);
-  --shadow-m:  var(--shadow-pop);
-  --shadow-l:  var(--shadow-modal);
+  /* Motion */
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 360ms;
 }
 
-/* ─── Semantic aliases, motion, spacing ─── */
+/* ─── Backward-compat aliases ─── */
+/* EVERY old CSS var name used by existing components. Do NOT remove these. */
 :root {
   /* Surfaces */
-  --bg:          var(--surface-page);
-  --bg-elevated: var(--surface-card);
-  --bg-modal:    var(--color-paper);
-  --bg-sunk:     var(--color-cream-deep);
-  --bg-field:    var(--color-mist);       /* v2: form fields */
+  --surface-page:      #F5F1E8;
+  --surface-page-deep: #EFE7DA;
+  --surface-card:      #FAF6EE;
+  --surface-elevated:  #FAF6EE;
+  --surface-ink:       #171614;
+  --surface-input:     #EDE6D6;
+  --bg:                #F5F1E8;
+  --bg-base:           #F5F1E8;
+  --bg-card:           #FAF6EE;
+  --bg-elevated:       #FAF6EE;
+  --bg-modal:          #FFFDF8;
+  --bg-sunk:           #EFE7DA;
+  --bg-field:          #EDE6D6;
 
-  /* Foregrounds */
-  --fg:          #1C1A17;
-  --fg-muted:    var(--ash-600);
-  --fg-subtle:   var(--color-stone-2);
-  --fg-on-sage:  var(--color-paper);
-  --fg-on-clay:  var(--color-paper);
+  /* Type */
+  --fg:          #171614;
+  --fg-muted:    #6B6457;
+  --fg-subtle:   #948C7E;
+  --ink:         #171614;
 
-  /* Borders */
-  --border:      rgba(28, 26, 23, 0.10);
-  --border-soft: var(--color-line-soft);
+  /* Lines */
+  --border:      #E0D8C6;
+  --border-soft: #EBE4D3;
+  --line:        #E0D8C6;
 
-  /* Brand roles */
-  --primary:        var(--cobalt-500);
-  --primary-hover:  var(--cobalt-600);
-  --primary-soft:   var(--cobalt-50);
-  --accent:         var(--clay-v2-500);
-  --accent-hover:   var(--clay-v2-600);
-  --accent-soft:    var(--clay-v2-100);
+  /* Cobalt scale (old 50-900 → new cobalt tokens) */
+  --cobalt-50:   #E2E6FB;
+  --cobalt-100:  #C8D0F8;
+  --cobalt-200:  #A8B6F5;
+  --cobalt-300:  #7A90F0;
+  --cobalt-400:  #4F68EB;
+  --cobalt-500:  #2540D6;
+  --cobalt-600:  #1A2EB0;
+  --cobalt-700:  #1B33B5;
+  --cobalt-900:  #0D1A73;
 
-  /* ─── --mapa-* aliases (used in component inline styles) ─── */
-  --mapa-paper:        #FBF8F2;
-  --mapa-ivory:        #FAF6EE;
-  --mapa-cream:        #F1ECE2;
-  --mapa-green:        #0E3B2E;
-  --mapa-sage:         #BFCDB5;
-  --mapa-sage-soft:    #D9E2D1;
-  --mapa-cream-deep:   #EFE7DA;
-  --mapa-mist:         #EDE6D6;
-  --mapa-sand-500:     #DCCFBF;
-  --mapa-harbor-500:   #4F6B86;
-  --mapa-cobalt-500:   #1B3CF0;
-  --mapa-sage-50:      #F2F5EC;
-  --mapa-sage-100:     #E4EBD8;
-  --mapa-sage-200:     #CFDABF;
-  --mapa-sage-300:     #BAC9A6;
-  --mapa-sage-400:     #A9BC95;
-  --mapa-sage-500:     #98AD8B;
-  --mapa-sage-600:     #6F855A;
-  --mapa-sage-700:     #586B47;
-  --mapa-sage-800:     #435238;
-  --mapa-peach-50:     #FBF1E8;
-  --mapa-peach-100:    #F6E0CC;
-  --mapa-peach-200:    #EFC9AA;
-  --mapa-peach-300:    #E6B187;
-  --mapa-peach-400:    #DDA078;
-  --mapa-clay-500:     #D88F68;
-  --mapa-clay-600:     #C26A3F;
-  --mapa-clay-700:     #A5552F;
-  --mapa-ink:          #141312;
-  --mapa-ink-2:        #3A352D;
-  --mapa-stone-1:      #6B6457;
-  --mapa-stone-2:      #948C7E;
-  --mapa-stone-3:      #BFB7A6;
-  --mapa-line:         #E0D8C6;
-  --mapa-line-soft:    #EBE4D3;
-  --mapa-success:      #98AD8B;
-  --mapa-warning:      #C58B36;
-  --mapa-danger:       #B0533D;
-  --mapa-info:         #4F6B86;
+  /* Forest → sage (old forest-* → new sage-* values) */
+  --forest-100:  #EFE7DA;   /* sunk warm cream — no green */
+  --forest-500:  #6F855A;
+  --forest-700:  #455234;
 
-  /* ─── --mapa-* v2 aliases ─── */
-  --mapa-surface-page:        #F2ECE0;
-  --mapa-surface-page-deep:   #EBE4D4;
-  --mapa-surface-card:        #FAF5E9;
-  --mapa-surface-ink:         #1C1A17;
-  --mapa-olive-500:           #6B8459;
-  --mapa-olive-600:           #5C7A4F;
-  --mapa-olive-700:           #4A6440;
-  --mapa-sage-v2-100:         #DFE7D2;
-  --mapa-sage-v2-200:         #C9D5B8;
-  --mapa-clay-v2-100:         #F6DEC6;
-  --mapa-clay-v2-200:         #F0C2A0;
-  --mapa-clay-v2-500:         #C66B45;
-  --mapa-clay-v2-600:         #A95636;
-  --mapa-ash-600:             #6E6A5E;
-  --mapa-ash-200:             #CFCABE;
+  /* Ash scale */
+  --ash-100: #E3DED2;
+  --ash-200: #CFCABE;
+  --ash-300: #B0ABA0;
+  --ash-400: #9C988C;
+  --ash-600: #6B6457;
+  --ash-900: #2E2A23;
 
-  /* ─── v3 cobalt/forest aliases ─── */
-  --mapa-cobalt-50:   #E6EBFE;
-  --mapa-cobalt-500:  #1B3CF0;
-  --mapa-cobalt-600:  #1632CB;
-  --mapa-cobalt-700:  #0F23A8;
-  --mapa-forest-100:  #DCE3DC;
-  --mapa-forest-500:  #0E3B2E;
-  --mapa-forest-700:  #08251B;
-  --mapa-ash-100:     #E3DED2;
-  --mapa-ash-600-v3:  #6E6A5E;
-  --mapa-ash-900-v3:  #2E2A23;
+  /* ash-v2 aliases */
+  --ash-v2-200: #CFCABE;
+  --ash-v2-600: #6B6457;
+  --ash-v2-900: #2E2A23;
 
-  /* Font stacks (fallback for non-CSS / inline style contexts) */
-  --font-display: 'Instrument Serif', 'Tiempos Headline', Georgia, serif;
-  --font-ui:      'Geist', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-  --font-mono:    'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+  /* mapa-* aliases */
+  --mapa-clay-500:    #D88F68;
+  --mapa-clay-600:    #C26A3F;
+  --mapa-sage-50:     #F2F7EE;
+  --mapa-sage-100:    #DDE6D2;
+  --mapa-sage-500:    #98AD8B;
+  --mapa-sage-600:    #6F855A;
+  --mapa-sage-700:    #455234;
+  --mapa-cream:       #F5F1E8;
+  --mapa-cream-deep:  #EFE7DA;
+  --mapa-ivory:       #FAF6EE;
+  --mapa-paper:       #FFFDF8;
+  --mapa-mist:        #EDE6D6;
+  --mapa-line:        #E0D8C6;
+  --mapa-line-soft:   #EBE4D3;
+  --mapa-ink:         #171614;
+  --mapa-ink-2:       #3A352D;
+  --mapa-peach-50:    #FBF1E8;
+  --mapa-peach-100:   #F6E0CC;
+  --mapa-danger:      #B0533D;
+  --mapa-cobalt-500:  #2540D6;
 
-  /* Motion (v3) */
-  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-soft:   cubic-bezier(0.4, 0.0, 0.2, 1);  /* legacy alias */
-  --dur-fast:  120ms;
-  --dur-base:  200ms;
-  --dur-slow:  320ms;
+  /* Semantic */
+  --danger:   #B0533D;
+  --success:  #6F855A;
+  --warning:  #C58B36;
+
+  /* Old radius aliases */
+  --radius-s:  8px;
+  --radius-m:  12px;
+  --radius-l:  20px;
+
+  /* Old shadow aliases */
+  --shadow-soft: 0 1px 2px rgba(60, 48, 28, 0.04), 0 2px 8px rgba(60, 48, 28, 0.04);
+  --shadow-pop:  0 4px 16px rgba(60, 48, 28, 0.08);
+  --shadow-m:    0 8px 20px -8px rgba(60, 48, 28, 0.12), 0 2px 6px rgba(60, 48, 28, 0.05);
+  --shadow-modal:0 20px 60px -10px rgba(23, 22, 20, 0.20);
+
+  /* Old motion aliases */
+  --dur-base: 200ms;
+  --dur-fast: 120ms;
+  --dur-slow: 360ms;
+
+  /* Fonts (fallback stack for inline styles) */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-ui:      'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'Geist Mono', ui-monospace, monospace;
 
   /* Focus ring */
-  --focus-ring: color-mix(in oklab, var(--cobalt-500) 60%, white);
-
-  /* ─── Short-form aliases used in component inline styles ─── */
-  --bg-base:   var(--bg);
-  --bg-card:   var(--bg-elevated);
-  --line:      var(--border);
-  --radius-s:  var(--radius-sm);
-  --radius-m:  var(--radius-md);
-  --radius-l:  var(--radius-lg);
+  --focus-ring: rgba(37, 64, 214, 0.3);
 }
 
-/* ─── Element defaults (v3) ─── */
-html,
-body {
-  background-color: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-ui);
-  font-size: 16px;
-  line-height: 1.6;
+/* ─── Element defaults ─── */
+html, body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* v3: page/section headlines → Serif Italic.
-   Geist Sans handles all UI text (buttons, nav, cards, body). */
-h1,
-h2,
-h3 {
-  font-family: var(--font-display);
+::selection { background: var(--color-cobalt); color: var(--color-paper); }
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: inherit;
+}
+
+/* ─── Editorial accent class ─── */
+.editorial {
+  font-family: 'Instrument Serif', Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-  text-wrap: balance;
+  letter-spacing: -0.005em;
 }
 
-h4 {
-  font-family: var(--font-ui);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.25;
-  color: var(--fg);
+/* ─── Eyebrow utility ─── */
+.eyebrow {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-cobalt);
 }
 
-h1 { font-size: var(--text-display-xl); line-height: 1.05; }
-h2 { font-size: var(--text-display-m); }
-h3 { font-size: var(--text-display-s); }
-h4 { font-size: var(--text-h2); }
-
-p {
-  font-size: var(--text-body);
-  line-height: 1.6;
-  color: var(--fg);
-  text-wrap: pretty;
+/* ─── Wordmark ─── */
+.wordmark {
+  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.88;
 }
 
-small,
-.meta {
-  font-size: var(--text-body-s);
-  color: var(--fg-muted);
+/* ─── Slot-reel animation (Hero landing) ─── */
+@keyframes slot-reel {
+  0%   { transform: translateY(-130%); filter: blur(6px); opacity: 0.6; }
+  45%  { transform: translateY(-10%);  filter: blur(3px); opacity: 1; }
+  68%  { transform: translateY(5%);    filter: blur(0); }
+  82%  { transform: translateY(-2%);   filter: blur(0); }
+  100% { transform: translateY(0%);    filter: blur(0); }
 }
+.slot-clip  { display: inline-block; overflow: hidden; vertical-align: bottom; line-height: inherit; }
+.slot-reel  { display: inline-block; animation: slot-reel 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.25s; }
 
-/* ─── Typography utility classes (v3) ─── */
+/* ─── Wordmark tittle hover ─── */
+.mapa-tittle { transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1); transform-origin: center; }
+.mapa-wordmark:hover .mapa-tittle { transform: scale(1.15); }
 
-/* Display / Editorial */
+/* ─── Legacy type helpers (used by landing/onboarding components) ─── */
 .type-hero {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: var(--text-display-xl);
+  font-size: 84px;
   line-height: 1.05;
   letter-spacing: -0.02em;
-  color: var(--fg);
+  color: var(--color-ink);
   text-wrap: balance;
 }
 
@@ -384,10 +275,10 @@ small,
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: var(--text-display-m);
+  font-size: 48px;
   line-height: 1.1;
   letter-spacing: -0.015em;
-  color: var(--fg);
+  color: var(--color-ink);
   text-wrap: balance;
 }
 
@@ -395,17 +286,16 @@ small,
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: var(--text-display-s);
+  font-size: 36px;
   line-height: 1.2;
-  color: var(--fg);
+  color: var(--color-ink);
   text-wrap: pretty;
 }
 
-/* UI / Body */
 .type-lead {
   font-family: var(--font-ui);
   font-weight: 400;
-  font-size: var(--text-body-l);
+  font-size: 18px;
   line-height: 1.55;
   color: var(--ash-900);
   text-wrap: pretty;
@@ -415,15 +305,15 @@ small,
 .type-body {
   font-family: var(--font-ui);
   font-weight: 400;
-  font-size: var(--text-body);
+  font-size: 15px;
   line-height: 1.6;
-  color: var(--fg);
+  color: var(--color-ink);
 }
 
 .type-meta {
   font-family: var(--font-ui);
   font-weight: 400;
-  font-size: var(--text-body-s);
+  font-size: 14px;
   line-height: 1.45;
   color: var(--ash-600);
 }
@@ -431,73 +321,220 @@ small,
 .type-button {
   font-family: var(--font-ui);
   font-weight: 500;
-  font-size: var(--text-body);
+  font-size: 15px;
   line-height: 1;
   letter-spacing: -0.005em;
 }
 
-/* Mono / Labels */
 .type-eyebrow {
   font-family: var(--font-mono);
   font-weight: 500;
-  font-size: var(--text-eyebrow);
+  font-size: 12px;
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--cobalt-500);
+  color: var(--color-cobalt);
 }
 
 .type-mono-meta {
   font-family: var(--font-mono);
   font-weight: 400;
-  font-size: var(--text-mono-s);
+  font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ash-600);
 }
 
-/* Legacy / backward-compat aliases */
-.font-display  { font-family: var(--font-display); font-style: italic; font-weight: 400; }
-.font-ui       { font-family: var(--font-ui); }
-.editorial,
-.pull-quote    { font-family: var(--font-display); font-style: italic; font-weight: 400; line-height: 1.2; }
-.eyebrow       { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--cobalt-500); }
+.font-display { font-family: var(--font-display); font-style: italic; font-weight: 400; }
+.font-ui      { font-family: var(--font-ui); }
+.pull-quote   { font-family: var(--font-display); font-style: italic; font-weight: 400; line-height: 1.2; }
 
-/* Wordmark helper */
-.wordmark {
-  font-family: var(--font-ui);
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 0.82;
+/* ─── Global enhancements ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+/* Remove iOS tap flash on all interactive elements */
+a, button, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-/* ─── Logo slot-reel animation ─── */
-@keyframes slot-reel {
-  0%   { transform: translateY(-130%); filter: blur(6px); opacity: 0.6; }
-  45%  { transform: translateY(-10%);  filter: blur(3px); opacity: 1; }
-  68%  { transform: translateY(5%);    filter: blur(0px); }
-  82%  { transform: translateY(-2%);   filter: blur(0px); }
-  100% { transform: translateY(0%);    filter: blur(0px); }
+/* ─── Responsive layout classes ─── */
+
+.section-pad      { padding: 96px 48px; }
+.section-pad-tall { padding: 120px 48px; }
+.hero-section     { padding: 72px 48px 80px; }
+.hero-grid        { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+.col2             { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.col2-fw          { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+.col2-text        { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; }
+.col3             { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.footer-grid      { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+.footer-outer     { padding: 0 48px 56px; }
+.phase-card       { display: grid; grid-template-columns: 1fr 160px; gap: 32px; align-items: center; }
+.cta-row          { display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
+.nav-links        { display: flex; gap: 36px; font-family: var(--font-ui); font-size: 14.5px; }
+
+/* ─── Typography scale ─── */
+.fs-hero    { font-size: 84px;  line-height: 1.05; letter-spacing: -0.02em; }
+.fs-h2      { font-size: 62px;  line-height: 1.0;  letter-spacing: -0.015em; }
+.fs-h2-m    { font-size: 58px;  line-height: 1.05; letter-spacing: -0.015em; }
+.fs-pq      { font-size: 72px;  line-height: 1.1;  letter-spacing: -0.01em; }
+.fs-cta-wm  { font-size: 108px; }
+.fs-vision  { font-size: 46px;  line-height: 1.1;  letter-spacing: -0.015em; }
+
+/* ─── Component content classes (responsive via override below) ─── */
+
+/* Hero */
+.hero-lede   { font-size: 18px; max-width: 480px; }
+
+/* WhatYouFind cards */
+.wyf-card       { min-height: 220px; gap: 16px; }
+.wyf-card-title { font-size: 22px; line-height: 1.25; letter-spacing: -0.02em; }
+.wyf-card-body  { font-size: 15px; line-height: 1.55; }
+
+/* HowWeGrow phase */
+.phase-title { font-size: 28px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 600; }
+
+/* LocalHosts */
+.lh-name { font-size: 32px; letter-spacing: -0.02em; font-weight: 600; }
+
+/* FinalCTA */
+.cta-intro { font-size: 26px; }
+.cta-btn   { display: inline-block; padding: 18px 32px; font-size: 17px; font-weight: 600;
+             font-family: var(--font-ui); text-decoration: none; border-radius: 999px;
+             white-space: nowrap; letter-spacing: -0.01em; flex-shrink: 0; }
+
+/* Nav CTA */
+.nav-cta { padding: 10px 18px; font-size: 14px; font-weight: 500; border-radius: 999px;
+           white-space: nowrap; text-decoration: none; }
+
+/* TopNav post button */
+.topnav-post-btn { padding: 8px 16px; font-size: 13.5px; font-weight: 500; }
+
+/* PostCard */
+.post-card { padding: 28px; border-radius: 20px; }
+
+/* Form card */
+.form-card { padding: 36px 40px; border-radius: var(--radius-xl); }
+
+/* Feed district chips */
+.district-filter-chip { padding: 7px 14px; font-size: 13px; border-radius: 999px; }
+
+/* ─── App layout ─── */
+.app-left-nav { flex-shrink: 0; }
+.app-right-sb { flex-shrink: 0; }
+.app-feed     { flex: 1; padding: 32px 36px; min-width: 0; }
+.top-nav-pad  { padding: 14px 32px; }
+.nav-inner-pad { max-width: 1280px; margin: 0 auto; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; }
+
+/* ─── Section component helpers ─── */
+.hero-btns     { display: flex; gap: 12px; align-items: center; margin-top: 36px; }
+.card-pad      { padding: 32px; }
+.cta-inner     { padding: 52px 48px 48px; }
+.nav-login     { font-family: var(--font-ui); font-size: 14.5px; color: var(--fg); text-decoration: none; padding: 8px; white-space: nowrap; }
+.host-quote    { font-family: var(--font-ui); font-weight: 600; font-size: 22px; line-height: 1.35; letter-spacing: -0.01em; }
+.lh-stats-row  { display: flex; gap: 24px; font-size: 13px; }
+.for-whom-item { font-size: 26px; line-height: 1.3; letter-spacing: -0.02em; }
+.vision-pad    { padding: 48px; }
+.district-chip { font-size: 22px; padding: 14px 22px; }
+.notonmapa-item { font-size: 23px; }
+
+/* BottomNav — hidden desktop, flex mobile */
+.bottom-nav { display: none; }
+
+/* ─── Mobile overrides (≤ 768px) ─── */
+@media (max-width: 768px) {
+
+  /* Prevent iOS input zoom — must stay ≥ 16px */
+  input, textarea, select { font-size: 16px !important; }
+
+  /* Layout */
+  .section-pad      { padding: 56px 24px !important; }
+  .section-pad-tall { padding: 72px 24px !important; }
+  .hero-section     { padding: 44px 24px 52px !important; }
+  .hero-grid        { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .col2             { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .col2-fw          { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .col2-text        { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .col3             { grid-template-columns: 1fr !important; gap: 10px !important; }
+  .footer-grid      { grid-template-columns: 1fr 1fr !important; gap: 24px !important; padding: 28px 0 0 !important; }
+  .footer-outer     { padding: 0 24px 48px !important; }
+  .phase-card       { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .cta-row          { flex-direction: column !important; align-items: stretch !important; gap: 20px !important; }
+  .nav-links        { display: none !important; }
+  .nav-login        { display: none !important; }
+  .app-left-nav     { display: none !important; }
+  .app-right-sb     { display: none !important; }
+  .app-feed         { padding: 24px 16px 96px !important; }
+  .top-nav-pad      { padding: 10px 16px !important; }
+  .nav-inner-pad    { padding: 10px 20px !important; }
+  .bottom-nav       { display: flex !important; }
+
+  /* Hero */
+  .hero-btns   { flex-direction: column !important; align-items: stretch !important; margin-top: 20px !important; gap: 10px !important; }
+  .hero-lede   { font-size: 16px !important; max-width: 100% !important; }
+  .hero-social { display: none !important; }
+
+  /* WhatYouFind */
+  .wyf-card       { min-height: 0 !important; gap: 10px !important; }
+  .wyf-card-title { font-size: 18px !important; line-height: 1.3 !important; }
+  .wyf-card-body  { font-size: 13.5px !important; line-height: 1.5 !important; }
+
+  /* HowWeGrow */
+  .phase-title { font-size: 20px !important; line-height: 1.25 !important; }
+
+  /* LocalHosts */
+  .lh-name     { font-size: 22px !important; }
+  .host-quote  { font-size: 16px !important; line-height: 1.55 !important; }
+  .lh-stats-row { flex-wrap: wrap !important; gap: 12px 20px !important; }
+
+  /* FinalCTA */
+  .cta-inner  { padding: 36px 24px 32px !important; border-radius: 20px !important; }
+  .cta-intro  { font-size: 20px !important; }
+  .cta-btn    { width: 100% !important; text-align: center !important; padding: 16px 24px !important; font-size: 16px !important; box-sizing: border-box !important; }
+
+  /* Nav */
+  .nav-cta         { padding: 10px 14px !important; font-size: 13px !important; }
+  .topnav-post-btn { min-height: 40px !important; padding: 9px 14px !important; font-size: 13px !important; }
+
+  /* PostCard */
+  .post-card { padding: 18px 20px !important; border-radius: 16px !important; }
+
+  /* Form */
+  .form-card { padding: 24px 20px !important; border-radius: 20px !important; }
+
+  /* Feed chips */
+  .district-filter-chip { min-height: 38px !important; padding: 8px 14px !important; }
+
+  /* Sections */
+  .card-pad      { padding: 20px !important; }
+  .for-whom-item { font-size: 20px !important; line-height: 1.35 !important; }
+  .vision-pad    { padding: 28px !important; }
+  .district-chip { font-size: 15px !important; padding: 9px 15px !important; }
+  .notonmapa-item { font-size: 18px !important; }
+
+  /* Typography */
+  .fs-hero   { font-size: 38px !important; line-height: 1.08 !important; }
+  .fs-h2     { font-size: 30px !important; line-height: 1.12 !important; }
+  .fs-h2-m   { font-size: 28px !important; line-height: 1.12 !important; }
+  .fs-pq     { font-size: 32px !important; line-height: 1.18 !important; }
+  .fs-cta-wm { font-size: 54px !important; }
+  .fs-vision { font-size: 26px !important; line-height: 1.2  !important; }
+
+  /* Utilities */
+  .mob-hide   { display: none !important; }
+  .mob-full   { max-width: 100% !important; }
 }
 
-.slot-clip {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  line-height: inherit;
-}
-
-.slot-reel {
-  display: inline-block;
-  animation: slot-reel 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: 0.25s;
-}
-
-/* ─── Wordmark tittle hover ─── */
-.mapa-tittle {
-  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
-  transform-origin: center;
-}
-.mapa-wordmark:hover .mapa-tittle {
-  transform: scale(1.15);
+/* ─── Small phone overrides (≤ 390px) ─── */
+@media (max-width: 390px) {
+  .section-pad  { padding: 48px 20px !important; }
+  .hero-section { padding: 36px 20px 44px !important; }
+  .fs-hero      { font-size: 34px !important; }
+  .fs-h2        { font-size: 26px !important; }
+  .fs-h2-m      { font-size: 24px !important; }
+  .fs-cta-wm    { font-size: 48px !important; }
+  .cta-inner    { padding: 28px 20px 26px !important; }
 }

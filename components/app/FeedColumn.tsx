@@ -76,7 +76,7 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
   const woche = visible.filter((p) => p.section === "woche");
 
   return (
-    <main style={{ flex: 1, padding: "32px 36px", minWidth: 0 }}>
+    <main className="app-feed">
       {/* Greeting */}
       <div>
         <div
@@ -105,15 +105,13 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
             key={d}
             type="button"
             onClick={() => setDistrict(d)}
+            className="district-filter-chip"
             style={{
               background:
                 district === d ? "var(--ink)" : "var(--surface-card)",
               color: district === d ? "#fff" : "var(--fg)",
               border: district === d ? "none" : "1px solid var(--border)",
-              padding: "7px 14px",
-              borderRadius: 999,
               fontFamily: "var(--font-ui)",
-              fontSize: 13,
               fontWeight: district === d ? 500 : 400,
               cursor: "pointer",
               transition: `background var(--dur-base), color var(--dur-base)`,

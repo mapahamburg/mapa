@@ -6,37 +6,28 @@ const STADTTEILE = [
 
 export function Districts() {
   return (
-    <section style={{ background: "var(--mapa-cream)", padding: "96px 48px" }}>
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1.2fr",
-          gap: 80,
-          alignItems: "center",
-        }}
-      >
+    <section className="section-pad" style={{ background: "var(--mapa-cream)" }}>
+      <div className="col2-fw">
         <div>
           <div
             style={{
               fontSize: 12,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--mapa-sage-700)",
-              fontWeight: 600,
+              color: "var(--cobalt-500)",
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
             }}
           >
             Hamburg, lokal
           </div>
           <h2
+            className="fs-h2-m"
             style={{
-              fontFamily: "var(--font-ui)",
-              fontSize: 62,
-              lineHeight: 1.0,
-              letterSpacing: "-0.03em",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
               margin: "16px 0 0",
-              fontWeight: 600,
+              fontWeight: 400,
             }}
           >
             Dein Stadtteil{" "}
@@ -61,18 +52,17 @@ export function Districts() {
           {STADTTEILE.map((d, i) => (
             <div
               key={d}
+              className="district-chip"
               style={{
                 background:
-                  i % 4 === 0 ? "var(--mapa-sage-100)" : "var(--mapa-ivory)",
+                  i % 4 === 0 ? "var(--color-ink)" : "var(--surface-card)",
                 color:
-                  i % 4 === 0 ? "var(--mapa-sage-700)" : "var(--fg)",
+                  i % 4 === 0 ? "var(--color-cream)" : "var(--fg)",
                 border:
                   "1px solid " +
-                  (i % 4 === 0 ? "var(--mapa-sage-200)" : "var(--border)"),
-                padding: "14px 22px",
+                  (i % 4 === 0 ? "transparent" : "var(--border)"),
                 borderRadius: 999,
                 fontFamily: "var(--font-ui)",
-                fontSize: 22,
                 letterSpacing: "-0.02em",
                 fontWeight: 600,
               }}

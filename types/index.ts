@@ -148,3 +148,51 @@ export const INTERESTS: Interest[] = [
   "Working Parents",
   "Flohmärkte & Tauschen",
 ];
+
+// ─── Kreise ───────────────────────────────────────────────────────────────────
+
+export type KreisStatus = "pending" | "active" | "closed";
+export type KreisMemberRole = "member" | "host";
+export type KreisMemberStatus = "pending" | "active" | "removed";
+
+export interface Kreis {
+  id:           string;
+  name:         string;
+  beschreibung: string | null;
+  stadtteil:    string;
+  thema:        string | null;
+  max_members:  number;
+  status:       KreisStatus;
+  created_by:   string | null;
+  approved_by:  string | null;
+  created_at:   string;
+}
+
+/** Kreis with derived member count, for list views */
+export interface KreisCard {
+  id:           string;
+  name:         string;
+  beschreibung: string | null;
+  stadtteil:    string;
+  thema:        string | null;
+  max_members:  number;
+  member_count: number;
+  is_member:    boolean;
+  /** role of the current user, undefined when not a member */
+  my_role?:     KreisMemberRole;
+}
+
+export const KREIS_THEMEN = [
+  "Spielgruppe",
+  "Ausflüge",
+  "Sport & Bewegung",
+  "Kochen & Backen",
+  "Lesen & Vorlesen",
+  "Elterncafé",
+  "Babys & Kleinkinder",
+  "Schule & Kita",
+  "Freiwilliges",
+  "Sonstiges",
+] as const;
+
+export type KreisThema = (typeof KREIS_THEMEN)[number];

@@ -89,13 +89,17 @@ export async function getFeedPosts(): Promise<FeedPost[]> {
 export async function getPostWithComments(id: string): Promise<{
   post: PostDetail | null;
   comments: CommentItem[];
+  userHasReacted: boolean;
 }> {
-  if (!hasSupabase()) return { post: null, comments: [] };
+  if (!hasSupabase()) return { post: null, comments: [], userHasReacted: false };
 
   try {
     const supabase = await createClient();
 
-    const [postRes, commentsRes] = await Promise.all([
+    // Get current user for reaction check (non-fatal if unauthenticated)
+    const { data: { user } } = await supabase.auth.getUser();
+
+    const [postRes, commentsRes, reactionRes] = await Promise.all([
       supabase
         .from("posts")
         .select(
@@ -114,9 +118,18 @@ export async function getPostWithComments(id: string): Promise<{
         )
         .eq("post_id", id)
         .order("created_at", { ascending: true }),
+
+      // Check if current user has already reacted
+      user
+        ? (supabase.from("reactions") as any)
+            .select("post_id")
+            .eq("post_id", id)
+            .eq("user_id", user.id)
+            .maybeSingle()
+        : Promise.resolve({ data: null }),
     ]);
 
-    if (postRes.error || !postRes.data) return { post: null, comments: [] };
+    if (postRes.error || !postRes.data) return { post: null, comments: [], userHasReacted: false };
 
     const p      = postRes.data;
     const pAuthor = p.author as { first_name: string } | null;
@@ -147,8 +160,8 @@ export async function getPostWithComments(id: string): Promise<{
       };
     });
 
-    return { post, comments };
+    return { post, comments, userHasReacted: !!reactionRes.data };
   } catch {
-    return { post: null, comments: [] };
+    return { post: null, comments: [], userHasReacted: false };
   }
 }

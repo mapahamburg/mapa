@@ -6,7 +6,6 @@ import { ForWhom } from "@/components/landing/ForWhom";
 import { LocalHosts } from "@/components/landing/LocalHosts";
 import { HowWeGrow } from "@/components/landing/HowWeGrow";
 import { NotOnMapa } from "@/components/landing/NotOnMapa";
-import { PullQuote } from "@/components/landing/PullQuote";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 
@@ -21,7 +20,6 @@ export default function LandingPage() {
       <LocalHosts />
       <HowWeGrow />
       <NotOnMapa />
-      <PullQuote />
       <FinalCTA />
       <Footer />
     </div>

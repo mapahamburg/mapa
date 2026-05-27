@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
 import { createComment, type CommentState } from "@/app/actions/comments";
+import { toggleReaction } from "@/app/actions/reactions";
 import type { PostDetail as PostDetailData, CommentItem } from "@/types";
 
 // ─── Post type pill config ────────────────────────────────────────────────────
@@ -156,11 +157,14 @@ function StickyComposer({ postId }: { postId: string }) {
 export function PostDetail({
   post,
   comments,
+  userHasReacted,
 }: {
   post: PostDetailData;
   comments: CommentItem[];
+  userHasReacted: boolean;
 }) {
-  const [reacted, setReacted] = useState(false);
+  const [reacted, setReacted] = useState(userHasReacted);
+  const [isPending, setIsPending] = useState(false);
   const typeConfig = TYPE_CONFIG[post.type] ?? TYPE_CONFIG.empfehlung;
 
   return (
@@ -337,7 +341,20 @@ export function PostDetail({
           >
             <button
               type="button"
-              onClick={() => setReacted((v) => !v)}
+              onClick={async () => {
+                if (isPending) return;
+                setIsPending(true);
+                setReacted((v) => !v); // optimistic
+                try {
+                  const result = await toggleReaction(post.id);
+                  setReacted(result.reacted);
+                } catch {
+                  setReacted((v) => !v); // revert on error
+                } finally {
+                  setIsPending(false);
+                }
+              }}
+              disabled={isPending}
               aria-pressed={reacted}
               aria-label="Als hilfreich markieren"
               style={{

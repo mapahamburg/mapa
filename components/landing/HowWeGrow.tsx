@@ -55,7 +55,7 @@ const PHASES: Phase[] = [
 
 export function HowWeGrow() {
   return (
-    <section style={{ background: "var(--mapa-paper)", padding: "96px 48px" }}>
+    <section className="section-pad" style={{ background: "var(--mapa-paper)" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
         <div style={{ maxWidth: 760 }}>
           <div
@@ -71,13 +71,11 @@ export function HowWeGrow() {
             Wie mapa wächst
           </div>
           <h2
+            className="fs-h2"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 62,
-              lineHeight: 1.0,
-              letterSpacing: "-0.015em",
               margin: "16px 0 0",
             }}
           >
@@ -161,6 +159,7 @@ export function HowWeGrow() {
 
                 {/* Phase card */}
                 <div
+                  className="phase-card"
                   style={{
                     background: phase.vision
                       ? "var(--cobalt-50)"
@@ -170,20 +169,13 @@ export function HowWeGrow() {
                     border: phase.vision
                       ? "1px dashed var(--cobalt-200)"
                       : "1px solid var(--border)",
-                    display: "grid",
-                    gridTemplateColumns: "1fr 160px",
-                    gap: 32,
-                    alignItems: "center",
                   }}
                 >
                   <div>
                     <div
+                      className="phase-title"
                       style={{
                         fontFamily: "var(--font-ui)",
-                        fontSize: 28,
-                        lineHeight: 1.2,
-                        letterSpacing: "-0.02em",
-                        fontWeight: 600,
                         color: phase.vision
                           ? "var(--cobalt-500)"
                           : "var(--fg)",

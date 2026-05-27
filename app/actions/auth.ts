@@ -70,6 +70,45 @@ export async function signup(
   return { message: "confirm" };
 }
 
+// ─── Reset password (request link) ───────────────────────────────────────────
+
+export async function resetPassword(
+  _prevState: AuthState,
+  formData: FormData
+): Promise<AuthState> {
+  const email = (formData.get("email") as string).trim().toLowerCase();
+  if (!email) return { error: "Bitte E-Mail eingeben." };
+
+  const supabase = await createClient();
+  await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/auth/callback?next=/passwort-reset`,
+  });
+
+  // Always return success — never reveal whether the address is registered.
+  return { message: "sent" };
+}
+
+// ─── Update password (after clicking the reset link) ─────────────────────────
+
+export async function updatePassword(
+  _prevState: AuthState,
+  formData: FormData
+): Promise<AuthState> {
+  const password = formData.get("password") as string;
+  if (!password || password.length < 8) {
+    return { error: "Das Passwort muss mindestens 8 Zeichen lang sein." };
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.updateUser({ password });
+
+  if (error) {
+    return { error: "Passwort konnte nicht geändert werden. Bitte versuch es erneut." };
+  }
+
+  redirect("/feed");
+}
+
 // ─── Logout ───────────────────────────────────────────────────────────────────
 
 export async function logout() {

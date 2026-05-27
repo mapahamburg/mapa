@@ -31,9 +31,9 @@ export function StadtteilReel() {
 
   return (
     <section
+      className="section-pad-tall"
       style={{
         background: "var(--mapa-cream-deep)",
-        padding: "120px 48px",
         textAlign: "center",
         overflow: "hidden",
       }}
@@ -45,8 +45,9 @@ export function StadtteilReel() {
             fontSize: 12,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
-            color: "var(--mapa-sage-700)",
-            fontWeight: 600,
+            color: "var(--cobalt-500)",
+            fontWeight: 500,
+            fontFamily: "var(--font-mono)",
             marginBottom: 40,
           }}
         >
@@ -68,7 +69,7 @@ export function StadtteilReel() {
           }}
         >
           <span style={{ color: "var(--fg)" }}>MAPA</span>
-          <span style={{ color: "var(--mapa-cobalt-500)" }}>.</span>
+          <span style={{ color: "var(--cobalt-500)" }}>.</span>
 
           {/* Clip window — minWidth hält MAPA. stationär */}
           <span

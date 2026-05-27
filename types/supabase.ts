@@ -69,6 +69,7 @@ export type Database = {
           meeting_date: string | null;
           min_age: number | null;
           max_age: number | null;
+          kreis_id: string | null;
           created_at: string;
         };
         Insert: {
@@ -82,6 +83,7 @@ export type Database = {
           meeting_date?: string | null;
           min_age?: number | null;
           max_age?: number | null;
+          kreis_id?: string | null;
           created_at?: string;
         };
         Update: {
@@ -95,12 +97,113 @@ export type Database = {
           meeting_date?: string | null;
           min_age?: number | null;
           max_age?: number | null;
+          kreis_id?: string | null;
           created_at?: string;
         };
         Relationships: [
           {
             foreignKeyName: "posts_author_id_fkey";
             columns: ["author_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "posts_kreis_id_fkey";
+            columns: ["kreis_id"];
+            isOneToOne: false;
+            referencedRelation: "kreise";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      kreise: {
+        Row: {
+          id: string;
+          name: string;
+          beschreibung: string | null;
+          stadtteil: string;
+          thema: string | null;
+          max_members: number;
+          status: "pending" | "active" | "closed";
+          created_by: string | null;
+          approved_by: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          beschreibung?: string | null;
+          stadtteil: string;
+          thema?: string | null;
+          max_members?: number;
+          status?: "pending" | "active" | "closed";
+          created_by?: string | null;
+          approved_by?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          beschreibung?: string | null;
+          stadtteil?: string;
+          thema?: string | null;
+          max_members?: number;
+          status?: "pending" | "active" | "closed";
+          created_by?: string | null;
+          approved_by?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "kreise_created_by_fkey";
+            columns: ["created_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "kreise_approved_by_fkey";
+            columns: ["approved_by"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      kreis_members: {
+        Row: {
+          kreis_id: string;
+          profile_id: string;
+          role: "member" | "host";
+          status: "pending" | "active" | "removed";
+          joined_at: string;
+        };
+        Insert: {
+          kreis_id: string;
+          profile_id: string;
+          role?: "member" | "host";
+          status?: "pending" | "active" | "removed";
+          joined_at?: string;
+        };
+        Update: {
+          kreis_id?: string;
+          profile_id?: string;
+          role?: "member" | "host";
+          status?: "pending" | "active" | "removed";
+          joined_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "kreis_members_kreis_id_fkey";
+            columns: ["kreis_id"];
+            isOneToOne: false;
+            referencedRelation: "kreise";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "kreis_members_profile_id_fkey";
+            columns: ["profile_id"];
             isOneToOne: false;
             referencedRelation: "profiles";
             referencedColumns: ["id"];

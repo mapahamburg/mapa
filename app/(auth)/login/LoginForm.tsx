@@ -116,19 +116,36 @@ export function LoginForm({ next }: { next?: string }) {
         </div>
 
         <div>
-          <label
-            htmlFor="password"
+          <div
             style={{
-              display: "block",
-              fontSize: "13px",
-              fontWeight: 500,
-              color: "var(--fg-muted)",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "baseline",
               marginBottom: "6px",
-              letterSpacing: "0.01em",
             }}
           >
-            Passwort
-          </label>
+            <label
+              htmlFor="password"
+              style={{
+                fontSize: "13px",
+                fontWeight: 500,
+                color: "var(--fg-muted)",
+                letterSpacing: "0.01em",
+              }}
+            >
+              Passwort
+            </label>
+            <Link
+              href="/passwort-vergessen"
+              style={{
+                fontSize: "12px",
+                color: "var(--cobalt-500)",
+                textDecoration: "none",
+              }}
+            >
+              Passwort vergessen?
+            </Link>
+          </div>
           <input
             id="password"
             name="password"

@@ -136,11 +136,10 @@ export function NewPostForm() {
 
   return (
     <div
+      className="form-card"
       style={{
         background: "var(--surface-card)",
         border: "1px solid var(--border)",
-        borderRadius: "var(--radius-xl)",
-        padding: "36px 40px",
         maxWidth: 680,
         width: "100%",
       }}

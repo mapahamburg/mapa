@@ -32,16 +32,11 @@ const LINKS = [
 
 export function Footer() {
   return (
-    <footer style={{ background: "var(--mapa-paper)", padding: "0 48px 56px" }}>
+    <footer className="footer-outer" style={{ background: "var(--mapa-paper)" }}>
       <div
+        className="footer-grid"
         style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          padding: "40px 0 0",
           borderTop: "1px solid var(--border)",
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr 1fr",
-          gap: 48,
         }}
       >
         {/* Brand */}

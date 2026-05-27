@@ -289,7 +289,7 @@ export default function LocalHostsPage() {
             <div
               style={{
                 fontSize: 13,
-                color: "var(--forest-500)",
+                color: "var(--color-muted)",
                 marginTop: 4,
                 marginBottom: 20,
               }}
