@@ -107,11 +107,12 @@ function InterestChip({
 
 // ─── Main onboarding component ────────────────────────────────────────────────
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 7;
 
 export function OnboardingFlow() {
   const [step, setStep] = useState(0);
   const [firstName, setFirstName] = useState("");
+  const [bio, setBio] = useState("");
   const [username, setUsername] = useState("");
   const [stadtteil, setStadtteil] = useState("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
@@ -252,7 +253,73 @@ export function OnboardingFlow() {
     </div>
   );
 
-  // ── Step 2: Username ─────────────────────────────────────────────────────────
+  // ── Step 2: Kurz-Bio ─────────────────────────────────────────────────────────
+  const stepBio = (
+    <div>
+      <h2
+        style={{
+          fontFamily: "var(--font-display)",
+          fontStyle: "italic",
+          fontSize: "24px",
+          fontWeight: 400,
+          color: "var(--ink)",
+          marginBottom: "8px",
+        }}
+      >
+        Sag kurz wer du bist.
+      </h2>
+      <p style={{ fontSize: "14px", color: "var(--fg-subtle)", marginBottom: "24px", lineHeight: 1.5 }}>
+        Optional. Ein Satz reicht.
+      </p>
+      <textarea
+        value={bio}
+        onChange={(e) => setBio(e.target.value.slice(0, 120))}
+        placeholder={`${firstName ? firstName + ", Vater" : "Mutter"} mit zwei Kids aus Eppendorf.`}
+        rows={3}
+        style={{
+          width: "100%",
+          padding: "12px 14px",
+          backgroundColor: "var(--surface-card)",
+          border: "1px solid var(--border)",
+          borderRadius: "var(--radius-md)",
+          fontFamily: "var(--font-ui)",
+          fontSize: "15px",
+          color: "var(--ink)",
+          outline: "none",
+          resize: "none",
+          boxSizing: "border-box",
+          lineHeight: 1.5,
+          marginBottom: "6px",
+        }}
+        onFocus={(e) => { e.currentTarget.style.borderColor = "var(--cobalt-500)"; }}
+        onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border)"; }}
+      />
+      <p style={{ fontSize: "12px", color: "var(--fg-subtle)", textAlign: "right", marginBottom: "20px" }}>
+        {bio.length}/120
+      </p>
+      <button
+        type="button"
+        onClick={next}
+        style={{
+          width: "100%",
+          padding: "14px 24px",
+          backgroundColor: "var(--cobalt-500)",
+          color: "#fff",
+          border: "none",
+          borderRadius: "var(--radius-md)",
+          fontFamily: "var(--font-ui)",
+          fontSize: "15px",
+          fontWeight: 500,
+          cursor: "pointer",
+          transition: "background-color 150ms ease",
+        }}
+      >
+        {bio.trim() ? "Weiter" : "Überspringen"}
+      </button>
+    </div>
+  );
+
+  // ── Step 3: Username ─────────────────────────────────────────────────────────
   const usernameValid = /^[a-z0-9_.]{3,20}$/.test(username);
   const stepUsername = (
     <div>
@@ -482,6 +549,7 @@ export function OnboardingFlow() {
     <form action={formAction}>
       {/* Hidden fields carry all collected data */}
       <input type="hidden" name="first_name" value={firstName} />
+      <input type="hidden" name="bio" value={bio} />
       <input type="hidden" name="username" value={username} />
       <input type="hidden" name="stadtteil" value={stadtteil} />
       <input type="hidden" name="newsletter_optin" value={newsletter ? "true" : "false"} />
@@ -602,7 +670,7 @@ export function OnboardingFlow() {
     </form>
   );
 
-  const steps = [stepWelcome, stepVorname, stepUsername, stepStadtteil, stepInteressen, stepHausregeln];
+  const steps = [stepWelcome, stepVorname, stepBio, stepUsername, stepStadtteil, stepInteressen, stepHausregeln];
 
   return (
     <div

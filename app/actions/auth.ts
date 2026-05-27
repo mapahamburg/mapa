@@ -93,6 +93,7 @@ export async function createProfile(
   if (!user) redirect("/login");
 
   const first_name       = (formData.get("first_name") as string).trim();
+  const bio              = ((formData.get("bio") as string) ?? "").trim().slice(0, 120);
   const username         = (formData.get("username")   as string).trim().toLowerCase();
   const stadtteil        = formData.get("stadtteil") as string;
   const interests        = formData.getAll("interests") as string[];
@@ -107,6 +108,7 @@ export async function createProfile(
   const { error } = await supabase.from("profiles").insert({
     id: user.id,
     first_name,
+    bio: bio || null,
     stadtteil,
     interests,
     username,
