@@ -14,31 +14,42 @@ export type { FeedPost as Post };
 
 export function PostCard({ post }: { post: FeedPost }) {
   return (
-    <Link
-      href={`/feed/${post.id}`}
-      style={{ textDecoration: "none", color: "inherit", display: "block" }}
+    <article
+      className="post-card"
+      style={{
+        position: "relative",
+        background: "var(--color-ivory)",
+        border: "1px solid var(--color-line-soft)",
+        cursor: "pointer",
+        transition: `border-color var(--dur-base)`,
+        display: "flex",
+        flexDirection: "column",
+        gap: 18,
+      }}
+      onMouseEnter={(e) =>
+        (e.currentTarget.style.borderColor = "var(--color-sage)")
+      }
+      onMouseLeave={(e) =>
+        (e.currentTarget.style.borderColor = "var(--color-line-soft)")
+      }
     >
-      <article
-        className="post-card"
+      {/* Overlay-Link — deckt die Karte ab, liegt unter den Buttons */}
+      <Link
+        href={`/feed/${post.id}`}
         style={{
-          background: "var(--color-ivory)",
-          border: "1px solid var(--color-line-soft)",
-          cursor: "pointer",
-          transition: `border-color var(--dur-base)`,
-          display: "flex",
-          flexDirection: "column",
-          gap: 18,
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          borderRadius: "inherit",
         }}
-        onMouseEnter={(e) =>
-          (e.currentTarget.style.borderColor = "var(--color-sage)")
-        }
-        onMouseLeave={(e) =>
-          (e.currentTarget.style.borderColor = "var(--color-line-soft)")
-        }
-      >
+        aria-label={post.title}
+      />
+        {/* Alle Inhalte liegen über dem Overlay-Link */}
         {/* Author row */}
         <header
           style={{
+            position: "relative",
+            zIndex: 1,
             display: "flex",
             gap: 14,
             alignItems: "center",
@@ -66,6 +77,8 @@ export function PostCard({ post }: { post: FeedPost }) {
         <h3
           className="post-card-title"
           style={{
+            position: "relative",
+            zIndex: 1,
             fontFamily: "var(--font-display)",
             fontStyle: "italic",
             fontWeight: 400,
@@ -80,6 +93,8 @@ export function PostCard({ post }: { post: FeedPost }) {
         {post.body && (
           <p
             style={{
+              position: "relative",
+              zIndex: 1,
               fontSize: 15,
               lineHeight: 1.55,
               color: "var(--color-muted)",
@@ -91,11 +106,17 @@ export function PostCard({ post }: { post: FeedPost }) {
         )}
 
         {/* Meeting chip */}
-        {post.meeting && <MeetingChip {...post.meeting} />}
+        {post.meeting && (
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <MeetingChip {...post.meeting} />
+          </div>
+        )}
 
-        {/* Footer */}
+        {/* Footer — z-index: 1 damit Buttons über dem Overlay-Link liegen */}
         <footer
           style={{
+            position: "relative",
+            zIndex: 1,
             display: "flex",
             gap: 16,
             alignItems: "center",
@@ -118,8 +139,7 @@ export function PostCard({ post }: { post: FeedPost }) {
           </span>
           <SaveButton postId={post.id} initialSaved={post.isSaved ?? false} />
         </footer>
-      </article>
-    </Link>
+    </article>
   );
 }
 
