@@ -200,12 +200,12 @@ export async function getSavedPosts(): Promise<FeedPost[]> {
           time:     timeAgo(p.created_at as string),
           section:  feedSection(p.created_at as string),
           title:    p.title as string,
-          body:     (p.body as string) ?? undefined,
+          body:     p.body ? (p.body as string) : undefined,
           meeting,
           likes:    0,
           comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
           isSaved:  true,
-        } satisfies FeedPost;
+        } as FeedPost;
       })
       .filter((p): p is FeedPost => p !== null);
   } catch {
