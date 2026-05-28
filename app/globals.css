@@ -169,6 +169,10 @@
   --mapa-peach-100:   #F6E0CC;
   --mapa-danger:      #B0533D;
   --mapa-cobalt-500:  #2540D6;
+  /* mapa-mark.css canonical aliases */
+  --mapa-cobalt:      #2540D6;
+  --mapa-clay:        #D88F68;
+  --mapa-stone-1:     #6B6457;
 
   /* Semantic */
   --danger:   #B0533D;
@@ -734,4 +738,87 @@ a, button, [role="button"] {
   .fs-cta-wm    { font-size: 48px !important; }
   .cta-inner    { padding: 28px 20px 26px !important; }
   .cta-wm-dot   { width: 6px !important; height: 6px !important; margin-bottom: 9px !important; }
+}
+
+/* =====================================================================
+   mapa · wordmark dot · canonical rules  (from mapa-mark.css)
+   Source of truth for every surface. Do not duplicate elsewhere.
+   ===================================================================== */
+
+.mapa-mark,
+.mapa-bold {
+  font-family: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--mapa-ink, #171614);
+  display: inline-block;
+  --mapa-dot: var(--mapa-cobalt, #2540D6);
+}
+
+.mapa-mark > svg,
+.mapa-bold > svg {
+  display: inline-block;
+  width: 0.18em;
+  height: 0.18em;
+  margin-left: 0.03em;
+  vertical-align: baseline;
+  overflow: visible;
+}
+
+.mapa-mark > svg circle,
+.mapa-bold > svg circle { fill: var(--mapa-dot); }
+
+.mapa-mark.on-cream, .mapa-mark.on-paper,
+.mapa-bold.on-cream,  .mapa-bold.on-paper {
+  color: var(--mapa-ink, #171614);
+  --mapa-dot: var(--mapa-cobalt, #2540D6);
+}
+.mapa-mark.on-cobalt, .mapa-mark.on-ink,
+.mapa-bold.on-cobalt,  .mapa-bold.on-ink {
+  color: var(--mapa-paper, #FFFDF8);
+  --mapa-dot: var(--mapa-clay, #D88F68);
+}
+
+/* Legacy <i> fallback — remove once zero `mapa<i></i>` remain. */
+.mapa-mark > i,
+.mapa-bold > i {
+  display: inline-block;
+  width: 0.18em; height: 0.18em;
+  border-radius: 999px;
+  background: var(--mapa-dot);
+  margin-left: 0.03em;
+  vertical-align: baseline;
+}
+
+/* ─── Favicon mark · "m." ─── */
+.fav-mark {
+  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--mapa-paper, #FFFDF8);
+  --mapa-dot: var(--mapa-clay, #D88F68);
+  transform: translateX(-2%);
+}
+.fav-mark > svg {
+  display: inline-block;
+  width: 0.22em;
+  height: 0.22em;
+  margin-left: 0.04em;
+  margin-bottom: 0.04em;
+  align-self: flex-end;
+  overflow: visible;
+}
+.fav-mark > svg circle { fill: var(--mapa-dot); }
+
+.fav-mark.on-cream, .fav-mark.on-paper {
+  color: var(--mapa-ink, #171614);
+  --mapa-dot: var(--mapa-cobalt, #2540D6);
+}
+.fav-mark.on-cobalt, .fav-mark.on-ink {
+  color: var(--mapa-paper, #FFFDF8);
+  --mapa-dot: var(--mapa-clay, #D88F68);
 }
