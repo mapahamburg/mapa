@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
 
 // Logo-dot — scaled to the large wordmark size
 const FS = 108;
@@ -6,7 +7,10 @@ const dotSize  = FS * 0.13;
 const dotLift  = FS * 0.18;
 const dotInset = -(FS * 0.04);
 
-export function FinalCTA() {
+export async function FinalCTA() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
   return (
     <section className="section-pad" style={{ background: "var(--mapa-paper)", paddingTop: 0 }}>
       <div
@@ -81,14 +85,14 @@ export function FinalCTA() {
           </p>
 
           <Link
-            href="/signup"
+            href={isLoggedIn ? "/feed" : "/signup"}
             className="cta-btn"
             style={{
               background: "var(--mapa-paper)",
               color: "var(--color-cobalt)",
             }}
           >
-            mapa beitreten
+            {isLoggedIn ? "Zum Feed" : "mapa beitreten"}
           </Link>
         </div>
       </div>

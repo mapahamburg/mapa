@@ -1,6 +1,11 @@
 import { Logo } from "@/components/ui/Logo";
+import { createClient } from "@/lib/supabase/server";
 
-export function Nav() {
+export async function Nav() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
+
   return (
     <header
       style={{
@@ -21,21 +26,21 @@ export function Nav() {
         <nav className="nav-links">
           {[
             { label: "Feed", href: "/feed" },
-            { label: "So funktioniert’s", href: "/so-funktionierts" },
+            { label: "So funktioniert's", href: "/so-funktionierts" },
             { label: "Local Hosts", href: "/local-hosts" },
             { label: "Über uns", href: "/ueber-uns" },
           ].map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                style={{
-                  color: "var(--fg)",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {label}
-              </a>
+            <a
+              key={label}
+              href={href}
+              style={{
+                color: "var(--fg)",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {label}
+            </a>
           ))}
         </nav>
 
@@ -47,20 +52,36 @@ export function Nav() {
             flexShrink: 0,
           }}
         >
-          <a href="/login" className="nav-login">
-            Einloggen
-          </a>
-          <a
-            href="/signup"
-            className="nav-cta"
-            style={{
-              background: "var(--cobalt-500)",
-              color: "var(--mapa-paper)",
-              fontFamily: "var(--font-ui)",
-            }}
-          >
-            mapa beitreten
-          </a>
+          {isLoggedIn ? (
+            <a
+              href="/feed"
+              className="nav-cta"
+              style={{
+                background: "var(--cobalt-500)",
+                color: "var(--mapa-paper)",
+                fontFamily: "var(--font-ui)",
+              }}
+            >
+              Zum Feed
+            </a>
+          ) : (
+            <>
+              <a href="/login" className="nav-login">
+                Einloggen
+              </a>
+              <a
+                href="/signup"
+                className="nav-cta"
+                style={{
+                  background: "var(--cobalt-500)",
+                  color: "var(--mapa-paper)",
+                  fontFamily: "var(--font-ui)",
+                }}
+              >
+                mapa beitreten
+              </a>
+            </>
+          )}
         </div>
       </div>
     </header>

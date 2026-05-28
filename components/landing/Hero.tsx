@@ -273,6 +273,10 @@ function HeroVisual() {
 export async function Hero() {
   const memberCount = await getMemberCount();
   const avatarLetters = ["L", "M", "S", "J", "N"] as const;
+  const { createClient } = await import("@/lib/supabase/server");
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
 
   return (
     <section className="hero-section" style={{ background: "var(--mapa-cream)" }}>
@@ -322,7 +326,7 @@ export async function Hero() {
 
           <div className="hero-btns">
             <a
-              href="/signup"
+              href={isLoggedIn ? "/feed" : "/signup"}
               style={{
                 background: "var(--cobalt-500)",
                 color: "var(--mapa-paper)",
@@ -334,7 +338,7 @@ export async function Hero() {
                 fontWeight: 500,
               }}
             >
-              Jetzt mitmachen
+              {isLoggedIn ? "Zum Feed" : "Jetzt mitmachen"}
             </a>
             <a
               href="/so-funktionierts"
