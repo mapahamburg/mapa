@@ -39,11 +39,11 @@ export async function TopNav() {
       </Link>
 
       {/* Search */}
-      <div className="mob-hide" style={{ flex: 1, maxWidth: 480 }}>
+      <div className="mob-hide" style={{ flex: 1, minWidth: 0, maxWidth: 480 }}>
         <SearchBar />
       </div>
 
-      <div style={{ flex: 1 }} />
+      <div style={{ flex: 1, minWidth: 0 }} />
 
       {/* New post CTA — hidden on mobile (BottomNav handles it) */}
       <Link

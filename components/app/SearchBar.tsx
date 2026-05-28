@@ -1,62 +1,54 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 
 export function SearchBar({ initialQuery = "" }: { initialQuery?: string }) {
-  const [value, setValue] = useState(initialQuery);
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const q = value.trim();
+    const q = inputRef.current?.value.trim() ?? "";
     if (!q) return;
     router.push(`/suche?q=${encodeURIComponent(q)}`);
     inputRef.current?.blur();
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ flex: 1, maxWidth: 480 }}>
-      <div
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        background: "var(--surface-card)",
+        border: "1px solid var(--border)",
+        borderRadius: 999,
+        padding: "8px 16px",
+        width: "100%",
+        boxSizing: "border-box",
+      }}
+    >
+      <Search size={15} strokeWidth={1.5} style={{ flexShrink: 0, color: "var(--fg-muted)" }} />
+      <input
+        ref={inputRef}
+        name="q"
+        type="text"
+        defaultValue={initialQuery}
+        placeholder="Suche im Stadtteil …"
         style={{
-          background: "var(--surface-card)",
-          border: "1px solid var(--border)",
-          borderRadius: 999,
-          padding: "8px 16px",
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          color: "var(--fg-muted)",
+          flex: 1,
+          background: "none",
+          border: "none",
+          outline: "none",
+          fontFamily: "var(--font-ui)",
           fontSize: 13.5,
-          transition: "border-color 150ms ease",
+          color: "var(--ink)",
+          minWidth: 0,
         }}
-        onFocus={(e) =>
-          (e.currentTarget.style.borderColor = "var(--ink)")
-        }
-        onBlur={(e) =>
-          (e.currentTarget.style.borderColor = "var(--border)")
-        }
-      >
-        <Search size={15} strokeWidth={1.5} style={{ flexShrink: 0 }} />
-        <input
-          ref={inputRef}
-          type="search"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="Suche im Stadtteil …"
-          style={{
-            flex: 1,
-            background: "none",
-            border: "none",
-            outline: "none",
-            fontFamily: "var(--font-ui)",
-            fontSize: 13.5,
-            color: "var(--ink)",
-          }}
-        />
-      </div>
+      />
     </form>
   );
 }
