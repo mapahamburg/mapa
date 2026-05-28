@@ -33,22 +33,37 @@ export async function getFeedPosts(): Promise<FeedPost[]> {
       Date.now() - 7 * 24 * 60 * 60 * 1000
     ).toISOString();
 
-    const { data, error } = await supabase
-      .from("posts")
-      .select(
-        `id, type, title, body, stadtteil,
-         meeting_location, meeting_date, min_age, max_age, created_at,
-         author:profiles!author_id ( first_name ),
-         comments:comments ( count )`
-      )
-      .gte("created_at", sevenDaysAgo)
-      .order("created_at", { ascending: false })
-      .limit(60);
+    // Fetch posts + current user's saved post IDs in parallel
+    const { data: { user } } = await supabase.auth.getUser();
 
-    if (error || !data) return [];
+    const [postsRes, savedRes] = await Promise.all([
+      supabase
+        .from("posts")
+        .select(
+          `id, type, title, body, stadtteil,
+           meeting_location, meeting_date, min_age, max_age, created_at,
+           author:profiles!author_id ( first_name ),
+           comments:comments ( count )`
+        )
+        .gte("created_at", sevenDaysAgo)
+        .order("created_at", { ascending: false })
+        .limit(60),
 
-    return data.map((p) => {
-      // PostgREST embeds author as object, comments as [{ count: "N" }]
+      user
+        ? (supabase as any)
+            .from("saved_posts")
+            .select("post_id")
+            .eq("user_id", user.id)
+        : Promise.resolve({ data: [] }),
+    ]);
+
+    if (postsRes.error || !postsRes.data) return [];
+
+    const savedIds = new Set<string>(
+      (savedRes.data ?? []).map((r: { post_id: string }) => r.post_id)
+    );
+
+    return postsRes.data.map((p) => {
       const author   = p.author   as { first_name: string }        | null;
       const comments = p.comments as { count: number | string }[] | null;
 
@@ -71,10 +86,73 @@ export async function getFeedPosts(): Promise<FeedPost[]> {
         title:    p.title,
         body:     p.body ?? undefined,
         meeting,
-        likes:    0,                                              // no likes table yet
+        likes:    0,
         comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
+        isSaved:  savedIds.has(p.id),
       } satisfies FeedPost;
     });
+  } catch {
+    return [];
+  }
+}
+
+// ─── Saved posts (Gespeichert) ────────────────────────────────────────────────
+
+export async function getSavedPosts(): Promise<FeedPost[]> {
+  if (!hasSupabase()) return [];
+
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return [];
+
+    const { data, error } = await (supabase as any)
+      .from("saved_posts")
+      .select(
+        `post_id,
+         post:posts (
+           id, type, title, body, stadtteil,
+           meeting_location, meeting_date, min_age, max_age, created_at,
+           author:profiles!author_id ( first_name ),
+           comments:comments ( count )
+         )`
+      )
+      .eq("user_id", user.id)
+      .order("saved_at", { ascending: false })
+      .limit(60);
+
+    if (error || !data) return [];
+
+    return (data as Array<{ post: Record<string, unknown> }>)
+      .map(({ post: p }) => {
+        if (!p) return null;
+        const author   = p.author   as { first_name: string }        | null;
+        const comments = p.comments as { count: number | string }[] | null;
+        const meeting  =
+          (p.meeting_location as string | null) || (p.meeting_date as string | null)
+            ? {
+                where: (p.meeting_location as string) ?? "",
+                when:  p.meeting_date ? formatMeetingDate(p.meeting_date as string) : "",
+                age:   formatAgeRange(p.min_age as number | null, p.max_age as number | null),
+              }
+            : undefined;
+
+        return {
+          id:       p.id as string,
+          type:     p.type as FeedPost["type"],
+          author:   author?.first_name ?? "Nachbar",
+          district: p.stadtteil as string,
+          time:     timeAgo(p.created_at as string),
+          section:  feedSection(p.created_at as string),
+          title:    p.title as string,
+          body:     (p.body as string) ?? undefined,
+          meeting,
+          likes:    0,
+          comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
+          isSaved:  true,
+        } satisfies FeedPost;
+      })
+      .filter((p): p is FeedPost => p !== null);
   } catch {
     return [];
   }

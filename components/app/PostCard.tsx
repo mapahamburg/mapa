@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { MessageCircle, Bookmark } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Tag } from "@/components/ui/Tag";
 import { MeetingChip } from "@/components/app/MeetingChip";
 import { ContactButton } from "@/components/app/ContactButton";
+import { SaveButton } from "@/components/app/SaveButton";
 import type { FeedPost } from "@/types";
 
 // Re-export so FeedColumn can import from one place
@@ -115,17 +116,7 @@ export function PostCard({ post }: { post: FeedPost }) {
             <MessageCircle size={15} strokeWidth={1.5} /> {post.comments}{" "}
             {post.comments === 1 ? "Kommentar" : "Kommentare"}
           </span>
-          <span
-            style={{
-              marginLeft: "auto",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              cursor: "pointer",
-            }}
-          >
-            <Bookmark size={15} strokeWidth={1.5} /> Speichern
-          </span>
+          <SaveButton postId={post.id} initialSaved={post.isSaved ?? false} />
         </footer>
       </article>
     </Link>
