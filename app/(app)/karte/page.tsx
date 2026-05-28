@@ -8,5 +8,9 @@ export const metadata: Metadata = {
 
 export default async function KartePage() {
   const posts = await getFeedPosts();
-  return <KarteLoader posts={posts} />;
+  return (
+    <div style={{ flex: 1, minWidth: 0, overflow: "hidden" }}>
+      <KarteLoader posts={posts} />
+    </div>
+  );
 }

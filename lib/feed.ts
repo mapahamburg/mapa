@@ -80,6 +80,66 @@ export async function getFeedPosts(): Promise<FeedPost[]> {
   }
 }
 
+// ─── Events (Veranstaltungen) ─────────────────────────────────────────────────
+
+/**
+ * Fetch upcoming + recent veranstaltung posts.
+ * Looks 30 days back and 60 days forward so scheduled events appear.
+ */
+export async function getEventPosts(): Promise<FeedPost[]> {
+  if (!hasSupabase()) return [];
+
+  try {
+    const supabase = await createClient();
+
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+
+    const { data, error } = await supabase
+      .from("posts")
+      .select(
+        `id, type, title, body, stadtteil,
+         meeting_location, meeting_date, min_age, max_age, created_at,
+         author:profiles!author_id ( first_name ),
+         comments:comments ( count )`
+      )
+      .eq("type", "veranstaltung")
+      .gte("created_at", thirtyDaysAgo)
+      .order("created_at", { ascending: false })
+      .limit(40);
+
+    if (error || !data) return [];
+
+    return data.map((p) => {
+      const author   = p.author   as { first_name: string }        | null;
+      const comments = p.comments as { count: number | string }[] | null;
+      const meeting  =
+        p.meeting_location || p.meeting_date
+          ? {
+              where: p.meeting_location ?? "",
+              when:  p.meeting_date ? formatMeetingDate(p.meeting_date) : "",
+              age:   formatAgeRange(p.min_age, p.max_age),
+            }
+          : undefined;
+
+      return {
+        id:       p.id,
+        type:     p.type,
+        author:   author?.first_name ?? "Nachbar",
+        district: p.stadtteil,
+        time:     timeAgo(p.created_at),
+        section:  feedSection(p.created_at),
+        title:    p.title,
+        body:     p.body ?? undefined,
+        meeting,
+        likes:    0,
+        comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
+      } satisfies FeedPost;
+    });
+  } catch {
+    return [];
+  }
+}
+
 // ─── Post detail ──────────────────────────────────────────────────────────────
 
 /**
