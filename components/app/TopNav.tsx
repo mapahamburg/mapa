@@ -1,7 +1,8 @@
-import { Search, Plus, Bell } from "lucide-react";
+import { Plus, Bell } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Avatar } from "@/components/ui/Avatar";
+import { SearchBar } from "@/components/app/SearchBar";
 import { createClient } from "@/lib/supabase/server";
 
 export async function TopNav() {
@@ -39,22 +40,7 @@ export async function TopNav() {
 
       {/* Search */}
       <div className="mob-hide" style={{ flex: 1, maxWidth: 480 }}>
-        <div
-          style={{
-            background: "var(--surface-card)",
-            border: "1px solid var(--border)",
-            borderRadius: 999,
-            padding: "8px 16px",
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            color: "var(--fg-muted)",
-            fontSize: 13.5,
-          }}
-        >
-          <Search size={15} strokeWidth={1.5} />
-          Suche im Stadtteil …
-        </div>
+        <SearchBar />
       </div>
 
       <div style={{ flex: 1 }} />
