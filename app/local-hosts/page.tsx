@@ -33,7 +33,7 @@ const TASKS = [
 
 export default function LocalHostsPage() {
   return (
-    <div style={{ background: "var(--surface-page)", minHeight: "100dvh" }}>
+    <div style={{ background: "var(--surface-page)" }}>
       <Nav />
 
       {/* Hero */}
@@ -307,7 +307,7 @@ export default function LocalHostsPage() {
         </div>
       </section>
 
-      {/* CTA — Melde dich */}
+      {/* CTA — Wir bauen das gerade auf */}
       <section className="section-pad" style={{ background: "var(--ink)" }}>
         <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" as const }}>
           <div
@@ -321,7 +321,7 @@ export default function LocalHostsPage() {
               marginBottom: 24,
             }}
           >
-            Mitmachen
+            Wir suchen
           </div>
           <h2
             className="lh-h2-cta"
@@ -333,23 +333,10 @@ export default function LocalHostsPage() {
               color: "var(--surface-page)",
             }}
           >
-            Lust, deinen Stadtteil
+            Wir bauen das gerade auf.
             <br />
-            mitzugestalten?
+            Sei dabei.
           </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-ui)",
-              fontSize: 17,
-              lineHeight: 1.65,
-              color: "var(--ash-400)",
-              margin: "0 0 16px",
-            }}
-          >
-            Schreib uns eine kurze Mail mit ein paar Sätzen über dich — wer du
-            bist, in welchem Stadtteil du wohnst und was dich an mapa
-            interessiert.
-          </p>
           <p
             style={{
               fontFamily: "var(--font-ui)",
@@ -359,11 +346,13 @@ export default function LocalHostsPage() {
               margin: "0 0 40px",
             }}
           >
-            Meld dich außerdem auf der Plattform an — dann sehen wir
-            direkt, dass du aus Hamburg bist.
+            mapa wächst stadtteilweise — und jeder neue Stadtteil braucht
+            einen Menschen, der den Anfang macht. Wenn du Lust hast,
+            Local Host in deinem Viertel zu werden, meld dich einfach.
+            Kein Formular, kein Auswahlverfahren. Eine kurze Mail reicht.
           </p>
           <a
-            href="mailto:hey@mapa.hamburg?subject=Local Host werden"
+            href="mailto:hosts@mapa.hamburg?subject=Local Host werden"
             className="cta-page-btn"
             style={{
               background: "var(--cobalt-500)",
@@ -376,7 +365,7 @@ export default function LocalHostsPage() {
               fontWeight: 500,
             }}
           >
-            hey@mapa.hamburg schreiben →
+            hosts@mapa.hamburg schreiben
           </a>
         </div>
       </section>
