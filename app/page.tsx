@@ -9,7 +9,7 @@ import { Footer } from "@/components/landing/Footer";
 
 export default function LandingPage() {
   return (
-    <div style={{ background: "var(--mapa-cream)", minHeight: "100dvh" }}>
+    <div style={{ background: "var(--mapa-cream)" }}>
       <Nav />
       <Hero />
       <Districts />

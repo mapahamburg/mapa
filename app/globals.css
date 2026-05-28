@@ -570,7 +570,7 @@ a, button, [role="button"] {
   .col2-text        { grid-template-columns: 1fr !important; gap: 36px !important; }
   .col3             { grid-template-columns: 1fr !important; gap: 10px !important; }
   .footer-grid      { grid-template-columns: 1fr 1fr !important; gap: 24px !important; padding: 28px 0 0 !important; }
-  .footer-outer     { padding: 0 24px 48px !important; }
+  .footer-outer     { padding: 0 24px env(safe-area-inset-bottom, 16px) !important; }
   .phase-card       { grid-template-columns: 1fr !important; gap: 12px !important; }
   .cta-row          { flex-direction: column !important; align-items: stretch !important; gap: 20px !important; }
   .nav-links        { display: none !important; }
