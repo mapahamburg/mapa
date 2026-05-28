@@ -20,7 +20,9 @@ export function TopNav() {
         zIndex: 50,
       }}
     >
-      <Logo size={22} lockup />
+      <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+        <Logo size={22} lockup />
+      </Link>
 
       {/* Search */}
       <div className="mob-hide" style={{ flex: 1, maxWidth: 480 }}>
