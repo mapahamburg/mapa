@@ -5,7 +5,7 @@ export function LocalHosts() {
     <section
       className="section-pad"
       style={{
-        background: "var(--surface-page-deep)",
+        background: "var(--mapa-paper)",
         color: "var(--ink)",
       }}
     >
@@ -36,7 +36,7 @@ export function LocalHosts() {
           >
             Ein Mensch pro Stadtteil.
             <br />
-            echt, nicht algorithmisch.
+            Echt, nicht algorithmisch.
           </h2>
           <p
             style={{
@@ -56,7 +56,7 @@ export function LocalHosts() {
             style={{
               display: "inline-block",
               marginTop: 28,
-              background: "var(--cobalt-500)",
+              background: "var(--mapa-sage-500)",
               color: "var(--surface-page)",
               textDecoration: "none",
               padding: "14px 24px",

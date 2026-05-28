@@ -236,12 +236,10 @@ export default async function KreisePage() {
       >
         <div>
           <div
+            className="feed-greeting"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
-              fontSize: 36,
-              letterSpacing: "-0.025em",
-              lineHeight: 1.05,
               color: "var(--ink)",
             }}
           >
@@ -259,7 +257,7 @@ export default async function KreisePage() {
             color: "#fff",
             border: "none",
             borderRadius: 999,
-            padding: "10px 18px",
+            padding: "13px 18px",
             fontFamily: "var(--font-ui)",
             fontSize: 14,
             fontWeight: 500,
@@ -269,6 +267,7 @@ export default async function KreisePage() {
             gap: 7,
             whiteSpace: "nowrap",
             flexShrink: 0,
+            minHeight: 44,
           }}
         >
           <Plus size={15} strokeWidth={2} />

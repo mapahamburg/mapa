@@ -13,7 +13,7 @@ export function LegalLayout({ eyebrow, title, lastUpdated, children }: LegalLayo
   return (
     <div style={{ background: "var(--surface-page)", minHeight: "100dvh" }}>
       <Nav />
-      <main style={{ maxWidth: 760, margin: "0 auto", padding: "80px 48px 120px" }}>
+      <main className="legal-main">
         {/* Eyebrow */}
         <div
           style={{
@@ -31,13 +31,11 @@ export function LegalLayout({ eyebrow, title, lastUpdated, children }: LegalLayo
 
         {/* Title */}
         <h1
+          className="legal-h1"
           style={{
             fontFamily: "var(--font-display)",
             fontStyle: "italic",
             fontWeight: 400,
-            fontSize: 52,
-            lineHeight: 1.08,
-            letterSpacing: "-0.02em",
             color: "var(--ink)",
             margin: "0 0 12px",
           }}

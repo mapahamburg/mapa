@@ -8,7 +8,7 @@ const ITEMS = [
 
 export function NotOnMapa() {
   return (
-    <section className="section-pad" style={{ background: "var(--mapa-paper)" }}>
+    <section className="section-pad" style={{ background: "var(--mapa-cream)" }}>
       <div className="col2-text" style={{ alignItems: "flex-start" }}>
         {/* Left: headline */}
         <div>

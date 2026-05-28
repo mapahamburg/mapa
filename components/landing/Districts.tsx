@@ -55,12 +55,11 @@ export function Districts() {
               className="district-chip"
               style={{
                 background:
-                  i % 4 === 0 ? "var(--color-ink)" : "var(--surface-card)",
+                  i === 0 ? "var(--mapa-sage-500)" : "var(--surface-card)",
                 color:
-                  i % 4 === 0 ? "var(--color-cream)" : "var(--fg)",
+                  i === 0 ? "var(--mapa-paper)" : "var(--fg)",
                 border:
-                  "1px solid " +
-                  (i % 4 === 0 ? "transparent" : "var(--border)"),
+                  i === 0 ? "none" : "1px solid var(--border)",
                 borderRadius: 999,
                 fontFamily: "var(--font-ui)",
                 letterSpacing: "-0.02em",

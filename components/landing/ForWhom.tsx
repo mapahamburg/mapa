@@ -8,7 +8,7 @@ const POINTS = [
 
 export function ForWhom() {
   return (
-    <section className="section-pad" style={{ background: "var(--mapa-cream)" }}>
+    <section className="section-pad" style={{ background: "var(--mapa-paper)" }}>
       <div className="col2-text">
         {/* Left: list */}
         <div>

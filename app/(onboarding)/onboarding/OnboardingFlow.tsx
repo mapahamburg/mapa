@@ -674,13 +674,13 @@ export function OnboardingFlow() {
 
   return (
     <div
+      className="onboarding-card"
       style={{
         width: "100%",
         maxWidth: "440px",
         backgroundColor: "var(--surface-card)",
         border: "1px solid var(--border)",
         borderRadius: "var(--radius-l)",
-        padding: "40px 36px",
         boxShadow: "var(--shadow-m)",
       }}
     >

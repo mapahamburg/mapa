@@ -44,7 +44,7 @@ export default async function ProfilPage() {
     };
 
   return (
-    <main style={{ flex: 1, padding: "40px 48px" }}>
+    <main className="app-main-pad">
       <ProfilePage profile={profile} posts={posts ?? []} />
     </main>
   );

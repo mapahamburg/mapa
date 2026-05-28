@@ -63,13 +63,11 @@ export function PostCard({ post }: { post: FeedPost }) {
 
         {/* Title */}
         <h3
+          className="post-card-title"
           style={{
             fontFamily: "var(--font-display)",
             fontStyle: "italic",
             fontWeight: 400,
-            fontSize: 28,
-            lineHeight: 1.2,
-            letterSpacing: "-0.005em",
             color: "var(--color-ink)",
             margin: 0,
           }}

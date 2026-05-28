@@ -279,7 +279,7 @@ function ProfileView({
     <div style={{ maxWidth: 580 }}>
 
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 32 }}>
+      <div className="profile-header-row">
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
           <InitialsAvatar letter={profile.first_name[0]} size={72} />
           <div>

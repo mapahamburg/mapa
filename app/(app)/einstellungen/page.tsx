@@ -16,7 +16,7 @@ export default async function EinstellungenPage() {
     .single() as { data: { notify_comments: boolean; newsletter_optin: boolean } | null };
 
   return (
-    <main style={{ flex: 1, padding: "40px 48px" }}>
+    <main className="app-main-pad">
       <SettingsForm
         notifyComments={profile?.notify_comments  ?? true}
         newsletterOptin={profile?.newsletter_optin ?? false}

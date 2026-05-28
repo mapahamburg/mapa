@@ -21,13 +21,13 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 
       {/* Card */}
       <div
+        className="auth-card"
         style={{
           width: "100%",
           maxWidth: "420px",
           backgroundColor: "var(--bg-card)",
           border: "1px solid var(--line)",
           borderRadius: "var(--radius-l)",
-          padding: "40px 36px",
           boxShadow: "var(--shadow-m)",
         }}
       >

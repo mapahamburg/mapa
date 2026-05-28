@@ -52,20 +52,7 @@ function StickyComposer({ postId }: { postId: string }) {
   }, [state.message]);
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        borderTop: "1px solid var(--border-soft)",
-        background: "rgba(241, 236, 226, 0.92)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        padding: "12px 16px",
-      }}
-    >
+    <div className="sticky-composer">
       <form
         action={formAction}
         style={{
@@ -115,8 +102,8 @@ function StickyComposer({ postId }: { postId: string }) {
           disabled={isPending || !body.trim()}
           aria-label="Antwort senden"
           style={{
-            width: 36,
-            height: 36,
+            width: 44,
+            height: 44,
             borderRadius: "var(--radius-pill)",
             background: body.trim() ? "var(--cobalt-500)" : "var(--cobalt-50)",
             border: "none",
@@ -170,10 +157,8 @@ export function PostDetail({
   return (
     <>
       <article
+        className="post-detail-article"
         style={{
-          maxWidth: 680,
-          margin: "0 auto",
-          padding: "32px 0 100px",
           fontFamily: "var(--font-ui)",
         }}
       >

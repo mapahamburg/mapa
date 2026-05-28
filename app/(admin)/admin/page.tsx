@@ -135,10 +135,12 @@ export default function AdminDashboardPage() {
             overflow: "hidden",
           }}
         >
+          <div className="admin-table-scroll">
           <table
             style={{
               width: "100%",
               borderCollapse: "collapse" as const,
+              minWidth: 580,
             }}
           >
             <thead>
@@ -182,6 +184,7 @@ export default function AdminDashboardPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </section>
 

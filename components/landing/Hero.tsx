@@ -301,10 +301,9 @@ export async function Hero() {
               fontWeight: 400,
               margin: 0,
               color: "var(--fg)",
-              textWrap: "balance" as const,
             }}
           >
-            Die lokale Community für Mamas und Papas in Hamburg.
+            Die lokale Community für Familien in Hamburg.
           </h1>
 
           <p
@@ -314,11 +313,11 @@ export async function Hero() {
               fontWeight: 400,
               lineHeight: 1.55,
               letterSpacing: 0,
-              color: "var(--ash-v2-900)",
-              marginTop: 28,
+              color: "var(--ash-v2-600)",
+              marginTop: 20,
             }}
           >
-            Mit Empfehlungen, Veranstaltungen, Treffen und ehrlichem Austausch.
+            Empfehlungen, Veranstaltungen, Treffen und ehrlicher Austausch — chronologisch, stadtteilgefiltert, moderiert von echten Nachbar:innen.
           </p>
 
           <div className="hero-btns">
@@ -337,8 +336,8 @@ export async function Hero() {
             >
               Jetzt mitmachen
             </a>
-            <button
-              type="button"
+            <a
+              href="/so-funktionierts"
               style={{
                 background: "transparent",
                 color: "var(--fg)",
@@ -348,11 +347,12 @@ export async function Hero() {
                 fontFamily: "var(--font-ui)",
                 fontSize: 16,
                 fontWeight: 500,
-                cursor: "pointer",
+                textDecoration: "none",
+                display: "inline-block",
               }}
             >
               So funktioniert&apos;s
-            </button>
+            </a>
           </div>
 
           {/* Avatar stack + social proof */}

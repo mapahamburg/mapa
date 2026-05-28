@@ -1,29 +1,70 @@
 export function PullQuote() {
   return (
-    <section className="section-pad-tall" style={{ background: "var(--surface-page-deep)" }}>
-      <div style={{ maxWidth: 920, margin: "0 auto", textAlign: "center" }}>
+    <section
+      className="section-pad-tall"
+      style={{ background: "var(--mapa-cream)" }}
+    >
+      <div style={{ maxWidth: 860, margin: "0 auto", textAlign: "center" }}>
+        <div
+          style={{
+            fontSize: 11,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "var(--cobalt-500)",
+            fontWeight: 500,
+            fontFamily: "var(--font-mono)",
+            marginBottom: 36,
+          }}
+        >
+          Jeden Tag auf mapa
+        </div>
+
         <div
           className="fs-pq"
           style={{
             fontFamily: "var(--font-display)",
             fontStyle: "italic",
             fontWeight: 400,
+            color: "var(--ink)",
+            textWrap: "balance" as const,
           }}
         >
-          „Frag mal auf mapa."
+          „Kennt jemand ein gutes Familiencafé in Ottensen?"
         </div>
-        <p
+
+        <div
           style={{
-            fontSize: 16,
+            marginTop: 28,
+            fontSize: 14,
             color: "var(--fg-muted)",
-            lineHeight: 1.55,
-            maxWidth: 560,
-            margin: "32px auto 0",
+            fontFamily: "var(--font-ui)",
+            letterSpacing: "0.01em",
           }}
         >
-          Wenn das ein Satz wird, den man in Hamburg hört — am Spielplatz, im
-          Café, beim Elternabend — sind wir am Ziel.
-        </p>
+          Lina · Ottensen · vor 2 Std.
+        </div>
+
+        <div
+          style={{
+            marginTop: 20,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+            background: "var(--mapa-paper)",
+            borderRadius: 999,
+            padding: "10px 20px",
+            border: "1px solid var(--border)",
+            fontSize: 13.5,
+            fontFamily: "var(--font-ui)",
+          }}
+        >
+          <span style={{ color: "var(--cobalt-500)", fontWeight: 500 }}>
+            12 Antworten
+          </span>
+          <span style={{ color: "var(--fg-muted)" }}>
+            — darunter Nadine, Local Host
+          </span>
+        </div>
       </div>
     </section>
   );

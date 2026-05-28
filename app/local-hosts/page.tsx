@@ -37,7 +37,7 @@ export default function LocalHostsPage() {
       <Nav />
 
       {/* Hero */}
-      <section style={{ padding: "96px 48px 80px" }}>
+      <section className="section-pad">
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <div
             style={{
@@ -53,13 +53,11 @@ export default function LocalHostsPage() {
             Local Hosts
           </div>
           <h1
+            className="lh-h1"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 72,
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
               margin: "0 0 28px",
               color: "var(--ink)",
               textWrap: "balance" as const,
@@ -70,10 +68,9 @@ export default function LocalHostsPage() {
             Vielleicht du.
           </h1>
           <p
+            className="sf-p-lg"
             style={{
               fontFamily: "var(--font-ui)",
-              fontSize: 20,
-              lineHeight: 1.6,
               color: "var(--ash-600)",
               maxWidth: 620,
               margin: 0,
@@ -88,7 +85,7 @@ export default function LocalHostsPage() {
       </section>
 
       {/* Was du machst */}
-      <section style={{ background: "var(--surface-page-deep)", padding: "80px 48px" }}>
+      <section className="section-pad" style={{ background: "var(--surface-page-deep)" }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <div
             style={{
@@ -104,13 +101,11 @@ export default function LocalHostsPage() {
             Was du machst
           </div>
           <h2
+            className="sf-h2-cta"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 44,
-              lineHeight: 1.08,
-              letterSpacing: "-0.015em",
               margin: "0 0 48px",
               color: "var(--ink)",
             }}
@@ -118,13 +113,7 @@ export default function LocalHostsPage() {
             Gastgeber. Nicht Moderator.
           </h2>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 16,
-            }}
-          >
+          <div className="lh-tasks-grid">
             {TASKS.map((task) => (
               <div
                 key={task.n}
@@ -178,17 +167,8 @@ export default function LocalHostsPage() {
       </section>
 
       {/* Was wir uns wünschen */}
-      <section style={{ padding: "80px 48px" }}>
-        <div
-          style={{
-            maxWidth: 860,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 80,
-            alignItems: "start",
-          }}
-        >
+      <section className="section-pad">
+        <div className="lh-split" style={{ maxWidth: 860, margin: "0 auto" }}>
           <div>
             <div
               style={{
@@ -204,13 +184,11 @@ export default function LocalHostsPage() {
               Was wir uns wünschen
             </div>
             <h2
+              className="sf-h2-cta"
               style={{
                 fontFamily: "var(--font-display)",
                 fontStyle: "italic",
                 fontWeight: 400,
-                fontSize: 44,
-                lineHeight: 1.08,
-                letterSpacing: "-0.015em",
                 margin: "0 0 32px",
                 color: "var(--ink)",
               }}
@@ -330,12 +308,7 @@ export default function LocalHostsPage() {
       </section>
 
       {/* CTA — Melde dich */}
-      <section
-        style={{
-          background: "var(--ink)",
-          padding: "96px 48px",
-        }}
-      >
+      <section className="section-pad" style={{ background: "var(--ink)" }}>
         <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" as const }}>
           <div
             style={{
@@ -351,13 +324,11 @@ export default function LocalHostsPage() {
             Mitmachen
           </div>
           <h2
+            className="lh-h2-cta"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 52,
-              lineHeight: 1.08,
-              letterSpacing: "-0.02em",
               margin: "0 0 20px",
               color: "var(--surface-page)",
             }}
@@ -393,8 +364,8 @@ export default function LocalHostsPage() {
           </p>
           <a
             href="mailto:hey@mapa.hamburg?subject=Local Host werden"
+            className="cta-page-btn"
             style={{
-              display: "inline-block",
               background: "var(--cobalt-500)",
               color: "#FBF8F2",
               textDecoration: "none",

@@ -80,12 +80,10 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
       {/* Greeting */}
       <div>
         <div
+          className="feed-greeting"
           style={{
             fontFamily: "var(--font-display)",
             fontStyle: "italic",
-            fontSize: 36,
-            letterSpacing: "-0.025em",
-            lineHeight: 1.05,
             color: "var(--ink)",
           }}
         >
@@ -97,9 +95,7 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
       </div>
 
       {/* District filter */}
-      <div
-        style={{ display: "flex", gap: 8, marginTop: 22, flexWrap: "wrap" }}
-      >
+      <div className="district-filter-row">
         {DISTRICTS.map((d) => (
           <button
             key={d}

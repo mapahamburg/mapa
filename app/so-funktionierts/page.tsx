@@ -41,7 +41,7 @@ export default function SoFunktionierts() {
       <Nav />
 
       {/* Intro */}
-      <section style={{ padding: "96px 48px 80px" }}>
+      <section className="section-pad">
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{
@@ -57,13 +57,11 @@ export default function SoFunktionierts() {
             So funktioniert mapa
           </div>
           <h1
+            className="sf-h1"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 56,
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
               margin: 0,
             }}
           >
@@ -74,13 +72,11 @@ export default function SoFunktionierts() {
             Nur dein Stadtteil.
           </h1>
           <p
+            className="sf-p-lg"
             style={{
-              fontSize: 20,
-              lineHeight: 1.6,
               color: "var(--fg-muted)",
               marginTop: 28,
               maxWidth: 600,
-              letterSpacing: "-0.01em",
             }}
           >
             mapa ist ein digitaler Nachbarschaftsplatz für Familien in Hamburg.
@@ -91,7 +87,7 @@ export default function SoFunktionierts() {
       </section>
 
       {/* Der Feed */}
-      <section style={{ background: "var(--mapa-paper)", padding: "80px 48px" }}>
+      <section className="section-pad" style={{ background: "var(--mapa-paper)" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{
@@ -107,14 +103,12 @@ export default function SoFunktionierts() {
             Der Feed
           </div>
           <h2
+            className="sf-h2"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 36,
-              letterSpacing: "-0.015em",
               margin: "0 0 20px",
-              lineHeight: 1.15,
             }}
           >
             Was du siehst, bestimmst du.
@@ -133,14 +127,7 @@ export default function SoFunktionierts() {
             siehst. Heute, diese Woche, alles: du behältst den Überblick.
           </p>
 
-          <div
-            style={{
-              marginTop: 40,
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 16,
-            }}
-          >
+          <div className="sf-feed-grid">
             {[
               { label: "Chronologisch", desc: "Neueste Beiträge zuerst. Kein Algorithmus entscheidet für dich." },
               { label: "Stadtteil-Filter", desc: "Zeig nur Eppendorf, nur Winterhude — oder alles auf einmal." },
@@ -169,7 +156,7 @@ export default function SoFunktionierts() {
       </section>
 
       {/* Die 5 Post-Typen */}
-      <section style={{ padding: "80px 48px" }}>
+      <section className="section-pad">
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{
@@ -185,14 +172,12 @@ export default function SoFunktionierts() {
             Die fünf Beitragstypen
           </div>
           <h2
+            className="sf-h2"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 36,
-              letterSpacing: "-0.015em",
               margin: "0 0 48px",
-              lineHeight: 1.15,
             }}
           >
             Was du teilen kannst.
@@ -249,7 +234,7 @@ export default function SoFunktionierts() {
       </section>
 
       {/* Local Hosts */}
-      <section style={{ background: "var(--surface-page-deep)", padding: "80px 48px" }}>
+      <section className="section-pad" style={{ background: "var(--surface-page-deep)" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{
@@ -265,15 +250,13 @@ export default function SoFunktionierts() {
             Local Hosts
           </div>
           <h2
+            className="sf-h2"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 36,
-              letterSpacing: "-0.015em",
               color: "var(--ink)",
               margin: "0 0 20px",
-              lineHeight: 1.15,
             }}
           >
             Ein Mensch pro Stadtteil.
@@ -332,17 +315,15 @@ export default function SoFunktionierts() {
       </section>
 
       {/* Mitmachen CTA */}
-      <section style={{ padding: "96px 48px" }}>
+      <section className="section-pad">
         <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
           <h2
+            className="sf-h2-cta"
             style={{
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
-              fontSize: 44,
-              letterSpacing: "-0.015em",
               margin: "0 0 20px",
-              lineHeight: 1.1,
             }}
           >
             Bereit für deinen Stadtteil?
@@ -359,8 +340,8 @@ export default function SoFunktionierts() {
           </p>
           <a
             href="/signup"
+            className="cta-page-btn"
             style={{
-              display: "inline-block",
               background: "var(--cobalt-500)",
               color: "var(--mapa-paper)",
               textDecoration: "none",

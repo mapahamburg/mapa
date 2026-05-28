@@ -7,13 +7,7 @@ export const metadata: Metadata = {
 
 export default function KreisNeuPage() {
   return (
-    <main
-      style={{
-        flex: 1,
-        padding: "40px 32px",
-        minWidth: 0,
-      }}
-    >
+    <main className="form-main-pad">
       <ProposeKreisForm />
     </main>
   );

@@ -13,7 +13,7 @@ const LINKS = [
   [
     "Unternehmen",
     [
-      { label: "Über uns", href: "#" },
+      { label: "Über uns", href: "/ueber-uns" },
       { label: "Karriere", href: "#" },
       { label: "Presse", href: "#" },
       { label: "Kontakt", href: "mailto:hey@mapa.hamburg" },
@@ -55,6 +55,14 @@ export function Footer() {
             <br />
             Aus Hamburg, für Hamburg.
           </p>
+          <a
+            href="https://instagram.com/mapahamburg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-social-link"
+          >
+            @mapahamburg
+          </a>
         </div>
 
         {/* Link columns */}

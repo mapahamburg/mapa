@@ -23,7 +23,7 @@ export function Nav() {
             { label: "Feed", href: "/feed" },
             { label: "So funktioniert’s", href: "/so-funktionierts" },
             { label: "Local Hosts", href: "/local-hosts" },
-            { label: "Über uns", href: "#" },
+            { label: "Über uns", href: "/ueber-uns" },
           ].map(({ label, href }) => (
               <a
                 key={label}
