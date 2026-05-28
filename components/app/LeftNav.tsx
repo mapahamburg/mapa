@@ -35,7 +35,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/einstellungen",  label: "Einstellungen",  icon: <Settings size={16} strokeWidth={1.5} /> },
 ];
 
-export function LeftNav() {
+export function LeftNav({ stadtteil }: { stadtteil?: string | null }) {
   const pathname = usePathname();
 
   return (
@@ -131,7 +131,7 @@ export function LeftNav() {
             flex: 1,
           }}
         >
-          Eppendorf
+          {stadtteil ?? "Stadtteil wählen"}
         </span>
         <ChevronDown size={14} strokeWidth={1.5} color="var(--ash-600)" />
       </button>

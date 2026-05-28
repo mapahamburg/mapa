@@ -1,12 +1,10 @@
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
-import { WhatYouFind } from "@/components/landing/WhatYouFind";
 import { Districts } from "@/components/landing/Districts";
-import { ForWhom } from "@/components/landing/ForWhom";
 import { LocalHosts } from "@/components/landing/LocalHosts";
-import { HowWeGrow } from "@/components/landing/HowWeGrow";
 import { NotOnMapa } from "@/components/landing/NotOnMapa";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+import { InstagramBand } from "@/components/landing/InstagramBand";
 import { Footer } from "@/components/landing/Footer";
 
 export default function LandingPage() {
@@ -14,13 +12,11 @@ export default function LandingPage() {
     <div style={{ background: "var(--mapa-cream)", minHeight: "100dvh" }}>
       <Nav />
       <Hero />
-      <WhatYouFind />
       <Districts />
-      <ForWhom />
       <LocalHosts />
-      <HowWeGrow />
       <NotOnMapa />
       <FinalCTA />
+      <InstagramBand />
       <Footer />
     </div>
   );

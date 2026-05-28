@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'mapbox-gl/dist/mapbox-gl.css';
 
 /* next/font variable injection */
 @theme inline {
@@ -372,6 +373,8 @@ a, button, [role="button"] {
 .col3             { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .footer-grid      { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
 .footer-outer     { padding: 0 48px 56px; }
+.footer-social-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 13px; color: var(--fg-muted); text-decoration: none; font-family: var(--font-ui); transition: color 150ms ease; }
+.footer-social-link:hover { color: var(--ink); }
 .phase-card       { display: grid; grid-template-columns: 1fr 160px; gap: 32px; align-items: center; }
 .cta-row          { display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
 .nav-links        { display: flex; gap: 36px; font-family: var(--font-ui); font-size: 14.5px; }
@@ -383,6 +386,23 @@ a, button, [role="button"] {
 .fs-pq      { font-size: 72px;  line-height: 1.1;  letter-spacing: -0.01em; }
 .fs-cta-wm  { font-size: 108px; }
 .fs-vision  { font-size: 46px;  line-height: 1.1;  letter-spacing: -0.015em; }
+
+/* so-funktionierts page typography */
+.sf-h1       { font-size: 56px; line-height: 1.05; letter-spacing: -0.02em; }
+.sf-h2       { font-size: 36px; line-height: 1.15; letter-spacing: -0.015em; }
+.sf-h2-cta   { font-size: 44px; line-height: 1.1;  letter-spacing: -0.015em; }
+.sf-p-lg     { font-size: 20px; line-height: 1.6;  letter-spacing: -0.01em; }
+.sf-feed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+
+/* local-hosts page typography + layout */
+.lh-h1        { font-size: 72px; line-height: 1.05; letter-spacing: -0.02em; }
+.lh-h2-cta    { font-size: 52px; line-height: 1.08; letter-spacing: -0.02em; }
+.lh-tasks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.lh-split      { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+/* legal pages */
+.legal-main { max-width: 760px; margin: 0 auto; padding: 80px 48px 120px; }
+.legal-h1   { font-size: 52px; line-height: 1.08; letter-spacing: -0.02em; }
 
 /* ─── Component content classes (responsive via override below) ─── */
 
@@ -439,6 +459,96 @@ a, button, [role="button"] {
 .for-whom-item { font-size: 26px; line-height: 1.3; letter-spacing: -0.02em; }
 .vision-pad    { padding: 48px; }
 .district-chip { font-size: 22px; padding: 14px 22px; }
+
+/* ─── PostCard ─── */
+/* Title scales down on mobile — always use this class, never inline fontSize */
+.post-card-title { font-size: 28px; line-height: 1.2; letter-spacing: -0.005em; }
+
+/* ─── Feed ─── */
+.feed-greeting { font-size: 36px; letter-spacing: -0.025em; line-height: 1.05; }
+
+/* ─── App page containers (replace all hardcoded inline padding) ─── */
+.app-main-pad  { flex: 1; padding: 40px 48px; min-width: 0; }
+.form-main-pad { flex: 1; padding: 40px 32px; min-width: 0; }
+
+/* ─── Auth + Onboarding card padding ─── */
+.auth-card       { padding: 40px 36px; }
+.onboarding-card { padding: 40px 36px; }
+
+/* ─── Sticky comment composer (PostDetail) ─── */
+/* On desktop: at bottom of viewport (no BottomNav)                   */
+/* On mobile: shifted above BottomNav via media-query override below  */
+.sticky-composer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  border-top: 1px solid var(--border-soft);
+  background: rgba(241, 236, 226, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 12px 16px;
+}
+
+/* ─── Post detail article ─── */
+/* Extra bottom padding on mobile for BottomNav + sticky composer     */
+.post-detail-article { max-width: 680px; margin: 0 auto; padding: 32px 0 120px; }
+
+/* ─── New post form submit button ─── */
+.form-submit-btn { align-self: flex-end; min-width: 220px; }
+
+/* ─── Feed district filter row — horizontal scroll on mobile ─── */
+.district-filter-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+/* ─── Profile header row — stacks avatar+name above edit button on mobile ─── */
+.profile-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+/* ─── Admin table scroll — prevents horizontal page overflow ─── */
+.admin-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── FinalCTA wordmark dot — scales with fs-cta-wm ─── */
+.cta-wm-dot {
+  display: inline-block;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -4px;
+  margin-bottom: 19px;
+  background: var(--mapa-clay-500);
+  flex-shrink: 0;
+}
+
+/* ─── Marketing page CTA button — full-width on mobile ─── */
+/* Add className="cta-page-btn" to any inline-block <a> CTA on landing pages */
+.cta-page-btn {
+  display: inline-block;
+}
+
+/* ─── NotOnMapa manifesto ─── */
+
+/* ─── USP grid (replaces WhatYouFind on homepage) ─── */
+.usp-grid     { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.usp-card     { background: var(--mapa-cream); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; }
+.usp-headline { font-size: 32px; }
+.usp-body     { font-size: 15px; }
+
+/* ─── NotOnMapa manifesto ─── */
+.manifesto-list { display: flex; flex-direction: column; }
+.manifesto-item { font-size: 52px; }
 .notonmapa-item { font-size: 23px; }
 
 /* BottomNav — hidden desktop, flex mobile */
@@ -523,6 +633,92 @@ a, button, [role="button"] {
   .fs-cta-wm { font-size: 54px !important; }
   .fs-vision { font-size: 26px !important; line-height: 1.2  !important; }
 
+  /* so-funktionierts */
+  .sf-h1        { font-size: 30px !important; line-height: 1.1 !important; }
+  .sf-h2        { font-size: 24px !important; line-height: 1.2 !important; }
+  .sf-h2-cta    { font-size: 28px !important; line-height: 1.15 !important; }
+  .sf-p-lg      { font-size: 17px !important; }
+  .sf-feed-grid { grid-template-columns: 1fr !important; }
+
+  /* local-hosts */
+  .lh-h1         { font-size: 32px !important; line-height: 1.1 !important; }
+  .lh-h2-cta     { font-size: 28px !important; line-height: 1.15 !important; }
+  .lh-tasks-grid { grid-template-columns: 1fr !important; }
+  .lh-split      { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* legal pages */
+  .legal-main { padding: 48px 20px 80px !important; }
+  .legal-h1   { font-size: 28px !important; line-height: 1.15 !important; }
+
+  /* USP */
+  .usp-grid     { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .usp-card     { padding: 22px 20px !important; border-radius: 14px !important; }
+  .usp-headline { font-size: 22px !important; }
+  .usp-body     { font-size: 14px !important; }
+
+  /* NotOnMapa manifesto */
+  .manifesto-item { font-size: 30px !important; }
+  .notonmapa-item { font-size: 18px !important; }
+
+  /* PostCard */
+  .post-card-title { font-size: 21px !important; line-height: 1.25 !important; letter-spacing: -0.01em !important; }
+
+  /* Feed greeting */
+  .feed-greeting { font-size: 28px !important; }
+
+  /* App page containers */
+  .app-main-pad  { padding: 24px 16px 96px !important; }
+  .form-main-pad { padding: 24px 16px 96px !important; }
+
+  /* Auth + Onboarding cards */
+  .auth-card       { padding: 32px 24px !important; }
+  .onboarding-card { padding: 32px 24px !important; }
+
+  /* Sticky composer — shift above BottomNav (≈56px content + safe area) */
+  .sticky-composer { bottom: calc(56px + env(safe-area-inset-bottom, 8px)) !important; padding-bottom: 8px !important; }
+
+  /* Post detail article — extra bottom for BottomNav + sticky composer */
+  .post-detail-article { padding: 24px 16px 200px !important; }
+
+  /* Form submit button — full width on mobile */
+  .form-submit-btn { align-self: stretch !important; min-width: 0 !important; width: 100% !important; }
+
+  /* District filter chips — horizontal scroll instead of 4-row wrap */
+  .district-filter-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    padding-bottom: 4px !important;
+    /* extend to the right screen edge for last chip breathing room */
+    margin-right: -16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Profile header — stack on mobile to prevent name clipping */
+  .profile-header-row {
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: flex-start !important;
+  }
+
+  /* FinalCTA dot — scale proportionally with smaller wordmark */
+  .cta-wm-dot {
+    width: 7px !important;
+    height: 7px !important;
+    margin-left: -2px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Marketing page CTA button — full-width block */
+  .cta-page-btn {
+    display: block !important;
+    text-align: center !important;
+    padding: 16px 24px !important;
+    box-sizing: border-box !important;
+  }
+
   /* Utilities */
   .mob-hide   { display: none !important; }
   .mob-full   { max-width: 100% !important; }
@@ -537,4 +733,5 @@ a, button, [role="button"] {
   .fs-h2-m      { font-size: 24px !important; }
   .fs-cta-wm    { font-size: 48px !important; }
   .cta-inner    { padding: 28px 20px 26px !important; }
+  .cta-wm-dot   { width: 6px !important; height: 6px !important; margin-bottom: 9px !important; }
 }

@@ -2,8 +2,21 @@ import { Search, Plus, Bell } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Avatar } from "@/components/ui/Avatar";
+import { createClient } from "@/lib/supabase/server";
 
-export function TopNav() {
+export async function TopNav() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  let initial = "?";
+  if (user) {
+    const { data } = await (supabase as any)
+      .from("profiles")
+      .select("first_name")
+      .eq("id", user.id)
+      .single() as { data: { first_name: string } | null };
+    if (data?.first_name) initial = data.first_name[0].toUpperCase();
+  }
   return (
     <header
       className="top-nav-pad"
@@ -74,8 +87,8 @@ export function TopNav() {
         style={{
           background: "var(--surface-card)",
           border: "1px solid var(--border)",
-          width: 36,
-          height: 36,
+          width: 44,
+          height: 44,
           borderRadius: 999,
           cursor: "pointer",
           display: "flex",
@@ -89,8 +102,8 @@ export function TopNav() {
         <span
           style={{
             position: "absolute",
-            top: 6,
-            right: 7,
+            top: 9,
+            right: 10,
             width: 7,
             height: 7,
             borderRadius: 999,
@@ -100,7 +113,9 @@ export function TopNav() {
         />
       </button>
 
-      <Avatar letter="L" size={36} />
+      <Link href="/profil" style={{ textDecoration: "none", flexShrink: 0 }}>
+        <Avatar letter={initial} size={36} />
+      </Link>
     </header>
   );
 }
