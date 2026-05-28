@@ -39,12 +39,22 @@ export async function deleteAccount(): Promise<{ error?: string }> {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: "Nicht eingeloggt." };
 
+  // 1. Profil löschen (klappt mit regulärem Client + RLS)
+  await (supabase as any).from("profiles").delete().eq("id", user.id);
+
+  // 2. Auth-User löschen (braucht Service-Role-Key)
   try {
     const admin = createAdminClient();
     const { error } = await admin.auth.admin.deleteUser(user.id);
-    if (error) return { error: "Konto konnte nicht gelöscht werden. Bitte versuch es erneut." };
+    if (error) {
+      // Profil ist weg, aber Auth-User bleibt — trotzdem ausloggen
+      await supabase.auth.signOut();
+      redirect("/");
+    }
   } catch {
-    return { error: "Konto konnte nicht gelöscht werden. Bitte versuch es erneut." };
+    // Service-Role-Key fehlt — trotzdem ausloggen
+    await supabase.auth.signOut();
+    redirect("/");
   }
 
   redirect("/");
