@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef, useCallback, useMemo } from "react";
-import Map, { Source, Layer, NavigationControl } from "react-map-gl/mapbox";
-import type { MapRef, MapMouseEvent } from "react-map-gl/mapbox";
-import type { CircleLayer, SymbolLayer, GeoJSONSource } from "mapbox-gl";
+import Map, { Source, Layer, NavigationControl } from "react-map-gl/maplibre";
+import type { MapRef, MapMouseEvent } from "react-map-gl/maplibre";
+import type { CircleLayerSpecification as CircleLayer, SymbolLayerSpecification as SymbolLayer } from "maplibre-gl";
+import type { GeoJSONSource } from "maplibre-gl";
 import Link from "next/link";
 import { X } from "lucide-react";
 import type { FeedPost } from "@/types";
@@ -127,11 +128,12 @@ export function KarteView({ posts }: { posts: FeedPost[] }) {
     if (feature.layer?.id === "clusters") {
       const clusterId = feature.properties?.cluster_id as number;
       const source = mapRef.current?.getSource("posts") as GeoJSONSource | undefined;
-      source?.getClusterExpansionZoom(clusterId, (err, zoom) => {
-        if (err || zoom == null) return;
-        const coords = (feature.geometry as GeoJSON.Point).coordinates as [number, number];
-        mapRef.current?.easeTo({ center: coords, zoom: zoom + 0.5, duration: 450 });
-      });
+      if (source && "getClusterExpansionZoom" in source) {
+        (source as any).getClusterExpansionZoom(clusterId).then((zoom: number) => {
+          const coords = (feature.geometry as GeoJSON.Point).coordinates as [number, number];
+          mapRef.current?.easeTo({ center: coords, zoom: zoom + 0.5, duration: 450 });
+        }).catch(() => {});;
+      }
     } else if (feature.layer?.id === "unclustered-point") {
       const post = posts.find((p) => p.id === feature.properties?.id);
       if (post) setSelected(post);
@@ -142,10 +144,9 @@ export function KarteView({ posts }: { posts: FeedPost[] }) {
     <div style={{ position: "relative", width: "100%", height: "calc(100dvh - 64px)" }}>
       <Map
         ref={mapRef}
-        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         initialViewState={{ longitude: 9.993, latitude: 53.563, zoom: 12.2 }}
         style={{ width: "100%", height: "100%" }}
-        mapStyle="mapbox://styles/mapbox/light-v11"
+        mapStyle="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
         interactiveLayerIds={["clusters", "unclustered-point"]}
         onClick={handleClick}
         cursor={cursor}
