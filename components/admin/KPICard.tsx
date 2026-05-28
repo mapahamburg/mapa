@@ -44,11 +44,12 @@ export function KPICard({ label, value, trend, icon, accent }: KPICardProps) {
       {/* Value */}
       <div
         style={{
-          fontWeight: 700,
+          fontFamily: "var(--font-display)",
           fontSize: 32,
+          fontWeight: 400,
           color: "var(--fg)",
           lineHeight: 1,
-          letterSpacing: "-0.03em",
+          letterSpacing: "-0.02em",
         }}
       >
         {value}

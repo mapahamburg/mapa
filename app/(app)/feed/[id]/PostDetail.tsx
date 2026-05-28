@@ -52,7 +52,20 @@ function StickyComposer({ postId }: { postId: string }) {
   }, [state.message]);
 
   return (
-    <div className="sticky-composer">
+    <div
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        borderTop: "1px solid var(--border-soft)",
+        background: "rgba(241, 236, 226, 0.92)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        padding: "12px 16px",
+      }}
+    >
       <form
         action={formAction}
         style={{
@@ -157,8 +170,12 @@ export function PostDetail({
   return (
     <>
       <article
-        className="post-detail-article"
-        style={{ fontFamily: "var(--font-ui)" }}
+        style={{
+          maxWidth: 680,
+          margin: "0 auto",
+          padding: "32px 0 100px",
+          fontFamily: "var(--font-ui)",
+        }}
       >
         {/* Back link */}
         <Link
@@ -206,12 +223,14 @@ export function PostDetail({
           {/* Title */}
           <h1
             style={{
-              fontSize: 28,
-              fontWeight: 700,
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontSize: 30,
+              fontWeight: 400,
               lineHeight: 1.2,
               margin: "16px 0 0",
               color: "var(--ink)",
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.02em",
             }}
           >
             {post.title}

@@ -86,11 +86,12 @@ export default function HausregelnPage() {
         {/* Headline */}
         <h1
           style={{
+            fontFamily: "var(--font-display)",
             fontSize: 36,
-            fontWeight: 700,
-            color: "var(--ink)",
+            fontWeight: 400,
+            color: "var(--fg)",
             margin: "0 0 8px 0",
-            letterSpacing: "-0.035em",
+            letterSpacing: "-0.02em",
             lineHeight: 1.15,
           }}
         >
@@ -126,10 +127,9 @@ export default function HausregelnPage() {
             >
               <p
                 style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: 13,
-                  fontWeight: 600,
-                  letterSpacing: "0.06em",
+                  fontFamily: "var(--font-display)",
+                  fontSize: 20,
+                  fontWeight: 400,
                   color: "var(--mapa-sage-500)",
                   margin: "0 0 8px 0",
                   lineHeight: 1,

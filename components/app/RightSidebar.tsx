@@ -65,9 +65,10 @@ export function RightSidebar() {
           <div>
             <div
               style={{
-                fontWeight: 600,
+                fontFamily: "var(--font-display)",
+                fontStyle: "italic",
                 fontSize: 19,
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.01em",
                 color: "var(--color-ink)",
               }}
             >
@@ -176,6 +177,7 @@ export function RightSidebar() {
                     color: "var(--color-cobalt-ink)",
                     borderRadius: 10,
                     padding: "4px 0",
+                    fontFamily: "var(--font-display)",
                   }}
                 >
                   <div
@@ -201,9 +203,10 @@ export function RightSidebar() {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div
                     style={{
-                      fontWeight: 500,
+                      fontFamily: "var(--font-display)",
+                      fontStyle: "italic",
                       fontSize: 14.5,
-                      letterSpacing: "-0.015em",
+                      letterSpacing: "-0.01em",
                       lineHeight: 1.3,
                       display: "-webkit-box",
                       WebkitLineClamp: 2,
@@ -257,9 +260,9 @@ export function RightSidebar() {
           <div>
             <div
               style={{
-                fontWeight: 700,
+                fontFamily: "var(--font-display)",
                 fontSize: 28,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.02em",
                 color: "var(--color-ink)",
               }}
             >
@@ -272,9 +275,9 @@ export function RightSidebar() {
           <div>
             <div
               style={{
-                fontWeight: 700,
+                fontFamily: "var(--font-display)",
                 fontSize: 28,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.02em",
                 color: "var(--color-ink)",
               }}
             >

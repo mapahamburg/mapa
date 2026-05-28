@@ -298,10 +298,11 @@ export function KreisDetail({ kreis, posts, isMember, isHost }: KreisDetailProps
         )}
         <div
           style={{
-            fontWeight: 700,
+            fontFamily: "var(--font-display)",
+            fontStyle: "italic",
             fontSize: 32,
             lineHeight: 1.1,
-            letterSpacing: "-0.03em",
+            letterSpacing: "-0.02em",
             color: "var(--ink)",
             marginBottom: 8,
           }}
@@ -430,10 +431,11 @@ export function KreisDetail({ kreis, posts, isMember, isHost }: KreisDetailProps
             <div style={{ textAlign: "center", padding: "48px 0" }}>
               <div
                 style={{
-                  fontWeight: 600,
+                  fontFamily: "var(--font-display)",
+                  fontStyle: "italic",
                   fontSize: 20,
                   color: "var(--fg-muted)",
-                  letterSpacing: "-0.025em",
+                  letterSpacing: "-0.01em",
                 }}
               >
                 Noch keine Beiträge.
@@ -459,10 +461,11 @@ export function KreisDetail({ kreis, posts, isMember, isHost }: KreisDetailProps
         >
           <div
             style={{
-              fontWeight: 700,
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
               fontSize: 22,
               color: "var(--ink)",
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.01em",
               marginBottom: 10,
             }}
           >

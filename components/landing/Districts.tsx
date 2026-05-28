@@ -24,14 +24,28 @@ export function Districts() {
           <h2
             className="fs-h2-m"
             style={{
-              fontWeight: 700,
-              letterSpacing: "-0.035em",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
               margin: "16px 0 0",
+              fontWeight: 400,
             }}
           >
             Dein Stadtteil{" "}
             <span>ist dabei.</span>
           </h2>
+          <p
+            style={{
+              fontSize: 17,
+              lineHeight: 1.55,
+              color: "var(--fg-muted)",
+              marginTop: 24,
+              maxWidth: 440,
+            }}
+          >
+            mapa startet mit allen Hamburger Stadtteilen. Dein Feed zeigt aber,
+            was wirklich in deiner Nähe los ist. Filtern, switchen, vergleichen:
+            jederzeit.
+          </p>
         </div>
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>

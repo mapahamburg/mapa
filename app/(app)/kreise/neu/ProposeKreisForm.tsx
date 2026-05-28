@@ -114,9 +114,10 @@ export function ProposeKreisForm() {
       {/* Heading */}
       <div
         style={{
-          fontWeight: 700,
+          fontFamily: "var(--font-display)",
+          fontStyle: "italic",
           fontSize: 36,
-          letterSpacing: "-0.035em",
+          letterSpacing: "-0.025em",
           lineHeight: 1.05,
           color: "var(--ink)",
           marginBottom: 8,

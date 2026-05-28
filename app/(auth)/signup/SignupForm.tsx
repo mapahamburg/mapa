@@ -78,9 +78,10 @@ export function SignupForm() {
         </div>
         <h1
           style={{
+            fontFamily: "var(--font-display)",
+            fontStyle: "italic",
             fontSize: "26px",
-            fontWeight: 700,
-            letterSpacing: "-0.025em",
+            fontWeight: 400,
             color: "var(--ink)",
             marginBottom: "12px",
             lineHeight: 1.2,
@@ -115,10 +116,10 @@ export function SignupForm() {
     <>
       <h1
         style={{
+          fontFamily: "var(--font-display)",
           fontSize: "26px",
-          fontWeight: 700,
-          letterSpacing: "-0.025em",
-          color: "var(--ink)",
+          fontWeight: 400,
+          color: "var(--fg)",
           marginBottom: "6px",
           lineHeight: 1.2,
         }}

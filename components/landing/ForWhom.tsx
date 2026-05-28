@@ -27,8 +27,9 @@ export function ForWhom() {
           <h2
             className="fs-h2-m"
             style={{
-              fontWeight: 700,
-              letterSpacing: "-0.035em",
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontWeight: 400,
               margin: "16px 0 32px",
             }}
           >
