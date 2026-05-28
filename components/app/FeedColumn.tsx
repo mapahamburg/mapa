@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SmartPost } from "@/components/app/PostCard";
+import { HeuteWidget } from "@/components/app/HeuteWidget";
 import type { FeedPost } from "@/types";
 
 const DISTRICTS = [
@@ -117,6 +118,9 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
           </button>
         ))}
       </div>
+
+      {/* Heute-Widget: zeigt heutige Events & Treffen als Chips */}
+      <HeuteWidget posts={visible} />
 
       {/* Heute */}
       {heute.length > 0 && <SectionHeader>Heute</SectionHeader>}

@@ -25,6 +25,7 @@ export function PostCard({ post }: { post: FeedPost }) {
         display: "flex",
         flexDirection: "column",
         gap: 18,
+        overflow: "hidden",
       }}
       onMouseEnter={(e) =>
         (e.currentTarget.style.borderColor = "var(--color-sage)")
@@ -33,6 +34,25 @@ export function PostCard({ post }: { post: FeedPost }) {
         (e.currentTarget.style.borderColor = "var(--color-line-soft)")
       }
     >
+      {/* Farbiger Akzentstreifen für Events und Treffen */}
+      {(post.type === "veranstaltung" || post.type === "treffen") && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 3,
+            background:
+              post.type === "veranstaltung"
+                ? "var(--color-clay)"
+                : "var(--color-sage)",
+            zIndex: 2,
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
       {/* Overlay-Link — deckt die Karte ab, liegt unter den Buttons */}
       <Link
         href={`/feed/${post.id}`}

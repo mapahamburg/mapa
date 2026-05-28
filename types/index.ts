@@ -136,18 +136,18 @@ export type Interest =
   | "Events im Viertel"
   | "Lokale Empfehlungen"
   | "Babysitter & Hebammen"
-  | "Working Parents"
+  | "Kita & Krabbelgruppe"
   | "Flohmärkte & Tauschen";
 
 export const INTERESTS: Interest[] = [
-  "Familiencafés",
   "Spielplätze & Treffen",
-  "Kurse & Sport",
+  "Kita & Krabbelgruppe",
+  "Familiencafés",
   "Events im Viertel",
-  "Lokale Empfehlungen",
+  "Kurse & Sport",
   "Babysitter & Hebammen",
-  "Working Parents",
   "Flohmärkte & Tauschen",
+  "Lokale Empfehlungen",
 ];
 
 // ─── Kreise ───────────────────────────────────────────────────────────────────
