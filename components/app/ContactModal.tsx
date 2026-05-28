@@ -93,10 +93,9 @@ export function ContactModal({ recipientName, postId, postTitle, onClose }: Prop
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
           <div>
             <h2 style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontWeight: 700,
               fontSize: 22,
-              fontWeight: 400,
+              letterSpacing: "-0.025em",
               margin: 0,
               lineHeight: 1.2,
             }}>
@@ -120,7 +119,7 @@ export function ContactModal({ recipientName, postId, postTitle, onClose }: Prop
         {state.success ? (
           <div style={{ textAlign: "center", padding: "24px 0" }}>
             <CheckCircle size={40} strokeWidth={1.5} color="var(--cobalt-500)" style={{ margin: "0 auto 16px", display: "block" }} />
-            <p style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 20, marginBottom: 10 }}>
+            <p style={{ fontWeight: 600, fontSize: 20, letterSpacing: "-0.02em", marginBottom: 10 }}>
               Anfrage ist bei uns.
             </p>
             <p style={{ fontSize: 14, color: "var(--fg-muted)", lineHeight: 1.6, marginBottom: 24 }}>

@@ -80,12 +80,10 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
       {/* Greeting */}
       <div>
         <div
+          className="feed-greeting"
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
-            fontSize: 36,
-            letterSpacing: "-0.025em",
-            lineHeight: 1.05,
+            fontWeight: 700,
+            letterSpacing: "-0.03em",
             color: "var(--ink)",
           }}
         >
@@ -150,11 +148,10 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
         >
           <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontWeight: 600,
               fontSize: 20,
               color: "var(--fg-muted)",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.02em",
             }}
           >
             Noch nichts hier.
@@ -176,11 +173,10 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
         <div style={{ textAlign: "center", padding: "48px 0 16px" }}>
           <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontWeight: 500,
               fontSize: 18,
               color: "var(--fg-muted)",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.02em",
             }}
           >
             Das war&apos;s für jetzt.

@@ -237,10 +237,9 @@ export default async function KreisePage() {
         <div>
           <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontWeight: 700,
               fontSize: 36,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.035em",
               lineHeight: 1.05,
               color: "var(--ink)",
             }}
@@ -310,11 +309,10 @@ export default async function KreisePage() {
         >
           <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontWeight: 600,
               fontSize: 22,
               color: "var(--fg-muted)",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.025em",
             }}
           >
             Noch keine Kreise hier.

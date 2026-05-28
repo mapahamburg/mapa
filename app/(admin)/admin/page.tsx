@@ -67,12 +67,11 @@ export default function AdminDashboardPage() {
       <div style={{ marginBottom: 36 }}>
         <h1
           style={{
-            fontFamily: "var(--font-display)",
             fontSize: 32,
-            fontWeight: 400,
+            fontWeight: 700,
             color: "var(--fg)",
             margin: 0,
-            letterSpacing: "-0.02em",
+            letterSpacing: "-0.03em",
             lineHeight: 1.15,
           }}
         >

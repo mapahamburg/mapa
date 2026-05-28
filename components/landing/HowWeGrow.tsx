@@ -73,9 +73,8 @@ export function HowWeGrow() {
           <h2
             className="fs-h2"
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontWeight: 400,
+              fontWeight: 700,
+              letterSpacing: "-0.03em",
               margin: "16px 0 0",
             }}
           >

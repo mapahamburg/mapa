@@ -52,10 +52,9 @@ export function SettingsForm({ notifyComments, newsletterOptin }: Props) {
     <form action={formAction} style={{ maxWidth: 520 }}>
       {/* Section heading */}
       <h1 style={{
-        fontFamily: "var(--font-display)",
-        fontStyle: "italic",
         fontSize: 28,
-        fontWeight: 400,
+        fontWeight: 700,
+        letterSpacing: "-0.03em",
         margin: "0 0 32px",
         color: "var(--ink)",
       }}>

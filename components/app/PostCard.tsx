@@ -63,13 +63,10 @@ export function PostCard({ post }: { post: FeedPost }) {
 
         {/* Title */}
         <h3
+          className="post-card-title"
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
-            fontWeight: 400,
-            fontSize: 28,
-            lineHeight: 1.2,
-            letterSpacing: "-0.005em",
+            fontWeight: 600,
+            letterSpacing: "-0.02em",
             color: "var(--color-ink)",
             margin: 0,
           }}
@@ -178,12 +175,10 @@ export function CompactPost({ post }: { post: FeedPost }) {
           </div>
           <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontWeight: 400,
+              fontWeight: 600,
               fontSize: 18,
               lineHeight: 1.25,
-              letterSpacing: "-0.005em",
+              letterSpacing: "-0.02em",
               color: "var(--color-ink)",
             }}
           >

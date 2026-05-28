@@ -105,12 +105,10 @@ export default function LocalHostsPage() {
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontWeight: 400,
+              fontWeight: 700,
               fontSize: 44,
               lineHeight: 1.08,
-              letterSpacing: "-0.015em",
+              letterSpacing: "-0.04em",
               margin: "0 0 48px",
               color: "var(--ink)",
             }}
@@ -205,12 +203,10 @@ export default function LocalHostsPage() {
             </div>
             <h2
               style={{
-                fontFamily: "var(--font-display)",
-                fontStyle: "italic",
-                fontWeight: 400,
+                fontWeight: 700,
                 fontSize: 44,
                 lineHeight: 1.08,
-                letterSpacing: "-0.015em",
+                letterSpacing: "-0.04em",
                 margin: "0 0 32px",
                 color: "var(--ink)",
               }}
@@ -352,12 +348,10 @@ export default function LocalHostsPage() {
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontWeight: 400,
+              fontWeight: 800,
               fontSize: 52,
               lineHeight: 1.08,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.04em",
               margin: "0 0 20px",
               color: "var(--surface-page)",
             }}

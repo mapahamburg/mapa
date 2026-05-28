@@ -1,115 +1,64 @@
 const ITEMS = [
-  ["Keine Likes-Wettbewerbe", "Du folgst Themen, nicht Menschen."],
-  ["Keine Werbung im Feed", "Punkt."],
-  ["Kein Algorithmus, der dich länger fesselt", "Chronologisch. Dein Stadtteil zuerst."],
-  ["Keine Foto-Pflicht", "Profile sind reduziert. Du teilst, was du willst."],
-  ["Keine globalen Diskussionen", "mapa ist Hamburg. Lokal heißt lokal."],
+  "Kein Algorithmus.",
+  "Keine Likes.",
+  "Keine Werbung.",
+  "Kein globaler Lärm.",
 ] as const;
 
 export function NotOnMapa() {
   return (
-    <section className="section-pad" style={{ background: "var(--mapa-paper)" }}>
-      <div className="col2-text" style={{ alignItems: "flex-start" }}>
-        {/* Left: headline */}
-        <div>
-          <div
-            style={{
-              fontSize: 12,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "var(--mapa-clay-600)",
-              fontWeight: 500,
-              fontFamily: "var(--font-mono)",
-            }}
-          >
-            Was mapa nicht ist
-          </div>
-          <h2
-            className="fs-h2-m"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              margin: "16px 0 0",
-              fontWeight: 400,
-            }}
-          >
-            Nicht alles muss
-            <br />
-            <span>überall sein.</span>
-          </h2>
-          <p
-            style={{
-              fontSize: 17,
-              lineHeight: 1.55,
-              color: "var(--fg-muted)",
-              marginTop: 24,
-              maxWidth: 440,
-            }}
-          >
-            Wir bauen bewusst Dinge{" "}
-            <strong style={{ color: "var(--fg)", fontWeight: 500 }}>
-              nicht
-            </strong>{" "}
-            ein. Damit mapa auch in drei Jahren noch ein Ort ist, an den man
-            gerne zurückkehrt.
-          </p>
+    <section
+      className="section-pad"
+      style={{ background: "var(--ink)", color: "var(--mapa-cream)" }}
+    >
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <div
+          style={{
+            fontSize: 11,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "rgba(245,241,232,0.38)",
+            fontWeight: 500,
+            fontFamily: "var(--font-mono)",
+            marginBottom: 52,
+          }}
+        >
+          Was mapa nicht ist
         </div>
 
-        {/* Right: list */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {ITEMS.map(([title, sub]) => (
+        <div className="manifesto-list">
+          {ITEMS.map((item, i) => (
             <div
-              key={title}
+              key={item}
+              className="manifesto-item"
               style={{
-                display: "flex",
-                gap: 14,
-                alignItems: "flex-start",
-                padding: "16px 0",
-                borderTop: "1px solid var(--border-soft)",
+                fontWeight: 800,
+                color: "var(--mapa-cream)",
+                letterSpacing: "-0.04em",
+                lineHeight: 1.05,
+                paddingTop: i === 0 ? 0 : 28,
+                marginTop: i === 0 ? 0 : 28,
+                borderTop:
+                  i === 0 ? "none" : "1px solid rgba(245,241,232,0.1)",
               }}
             >
-              <div
-                style={{
-                  width: 28,
-                  height: 28,
-                  borderRadius: 999,
-                  flexShrink: 0,
-                  background: "var(--mapa-peach-100)",
-                  color: "var(--mapa-clay-600)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 18,
-                  fontWeight: 600,
-                  lineHeight: 1,
-                }}
-              >
-                ·
-              </div>
-              <div>
-                <div
-                  className="notonmapa-item"
-                  style={{
-                    fontFamily: "var(--font-ui)",
-                    letterSpacing: "-0.02em",
-                    fontWeight: 600,
-                  }}
-                >
-                  {title}
-                </div>
-                <div
-                  style={{
-                    fontSize: 14,
-                    color: "var(--fg-muted)",
-                    marginTop: 4,
-                  }}
-                >
-                  {sub}
-                </div>
-              </div>
+              {item}
             </div>
           ))}
         </div>
+
+        <p
+          style={{
+            marginTop: 56,
+            fontSize: 15,
+            lineHeight: 1.65,
+            color: "rgba(245,241,232,0.45)",
+            maxWidth: 440,
+          }}
+        >
+          Wir bauen bewusst Dinge nicht ein — damit mapa auch in drei Jahren
+          noch ein Ort ist, an den man gerne zurückkehrt.
+        </p>
       </div>
     </section>
   );

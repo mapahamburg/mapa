@@ -60,10 +60,10 @@ export function ResetPasswordForm() {
     <>
       <h1
         style={{
-          fontFamily: "var(--font-display)",
           fontSize: "26px",
-          fontWeight: 400,
-          color: "var(--fg)",
+          fontWeight: 700,
+          letterSpacing: "-0.025em",
+          color: "var(--ink)",
           marginBottom: "6px",
           lineHeight: 1.2,
         }}

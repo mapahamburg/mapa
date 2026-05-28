@@ -41,7 +41,7 @@ export default function SoFunktionierts() {
       <Nav />
 
       {/* Intro */}
-      <section style={{ padding: "96px 48px 80px" }}>
+      <section className="section-pad">
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{
@@ -57,13 +57,10 @@ export default function SoFunktionierts() {
             So funktioniert mapa
           </div>
           <h1
+            className="fs-h2"
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontWeight: 400,
-              fontSize: 56,
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
+              fontWeight: 700,
+              letterSpacing: "-0.035em",
               margin: 0,
             }}
           >
@@ -75,12 +72,11 @@ export default function SoFunktionierts() {
           </h1>
           <p
             style={{
-              fontSize: 20,
+              fontSize: 18,
               lineHeight: 1.6,
               color: "var(--fg-muted)",
               marginTop: 28,
               maxWidth: 600,
-              letterSpacing: "-0.01em",
             }}
           >
             mapa ist ein digitaler Nachbarschaftsplatz für Familien in Hamburg.
@@ -90,8 +86,73 @@ export default function SoFunktionierts() {
         </div>
       </section>
 
+      {/* Für wen mapa ist */}
+      <section className="section-pad">
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <div
+            style={{
+              fontSize: 12,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "var(--cobalt-500)",
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
+              marginBottom: 20,
+            }}
+          >
+            Für wen
+          </div>
+          <h2
+            style={{
+              fontWeight: 700,
+              fontSize: 36,
+              letterSpacing: "-0.035em",
+              margin: "0 0 32px",
+              lineHeight: 1.15,
+            }}
+          >
+            Für Eltern in Hamburg, die&hellip;
+          </h2>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {[
+              "lokale Empfehlungen suchen",
+              "andere Familien kennenlernen möchten",
+              "Veranstaltungen entdecken wollen",
+              "ehrlichen Austausch schätzen",
+              "genug von Facebook-Gruppen und WhatsApp-Chaos haben",
+            ].map((point) => (
+              <div
+                key={point}
+                style={{
+                  display: "flex",
+                  gap: 14,
+                  alignItems: "flex-start",
+                  padding: "14px 0",
+                  borderTop: "1px solid var(--border-soft)",
+                  fontSize: 17,
+                  lineHeight: 1.45,
+                  color: "var(--fg)",
+                }}
+              >
+                <span
+                  style={{
+                    width: 7,
+                    height: 7,
+                    borderRadius: 999,
+                    background: "var(--cobalt-500)",
+                    marginTop: 10,
+                    flexShrink: 0,
+                  }}
+                />
+                &hellip; {point}.
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Der Feed */}
-      <section style={{ background: "var(--mapa-paper)", padding: "80px 48px" }}>
+      <section className="section-pad" style={{ background: "var(--mapa-paper)" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{
@@ -108,11 +169,9 @@ export default function SoFunktionierts() {
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontWeight: 400,
+              fontWeight: 700,
               fontSize: 36,
-              letterSpacing: "-0.015em",
+              letterSpacing: "-0.035em",
               margin: "0 0 20px",
               lineHeight: 1.15,
             }}
@@ -169,7 +228,7 @@ export default function SoFunktionierts() {
       </section>
 
       {/* Die 5 Post-Typen */}
-      <section style={{ padding: "80px 48px" }}>
+      <section className="section-pad">
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{
@@ -186,11 +245,9 @@ export default function SoFunktionierts() {
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontWeight: 400,
+              fontWeight: 700,
               fontSize: 36,
-              letterSpacing: "-0.015em",
+              letterSpacing: "-0.035em",
               margin: "0 0 48px",
               lineHeight: 1.15,
             }}
@@ -249,7 +306,7 @@ export default function SoFunktionierts() {
       </section>
 
       {/* Local Hosts */}
-      <section style={{ background: "var(--surface-page-deep)", padding: "80px 48px" }}>
+      <section className="section-pad" style={{ background: "var(--surface-page-deep)" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <div
             style={{
@@ -331,16 +388,115 @@ export default function SoFunktionierts() {
         </div>
       </section>
 
+      {/* Wie mapa wächst */}
+      <section style={{ padding: "80px 48px", background: "var(--mapa-paper)" }}>
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <div
+            style={{
+              fontSize: 12,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "var(--cobalt-500)",
+              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
+              marginBottom: 20,
+            }}
+          >
+            Wie mapa wächst
+          </div>
+          <h2
+            style={{
+              fontWeight: 700,
+              fontSize: 36,
+              letterSpacing: "-0.035em",
+              margin: "0 0 48px",
+              lineHeight: 1.15,
+            }}
+          >
+            Langsam, lokal, von echten Familien getragen.
+          </h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            {[
+              { n: "01", title: "Die ersten Familien zusammenbringen", tag: "Heute", active: true },
+              { n: "02", title: "Die Community lebendig machen", tag: "In Arbeit", active: true },
+              { n: "03", title: "Stadtteile stärken", tag: "Sommer 2026", active: false },
+              { n: "04", title: "Local Hosts", tag: "Herbst 2026", active: false },
+              { n: "05", title: "Ganz Hamburg", tag: "2027", active: false },
+              { n: "06", title: "Die App — für alle.", tag: "Nach dem Rollout", active: false, vision: true },
+            ].map(({ n, title, tag, active, vision }) => (
+              <div
+                key={n}
+                style={{
+                  display: "flex",
+                  gap: 20,
+                  alignItems: "flex-start",
+                  padding: "20px 0",
+                  borderTop: "1px solid var(--border)",
+                }}
+              >
+                <div
+                  style={{
+                    width: 42,
+                    height: 42,
+                    borderRadius: 999,
+                    flexShrink: 0,
+                    background: active ? "var(--cobalt-500)" : vision ? "var(--cobalt-50)" : "var(--mapa-cream)",
+                    border: active ? "none" : vision ? "2px dashed var(--cobalt-500)" : "2px solid var(--border)",
+                    color: active ? "#fff" : "var(--fg-muted)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: "var(--font-ui)",
+                    fontSize: 13,
+                    fontWeight: 600,
+                  }}
+                >
+                  {n}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-ui)",
+                      fontWeight: 600,
+                      fontSize: 16,
+                      color: vision ? "var(--cobalt-500)" : "var(--fg)",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {title}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    background: active || vision ? "var(--cobalt-50)" : "var(--mapa-cream)",
+                    color: active || vision ? "var(--cobalt-700)" : "var(--fg-muted)",
+                    border: active || vision ? "none" : "1px solid var(--border)",
+                    padding: "5px 12px",
+                    borderRadius: 999,
+                    fontSize: 11,
+                    fontWeight: 600,
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase" as const,
+                    whiteSpace: "nowrap" as const,
+                    flexShrink: 0,
+                  }}
+                >
+                  {tag}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Mitmachen CTA */}
-      <section style={{ padding: "96px 48px" }}>
+      <section className="section-pad">
         <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
           <h2
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontWeight: 400,
+              fontWeight: 700,
               fontSize: 44,
-              letterSpacing: "-0.015em",
+              letterSpacing: "-0.04em",
               margin: "0 0 20px",
               lineHeight: 1.1,
             }}

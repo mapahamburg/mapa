@@ -68,6 +68,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
+      className="form-submit-btn"
       style={{
         background: pending
           ? "var(--cobalt-200)"
@@ -75,15 +76,14 @@ function SubmitButton() {
         color: "#fff",
         border: "none",
         borderRadius: "var(--radius-pill, 999px)",
-        padding: "12px 28px",
+        padding: "14px 28px",
         fontFamily: "var(--font-ui)",
         fontSize: 15,
         fontWeight: 600,
         cursor: pending ? "not-allowed" : "pointer",
         transition: "background 200ms cubic-bezier(0.16, 1, 0.3, 1), transform 120ms",
         transform: pending ? "scale(0.98)" : "scale(1)",
-        alignSelf: "flex-end",
-        minWidth: 220,
+        textAlign: "center",
       }}
     >
       {pending ? "Wird veröffentlicht …" : "Beitrag veröffentlichen"}
@@ -147,14 +147,12 @@ export function NewPostForm() {
       {/* ── Heading ──────────────────────────────────────────────────────── */}
       <h1
         style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
           fontSize: 28,
-          fontWeight: 400,
+          fontWeight: 700,
           color: "var(--ink)",
           margin: "0 0 32px 0",
           lineHeight: 1.2,
-          letterSpacing: "-0.015em",
+          letterSpacing: "-0.03em",
         }}
       >
         Neuer Beitrag

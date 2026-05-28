@@ -137,10 +137,10 @@ export function OnboardingFlow() {
       </div>
       <h1
         style={{
-          fontFamily: "var(--font-display)",
           fontSize: "30px",
-          fontWeight: 400,
-          color: "var(--fg)",
+          fontWeight: 700,
+          letterSpacing: "-0.025em",
+          color: "var(--ink)",
           marginBottom: "12px",
           lineHeight: 1.2,
         }}
@@ -192,10 +192,10 @@ export function OnboardingFlow() {
     <div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
           fontSize: "24px",
-          fontWeight: 400,
-          color: "var(--fg)",
+          fontWeight: 700,
+          letterSpacing: "-0.025em",
+          color: "var(--ink)",
           marginBottom: "8px",
         }}
       >
@@ -258,10 +258,9 @@ export function OnboardingFlow() {
     <div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
           fontSize: "24px",
-          fontWeight: 400,
+          fontWeight: 700,
+          letterSpacing: "-0.025em",
           color: "var(--ink)",
           marginBottom: "8px",
         }}
@@ -325,10 +324,9 @@ export function OnboardingFlow() {
     <div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
           fontSize: "24px",
-          fontWeight: 400,
+          fontWeight: 700,
+          letterSpacing: "-0.025em",
           color: "var(--ink)",
           marginBottom: "8px",
         }}
@@ -410,10 +408,10 @@ export function OnboardingFlow() {
     <div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
           fontSize: "24px",
-          fontWeight: 400,
-          color: "var(--fg)",
+          fontWeight: 700,
+          letterSpacing: "-0.025em",
+          color: "var(--ink)",
           marginBottom: "8px",
         }}
       >
@@ -438,7 +436,8 @@ export function OnboardingFlow() {
             type="button"
             onClick={() => setStadtteil(s)}
             style={{
-              padding: "10px 14px",
+              padding: "12px 14px",
+              minHeight: 44,
               textAlign: "left",
               border:
                 stadtteil === s
@@ -487,10 +486,10 @@ export function OnboardingFlow() {
     <div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
           fontSize: "24px",
-          fontWeight: 400,
-          color: "var(--fg)",
+          fontWeight: 700,
+          letterSpacing: "-0.025em",
+          color: "var(--ink)",
           marginBottom: "8px",
         }}
       >
@@ -559,10 +558,10 @@ export function OnboardingFlow() {
 
       <h2
         style={{
-          fontFamily: "var(--font-display)",
           fontSize: "24px",
-          fontWeight: 400,
-          color: "var(--fg)",
+          fontWeight: 700,
+          letterSpacing: "-0.025em",
+          color: "var(--ink)",
           marginBottom: "8px",
         }}
       >
@@ -674,13 +673,13 @@ export function OnboardingFlow() {
 
   return (
     <div
+      className="onboarding-card"
       style={{
         width: "100%",
         maxWidth: "440px",
         backgroundColor: "var(--surface-card)",
         border: "1px solid var(--border)",
         borderRadius: "var(--radius-l)",
-        padding: "40px 36px",
         boxShadow: "var(--shadow-m)",
       }}
     >
