@@ -1,147 +1,236 @@
 "use client";
 
 import { useState } from "react";
-import { SmartPost } from "@/components/app/PostCard";
-import { HeuteWidget } from "@/components/app/HeuteWidget";
+import { CompactPost } from "@/components/app/PostCard";
+import { NowCard } from "@/components/app/NowCard";
+import { PulseStrip } from "@/components/app/PulseStrip";
+import { SectionDivider } from "@/components/app/SectionDivider";
+import { QuietQuestionList } from "@/components/app/QuietQuestionList";
+import { CompactRow } from "@/components/app/CompactRow";
+import { FeedEndState } from "@/components/app/FeedEndState";
 import type { FeedPost } from "@/types";
 
 const DISTRICTS = [
-  "Alle Stadtteile",
-  "Eppendorf",
   "Winterhude",
-  "Ottensen",
-  "Eimsbüttel",
-  "Sternschanze",
-  "Altona",
-  "Hoheluft",
+  "+ Eppendorf",
+  "+ Hoheluft",
+  "+ Alle Stadtteile",
 ];
 
-function SectionHeader({
-  children,
-  action,
-}: {
-  children: React.ReactNode;
-  action?: string;
-}) {
-  return (
-    <div
-      style={{
-        padding: "32px 0 14px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-    >
-      <span
-        style={{
-          fontSize: 11,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          fontWeight: 600,
-          fontFamily: "var(--font-mono)",
-          color: "var(--fg-muted)",
-        }}
-      >
-        {children}
-      </span>
-      {action && (
-        <span
-          style={{
-            fontSize: 13,
-            color: "var(--cobalt-500)",
-            fontWeight: 500,
-            cursor: "pointer",
-          }}
-        >
-          {action}
-        </span>
-      )}
-    </div>
-  );
-}
+const BASE_DISTRICT = "Winterhude";
 
 interface FeedColumnProps {
   posts: FeedPost[];
   userName?: string;
 }
 
-export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
-  const [district, setDistrict] = useState("Alle Stadtteile");
+export function FeedColumn({ posts, userName = "du" }: FeedColumnProps) {
+  const [activeDistricts, setActiveDistricts] = useState<Set<string>>(
+    new Set([BASE_DISTRICT])
+  );
 
-  const visible =
-    district === "Alle Stadtteile"
-      ? posts
-      : posts.filter((p) => p.district === district);
+  function toggleDistrict(d: string) {
+    const key = d.replace(/^\+ /, "");
+    if (key === "Alle Stadtteile") {
+      // Show everything
+      setActiveDistricts(new Set(["Alle Stadtteile"]));
+      return;
+    }
+    setActiveDistricts((prev) => {
+      const next = new Set(prev);
+      next.delete("Alle Stadtteile");
+      if (next.has(key)) {
+        next.delete(key);
+        if (next.size === 0) next.add(BASE_DISTRICT);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  }
 
-  const heute = visible.filter((p) => p.section === "heute");
-  const woche = visible.filter((p) => p.section === "woche");
+  const visible = activeDistricts.has("Alle Stadtteile")
+    ? posts
+    : posts.filter((p) => activeDistricts.has(p.district));
+
+  // Section buckets
+  const heutePosts = visible.filter((p) => p.section === "heute");
+  const wochePosts = visible.filter((p) => p.section === "woche");
+
+  // "Jetzt" hero: first heute treffen or veranstaltung
+  const jetzt = heutePosts.find(
+    (p) => p.type === "treffen" || p.type === "veranstaltung"
+  );
+
+  // "Heute" compact cards: all heute posts except the jetzt hero
+  const heuteCards = heutePosts.filter((p) => p !== jetzt);
+
+  // "Brauchen Hilfe": all unanswered fragen from any section
+  const unanswered = visible.filter(
+    (p) => p.type === "frage" && p.comments === 0
+  );
+
+  // Today's date string for the eyebrow
+  const today = new Date().toLocaleDateString("de-DE", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+
+  const userDistrict = BASE_DISTRICT;
 
   return (
     <main className="app-feed">
-      {/* Greeting */}
+      {/* ── Feed header ── */}
       <div>
+        {/* Eyebrow with pulsing dot */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            marginBottom: 14,
+          }}
+        >
+          <div
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              background: "var(--color-cobalt)",
+              flexShrink: 0,
+              boxShadow: "0 0 0 4px rgba(37,64,214,0.12)",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 11,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "var(--color-cobalt)",
+              fontWeight: 500,
+            }}
+          >
+            {today} · {userDistrict}
+          </span>
+        </div>
+
+        {/* Greeting */}
         <div
           className="feed-greeting"
           style={{
             fontFamily: "var(--font-display)",
             fontStyle: "italic",
-            color: "var(--ink)",
+            color: "var(--color-ink)",
           }}
         >
           Hallo {userName}.
         </div>
-        <div style={{ fontSize: 15, color: "var(--fg-muted)", marginTop: 4 }}>
-          Heute neu in deinem Stadtteil.
-        </div>
-      </div>
 
-      {/* District filter */}
-      <div className="district-filter-row">
-        {DISTRICTS.map((d) => (
-          <button
-            key={d}
-            type="button"
-            onClick={() => setDistrict(d)}
-            className="district-filter-chip"
+        {/* Sub */}
+        {visible.length > 0 && (
+          <div
             style={{
-              background:
-                district === d ? "var(--ink)" : "var(--surface-card)",
-              color: district === d ? "#fff" : "var(--fg)",
-              border: district === d ? "none" : "1px solid var(--border)",
               fontFamily: "var(--font-ui)",
-              fontWeight: district === d ? 500 : 400,
-              cursor: "pointer",
-              transition: `background var(--dur-base), color var(--dur-base)`,
+              fontSize: 15,
+              color: "var(--color-muted)",
+              marginTop: 6,
+              maxWidth: 480,
             }}
           >
-            {d}
-          </button>
-        ))}
+            {jetzt
+              ? `Ein Treffen heute in ${userDistrict}. ${unanswered.length > 0 ? `${unanswered.length} ${unanswered.length === 1 ? "Frage wartet" : "Fragen warten"} noch auf eine Antwort.` : ""}`
+              : `${visible.length} neue ${visible.length === 1 ? "Beitrag" : "Beiträge"} in deinem Stadtteil.`}
+          </div>
+        )}
       </div>
 
-      {/* Heute-Widget: zeigt heutige Events & Treffen als Chips */}
-      <HeuteWidget posts={visible} />
+      {/* ── Pulse strip ── */}
+      <PulseStrip posts={visible} />
 
-      {/* Heute */}
-      {heute.length > 0 && <SectionHeader>Heute</SectionHeader>}
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-        {heute.map((p) => (
-          <SmartPost key={p.id} post={p} />
-        ))}
+      {/* ── District filters ── */}
+      <div className="district-filter-row">
+        {DISTRICTS.map((d) => {
+          const key = d.replace(/^\+ /, "");
+          const isActive =
+            key === "Alle Stadtteile"
+              ? activeDistricts.has("Alle Stadtteile")
+              : activeDistricts.has(key);
+          return (
+            <button
+              key={d}
+              type="button"
+              onClick={() => toggleDistrict(d)}
+              className="district-filter-chip"
+              style={{
+                background: isActive ? "var(--color-ink)" : "var(--color-paper)",
+                color: isActive ? "var(--color-paper)" : "var(--color-ink)",
+                border: isActive ? "none" : "1px solid var(--color-line)",
+                fontFamily: "var(--font-ui)",
+                fontWeight: isActive ? 500 : 400,
+                cursor: "pointer",
+                transition: `background var(--dur-base), color var(--dur-base)`,
+              }}
+            >
+              {d}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Diese Woche */}
-      {woche.length > 0 && (
-        <SectionHeader action="Älter ansehen">Diese Woche</SectionHeader>
+      {/* ── Jetzt ── */}
+      {jetzt && (
+        <>
+          <SectionDivider
+            label={`Jetzt · ${jetzt.district}`}
+            variant="jetzt"
+          />
+          <NowCard post={jetzt} />
+        </>
       )}
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-        {woche.map((p) => (
-          <SmartPost key={p.id} post={p} />
-        ))}
-      </div>
 
-      {/* Empty state */}
-      {visible.length === 0 && (
+      {/* ── Heute ── */}
+      {heuteCards.length > 0 && (
+        <>
+          <SectionDivider
+            label={`Heute in ${userDistrict}`}
+            count={heuteCards.length}
+          />
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {heuteCards.map((p) => (
+              <CompactPost key={p.id} post={p} />
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* ── Brauchen Hilfe ── */}
+      {unanswered.length > 0 && (
+        <>
+          <SectionDivider label="Brauchen Hilfe" variant="hilfe" />
+          <QuietQuestionList questions={unanswered} />
+        </>
+      )}
+
+      {/* ── Diese Woche ── */}
+      {wochePosts.length > 0 && (
+        <>
+          <SectionDivider
+            label={`Diese Woche · ${wochePosts.length} weitere`}
+          />
+          <div>
+            {wochePosts.map((p, i) => (
+              <CompactRow key={p.id} post={p} isFirst={i === 0} />
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* ── End state or empty state ── */}
+      {visible.length > 0 ? (
+        <FeedEndState />
+      ) : (
         <div
           style={{
             textAlign: "center",
@@ -153,7 +242,7 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
               fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontSize: 20,
-              color: "var(--fg-muted)",
+              color: "var(--color-muted)",
               letterSpacing: "-0.01em",
             }}
           >
@@ -161,34 +250,13 @@ export function FeedColumn({ posts, userName = "Lina" }: FeedColumnProps) {
           </div>
           <div
             style={{
+              fontFamily: "var(--font-ui)",
               fontSize: 14,
-              color: "var(--fg-subtle)",
+              color: "var(--color-subtle)",
               marginTop: 8,
             }}
           >
             Sei die erste Person, die etwas in diesem Stadtteil teilt.
-          </div>
-        </div>
-      )}
-
-      {/* End of feed */}
-      {visible.length > 0 && (
-        <div style={{ textAlign: "center", padding: "48px 0 16px" }}>
-          <div
-            style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontSize: 18,
-              color: "var(--fg-muted)",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            Das war&apos;s für jetzt.
-          </div>
-          <div
-            style={{ fontSize: 13, color: "var(--fg-subtle)", marginTop: 8 }}
-          >
-            Schau später wieder vorbei. Es kommen täglich neue Beiträge.
           </div>
         </div>
       )}
