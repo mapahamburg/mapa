@@ -68,8 +68,8 @@ export async function TopNav() {
       </Link>
 
       {/* Bell */}
-      <button
-        type="button"
+      <Link
+        href="/benachrichtigungen"
         style={{
           background: "var(--surface-card)",
           border: "1px solid var(--border)",
@@ -82,7 +82,10 @@ export async function TopNav() {
           justifyContent: "center",
           position: "relative",
           flexShrink: 0,
+          textDecoration: "none",
+          color: "inherit",
         }}
+        aria-label="Benachrichtigungen"
       >
         <Bell size={16} strokeWidth={1.5} />
         <span
@@ -97,7 +100,7 @@ export async function TopNav() {
             border: "1.5px solid var(--surface-card)",
           }}
         />
-      </button>
+      </Link>
 
       <Link href="/profil" style={{ textDecoration: "none", flexShrink: 0 }}>
         <Avatar letter={initial} size={36} />
