@@ -1,11 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-
-// Logo-dot — scaled to the large wordmark size
-const FS = 108;
-const dotSize  = FS * 0.13;
-const dotLift  = FS * 0.18;
-const dotInset = -(FS * 0.04);
+import { MapaMark } from "@/components/ui/MapaMark";
 
 export async function FinalCTA() {
   const supabase = await createClient();
@@ -38,34 +33,12 @@ export async function FinalCTA() {
           Frag mal auf
         </p>
 
-        {/* Large "mapa." wordmark — Logo-DNA */}
-        <div
+        {/* Large "mapa." wordmark — canonical MapaMark, dot positioned by CSS */}
+        <MapaMark
+          theme="cobalt"
           className="fs-cta-wm"
-          style={{
-            display: "inline-flex",
-            alignItems: "flex-end",
-            fontFamily: "var(--font-ui)",
-            fontWeight: 800,
-            letterSpacing: "-0.06em",
-            lineHeight: 0.88,
-            color: "var(--mapa-paper)",
-            marginBottom: 48,
-          }}
-        >
-          mapa
-          <span
-            style={{
-              display: "inline-block",
-              borderRadius: "50%",
-              width: dotSize,
-              height: dotSize,
-              marginLeft: dotInset,
-              marginBottom: dotLift,
-              background: "var(--mapa-clay-500)",
-              flexShrink: 0,
-            }}
-          />
-        </div>
+          style={{ display: "block", marginBottom: 48 }}
+        />
 
         {/* Bottom row: sentence left — button right */}
         <div className="cta-row">
