@@ -8,31 +8,36 @@ import { SectionDivider } from "@/components/app/SectionDivider";
 import { QuietQuestionList } from "@/components/app/QuietQuestionList";
 import { CompactRow } from "@/components/app/CompactRow";
 import { FeedEndState } from "@/components/app/FeedEndState";
+import { InFeedHostCard } from "@/components/app/InFeedHostCard";
 import type { FeedPost } from "@/types";
-
-const DISTRICTS = [
-  "Winterhude",
-  "+ Eppendorf",
-  "+ Hoheluft",
-  "+ Alle Stadtteile",
-];
-
-const BASE_DISTRICT = "Winterhude";
 
 interface FeedColumnProps {
   posts: FeedPost[];
   userName?: string;
+  stadtteil?: string;
+  host?: { name: string; bio: string | null };
 }
 
-export function FeedColumn({ posts, userName = "du" }: FeedColumnProps) {
+export function FeedColumn({
+  posts,
+  userName = "du",
+  stadtteil = "Hamburg",
+  host,
+}: FeedColumnProps) {
+  const DISTRICTS = [
+    stadtteil,
+    "+ Eppendorf",
+    "+ Hoheluft",
+    "+ Alle Stadtteile",
+  ].filter((d, i, arr) => arr.indexOf(d) === i);
+
   const [activeDistricts, setActiveDistricts] = useState<Set<string>>(
-    new Set([BASE_DISTRICT])
+    new Set([stadtteil])
   );
 
   function toggleDistrict(d: string) {
     const key = d.replace(/^\+ /, "");
     if (key === "Alle Stadtteile") {
-      // Show everything
       setActiveDistricts(new Set(["Alle Stadtteile"]));
       return;
     }
@@ -41,7 +46,7 @@ export function FeedColumn({ posts, userName = "du" }: FeedColumnProps) {
       next.delete("Alle Stadtteile");
       if (next.has(key)) {
         next.delete(key);
-        if (next.size === 0) next.add(BASE_DISTRICT);
+        if (next.size === 0) next.add(stadtteil);
       } else {
         next.add(key);
       }
@@ -77,7 +82,7 @@ export function FeedColumn({ posts, userName = "du" }: FeedColumnProps) {
     month: "long",
   });
 
-  const userDistrict = BASE_DISTRICT;
+  const userDistrict = stadtteil;
 
   return (
     <main className="app-feed">
@@ -145,6 +150,13 @@ export function FeedColumn({ posts, userName = "du" }: FeedColumnProps) {
           </div>
         )}
       </div>
+
+      {/* ── Mobile Local Host card (hidden on desktop via CSS) ── */}
+      {host && (
+        <div className="mob-host-card">
+          <InFeedHostCard name={host.name} stadtteil={userDistrict} bio={host.bio} />
+        </div>
+      )}
 
       {/* ── Pulse strip ── */}
       <PulseStrip posts={visible} />
@@ -246,7 +258,7 @@ export function FeedColumn({ posts, userName = "du" }: FeedColumnProps) {
               letterSpacing: "-0.01em",
             }}
           >
-            Noch nichts hier.
+            In {userDistrict} ist es noch ruhig.
           </div>
           <div
             style={{
@@ -254,10 +266,27 @@ export function FeedColumn({ posts, userName = "du" }: FeedColumnProps) {
               fontSize: 14,
               color: "var(--color-subtle)",
               marginTop: 8,
+              marginBottom: 20,
             }}
           >
-            Sei die erste Person, die etwas in diesem Stadtteil teilt.
+            Ein guter Moment, um den Anfang zu machen.
           </div>
+          <a
+            href="/feed/new"
+            style={{
+              display: "inline-block",
+              background: "var(--color-cobalt)",
+              color: "#fff",
+              fontFamily: "var(--font-ui)",
+              fontSize: 14,
+              fontWeight: 500,
+              borderRadius: 999,
+              padding: "10px 20px",
+              textDecoration: "none",
+            }}
+          >
+            Beitrag schreiben
+          </a>
         </div>
       )}
     </main>

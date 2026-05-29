@@ -13,39 +13,12 @@ import type { PostType } from "@/types";
 const POST_TYPES: {
   value: PostType;
   label: string;
-  bg: string;
-  color: string;
 }[] = [
-  {
-    value: "empfehlung",
-    label: "Empfehlung",
-    bg: "var(--cobalt-50)",
-    color: "var(--cobalt-700)",
-  },
-  {
-    value: "frage",
-    label: "Frage",
-    bg: "var(--surface-card)",
-    color: "var(--ink)",
-  },
-  {
-    value: "treffen",
-    label: "Treffen",
-    bg: "var(--ash-100)",
-    color: "var(--ash-900)",
-  },
-  {
-    value: "suche",
-    label: "Suche",
-    bg: "var(--ash-100)",
-    color: "var(--ash-900)",
-  },
-  {
-    value: "veranstaltung",
-    label: "Veranstaltung",
-    bg: "var(--ash-100)",
-    color: "var(--ash-900)",
-  },
+  { value: "empfehlung", label: "Empfehlung" },
+  { value: "frage",      label: "Frage" },
+  { value: "treffen",    label: "Treffen" },
+  { value: "suche",      label: "Suche" },
+  { value: "veranstaltung", label: "Veranstaltung" },
 ];
 
 const NUDGE_KEYWORDS = [
@@ -59,7 +32,7 @@ const NUDGE_KEYWORDS = [
   "grüne",
 ];
 
-// ─── Submit button — must be nested inside <form> to use useFormStatus ────────
+// ─── Submit button ────────────────────────────────────────────────────────────
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -70,12 +43,10 @@ function SubmitButton() {
       disabled={pending}
       className="form-submit-btn"
       style={{
-        background: pending
-          ? "var(--cobalt-200)"
-          : "var(--cobalt-500)",
-        color: "#fff",
+        background: pending ? "var(--color-cobalt-soft)" : "var(--color-cobalt)",
+        color: pending ? "var(--color-muted)" : "#fff",
         border: "none",
-        borderRadius: "var(--radius-pill, 999px)",
+        borderRadius: 999,
         padding: "14px 28px",
         fontFamily: "var(--font-ui)",
         fontSize: 15,
@@ -90,14 +61,14 @@ function SubmitButton() {
   );
 }
 
-// ─── Main exported component ──────────────────────────────────────────────────
+// ─── Main component ───────────────────────────────────────────────────────────
 
-export function NewPostForm() {
+export function NewPostForm({ defaultStadtteil }: { defaultStadtteil?: string }) {
   const [state, formAction] = useActionState(createPost, {});
 
   const [selectedType, setSelectedType] = useState<PostType>("empfehlung");
   const [body, setBody] = useState("");
-  const [stadtteil, setStadtteil] = useState("");
+  const [stadtteil, setStadtteil] = useState(defaultStadtteil ?? "");
 
   const showMeetingFields =
     selectedType === "treffen" || selectedType === "veranstaltung";
@@ -106,17 +77,15 @@ export function NewPostForm() {
     body.length > 280 ||
     NUDGE_KEYWORDS.some((kw) => body.toLowerCase().includes(kw));
 
-  // ── Shared styles ──────────────────────────────────────────────────────────
-
   const inputStyle: React.CSSProperties = {
     width: "100%",
-    background: "var(--bg-base)",
-    border: "1px solid var(--line)",
-    borderRadius: "var(--radius-m)",
+    background: "var(--color-paper)",
+    border: "1px solid var(--color-line)",
+    borderRadius: 10,
     padding: "12px 14px",
     fontFamily: "var(--font-ui)",
     fontSize: 15,
-    color: "var(--fg)",
+    color: "var(--color-ink)",
     outline: "none",
     boxSizing: "border-box",
     transition: "border-color 200ms",
@@ -126,7 +95,7 @@ export function NewPostForm() {
     fontFamily: "var(--font-mono)",
     fontSize: 11,
     fontWeight: 600,
-    color: "var(--fg-muted)",
+    color: "var(--color-muted)",
     textTransform: "uppercase",
     letterSpacing: "0.10em",
     marginBottom: 8,
@@ -137,20 +106,19 @@ export function NewPostForm() {
     <div
       className="form-card"
       style={{
-        background: "var(--surface-card)",
-        border: "1px solid var(--border)",
+        background: "var(--color-ivory)",
+        border: "1px solid var(--color-line-soft)",
         maxWidth: 680,
         width: "100%",
       }}
     >
-      {/* ── Heading ──────────────────────────────────────────────────────── */}
       <h1
         style={{
           fontFamily: "var(--font-display)",
           fontStyle: "italic",
           fontSize: 28,
           fontWeight: 400,
-          color: "var(--ink)",
+          color: "var(--color-ink)",
           margin: "0 0 32px 0",
           lineHeight: 1.2,
           letterSpacing: "-0.015em",
@@ -167,48 +135,7 @@ export function NewPostForm() {
           gap: 28,
         }}
       >
-        {/* ── Type pills ─────────────────────────────────────────────────── */}
-        <div>
-          <span style={labelStyle}>Typ</span>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 8,
-            }}
-          >
-            {POST_TYPES.map((pt) => {
-              const isSelected = selectedType === pt.value;
-              return (
-                <button
-                  key={pt.value}
-                  type="button"
-                  onClick={() => setSelectedType(pt.value)}
-                  style={{
-                    background: isSelected ? pt.bg : "var(--bg-base)",
-                    color: isSelected ? pt.color : "var(--fg-muted)",
-                    border: isSelected
-                      ? `1.5px solid ${pt.color}`
-                      : "1.5px solid var(--border)",
-                    borderRadius: "var(--radius-pill, 999px)",
-                    padding: "7px 16px",
-                    fontFamily: "var(--font-ui)",
-                    fontSize: 13.5,
-                    fontWeight: isSelected ? 600 : 400,
-                    cursor: "pointer",
-                    transition: "all 200ms cubic-bezier(0.16, 1, 0.3, 1)",
-                  }}
-                >
-                  {pt.label}
-                </button>
-              );
-            })}
-          </div>
-          {/* Hidden field carries the type value through FormData */}
-          <input type="hidden" name="type" value={selectedType} />
-        </div>
-
-        {/* ── Title ──────────────────────────────────────────────────────── */}
+        {/* ── 1. Title ──────────────────────────────────────────────────────── */}
         <div>
           <label htmlFor="post-title" style={labelStyle}>
             Titel
@@ -235,7 +162,7 @@ export function NewPostForm() {
           />
         </div>
 
-        {/* ── Body / Text ────────────────────────────────────────────────── */}
+        {/* ── 2. Body ───────────────────────────────────────────────────────── */}
         <div>
           <label htmlFor="post-body" style={labelStyle}>
             Text{" "}
@@ -266,25 +193,24 @@ export function NewPostForm() {
               fontSize: 11,
               color:
                 body.length > 1900
-                  ? "var(--cobalt-500)"
-                  : "var(--fg-subtle)",
+                  ? "var(--color-cobalt)"
+                  : "var(--color-subtle)",
             }}
           >
             {body.length}/2000
           </div>
 
-          {/* ── Posting nudge ──────────────────────────────────────────── */}
           {showStrongNudge ? (
             <div
               style={{
                 marginTop: 12,
-                background: "var(--cobalt-50)",
-                border: "1px solid var(--cobalt-200)",
-                borderRadius: "var(--radius-m)",
+                background: "rgba(37,64,214,0.06)",
+                border: "1px solid rgba(37,64,214,0.18)",
+                borderRadius: 10,
                 padding: "12px 16px",
                 fontFamily: "var(--font-ui)",
                 fontSize: 13,
-                color: "var(--cobalt-700)",
+                color: "var(--color-cobalt)",
                 lineHeight: 1.55,
               }}
             >
@@ -293,7 +219,7 @@ export function NewPostForm() {
               <a
                 href="/hausregeln"
                 style={{
-                  color: "var(--cobalt-700)",
+                  color: "var(--color-cobalt)",
                   textDecoration: "underline",
                   textUnderlineOffset: 3,
                 }}
@@ -307,7 +233,7 @@ export function NewPostForm() {
                 marginTop: 8,
                 fontFamily: "var(--font-ui)",
                 fontSize: 13,
-                color: "var(--fg-subtle)",
+                color: "var(--color-subtle)",
                 lineHeight: 1.5,
                 margin: "8px 0 0 0",
               }}
@@ -317,7 +243,7 @@ export function NewPostForm() {
               <a
                 href="/hausregeln"
                 style={{
-                  color: "var(--fg-muted)",
+                  color: "var(--color-muted)",
                   textDecoration: "underline",
                   textUnderlineOffset: 3,
                 }}
@@ -328,7 +254,154 @@ export function NewPostForm() {
           )}
         </div>
 
-        {/* ── Stadtteil selector ─────────────────────────────────────────── */}
+        {/* ── 3. Type pills ─────────────────────────────────────────────────── */}
+        <div>
+          <span style={labelStyle}>Was ist das?</span>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 8,
+            }}
+          >
+            {POST_TYPES.map((pt) => {
+              const isSelected = selectedType === pt.value;
+              return (
+                <button
+                  key={pt.value}
+                  type="button"
+                  onClick={() => setSelectedType(pt.value)}
+                  style={{
+                    background: isSelected ? "var(--color-ink)" : "var(--color-paper)",
+                    color: isSelected ? "var(--color-paper)" : "var(--color-muted)",
+                    border: isSelected
+                      ? "1.5px solid var(--color-ink)"
+                      : "1.5px solid var(--color-line)",
+                    borderRadius: 999,
+                    padding: "7px 16px",
+                    fontFamily: "var(--font-ui)",
+                    fontSize: 13.5,
+                    fontWeight: isSelected ? 500 : 400,
+                    cursor: "pointer",
+                    transition: "all 200ms cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
+                >
+                  {pt.label}
+                </button>
+              );
+            })}
+          </div>
+          <input type="hidden" name="type" value={selectedType} />
+        </div>
+
+        {/* ── 4. Conditional meeting / event fields ─────────────────────────── */}
+        {showMeetingFields && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 20,
+              background: "var(--color-sunk)",
+              border: "1px solid var(--color-line-soft)",
+              borderRadius: 14,
+              padding: 20,
+            }}
+          >
+            <p style={{ ...labelStyle, margin: 0 }}>
+              {selectedType === "treffen"
+                ? "Treffen-Details"
+                : "Veranstaltungs-Details"}
+            </p>
+
+            <div>
+              <label htmlFor="post-ort" style={labelStyle}>
+                <MapPin
+                  size={12}
+                  strokeWidth={1.5}
+                  style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }}
+                />
+                Ort{" "}
+                <span style={{ fontWeight: 400, letterSpacing: 0 }}>
+                  (wenn du magst)
+                </span>
+              </label>
+              <input
+                id="post-ort"
+                name="meeting_location"
+                type="text"
+                placeholder="z.B. Spielplatz Isebek, Eingang Nordseite"
+                style={inputStyle}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="post-date" style={labelStyle}>
+                <Calendar
+                  size={12}
+                  strokeWidth={1.5}
+                  style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }}
+                />
+                Datum &amp; Uhrzeit{" "}
+                <span style={{ fontWeight: 400, letterSpacing: 0 }}>
+                  (wenn du magst)
+                </span>
+              </label>
+              <input
+                id="post-date"
+                name="meeting_date"
+                type="datetime-local"
+                style={inputStyle}
+              />
+            </div>
+
+            <div>
+              <label style={labelStyle}>
+                Alter der Kinder{" "}
+                <span style={{ fontWeight: 400, letterSpacing: 0 }}>
+                  (wenn du magst)
+                </span>
+              </label>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <input
+                  name="min_age"
+                  type="number"
+                  min={0}
+                  max={18}
+                  placeholder="von"
+                  style={{ ...inputStyle, width: 80 }}
+                />
+                <span
+                  style={{
+                    fontFamily: "var(--font-ui)",
+                    fontSize: 13,
+                    color: "var(--color-muted)",
+                  }}
+                >
+                  bis
+                </span>
+                <input
+                  name="max_age"
+                  type="number"
+                  min={0}
+                  max={18}
+                  placeholder="bis"
+                  style={{ ...inputStyle, width: 80 }}
+                />
+                <span
+                  style={{
+                    fontFamily: "var(--font-ui)",
+                    fontSize: 13,
+                    color: "var(--color-subtle)",
+                  }}
+                >
+                  Jahre
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── 5. Stadtteil ──────────────────────────────────────────────────── */}
         <div>
           <label htmlFor="post-stadtteil" style={labelStyle}>
             Stadtteil
@@ -364,7 +437,7 @@ export function NewPostForm() {
                 top: "50%",
                 transform: "translateY(-50%)",
                 pointerEvents: "none",
-                color: "var(--fg-muted)",
+                color: "var(--color-muted)",
                 display: "flex",
                 alignItems: "center",
               }}
@@ -385,141 +458,7 @@ export function NewPostForm() {
           </div>
         </div>
 
-        {/* ── Conditional meeting / event fields ─────────────────────────── */}
-        {showMeetingFields && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 20,
-              background: "var(--surface-page)",
-              border: "1px solid var(--border)",
-              borderRadius: "var(--radius-lg)",
-              padding: 20,
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 11,
-                fontWeight: 600,
-                color: "var(--fg-muted)",
-                textTransform: "uppercase",
-                letterSpacing: "0.10em",
-                margin: 0,
-              }}
-            >
-              {selectedType === "treffen"
-                ? "Treffen-Details"
-                : "Veranstaltungs-Details"}
-            </p>
-
-            {/* Ort */}
-            <div>
-              <label htmlFor="post-ort" style={labelStyle}>
-                <MapPin
-                  size={12}
-                  strokeWidth={1.5}
-                  style={{
-                    display: "inline",
-                    marginRight: 4,
-                    verticalAlign: "middle",
-                  }}
-                />
-                Ort{" "}
-                <span style={{ fontWeight: 400, letterSpacing: 0 }}>
-                  (wenn du magst)
-                </span>
-              </label>
-              <input
-                id="post-ort"
-                name="meeting_location"
-                type="text"
-                placeholder="z.B. Spielplatz Isebek, Eingang Nordseite"
-                style={inputStyle}
-              />
-            </div>
-
-            {/* Datum & Uhrzeit */}
-            <div>
-              <label htmlFor="post-date" style={labelStyle}>
-                <Calendar
-                  size={12}
-                  strokeWidth={1.5}
-                  style={{
-                    display: "inline",
-                    marginRight: 4,
-                    verticalAlign: "middle",
-                  }}
-                />
-                Datum &amp; Uhrzeit{" "}
-                <span style={{ fontWeight: 400, letterSpacing: 0 }}>
-                  (wenn du magst)
-                </span>
-              </label>
-              <input
-                id="post-date"
-                name="meeting_date"
-                type="datetime-local"
-                style={inputStyle}
-              />
-            </div>
-
-            {/* Alter der Kinder */}
-            <div>
-              <label style={labelStyle}>
-                Alter der Kinder{" "}
-                <span style={{ fontWeight: 400, letterSpacing: 0 }}>
-                  (wenn du magst)
-                </span>
-              </label>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                }}
-              >
-                <input
-                  name="min_age"
-                  type="number"
-                  min={0}
-                  max={18}
-                  placeholder="von"
-                  style={{ ...inputStyle, width: 80 }}
-                />
-                <span
-                  style={{
-                    fontFamily: "var(--font-ui)",
-                    fontSize: 13,
-                    color: "var(--fg-muted)",
-                  }}
-                >
-                  bis
-                </span>
-                <input
-                  name="max_age"
-                  type="number"
-                  min={0}
-                  max={18}
-                  placeholder="bis"
-                  style={{ ...inputStyle, width: 80 }}
-                />
-                <span
-                  style={{
-                    fontFamily: "var(--font-ui)",
-                    fontSize: 13,
-                    color: "var(--fg-subtle)",
-                  }}
-                >
-                  Jahre
-                </span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ── Error message ───────────────────────────────────────────────── */}
+        {/* ── Error ─────────────────────────────────────────────────────────── */}
         {state.error && (
           <p
             role="alert"
@@ -527,10 +466,10 @@ export function NewPostForm() {
             style={{
               fontFamily: "var(--font-ui)",
               fontSize: 13.5,
-              color: "var(--cobalt-700)",
-              background: "var(--cobalt-50)",
-              border: "1px solid var(--cobalt-200)",
-              borderRadius: "var(--radius-m)",
+              color: "var(--color-cobalt)",
+              background: "rgba(37,64,214,0.06)",
+              border: "1px solid rgba(37,64,214,0.18)",
+              borderRadius: 10,
               padding: "10px 14px",
               margin: 0,
             }}
@@ -539,7 +478,7 @@ export function NewPostForm() {
           </p>
         )}
 
-        {/* ── Submit button ───────────────────────────────────────────────── */}
+        {/* ── Submit ────────────────────────────────────────────────────────── */}
         <SubmitButton />
       </form>
     </div>

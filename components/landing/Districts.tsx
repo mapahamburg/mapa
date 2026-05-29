@@ -4,6 +4,8 @@ const STADTTEILE = [
   "HafenCity", "Uhlenhorst", "Barmbek", "Innenstadt",
 ];
 
+const ACTIVE = new Set(["Eppendorf", "Winterhude"]);
+
 export function Districts() {
   return (
     <section className="section-pad" style={{ background: "var(--mapa-cream)" }}>
@@ -49,17 +51,19 @@ export function Districts() {
         </div>
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-          {STADTTEILE.map((d, i) => (
+          {STADTTEILE.map((d) => {
+            const isActive = ACTIVE.has(d);
+            return (
             <div
               key={d}
               className="district-chip"
               style={{
                 background:
-                  i === 0 ? "var(--mapa-sage-500)" : "var(--surface-card)",
+                  isActive ? "var(--mapa-sage-500)" : "var(--surface-card)",
                 color:
-                  i === 0 ? "var(--mapa-paper)" : "var(--fg)",
+                  isActive ? "var(--mapa-paper)" : "var(--fg)",
                 border:
-                  i === 0 ? "none" : "1px solid var(--border)",
+                  isActive ? "none" : "1px solid var(--border)",
                 borderRadius: 999,
                 fontFamily: "var(--font-ui)",
                 letterSpacing: "-0.02em",
@@ -68,7 +72,8 @@ export function Districts() {
             >
               {d}
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

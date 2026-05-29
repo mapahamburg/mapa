@@ -27,7 +27,7 @@ export function SectionDivider({ label, variant = "default", count }: SectionDiv
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 18, margin: "48px 0 18px" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 18, margin: "36px 0 14px" }}>
       <span style={labelStyle}>
         <strong style={{ color: strongColor, fontWeight: 600 }}>{firstWord}</strong>
         {rest ? ` · ${rest}` : ""}

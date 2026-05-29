@@ -34,10 +34,10 @@ export function RightSidebar() {
       {/* Local Host card */}
       <div
         style={{
-          background: "var(--color-sunk)",
+          background: "var(--color-sage-soft)",
           borderRadius: 20,
           padding: 20,
-          border: "1px solid var(--color-line)",
+          border: "1px solid rgba(111,133,90,0.2)",
         }}
       >
         <div

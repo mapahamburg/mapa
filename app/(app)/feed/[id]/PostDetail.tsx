@@ -2,40 +2,24 @@
 
 import { useState, useRef, useEffect, useActionState } from "react";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  MapPin,
-  Calendar,
-  Users,
-  MessageSquare,
-  Send,
-  Heart,
-} from "lucide-react";
+import { ArrowLeft, MapPin, Calendar, Users, MessageSquare, Send, Heart } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
+import { Tag } from "@/components/ui/Tag";
 import { createComment, type CommentState } from "@/app/actions/comments";
 import { toggleReaction } from "@/app/actions/reactions";
-import type { PostDetail as PostDetailData, CommentItem } from "@/types";
+import type { PostDetail as PostDetailData, CommentItem, PostType } from "@/types";
 
-// ─── Post type pill config ────────────────────────────────────────────────────
-
-const TYPE_CONFIG: Record<string, { label: string; bg: string; fg: string }> = {
-  empfehlung:    { label: "Empfehlung",    bg: "var(--cobalt-50)",    fg: "var(--cobalt-700)" },
-  frage:         { label: "Frage",         bg: "var(--surface-card)", fg: "var(--ink)" },
-  treffen:       { label: "Treffen",       bg: "var(--ash-100)",      fg: "var(--ash-900)" },
-  suche:         { label: "Suche",         bg: "var(--ash-100)",      fg: "var(--ash-900)" },
-  veranstaltung: { label: "Veranstaltung", bg: "var(--ash-100)",      fg: "var(--ash-900)" },
+// Accent bar color per post type — matches feed card treatment
+const ACCENT_COLOR: Partial<Record<PostType, string>> = {
+  veranstaltung: "var(--color-clay)",
+  treffen:       "var(--color-cobalt)",
 };
-
-// ─── Sticky comment composer ──────────────────────────────────────────────────
 
 function StickyComposer({ postId }: { postId: string }) {
   const [body, setBody] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const initialState: CommentState = {};
-  const [state, formAction, isPending] = useActionState(
-    createComment,
-    initialState
-  );
+  const [state, formAction, isPending] = useActionState(createComment, initialState);
 
   function handleInput() {
     const el = textareaRef.current;
@@ -81,20 +65,16 @@ function StickyComposer({ postId }: { postId: string }) {
             fontFamily: "var(--font-ui)",
             fontSize: 14,
             lineHeight: 1.5,
-            color: "var(--fg)",
-            background: "var(--surface-card)",
-            border: "1px solid var(--border)",
-            borderRadius: "var(--radius-md)",
+            color: "var(--color-ink)",
+            background: "var(--color-ivory)",
+            border: "1px solid var(--color-line)",
+            borderRadius: 12,
             padding: "9px 14px",
             outline: "none",
             transition: "border-color var(--dur-base)",
           }}
-          onFocus={(e) =>
-            (e.currentTarget.style.borderColor = "var(--cobalt-500)")
-          }
-          onBlur={(e) =>
-            (e.currentTarget.style.borderColor = "var(--border)")
-          }
+          onFocus={(e) => (e.currentTarget.style.borderColor = "var(--color-cobalt)")}
+          onBlur={(e)  => (e.currentTarget.style.borderColor = "var(--color-line)")}
           disabled={isPending}
         />
         <button
@@ -104,8 +84,8 @@ function StickyComposer({ postId }: { postId: string }) {
           style={{
             width: 44,
             height: 44,
-            borderRadius: "var(--radius-pill)",
-            background: body.trim() ? "var(--cobalt-500)" : "var(--cobalt-50)",
+            borderRadius: 999,
+            background: body.trim() ? "var(--color-cobalt)" : "var(--color-cobalt-soft)",
             border: "none",
             display: "flex",
             alignItems: "center",
@@ -118,7 +98,7 @@ function StickyComposer({ postId }: { postId: string }) {
           <Send
             size={16}
             strokeWidth={1.5}
-            color={body.trim() ? "#fff" : "var(--ash-400)"}
+            color={body.trim() ? "#fff" : "var(--color-muted)"}
           />
         </button>
       </form>
@@ -128,7 +108,7 @@ function StickyComposer({ postId }: { postId: string }) {
             maxWidth: 680,
             margin: "6px auto 0",
             fontSize: 12,
-            color: "var(--danger)",
+            color: "var(--color-danger)",
             fontFamily: "var(--font-ui)",
           }}
         >
@@ -138,8 +118,6 @@ function StickyComposer({ postId }: { postId: string }) {
     </div>
   );
 }
-
-// ─── Main component ───────────────────────────────────────────────────────────
 
 export function PostDetail({
   post,
@@ -152,17 +130,12 @@ export function PostDetail({
 }) {
   const [reacted, setReacted] = useState(userHasReacted);
   const [isPending, setIsPending] = useState(false);
-  const typeConfig = TYPE_CONFIG[post.type] ?? TYPE_CONFIG.empfehlung;
+  const accentColor = ACCENT_COLOR[post.type as PostType];
 
   return (
     <>
-      <article
-        className="post-detail-article"
-        style={{
-          fontFamily: "var(--font-ui)",
-        }}
-      >
-        {/* Back link */}
+      <article className="post-detail-article" style={{ fontFamily: "var(--font-ui)" }}>
+        {/* Back */}
         <Link
           href="/feed"
           style={{
@@ -170,7 +143,7 @@ export function PostDetail({
             alignItems: "center",
             gap: 6,
             textDecoration: "none",
-            color: "var(--fg-subtle)",
+            color: "var(--color-subtle)",
             fontSize: 14,
           }}
         >
@@ -181,256 +154,240 @@ export function PostDetail({
         {/* Post card */}
         <div
           style={{
-            background: "var(--surface-card)",
-            border: "1px solid var(--border)",
-            borderRadius: "var(--radius-xl)",
-            padding: 32,
+            background: "var(--color-ivory)",
+            border: "1px solid var(--color-line-soft)",
+            borderRadius: 20,
             marginTop: 20,
+            overflow: "hidden",
+            position: "relative",
           }}
         >
-          {/* Type pill */}
-          <span
-            style={{
-              display: "inline-block",
-              padding: "4px 12px",
-              borderRadius: "var(--radius-pill)",
-              background: typeConfig.bg,
-              color: typeConfig.fg,
-              fontSize: 12,
-              fontWeight: 500,
-              fontFamily: "var(--font-ui)",
-              letterSpacing: "0.01em",
-            }}
-          >
-            {typeConfig.label}
-          </span>
-
-          {/* Title */}
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontSize: 30,
-              fontWeight: 400,
-              lineHeight: 1.2,
-              margin: "16px 0 0",
-              color: "var(--ink)",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {post.title}
-          </h1>
-
-          {/* Author row */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              marginTop: 16,
-            }}
-          >
-            <Avatar letter={post.author_name[0]} size={40} />
-            <span style={{ fontSize: 14, fontWeight: 500, color: "var(--fg)" }}>
-              {post.author_name}
-            </span>
-            <span style={{ fontSize: 13, color: "var(--fg-subtle)" }}>
-              · {post.stadtteil} · {post.created_at}
-            </span>
-          </div>
-
-          {/* Body */}
-          {post.body && (
-            <p
-              style={{
-                fontSize: 16,
-                lineHeight: 1.7,
-                color: "var(--fg-muted)",
-                marginTop: 20,
-              }}
-            >
-              {post.body}
-            </p>
-          )}
-
-          {/* Meeting block */}
-          {(post.meeting_location || post.meeting_date) && (
+          {/* Accent bar — matches feed card */}
+          {accentColor && (
             <div
               style={{
-                background: "var(--surface-page-deep)",
-                border: "1px solid var(--border-soft)",
-                borderRadius: "var(--radius-md)",
-                padding: 16,
-                marginTop: 20,
-                display: "flex",
-                flexDirection: "column",
-                gap: 8,
+                height: 3,
+                background: accentColor,
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
               }}
-            >
-              {post.meeting_location && (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    fontSize: 14,
-                    color: "var(--fg-muted)",
-                  }}
-                >
-                  <MapPin size={15} strokeWidth={1.5} color="var(--cobalt-500)" />
-                  {post.meeting_location}
-                </div>
-              )}
-              {post.meeting_date && (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    fontSize: 14,
-                    color: "var(--fg-muted)",
-                  }}
-                >
-                  <Calendar size={15} strokeWidth={1.5} color="var(--cobalt-500)" />
-                  {post.meeting_date}
-                </div>
-              )}
-              {(post.min_age !== undefined || post.max_age !== undefined) && (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    fontSize: 14,
-                    color: "var(--fg-muted)",
-                  }}
-                >
-                  <Users size={15} strokeWidth={1.5} color="var(--cobalt-500)" />
-                  {post.min_age !== undefined && post.max_age !== undefined
-                    ? `Kinder von ${post.min_age} bis ${post.max_age} Jahren`
-                    : post.min_age !== undefined
-                    ? `Ab ${post.min_age} Jahren`
-                    : `Bis ${post.max_age} Jahren`}
-                </div>
-              )}
-            </div>
+            />
           )}
 
-          {/* Reaction */}
-          <div
-            style={{
-              marginTop: 24,
-              paddingTop: 20,
-              borderTop: "1px solid var(--border)",
-            }}
-          >
-            <button
-              type="button"
-              onClick={async () => {
-                if (isPending) return;
-                setIsPending(true);
-                setReacted((v) => !v); // optimistic
-                try {
-                  const result = await toggleReaction(post.id);
-                  setReacted(result.reacted);
-                } catch {
-                  setReacted((v) => !v); // revert on error
-                } finally {
-                  setIsPending(false);
-                }
-              }}
-              disabled={isPending}
-              aria-pressed={reacted}
-              aria-label="Als hilfreich markieren"
+          <div style={{ padding: 32, paddingTop: accentColor ? 36 : 32 }}>
+            {/* Type pill — uses the same Tag component as the feed */}
+            <Tag type={post.type as PostType} />
+
+            {/* Title */}
+            <h1
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: "4px 0",
-                fontSize: 13,
-                color: reacted ? "var(--cobalt-500)" : "var(--fg-subtle)",
-                transition: "color var(--dur-base)",
+                fontFamily: "var(--font-display)",
+                fontStyle: "italic",
+                fontSize: 30,
+                fontWeight: 400,
+                lineHeight: 1.2,
+                margin: "16px 0 0",
+                color: "var(--color-ink)",
+                letterSpacing: "-0.02em",
               }}
             >
-              <Heart
-                size={16}
-                strokeWidth={1.5}
-                fill={reacted ? "var(--cobalt-500)" : "none"}
-              />
-              Hilfreich
-            </button>
+              {post.title}
+            </h1>
+
+            {/* Author row */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                marginTop: 16,
+              }}
+            >
+              <Avatar letter={post.author_name[0]} size={40} />
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 500, color: "var(--color-ink)" }}>
+                  {post.author_name}
+                </div>
+                <div style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 1 }}>
+                  {post.stadtteil} · {post.created_at}
+                </div>
+              </div>
+            </div>
+
+            {/* Body */}
+            {post.body && (
+              <p
+                style={{
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: "var(--color-muted)",
+                  marginTop: 20,
+                  marginBottom: 0,
+                }}
+              >
+                {post.body}
+              </p>
+            )}
+
+            {/* Meeting block */}
+            {(post.meeting_location || post.meeting_date) && (
+              <div
+                style={{
+                  background: "var(--color-sunk)",
+                  border: "1px solid var(--color-line-soft)",
+                  borderRadius: 12,
+                  padding: 16,
+                  marginTop: 20,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                }}
+              >
+                {post.meeting_location && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "var(--color-muted)" }}>
+                    <MapPin size={15} strokeWidth={1.5} color="var(--color-cobalt)" />
+                    {post.meeting_location}
+                  </div>
+                )}
+                {post.meeting_date && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "var(--color-muted)" }}>
+                    <Calendar size={15} strokeWidth={1.5} color="var(--color-cobalt)" />
+                    {post.meeting_date}
+                  </div>
+                )}
+                {(post.min_age !== undefined || post.max_age !== undefined) && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "var(--color-muted)" }}>
+                    <Users size={15} strokeWidth={1.5} color="var(--color-cobalt)" />
+                    {post.min_age !== undefined && post.max_age !== undefined
+                      ? `Kinder von ${post.min_age} bis ${post.max_age} Jahren`
+                      : post.min_age !== undefined
+                      ? `Ab ${post.min_age} Jahren`
+                      : `Bis ${post.max_age} Jahren`}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Reaction */}
+            <div
+              style={{
+                marginTop: 24,
+                paddingTop: 20,
+                borderTop: "1px solid var(--color-line-soft)",
+              }}
+            >
+              <button
+                type="button"
+                onClick={async () => {
+                  if (isPending) return;
+                  setIsPending(true);
+                  setReacted((v) => !v);
+                  try {
+                    const result = await toggleReaction(post.id);
+                    setReacted(result.reacted);
+                  } catch {
+                    setReacted((v) => !v);
+                  } finally {
+                    setIsPending(false);
+                  }
+                }}
+                disabled={isPending}
+                aria-pressed={reacted}
+                aria-label="Als hilfreich markieren"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "4px 0",
+                  fontSize: 13,
+                  color: reacted ? "var(--color-cobalt)" : "var(--color-subtle)",
+                  transition: "color var(--dur-base)",
+                }}
+              >
+                <Heart size={16} strokeWidth={1.5} fill={reacted ? "var(--color-cobalt)" : "none"} />
+                Hilfreich
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Comments section */}
+        {/* Comments */}
         <section style={{ marginTop: 32 }} aria-label="Antworten">
           <p
             style={{
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: 500,
-              color: "var(--fg)",
+              color: "var(--color-muted)",
               margin: "0 0 16px",
+              fontFamily: "var(--font-mono)",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
             }}
           >
-            {comments.length}{" "}
-            {comments.length === 1 ? "Antwort" : "Antworten"}
+            {comments.length} {comments.length === 1 ? "Antwort" : "Antworten"}
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {comments.map((comment) => (
-              <article key={comment.id}>
-                <div
+          {comments.length === 0 ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                color: "var(--color-subtle)",
+                fontSize: 14,
+                padding: "8px 0",
+              }}
+            >
+              <MessageSquare size={16} strokeWidth={1.5} />
+              Noch keine Antworten. Sei die erste Person.
+            </div>
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              {comments.map((comment) => (
+                <article
+                  key={comment.id}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    marginBottom: 6,
+                    paddingBottom: 20,
+                    borderBottom: "1px solid var(--color-line-soft)",
                   }}
                 >
-                  <Avatar letter={comment.author_name[0]} size={32} />
-                  <span
-                    style={{ fontSize: 13, fontWeight: 500, color: "var(--fg)" }}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      marginBottom: 8,
+                    }}
                   >
-                    {comment.author_name}
-                  </span>
-                  <span style={{ fontSize: 12, color: "var(--fg-subtle)" }}>
-                    {comment.created_at}
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontSize: 14,
-                    lineHeight: 1.65,
-                    color: "var(--fg-muted)",
-                    margin: 0,
-                    paddingLeft: 40,
-                  }}
-                >
-                  {comment.body}
-                </p>
-              </article>
-            ))}
-          </div>
+                    <Avatar letter={comment.author_name[0]} size={32} />
+                    <span style={{ fontSize: 13, fontWeight: 500, color: "var(--color-ink)" }}>
+                      {comment.author_name}
+                    </span>
+                    <span style={{ fontSize: 12, color: "var(--color-subtle)" }}>
+                      {comment.created_at}
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: 14,
+                      lineHeight: 1.65,
+                      color: "var(--color-muted)",
+                      margin: 0,
+                      paddingLeft: 40,
+                    }}
+                  >
+                    {comment.body}
+                  </p>
+                </article>
+              ))}
+            </div>
+          )}
         </section>
-
-        {comments.length === 0 && (
-          <div
-            style={{
-              marginTop: 16,
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              color: "var(--fg-subtle)",
-              fontSize: 14,
-            }}
-          >
-            <MessageSquare size={16} strokeWidth={1.5} />
-            Noch keine Antworten. Sei die erste Person.
-          </div>
-        )}
       </article>
 
       <StickyComposer postId={post.id} />
