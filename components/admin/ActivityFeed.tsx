@@ -1,71 +1,26 @@
+const GRADIENTS = [
+  "linear-gradient(135deg, #E4EBD8, #6F855A)",
+  "linear-gradient(135deg, #FAF6EE, #CFDABF)",
+  "linear-gradient(135deg, #F6E0CC, #C26A3F)",
+  "linear-gradient(135deg, #F2F5EC, #98AD8B)",
+  "linear-gradient(135deg, #FAF6EE, #BAC9A6)",
+  "linear-gradient(135deg, #FBF1E8, #DDA078)",
+  "linear-gradient(135deg, #E4EBD8, #586B47)",
+  "linear-gradient(135deg, #F2F5EC, #6F855A)",
+];
+
 interface ActivityItem {
   id: string;
   name: string;
   action: string;
   time: string;
-  gradient: string;
 }
 
-const ACTIVITIES: ActivityItem[] = [
-  {
-    id: "1",
-    name: "Nadine K.",
-    action: "hat einen Beitrag gemeldet",
-    time: "3 Min.",
-    gradient: "linear-gradient(135deg, #E4EBD8, #6F855A)",  // sage 100 → 600
-  },
-  {
-    id: "2",
-    name: "Lars M.",
-    action: "hat sich registriert, Eppendorf",
-    time: "8 Min.",
-    gradient: "linear-gradient(135deg, #FAF6EE, #CFDABF)",  // ivory → sage 200
-  },
-  {
-    id: "3",
-    name: "Julia S.",
-    action: "hat kommentiert",
-    time: "12 Min.",
-    gradient: "linear-gradient(135deg, #F6E0CC, #C26A3F)",  // peach 100 → clay 600
-  },
-  {
-    id: "4",
-    name: "Neuer Beitrag",
-    action: "Empfehlung in Winterhude",
-    time: "18 Min.",
-    gradient: "linear-gradient(135deg, #F2F5EC, #98AD8B)",  // sage 50 → sage 500
-  },
-  {
-    id: "5",
-    name: "Tobias R.",
-    action: "hat sich registriert, Altona",
-    time: "24 Min.",
-    gradient: "linear-gradient(135deg, #FAF6EE, #BAC9A6)",  // ivory → sage 300
-  },
-  {
-    id: "6",
-    name: "Beitrag",
-    action: "in Eimsbüttel gelöscht",
-    time: "31 Min.",
-    gradient: "linear-gradient(135deg, #FBF1E8, #DDA078)",  // peach 50 → peach 400
-  },
-  {
-    id: "7",
-    name: "Sarah M.",
-    action: "hat sich als Local Host beworben",
-    time: "1 Std.",
-    gradient: "linear-gradient(135deg, #E4EBD8, #586B47)",  // sage 100 → sage 700
-  },
-  {
-    id: "8",
-    name: "Maria K.",
-    action: "hat kommentiert",
-    time: "1 Std.",
-    gradient: "linear-gradient(135deg, #F2F5EC, #6F855A)",  // sage 50 → sage 600
-  },
-];
+interface ActivityFeedProps {
+  items: ActivityItem[];
+}
 
-export function ActivityFeed() {
+export function ActivityFeed({ items }: ActivityFeedProps) {
   return (
     <div
       style={{
@@ -100,68 +55,82 @@ export function ActivityFeed() {
 
       {/* List */}
       <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-        {ACTIVITIES.map((item, i) => (
+        {items.length === 0 ? (
           <li
-            key={item.id}
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              padding: "12px 24px",
-              borderBottom:
-                i < ACTIVITIES.length - 1
-                  ? "1px solid var(--mapa-line-soft)"
-                  : "none",
+              padding: "24px",
+              fontFamily: "var(--font-ui)",
+              fontSize: 13,
+              color: "var(--fg-subtle)",
+              textAlign: "center",
             }}
           >
-            {/* Avatar circle */}
-            <div
+            Noch keine Aktivitäten.
+          </li>
+        ) : (
+          items.map((item, i) => (
+            <li
+              key={item.id}
               style={{
-                width: 28,
-                height: 28,
-                borderRadius: "50%",
-                background: item.gradient,
-                flexShrink: 0,
-              }}
-            />
-
-            {/* Text */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <span
-                style={{
-                  fontFamily: "var(--font-ui)",
-                  fontSize: 13,
-                  fontWeight: 500,
-                  color: "var(--fg)",
-                }}
-              >
-                {item.name}
-              </span>{" "}
-              <span
-                style={{
-                  fontFamily: "var(--font-ui)",
-                  fontSize: 13,
-                  color: "var(--fg-muted)",
-                }}
-              >
-                {item.action}
-              </span>
-            </div>
-
-            {/* Time */}
-            <span
-              style={{
-                fontFamily: "var(--font-ui)",
-                fontSize: 11,
-                color: "var(--fg-subtle)",
-                whiteSpace: "nowrap" as const,
-                flexShrink: 0,
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                padding: "12px 24px",
+                borderBottom:
+                  i < items.length - 1
+                    ? "1px solid var(--mapa-line-soft)"
+                    : "none",
               }}
             >
-              {item.time}
-            </span>
-          </li>
-        ))}
+              {/* Avatar circle */}
+              <div
+                style={{
+                  width: 28,
+                  height: 28,
+                  borderRadius: "50%",
+                  background: GRADIENTS[i % GRADIENTS.length],
+                  flexShrink: 0,
+                }}
+              />
+
+              {/* Text */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-ui)",
+                    fontSize: 13,
+                    fontWeight: 500,
+                    color: "var(--fg)",
+                  }}
+                >
+                  {item.name}
+                </span>{" "}
+                <span
+                  style={{
+                    fontFamily: "var(--font-ui)",
+                    fontSize: 13,
+                    color: "var(--fg-muted)",
+                  }}
+                >
+                  {item.action}
+                </span>
+              </div>
+
+              {/* Time */}
+              <span
+                style={{
+                  fontFamily: "var(--font-ui)",
+                  fontSize: 11,
+                  color: "var(--fg-subtle)",
+                  whiteSpace: "nowrap" as const,
+                  flexShrink: 0,
+                }}
+              >
+                {item.time}
+              </span>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

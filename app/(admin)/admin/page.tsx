@@ -3,58 +3,57 @@ import { KPICard } from "@/components/admin/KPICard";
 import { StadtteilRow } from "@/components/admin/StadtteilRow";
 import { ActivityFeed } from "@/components/admin/ActivityFeed";
 import { ModerationQueue } from "@/components/admin/ModerationQueue";
+import {
+  getAdminKPIs,
+  getStadtteilStats,
+  getRecentActivity,
+} from "@/lib/admin";
 
 export const metadata = { title: "Dashboard · mapa Admin" };
 
-const KPI_DATA = [
-  {
-    label: "DAU",
-    value: 47,
-    trend: "+12% diese Woche",
-    icon: <Users size={16} strokeWidth={1.5} />,
-    accent: false,
-  },
-  {
-    label: "Posts heute",
-    value: 23,
-    trend: "+5 vs. gestern",
-    icon: <FileText size={16} strokeWidth={1.5} />,
-    accent: false,
-  },
-  {
-    label: "Antworten/Post",
-    value: "3.4",
-    trend: "Ø letzte 7 Tage",
-    icon: <MessageSquare size={16} strokeWidth={1.5} />,
-    accent: false,
-  },
-  {
-    label: "Neue Familien",
-    value: 8,
-    trend: "diese Woche",
-    icon: <TrendingUp size={16} strokeWidth={1.5} />,
-    accent: true,
-  },
-];
+export default async function AdminDashboardPage() {
+  const [kpis, stadtteile, activity] = await Promise.all([
+    getAdminKPIs(),
+    getStadtteilStats(),
+    getRecentActivity(),
+  ]);
 
-const STADTTEILE_DATA = [
-  { name: "Eppendorf", members: 184, posts: 312, host: "Nadine K." },
-  { name: "Winterhude", members: 143, posts: 198, host: "Marc B." },
-  { name: "Altona", members: 127, posts: 241, host: null },
-  { name: "Eimsbüttel", members: 98, posts: 156, host: "Sarah M." },
-  { name: "Ottensen", members: 87, posts: 134, host: null },
-  { name: "Sternschanze", members: 76, posts: 89, host: null },
-  { name: "Barmbek", members: 54, posts: 67, host: null },
-  { name: "HafenCity", members: 43, posts: 51, host: null },
-  { name: "Uhlenhorst", members: 38, posts: 44, host: null },
-  { name: "Hoheluft", members: 31, posts: 38, host: null },
-  { name: "St. Pauli", members: 28, posts: 45, host: null },
-  { name: "Innenstadt", members: 19, posts: 22, host: null },
-];
+  const maxMembers = stadtteile.reduce(
+    (acc, row) => Math.max(acc, row.members),
+    1
+  );
 
-const MAX_MEMBERS = 200;
+  const KPI_CARDS = [
+    {
+      label: "Mitglieder",
+      value: kpis.totalMembers,
+      trend: undefined,
+      icon: <Users size={16} strokeWidth={1.5} />,
+      accent: false,
+    },
+    {
+      label: "Posts heute",
+      value: kpis.postsToday,
+      trend: undefined,
+      icon: <FileText size={16} strokeWidth={1.5} />,
+      accent: false,
+    },
+    {
+      label: "Antworten/Post",
+      value: kpis.avgCommentsPerPost,
+      trend: "Ø letzte 7 Tage",
+      icon: <MessageSquare size={16} strokeWidth={1.5} />,
+      accent: false,
+    },
+    {
+      label: "Neue Familien",
+      value: kpis.newFamiliesThisWeek,
+      trend: "diese Woche",
+      icon: <TrendingUp size={16} strokeWidth={1.5} />,
+      accent: true,
+    },
+  ];
 
-export default function AdminDashboardPage() {
   return (
     <div
       style={{
@@ -90,7 +89,7 @@ export default function AdminDashboardPage() {
         </p>
       </div>
 
-      {/* KPI grid — 2 columns on narrow, 4 on wide */}
+      {/* KPI grid */}
       <div
         style={{
           display: "grid",
@@ -99,7 +98,7 @@ export default function AdminDashboardPage() {
           marginBottom: 40,
         }}
       >
-        {KPI_DATA.map((kpi) => (
+        {KPI_CARDS.map((kpi) => (
           <KPICard
             key={kpi.label}
             label={kpi.label}
@@ -136,22 +135,27 @@ export default function AdminDashboardPage() {
           }}
         >
           <div className="admin-table-scroll">
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse" as const,
-              minWidth: 580,
-            }}
-          >
-            <thead>
-              <tr
-                style={{
-                  background: "var(--mapa-sage-50)",
-                  borderBottom: "1px solid var(--mapa-line)",
-                }}
-              >
-                {["Stadtteil", "Mitglieder", "Beiträge", "Local Host", "Wachstum"].map(
-                  (col, i) => (
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse" as const,
+                minWidth: 580,
+              }}
+            >
+              <thead>
+                <tr
+                  style={{
+                    background: "var(--mapa-sage-50)",
+                    borderBottom: "1px solid var(--mapa-line)",
+                  }}
+                >
+                  {[
+                    "Stadtteil",
+                    "Mitglieder",
+                    "Beiträge",
+                    "Local Host",
+                    "Wachstum",
+                  ].map((col, i) => (
                     <th
                       key={col}
                       style={{
@@ -162,28 +166,30 @@ export default function AdminDashboardPage() {
                         letterSpacing: "0.06em",
                         textTransform: "uppercase" as const,
                         color: "var(--fg-subtle)",
-                        textAlign: i === 0 || i === 3 || i === 4 ? "left" as const : "right" as const,
+                        textAlign:
+                          i === 0 || i === 3 || i === 4
+                            ? ("left" as const)
+                            : ("right" as const),
                       }}
                     >
                       {col}
                     </th>
-                  )
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {STADTTEILE_DATA.map((row) => (
-                <StadtteilRow
-                  key={row.name}
-                  name={row.name}
-                  members={row.members}
-                  posts={row.posts}
-                  host={row.host}
-                  maxMembers={MAX_MEMBERS}
-                />
-              ))}
-            </tbody>
-          </table>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {stadtteile.slice(0, 12).map((row) => (
+                  <StadtteilRow
+                    key={row.name}
+                    name={row.name}
+                    members={row.members}
+                    posts={row.posts}
+                    host={row.host}
+                    maxMembers={maxMembers}
+                  />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -196,7 +202,7 @@ export default function AdminDashboardPage() {
           gap: 24,
         }}
       >
-        <ActivityFeed />
+        <ActivityFeed items={activity} />
         <ModerationQueue />
       </div>
     </div>
