@@ -20,7 +20,7 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument",
 });
 
-const TITLE = "mapa — Die lokale Community für Familien in Hamburg.";
+const TITLE = "mapa. Die lokale Community für Familien in Hamburg";
 const DESCRIPTION =
   "Empfehlungen, Veranstaltungen, Treffen und ehrlicher Austausch für Familien in Hamburg.";
 
