@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/mapa-link-vorschau-1200x630.png",
         width: 1200,
         height: 630,
         alt: TITLE,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/opengraph-image"],
+    images: ["/mapa-link-vorschau-1200x630.png"],
   },
 };
 
