@@ -15,12 +15,12 @@ export default function Image() {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          background: "#EDE8DE",
+          background: "#F5F1E8",
           padding: "80px 100px",
           position: "relative",
         }}
       >
-        {/* Sage-Akzentlinie links */}
+        {/* Sage accent bar left */}
         <div
           style={{
             position: "absolute",
@@ -32,67 +32,85 @@ export default function Image() {
           }}
         />
 
-        {/* mapa. */}
+        {/* "mapa" + clay dot */}
         <div
           style={{
             display: "flex",
-            alignItems: "baseline",
-            marginBottom: 28,
+            alignItems: "flex-end",
+            marginBottom: 24,
+            lineHeight: 1,
           }}
         >
           <span
             style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              fontStyle: "italic",
-              fontSize: 104,
-              fontWeight: 400,
-              color: "#2C2218",
+              fontFamily: "'Arial Black', 'Helvetica Neue', Arial, sans-serif",
+              fontSize: 112,
+              fontWeight: 900,
+              color: "#1A1410",
               lineHeight: 1,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.05em",
             }}
           >
             mapa
           </span>
-          <span
+          <div
             style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              fontStyle: "italic",
-              fontSize: 104,
-              fontWeight: 400,
-              color: "#C26A3F",
-              lineHeight: 1,
+              width: 18,
+              height: 18,
+              borderRadius: "50%",
+              background: "#C26A3F",
+              marginLeft: 2,
+              marginBottom: 16,
+              flexShrink: 0,
             }}
-          >
-            .
-          </span>
+          />
         </div>
 
         {/* Tagline */}
         <div
           style={{
-            fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-            fontSize: 34,
+            fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            fontSize: 32,
             color: "#6B5B45",
             fontWeight: 400,
-            lineHeight: 1.45,
-            maxWidth: 720,
-            marginBottom: 52,
+            lineHeight: 1.5,
+            maxWidth: 700,
+            marginBottom: 56,
           }}
         >
           Die lokale Community für Familien in Hamburg.
         </div>
 
-        {/* URL */}
+        {/* URL pill */}
         <div
           style={{
-            fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-            fontSize: 22,
-            color: "#9B8E7E",
-            fontWeight: 400,
-            letterSpacing: "0.04em",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            background: "#EDE8DE",
+            borderRadius: 999,
+            padding: "10px 20px",
           }}
         >
-          mapa.hamburg
+          <div
+            style={{
+              width: 8,
+              height: 8,
+              borderRadius: "50%",
+              background: "#6F855A",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontSize: 20,
+              color: "#6B5B45",
+              fontWeight: 500,
+              letterSpacing: "0.02em",
+            }}
+          >
+            mapa.hamburg
+          </span>
         </div>
       </div>
     ),

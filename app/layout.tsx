@@ -20,11 +20,36 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument",
 });
 
+const TITLE = "mapa — Die lokale Community für Familien in Hamburg.";
+const DESCRIPTION =
+  "Empfehlungen, Veranstaltungen, Treffen und ehrlicher Austausch für Familien in Hamburg.";
+
 export const metadata: Metadata = {
-  title: "mapa — Die lokale Community für Familien in Hamburg.",
-  description:
-    "Empfehlungen, Veranstaltungen, Treffen und ehrlicher Austausch für Familien in Hamburg.",
+  title: TITLE,
+  description: DESCRIPTION,
   metadataBase: new URL("https://mapa.hamburg"),
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "https://mapa.hamburg",
+    siteName: "mapa",
+    locale: "de_DE",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: TITLE,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({
