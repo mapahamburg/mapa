@@ -7,21 +7,20 @@ export const metadata = {
 };
 
 export default async function FeedPage() {
-  const [posts, supabase] = await Promise.all([
-    getFeedPosts(),
-    createClient(),
-  ]);
-
   let userName = "du";
   let stadtteil = "Hamburg";
   let host: { name: string; bio: string | null } | undefined;
 
-  try {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+  // Posts + auth run in parallel — neither depends on the other
+  const supabase = await createClient();
+  const [posts, { data: { user } }] = await Promise.all([
+    getFeedPosts(),
+    supabase.auth.getUser(),
+  ]);
 
+  try {
     if (user) {
+      // Profile fetch — needs user.id
       const { data: profile } = await supabase
         .from("profiles")
         .select("first_name, stadtteil")
@@ -31,6 +30,7 @@ export default async function FeedPage() {
       if (profile?.first_name) userName = profile.first_name;
       if (profile?.stadtteil) stadtteil = profile.stadtteil;
 
+      // Host fetch — needs stadtteil from profile
       if (profile?.stadtteil) {
         const { data: hostProfile } = await supabase
           .from("profiles")

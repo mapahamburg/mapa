@@ -250,6 +250,11 @@ html, body {
 }
 
 /* ─── Slot-reel animation (Hero landing) ─── */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
 @keyframes slot-reel {
   0%   { transform: translateY(-130%); filter: blur(6px); opacity: 0.6; }
   45%  { transform: translateY(-10%);  filter: blur(3px); opacity: 1; }
