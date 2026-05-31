@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { MessageCircle, MapPin } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Tag } from "@/components/ui/Tag";
@@ -12,11 +13,19 @@ import type { FeedPost } from "@/types";
 export type { FeedPost as Post };
 
 export function PostCard({ post }: { post: FeedPost }) {
+  const router = useRouter();
+
+  function handleCardClick(e: React.MouseEvent<HTMLElement>) {
+    // Don't navigate when an interactive element was clicked
+    if ((e.target as HTMLElement).closest("button, a, input, [role='button']")) return;
+    router.push(`/feed/${post.id}`);
+  }
+
   return (
     <article
       className="post-card"
+      onClick={handleCardClick}
       style={{
-        position: "relative",
         background: "var(--color-ivory)",
         border: "1px solid var(--color-line-soft)",
         cursor: "pointer",
@@ -25,6 +34,7 @@ export function PostCard({ post }: { post: FeedPost }) {
         flexDirection: "column",
         gap: 18,
         overflow: "hidden",
+        position: "relative",
       }}
       onMouseEnter={(e) =>
         (e.currentTarget.style.borderColor = "var(--color-line)")
@@ -33,7 +43,7 @@ export function PostCard({ post }: { post: FeedPost }) {
         (e.currentTarget.style.borderColor = "var(--color-line-soft)")
       }
     >
-      {/* Color accent bar for events and meetings */}
+      {/* Color accent bar */}
       {(post.type === "veranstaltung" || post.type === "treffen") && (
         <div
           style={{
@@ -46,58 +56,29 @@ export function PostCard({ post }: { post: FeedPost }) {
               post.type === "veranstaltung"
                 ? "var(--color-clay)"
                 : "var(--color-cobalt)",
-            zIndex: 2,
             pointerEvents: "none",
           }}
         />
       )}
 
-      {/* Overlay link — sits under interactive elements */}
-      <Link
-        href={`/feed/${post.id}`}
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 0,
-          borderRadius: "inherit",
-        }}
-        aria-label={post.title}
-      />
-
       {/* Author row */}
-      <header
-        style={{
-          position: "relative",
-          zIndex: 1,
-          display: "flex",
-          gap: 14,
-          alignItems: "center",
-        }}
-      >
+      <header style={{ display: "flex", gap: 14, alignItems: "center" }}>
         <Avatar letter={post.author[0]} size={40} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.2 }}>
             {post.author}
           </div>
-          <div
-            style={{
-              fontSize: 13,
-              color: "var(--color-muted)",
-              marginTop: 2,
-            }}
-          >
+          <div style={{ fontSize: 13, color: "var(--color-muted)", marginTop: 2 }}>
             {post.district} · {post.time}
           </div>
         </div>
         <Tag type={post.type} />
       </header>
 
-      {/* Title */}
+      {/* Title — explicit link for right-click / open-in-new-tab */}
       <h3
         className="post-card-title"
         style={{
-          position: "relative",
-          zIndex: 1,
           fontFamily: "var(--font-display)",
           fontStyle: "italic",
           fontWeight: 400,
@@ -105,37 +86,27 @@ export function PostCard({ post }: { post: FeedPost }) {
           margin: 0,
         }}
       >
-        {post.title}
+        <Link
+          href={`/feed/${post.id}`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          {post.title}
+        </Link>
       </h3>
 
       {/* Body */}
       {post.body && (
-        <p
-          style={{
-            position: "relative",
-            zIndex: 1,
-            fontSize: 15,
-            lineHeight: 1.55,
-            color: "var(--color-muted)",
-            margin: 0,
-          }}
-        >
+        <p style={{ fontSize: 15, lineHeight: 1.55, color: "var(--color-muted)", margin: 0 }}>
           {post.body}
         </p>
       )}
 
       {/* Meeting chip */}
-      {post.meeting && (
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <MeetingChip {...post.meeting} />
-        </div>
-      )}
+      {post.meeting && <MeetingChip {...post.meeting} />}
 
-      {/* Footer */}
+      {/* Footer — buttons are naturally outside any link, no z-index needed */}
       <footer
         style={{
-          position: "relative",
-          zIndex: 1,
           display: "flex",
           gap: 16,
           alignItems: "center",
@@ -150,9 +121,7 @@ export function PostCard({ post }: { post: FeedPost }) {
           postId={post.id}
           postTitle={post.title}
         />
-        <span
-          style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
-        >
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
           <MessageCircle size={15} strokeWidth={1.5} /> {post.comments}{" "}
           {post.comments === 1 ? "Kommentar" : "Kommentare"}
         </span>

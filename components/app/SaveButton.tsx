@@ -9,8 +9,7 @@ export function SaveButton({ postId, initialSaved }: { postId: string; initialSa
   const [isPending, startTransition] = useTransition();
 
   function handleClick(e: React.MouseEvent) {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault(); // prevent any ancestor link from activating
     const next = !saved;
     setSaved(next); // optimistic
     startTransition(async () => {
@@ -33,7 +32,7 @@ export function SaveButton({ postId, initialSaved }: { postId: string; initialSa
         border: "none",
         padding: 0,
         cursor: isPending ? "default" : "pointer",
-        color: saved ? "var(--cobalt-500)" : "var(--fg-muted)",
+        color: saved ? "var(--color-cobalt)" : "var(--color-muted)",
         fontFamily: "var(--font-ui)",
         fontSize: 13,
         transition: "color 150ms ease",
