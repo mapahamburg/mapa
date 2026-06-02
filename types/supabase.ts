@@ -32,6 +32,8 @@ export type Database = {
           looking_for: string[];
           interests: string[];
           joined_at: string;
+          notify_comments: boolean;
+          newsletter_optin: boolean;
         };
         Insert: {
           id: string;
@@ -43,6 +45,8 @@ export type Database = {
           looking_for?: string[];
           interests?: string[];
           joined_at?: string;
+          notify_comments?: boolean;
+          newsletter_optin?: boolean;
         };
         Update: {
           id?: string;
@@ -54,6 +58,8 @@ export type Database = {
           looking_for?: string[];
           interests?: string[];
           joined_at?: string;
+          notify_comments?: boolean;
+          newsletter_optin?: boolean;
         };
         Relationships: [];
       };

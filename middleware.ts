@@ -26,6 +26,11 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith("/karte") ||
     pathname.startsWith("/gespeichert") ||
     pathname.startsWith("/veranstaltungen") ||
+    pathname.startsWith("/treffen") ||
+    pathname.startsWith("/einstellungen") ||
+    pathname.startsWith("/kreise") ||
+    pathname.startsWith("/host") ||
+    pathname.startsWith("/benachrichtigungen") ||
     pathname.startsWith("/hosts");
 
   // Onboarding — requires auth but no profile yet
