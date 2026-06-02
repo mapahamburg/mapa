@@ -3,7 +3,7 @@ import { Footer } from "@/components/landing/Footer";
 import { Avatar } from "@/components/ui/Avatar";
 
 export const metadata = {
-  title: "Local Host werden — mapa",
+  title: "Local Host werden · mapa",
   description:
     "Gestalte mapa in deinem Stadtteil mit. Als Local Host bist du der Anker für neue Familien in deinem Stadtteil.",
 };
@@ -17,7 +17,7 @@ const TASKS = [
   {
     n: "02",
     title: "Treffen organisieren",
-    body: "Du initiierst kleine Treffen — ein Spielplatznachmittag, ein Kaffee zu zweit, ein Stadtteil-Spaziergang.",
+    body: "Du initiierst kleine Treffen: ein Spielplatznachmittag, ein Kaffee zu zweit, ein Stadtteil-Spaziergang.",
   },
   {
     n: "03",
@@ -346,7 +346,7 @@ export default function LocalHostsPage() {
               margin: "0 0 40px",
             }}
           >
-            mapa wächst stadtteilweise — und jeder neue Stadtteil braucht
+            mapa wächst stadtteilweise, und jeder neue Stadtteil braucht
             einen Menschen, der den Anfang macht. Wenn du Lust hast,
             Local Host in deinem Viertel zu werden, meld dich einfach.
             Kein Formular, kein Auswahlverfahren. Eine kurze Mail reicht.

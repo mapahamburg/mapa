@@ -44,7 +44,7 @@ export default async function VeranstaltungenPage() {
           color: "var(--fg-muted)",
           margin: 0,
         }}>
-          Was in Hamburg los ist — von Familien für Familien.
+          Was in Hamburg los ist. Von Familien für Familien.
         </p>
       </div>
 

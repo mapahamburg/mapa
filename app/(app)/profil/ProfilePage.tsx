@@ -586,7 +586,7 @@ function ProfileEditForm({
               maxLength={300}
               rows={4}
               onChange={(e) => setBioLen(e.target.value.length)}
-              placeholder="Stell dich kurz vor — was machst du, was suchst du, was kannst du empfehlen?"
+              placeholder="Stell dich kurz vor. Was machst du, was suchst du, was kannst du empfehlen?"
               style={{
                 ...inputStyle,
                 resize:   "vertical",
