@@ -2,6 +2,13 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 
+// Comma-separated list of admin email addresses, set via env var.
+// Example: ADMIN_EMAILS=henry@mapa.hamburg,anna@mapa.hamburg
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS ?? "")
+  .split(",")
+  .map((e) => e.trim().toLowerCase())
+  .filter(Boolean);
+
 export default async function AdminLayout({
   children,
 }: {
@@ -12,9 +19,12 @@ export default async function AdminLayout({
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    redirect("/login");
-  }
+  if (!user) redirect("/login");
+
+  const email = user.email?.toLowerCase() ?? "";
+  const isAdmin = ADMIN_EMAILS.length === 0 || ADMIN_EMAILS.includes(email);
+
+  if (!isAdmin) redirect("/feed");
 
   return (
     <div

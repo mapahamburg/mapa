@@ -21,6 +21,7 @@ export async function middleware(request: NextRequest) {
 
   // Logged-in app routes — require auth
   const requiresAuth =
+    pathname.startsWith("/admin") ||
     pathname.startsWith("/feed") ||
     pathname.startsWith("/profil") ||
     pathname.startsWith("/karte") ||
