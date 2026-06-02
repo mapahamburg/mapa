@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle } from "lucide-react";
 import { proposeKreis } from "@/app/actions/kreise";
 import { STADTTEILE, KREIS_THEMEN } from "@/types";
 
@@ -89,8 +89,92 @@ const inputStyle: React.CSSProperties = {
 
 // ─── Form ─────────────────────────────────────────────────────────────────────
 
-export function ProposeKreisForm() {
+function ProposeKreisFormInner({ onReset }: { onReset: () => void }) {
   const [state, formAction] = useActionState(proposeKreis, {});
+
+  // Success state
+  if (state?.success) {
+    return (
+      <div style={{ maxWidth: 560 }}>
+        {/* Back */}
+        <Link
+          href="/kreise"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            fontSize: 14,
+            color: "var(--fg-muted)",
+            textDecoration: "none",
+            marginBottom: 28,
+          }}
+        >
+          <ArrowLeft size={14} strokeWidth={1.5} />
+          Zurück zu Kreise
+        </Link>
+
+        <div
+          style={{
+            background: "var(--mapa-sage-50, rgba(111,133,90,0.08))",
+            border: "1px solid rgba(111,133,90,0.22)",
+            borderRadius: 20,
+            padding: "32px 28px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: 16,
+          }}
+        >
+          <CheckCircle size={28} strokeWidth={1.5} color="var(--mapa-sage-600, #4f6340)" />
+          <p
+            style={{
+              margin: 0,
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontSize: 20,
+              color: "var(--ink)",
+              lineHeight: 1.35,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {state.success}
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 4 }}>
+            <Link
+              href="/kreise"
+              style={{
+                background: "var(--mapa-sage-500, #6F855A)",
+                color: "#fff",
+                borderRadius: 999,
+                padding: "11px 22px",
+                fontFamily: "var(--font-ui)",
+                fontSize: 14,
+                fontWeight: 500,
+                textDecoration: "none",
+              }}
+            >
+              Zu den Kreisen
+            </Link>
+            <button
+              type="button"
+              onClick={onReset}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                fontFamily: "var(--font-ui)",
+                fontSize: 14,
+                color: "var(--fg-muted)",
+                padding: 0,
+              }}
+            >
+              Noch einen vorschlagen
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ maxWidth: 560 }}>
@@ -288,4 +372,11 @@ export function ProposeKreisForm() {
       </form>
     </div>
   );
+}
+
+// ─── Exported wrapper — key-based remount for "Noch einen vorschlagen" ────────
+
+export function ProposeKreisForm() {
+  const [key, setKey] = useState(0);
+  return <ProposeKreisFormInner key={key} onReset={() => setKey((k) => k + 1)} />;
 }

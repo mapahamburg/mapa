@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Plus, Users, MapPin, Lock } from "lucide-react";
-import { getKreise, getMyKreise } from "@/lib/kreise";
+import { getKreise, getMyKreise, getMyPendingKreise } from "@/lib/kreise";
 import type { KreisCard } from "@/types";
 
 export const metadata: Metadata = {
@@ -214,9 +214,10 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function KreisePage() {
-  const [myKreise, alleKreise] = await Promise.all([
+  const [myKreise, alleKreise, myPending] = await Promise.all([
     getMyKreise(),
     getKreise(),
+    getMyPendingKreise(),
   ]);
 
   // Discovery list: kreise the user is NOT a member of
@@ -274,6 +275,88 @@ export default async function KreisePage() {
           Kreis vorschlagen
         </Link>
       </div>
+
+      {/* Pending Kreise */}
+      {myPending.length > 0 && (
+        <>
+          <SectionLabel>Eingereicht</SectionLabel>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {myPending.map((k) => (
+              <article
+                key={k.id}
+                style={{
+                  background: "rgba(194,106,63,0.08)",
+                  border: "1px solid rgba(194,106,63,0.22)",
+                  borderRadius: 20,
+                  padding: "20px 24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 10,
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontStyle: "italic",
+                      fontSize: 17,
+                      color: "var(--ink)",
+                      letterSpacing: "-0.01em",
+                      lineHeight: 1.25,
+                    }}
+                  >
+                    {k.name}
+                  </div>
+                  <span
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 600,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      fontFamily: "var(--font-mono)",
+                      color: "var(--mapa-clay-500, #C26A3F)",
+                      background: "rgba(194,106,63,0.12)",
+                      borderRadius: 999,
+                      padding: "3px 10px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    In Prüfung
+                  </span>
+                </div>
+                <div
+                  style={{
+                    fontSize: 13,
+                    color: "var(--fg-muted)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                  }}
+                >
+                  <MapPin size={11} strokeWidth={1.5} />
+                  {k.stadtteil}
+                  {k.thema && (
+                    <>
+                      <span style={{ color: "var(--color-line-soft)" }}>·</span>
+                      {k.thema}
+                    </>
+                  )}
+                </div>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: 13,
+                    color: "var(--fg-subtle)",
+                    lineHeight: 1.45,
+                  }}
+                >
+                  Wird von einem Local Host geprüft.
+                </p>
+              </article>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* My Kreise */}
       {myKreise.length > 0 && (

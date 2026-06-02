@@ -65,7 +65,7 @@ export async function proposeKreis(
   });
 
   revalidatePath("/kreise");
-  redirect("/kreise");
+  return { success: "Dein Kreis-Vorschlag wurde eingereicht. Ein Local Host prüft ihn in Kürze." };
 }
 
 // ─── Join a Kreis ─────────────────────────────────────────────────────────────
@@ -159,6 +159,44 @@ export async function approveKreis(kreisId: string): Promise<KreisActionState> {
   revalidatePath("/kreise");
   revalidatePath(`/kreise/${kreisId}`);
   return { success: "Kreis ist jetzt aktiv." };
+}
+
+// ─── Reject a pending Kreis (Local Host only) ─────────────────────────────────
+
+export async function rejectKreis(kreisId: string): Promise<KreisActionState> {
+  if (!hasSupabase()) return { error: "Nicht verfügbar." };
+
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { error: "Bitte meld dich an." };
+
+  // Verify caller is a Local Host
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("is_local_host")
+    .eq("id", user.id)
+    .single();
+
+  if (!profile?.is_local_host)
+    return { error: "Nur Local Hosts können Kreise ablehnen." };
+
+  // Delete member rows first
+  await supabase
+    .from("kreis_members")
+    .delete()
+    .eq("kreis_id", kreisId);
+
+  // Delete the kreis
+  const { error } = await supabase
+    .from("kreise")
+    .delete()
+    .eq("id", kreisId);
+
+  if (error) return { error: "Ablehnen fehlgeschlagen." };
+
+  revalidatePath("/kreise");
+  revalidatePath("/admin/kreise");
+  return { success: "Kreis abgelehnt." };
 }
 
 // ─── Post in a Kreis ──────────────────────────────────────────────────────────

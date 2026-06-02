@@ -8,6 +8,7 @@ import {
   Users,
   TriangleAlert,
   Shield,
+  Layers,
   LogOut,
 } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
@@ -44,6 +45,12 @@ const NAV_ITEMS: NavItem[] = [
     label: "Berichte",
     icon: <TriangleAlert size={16} strokeWidth={1.5} />,
     href: "/admin/berichte",
+  },
+  {
+    id: "kreise",
+    label: "Kreise",
+    icon: <Layers size={16} strokeWidth={1.5} />,
+    href: "/admin/kreise",
   },
   {
     id: "hosts",

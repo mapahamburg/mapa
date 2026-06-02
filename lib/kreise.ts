@@ -163,6 +163,80 @@ export async function getKreis(id: string): Promise<{
   }
 }
 
+// ─── Pending Kreise for the proposer ─────────────────────────────────────────
+
+export async function getMyPendingKreise(): Promise<Array<{
+  id: string;
+  name: string;
+  stadtteil: string;
+  thema: string | null;
+  created_at: string;
+}>> {
+  if (!hasSupabase()) return [];
+
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return [];
+
+    const { data, error } = await supabase
+      .from("kreise")
+      .select("id, name, stadtteil, thema, created_at")
+      .eq("status", "pending")
+      .eq("created_by", user.id)
+      .order("created_at", { ascending: false });
+
+    if (error || !data) return [];
+    return data;
+  } catch {
+    return [];
+  }
+}
+
+// ─── All pending Kreise for admin approval ────────────────────────────────────
+
+export async function getPendingKreiseForAdmin(): Promise<Array<{
+  id: string;
+  name: string;
+  beschreibung: string | null;
+  stadtteil: string;
+  thema: string | null;
+  created_at: string;
+  proposer: string;
+}>> {
+  if (!hasSupabase()) return [];
+
+  try {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+      .from("kreise")
+      .select(`
+        id, name, beschreibung, stadtteil, thema, created_at,
+        creator:profiles!created_by ( first_name )
+      `)
+      .eq("status", "pending")
+      .order("created_at", { ascending: true });
+
+    if (error || !data) return [];
+
+    return data.map((k) => {
+      const creator = k.creator as { first_name: string } | null;
+      return {
+        id:           k.id,
+        name:         k.name,
+        beschreibung: k.beschreibung,
+        stadtteil:    k.stadtteil,
+        thema:        k.thema,
+        created_at:   k.created_at,
+        proposer:     creator?.first_name ?? "Unbekannt",
+      };
+    });
+  } catch {
+    return [];
+  }
+}
+
 // ─── Posts for a Kreis ────────────────────────────────────────────────────────
 
 export async function getKreisPosts(kreisId: string): Promise<FeedPost[]> {
