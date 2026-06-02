@@ -3,7 +3,7 @@
 import { useState, useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import Link from "next/link";
-import { Pencil, X, Plus, CheckCircle, MapPin, Calendar } from "lucide-react";
+import { Pencil, X, Plus, CheckCircle, MapPin, Calendar, Settings, Bookmark } from "lucide-react";
 import { updateProfile } from "@/app/actions/profile";
 import { STADTTEILE, INTERESTS } from "@/types/index";
 
@@ -307,26 +307,62 @@ function ProfileView({
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={onEdit}
-          style={{
-            display:      "flex",
-            alignItems:   "center",
-            gap:          6,
-            padding:      "8px 16px",
-            background:   "transparent",
-            border:       "1px solid var(--border)",
-            borderRadius: "var(--radius-m)",
-            fontFamily:   "var(--font-ui)",
-            fontSize:     13,
-            color:        "var(--fg-muted)",
-            cursor:       "pointer",
-          }}
-        >
-          <Pencil size={13} strokeWidth={1.5} />
-          Bearbeiten
-        </button>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button
+            type="button"
+            onClick={onEdit}
+            style={{
+              display:      "flex",
+              alignItems:   "center",
+              gap:          6,
+              padding:      "8px 16px",
+              background:   "transparent",
+              border:       "1px solid var(--border)",
+              borderRadius: "var(--radius-m)",
+              fontFamily:   "var(--font-ui)",
+              fontSize:     13,
+              color:        "var(--fg-muted)",
+              cursor:       "pointer",
+            }}
+          >
+            <Pencil size={13} strokeWidth={1.5} />
+            Bearbeiten
+          </button>
+          <Link
+            href="/gespeichert"
+            title="Gespeicherte Beiträge"
+            style={{
+              display:      "flex",
+              alignItems:   "center",
+              justifyContent: "center",
+              width:        36,
+              height:       36,
+              background:   "transparent",
+              border:       "1px solid var(--border)",
+              borderRadius: "var(--radius-m)",
+              color:        "var(--fg-muted)",
+            }}
+          >
+            <Bookmark size={14} strokeWidth={1.5} />
+          </Link>
+          <Link
+            href="/einstellungen"
+            title="Einstellungen"
+            style={{
+              display:      "flex",
+              alignItems:   "center",
+              justifyContent: "center",
+              width:        36,
+              height:       36,
+              background:   "transparent",
+              border:       "1px solid var(--border)",
+              borderRadius: "var(--radius-m)",
+              color:        "var(--fg-muted)",
+            }}
+          >
+            <Settings size={14} strokeWidth={1.5} />
+          </Link>
+        </div>
       </div>
 
       {/* Bio */}
