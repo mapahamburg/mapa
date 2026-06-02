@@ -8,8 +8,10 @@ import {
   Users,
   TriangleAlert,
   Shield,
+  LogOut,
 } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
+import { logout } from "@/app/actions/auth";
 
 type NavItem = {
   id: string;
@@ -120,17 +122,46 @@ export function AdminSidebar() {
         })}
       </nav>
 
-      {/* Bottom footnote */}
+      {/* Bottom: footnote + logout */}
       <div
         style={{
-          fontFamily: "var(--font-ui)",
-          fontSize: 11,
-          color: "var(--fg-subtle)",
           paddingTop: 16,
           borderTop: "1px solid var(--mapa-line)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
         }}
       >
-        Intern, nicht öffentlich
+        <span
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: 11,
+            color: "var(--fg-subtle)",
+          }}
+        >
+          Intern, nicht öffentlich
+        </span>
+        <form action={logout}>
+          <button
+            type="submit"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "6px 0",
+              fontFamily: "var(--font-ui)",
+              fontSize: 13,
+              color: "var(--fg-muted)",
+              width: "100%",
+            }}
+          >
+            <LogOut size={14} strokeWidth={1.5} />
+            Abmelden
+          </button>
+        </form>
       </div>
     </aside>
   );
