@@ -1,12 +1,14 @@
+import Link from "next/link";
 import { Avatar } from "@/components/ui/Avatar";
 
 interface InFeedHostCardProps {
+  id: string;
   name: string;
   stadtteil: string;
   bio?: string | null;
 }
 
-export function InFeedHostCard({ name, stadtteil, bio }: InFeedHostCardProps) {
+export function InFeedHostCard({ id, name, stadtteil, bio }: InFeedHostCardProps) {
   return (
     <div
       style={{
@@ -64,8 +66,8 @@ export function InFeedHostCard({ name, stadtteil, bio }: InFeedHostCardProps) {
         </p>
       )}
 
-      <button
-        type="button"
+      <Link
+        href={`/host/${id}`}
         style={{
           background: "transparent",
           border: "1px solid rgba(69,82,52,0.28)",
@@ -77,11 +79,12 @@ export function InFeedHostCard({ name, stadtteil, bio }: InFeedHostCardProps) {
           color: "var(--color-sage-ink)",
           cursor: "pointer",
           alignSelf: "flex-start",
+          textDecoration: "none",
           transition: "border-color 150ms, background 150ms",
         }}
       >
         Hallo schreiben
-      </button>
+      </Link>
     </div>
   );
 }

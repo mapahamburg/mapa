@@ -9,7 +9,7 @@ export const metadata = {
 export default async function FeedPage() {
   let userName = "du";
   let stadtteil = "Hamburg";
-  let host: { name: string; bio: string | null } | undefined;
+  let host: { id: string; name: string; bio: string | null } | undefined;
 
   // Posts + auth run in parallel — neither depends on the other
   const supabase = await createClient();
@@ -34,14 +34,14 @@ export default async function FeedPage() {
       if (profile?.stadtteil) {
         const { data: hostProfile } = await supabase
           .from("profiles")
-          .select("first_name, bio")
+          .select("id, first_name, bio")
           .eq("stadtteil", profile.stadtteil)
           .eq("is_local_host", true)
           .limit(1)
           .single();
 
         if (hostProfile?.first_name) {
-          host = { name: hostProfile.first_name, bio: hostProfile.bio ?? null };
+          host = { id: hostProfile.id, name: hostProfile.first_name, bio: hostProfile.bio ?? null };
         }
       }
     }

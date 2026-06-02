@@ -15,7 +15,7 @@ interface FeedColumnProps {
   posts: FeedPost[];
   userName?: string;
   stadtteil?: string;
-  host?: { name: string; bio: string | null };
+  host?: { id: string; name: string; bio: string | null };
 }
 
 export function FeedColumn({
@@ -154,7 +154,7 @@ export function FeedColumn({
       {/* ── Mobile Local Host card (hidden on desktop via CSS) ── */}
       {host && (
         <div className="mob-host-card">
-          <InFeedHostCard name={host.name} stadtteil={userDistrict} bio={host.bio} />
+          <InFeedHostCard id={host.id} name={host.name} stadtteil={userDistrict} bio={host.bio} />
         </div>
       )}
 

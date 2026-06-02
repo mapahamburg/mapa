@@ -133,15 +133,11 @@ export async function createProfile(
 
   const first_name       = (formData.get("first_name") as string).trim();
   const bio              = ((formData.get("bio") as string) ?? "").trim().slice(0, 120);
-  const username         = (formData.get("username")   as string).trim().toLowerCase();
   const stadtteil        = formData.get("stadtteil") as string;
   const interests        = formData.getAll("interests") as string[];
-  const newsletter_optin = formData.get("newsletter_optin") === "true";
 
   if (!first_name) return { error: "Bitte gib deinen Vornamen ein." };
-  if (!username || !/^[a-z0-9_.]{3,20}$/.test(username))
-    return { error: "Ungültiger Benutzername." };
-  if (!stadtteil) return { error: "Bitte wähle deinen Stadtteil." };
+  if (!stadtteil)  return { error: "Bitte wähle deinen Stadtteil." };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { error } = await supabase.from("profiles").insert({
@@ -150,8 +146,6 @@ export async function createProfile(
     bio: bio || null,
     stadtteil,
     interests,
-    username,
-    newsletter_optin,
   } as any);
 
   if (error) {
