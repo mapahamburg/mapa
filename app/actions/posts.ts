@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import type { PostType } from "@/types";
 
@@ -77,5 +78,7 @@ export async function createPost(
     };
   }
 
+  revalidatePath("/feed");
+  revalidatePath("/treffen");
   redirect("/feed");
 }
