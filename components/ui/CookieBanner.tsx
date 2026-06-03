@@ -52,7 +52,7 @@ export function CookieBanner() {
       >
         mapa verwendet technisch notwendige Cookies für die Anmeldung sowie optionale
         Analyse-Cookies zur Verbesserung der Plattform.{" "}
-        <Link href="/datenschutz" style={{ color: "var(--cobalt-500)", textDecoration: "none" }}>
+        <Link href="/datenschutz" style={{ color: "var(--cobalt-500)", textDecoration: "none", display: "inline-block", padding: "3px 0" }}>
           Datenschutzerklärung lesen
         </Link>
       </p>

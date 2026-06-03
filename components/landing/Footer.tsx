@@ -51,7 +51,7 @@ export function Footer() {
               maxWidth: 280,
             }}
           >
-            Die lokale Community für Mamas und Papas in Hamburg.
+            Die lokale Community für Familien in Hamburg.
             <br />
             Aus Hamburg, für Hamburg.
           </p>
@@ -90,6 +90,9 @@ export function Footer() {
                     textDecoration: "none",
                     fontSize: 14,
                     fontFamily: "var(--font-ui)",
+                    padding: "4px 0",
+                    display: "block",
+                    minHeight: 24,
                   }}
                 >
                   {item.label}
