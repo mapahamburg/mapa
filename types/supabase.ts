@@ -77,6 +77,8 @@ export type Database = {
           max_age: number | null;
           kreis_id: string | null;
           created_at: string;
+          lat: number | null;
+          lng: number | null;
         };
         Insert: {
           id?: string;
@@ -91,6 +93,8 @@ export type Database = {
           max_age?: number | null;
           kreis_id?: string | null;
           created_at?: string;
+          lat?: number | null;
+          lng?: number | null;
         };
         Update: {
           id?: string;
@@ -105,6 +109,8 @@ export type Database = {
           max_age?: number | null;
           kreis_id?: string | null;
           created_at?: string;
+          lat?: number | null;
+          lng?: number | null;
         };
         Relationships: [
           {

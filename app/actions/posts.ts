@@ -5,6 +5,27 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import type { PostType } from "@/types";
 
+// ─── Nominatim geocoding (OpenStreetMap, free, no API key) ───────────────────
+
+async function geocode(address: string): Promise<{ lat: number; lng: number } | null> {
+  try {
+    const q = encodeURIComponent(`${address}, Hamburg`);
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1&countrycodes=de`,
+      {
+        headers: { "User-Agent": "mapa.hamburg/1.0 (hey@mapa.hamburg)" },
+        next: { revalidate: 0 },
+      }
+    );
+    if (!res.ok) return null;
+    const data = await res.json() as Array<{ lat: string; lon: string }>;
+    if (!data[0]) return null;
+    return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+  } catch {
+    return null;
+  }
+}
+
 // ─── State type ───────────────────────────────────────────────────────────────
 
 export type PostState = {
@@ -60,6 +81,14 @@ export async function createPost(
 
   if (!user) redirect("/login");
 
+  // Geocode the meeting location for treffen/veranstaltung posts
+  let lat: number | null = null;
+  let lng: number | null = null;
+  if (meeting_location && (type === "treffen" || type === "veranstaltung")) {
+    const coords = await geocode(meeting_location);
+    if (coords) { lat = coords.lat; lng = coords.lng; }
+  }
+
   const { error } = await supabase.from("posts").insert({
     type,
     title,
@@ -70,6 +99,8 @@ export async function createPost(
     meeting_date,
     min_age,
     max_age,
+    lat,
+    lng,
   });
 
   if (error) {

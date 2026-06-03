@@ -23,6 +23,8 @@ export interface FeedPost {
   likes:    number;       // reserved — always 0 until likes table ships
   comments: number;
   isSaved?: boolean;
+  lat?:     number | null;
+  lng?:     number | null;
 }
 
 /**

@@ -41,7 +41,7 @@ export async function getFeedPosts(): Promise<FeedPost[]> {
         .from("posts")
         .select(
           `id, type, title, body, stadtteil,
-           meeting_location, meeting_date, min_age, max_age, created_at,
+           meeting_location, meeting_date, min_age, max_age, created_at, lat, lng,
            author:profiles!author_id ( first_name ),
            comments:comments ( count )`
         )
@@ -89,6 +89,8 @@ export async function getFeedPosts(): Promise<FeedPost[]> {
         likes:    0,
         comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
         isSaved:  savedIds.has(p.id),
+        lat:      (p as any).lat ?? null,
+        lng:      (p as any).lng ?? null,
       } satisfies FeedPost;
     });
   } catch {

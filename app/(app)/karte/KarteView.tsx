@@ -26,13 +26,12 @@ const DISTRICT_COORDS: Record<string, { lat: number; lng: number }> = {
   "HafenCity":    { lat: 53.5400, lng: 10.0000 },
 };
 
-function pinCoords(post: FeedPost, idx: number) {
+function pinCoords(post: FeedPost): { lat: number; lng: number } | null {
+  // Use real geocoded coordinates if available
+  if (post.lat && post.lng) return { lat: post.lat, lng: post.lng };
+  // Only fall back to district center for posts without a real address
   const base = DISTRICT_COORDS[post.district];
-  if (!base) return null;
-  const seed = post.id.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
-  const angle = ((seed * 137.5 + idx * 67) % 360) * (Math.PI / 180);
-  const r = 0.0018 + (seed % 9) * 0.0004;
-  return { lat: base.lat + Math.sin(angle) * r, lng: base.lng + Math.cos(angle) * r };
+  return base ?? null;
 }
 
 // ─── Mapbox Layer-Definitionen ────────────────────────────────────────────────
@@ -99,12 +98,17 @@ export function KarteView({ posts }: { posts: FeedPost[] }) {
   const [selected, setSelected] = useState<FeedPost | null>(null);
   const [cursor, setCursor] = useState("grab");
 
+  // Only show treffen/veranstaltungen that have a meeting location
+  const mapPosts = posts.filter(
+    (p) => (p.type === "treffen" || p.type === "veranstaltung") && p.meeting?.where
+  );
+
   // GeoJSON aus Posts bauen
   const geojson = useMemo(() => ({
     type: "FeatureCollection" as const,
-    features: posts
-      .map((p, i) => {
-        const c = pinCoords(p, i);
+    features: mapPosts
+      .map((p) => {
+        const c = pinCoords(p);
         if (!c) return null;
         return {
           type: "Feature" as const,
@@ -117,7 +121,7 @@ export function KarteView({ posts }: { posts: FeedPost[] }) {
         };
       })
       .filter((f): f is NonNullable<typeof f> => f !== null),
-  }), [posts]);
+  }), [mapPosts]);
 
   const handleClick = useCallback((e: MapMouseEvent) => {
     const features = e.features;
