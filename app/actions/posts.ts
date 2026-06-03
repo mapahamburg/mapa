@@ -111,5 +111,6 @@ export async function createPost(
 
   revalidatePath("/feed");
   revalidatePath("/treffen");
+  revalidatePath("/karte");
   redirect("/feed");
 }

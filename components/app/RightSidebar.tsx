@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { Avatar } from "@/components/ui/Avatar";
+import { createClient } from "@/lib/supabase/server";
+
+// ─── Types (kept for consumers that build sidebar data externally) ────────────
 
 export interface SidebarHost {
   id: string;
@@ -22,13 +25,89 @@ export interface SidebarStats {
   newThisWeek: number;
 }
 
-interface RightSidebarProps {
-  host?: SidebarHost;
-  treffen?: SidebarTreffen[];
-  stats?: SidebarStats;
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function formatDate(iso: string | null): { day: string; month: string } | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return null;
+  return {
+    day: d.getDate().toString(),
+    month: d.toLocaleDateString("de-DE", { month: "short" }),
+  };
 }
 
-export function RightSidebar({ host, treffen = [], stats }: RightSidebarProps) {
+// ─── Async Server Component — fetches its own data ───────────────────────────
+
+export async function RightSidebar({ stadtteil }: { stadtteil: string | null }) {
+  let host: SidebarHost | undefined;
+  let treffen: SidebarTreffen[] = [];
+  let stats: SidebarStats | undefined;
+
+  if (stadtteil) {
+    try {
+      const supabase = await createClient();
+      const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
+      const [hostRes, treffenRes, membersRes, newMembersRes] = await Promise.all([
+        supabase
+          .from("profiles")
+          .select("id, first_name, stadtteil, bio")
+          .eq("stadtteil", stadtteil)
+          .eq("is_local_host", true)
+          .limit(1)
+          .single(),
+        supabase
+          .from("posts")
+          .select("id, title, meeting_date, meeting_location, created_at")
+          .eq("stadtteil", stadtteil)
+          .in("type", ["treffen", "veranstaltung"])
+          .gte("created_at", weekAgo)
+          .order("meeting_date", { ascending: true, nullsFirst: false })
+          .limit(3),
+        supabase
+          .from("profiles")
+          .select("*", { count: "exact", head: true })
+          .eq("stadtteil", stadtteil),
+        supabase
+          .from("profiles")
+          .select("*", { count: "exact", head: true })
+          .eq("stadtteil", stadtteil)
+          .gte("joined_at", weekAgo),
+      ]);
+
+      if (hostRes.data?.first_name) {
+        host = {
+          id: hostRes.data.id,
+          name: hostRes.data.first_name,
+          stadtteil: hostRes.data.stadtteil,
+          bio: hostRes.data.bio ?? null,
+        };
+      }
+
+      if (treffenRes.data) {
+        treffen = treffenRes.data.map((p) => {
+          const fmt = formatDate(p.meeting_date ?? p.created_at);
+          return {
+            id: p.id,
+            title: p.title,
+            day: fmt?.day ?? "?",
+            month: fmt?.month ?? "?",
+            where: p.meeting_location ?? null,
+          };
+        });
+      }
+
+      stats = {
+        stadtteil,
+        members: membersRes.count ?? 0,
+        newThisWeek: newMembersRes.count ?? 0,
+      };
+    } catch {
+      // Non-fatal — sidebar stays empty
+    }
+  }
+
   return (
     <aside
       style={{
@@ -175,7 +254,6 @@ export function RightSidebar({ host, treffen = [], stats }: RightSidebarProps) {
                 }}
               >
                 <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  {/* Date pill */}
                   <div
                     style={{
                       width: 44,
@@ -188,14 +266,9 @@ export function RightSidebar({ host, treffen = [], stats }: RightSidebarProps) {
                       fontFamily: "var(--font-display)",
                     }}
                   >
-                    <div style={{ fontSize: 18, letterSpacing: "-0.02em", lineHeight: 1 }}>
-                      {t.day}
-                    </div>
-                    <div style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                      {t.month}
-                    </div>
+                    <div style={{ fontSize: 18, letterSpacing: "-0.02em", lineHeight: 1 }}>{t.day}</div>
+                    <div style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.08em" }}>{t.month}</div>
                   </div>
-
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div
                       style={{
@@ -258,34 +331,16 @@ export function RightSidebar({ host, treffen = [], stats }: RightSidebarProps) {
           </div>
           <div style={{ display: "flex", gap: 24, marginTop: 14 }}>
             <div>
-              <div
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 28,
-                  letterSpacing: "-0.02em",
-                  color: "var(--color-ink)",
-                }}
-              >
+              <div style={{ fontFamily: "var(--font-display)", fontSize: 28, letterSpacing: "-0.02em", color: "var(--color-ink)" }}>
                 {stats.members}
               </div>
-              <div style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 2 }}>
-                Mitglieder
-              </div>
+              <div style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 2 }}>Mitglieder</div>
             </div>
             <div>
-              <div
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 28,
-                  letterSpacing: "-0.02em",
-                  color: "var(--color-ink)",
-                }}
-              >
+              <div style={{ fontFamily: "var(--font-display)", fontSize: 28, letterSpacing: "-0.02em", color: "var(--color-ink)" }}>
                 {stats.newThisWeek}
               </div>
-              <div style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 2 }}>
-                diese Woche neu
-              </div>
+              <div style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 2 }}>diese Woche neu</div>
             </div>
           </div>
         </div>

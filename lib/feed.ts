@@ -4,6 +4,7 @@
  * or Server Actions only. Never import this file from "use client" code.
  */
 
+import { unstable_cache } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { timeAgo, feedSection, formatMeetingDate, formatAgeRange } from "@/lib/format";
 import type { FeedPost, PostDetail, CommentItem } from "@/types";
@@ -23,48 +24,60 @@ function hasSupabase() {
  * Fetch the last 7 days of posts, newest first, with author name +
  * comment count. Returns [] if Supabase is not configured.
  */
+// ─── Cached public post fetcher (no user-specific data) ──────────────────────
+// Posts are public — cache for 60s to avoid a DB hit on every navigation.
+// Invalidated on new posts via revalidatePath("/feed").
+
+const getCachedPosts = unstable_cache(
+  async (): Promise<Array<{
+    id: string; type: string; title: string; body: string | null;
+    stadtteil: string; meeting_location: string | null; meeting_date: string | null;
+    min_age: number | null; max_age: number | null; created_at: string;
+    lat: number | null; lng: number | null;
+    author: { first_name: string } | null;
+    comments: { count: number | string }[] | null;
+  }>> => {
+    const supabase = await createClient();
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+    const { data, error } = await supabase
+      .from("posts")
+      .select(
+        `id, type, title, body, stadtteil,
+         meeting_location, meeting_date, min_age, max_age, created_at, lat, lng,
+         author:profiles!author_id ( first_name ),
+         comments:comments ( count )`
+      )
+      .gte("created_at", sevenDaysAgo)
+      .order("created_at", { ascending: false })
+      .limit(60);
+    if (error || !data) return [];
+    return data as any;
+  },
+  ["feed-posts"],
+  { revalidate: 60, tags: ["feed-posts"] }
+);
+
 export async function getFeedPosts(): Promise<FeedPost[]> {
   if (!hasSupabase()) return [];
 
   try {
     const supabase = await createClient();
-
-    const sevenDaysAgo = new Date(
-      Date.now() - 7 * 24 * 60 * 60 * 1000
-    ).toISOString();
-
-    // Fetch posts + current user's saved post IDs in parallel
     const { data: { user } } = await supabase.auth.getUser();
 
-    const [postsRes, savedRes] = await Promise.all([
-      supabase
-        .from("posts")
-        .select(
-          `id, type, title, body, stadtteil,
-           meeting_location, meeting_date, min_age, max_age, created_at, lat, lng,
-           author:profiles!author_id ( first_name ),
-           comments:comments ( count )`
-        )
-        .gte("created_at", sevenDaysAgo)
-        .order("created_at", { ascending: false })
-        .limit(60),
-
+    // Posts from cache + saved IDs from DB (user-specific, not cached)
+    const [posts, savedRes] = await Promise.all([
+      getCachedPosts(),
       user
-        ? (supabase as any)
-            .from("saved_posts")
-            .select("post_id")
-            .eq("user_id", user.id)
+        ? (supabase as any).from("saved_posts").select("post_id").eq("user_id", user.id)
         : Promise.resolve({ data: [] }),
     ]);
-
-    if (postsRes.error || !postsRes.data) return [];
 
     const savedIds = new Set<string>(
       (savedRes.data ?? []).map((r: { post_id: string }) => r.post_id)
     );
 
-    return postsRes.data.map((p) => {
-      const author   = p.author   as { first_name: string }        | null;
+    return posts.map((p) => {
+      const author   = p.author   as { first_name: string } | null;
       const comments = p.comments as { count: number | string }[] | null;
 
       const meeting =
@@ -78,7 +91,7 @@ export async function getFeedPosts(): Promise<FeedPost[]> {
 
       return {
         id:       p.id,
-        type:     p.type,
+        type:     p.type as FeedPost["type"],
         author:   author?.first_name ?? "Nachbar",
         district: p.stadtteil,
         time:     timeAgo(p.created_at),
@@ -89,8 +102,8 @@ export async function getFeedPosts(): Promise<FeedPost[]> {
         likes:    0,
         comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
         isSaved:  savedIds.has(p.id),
-        lat:      (p as any).lat ?? null,
-        lng:      (p as any).lng ?? null,
+        lat:      p.lat ?? null,
+        lng:      p.lng ?? null,
       } satisfies FeedPost;
     });
   } catch {
