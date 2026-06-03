@@ -33,7 +33,7 @@ const getCachedPosts = unstable_cache(
     id: string; type: string; title: string; body: string | null;
     stadtteil: string; meeting_location: string | null; meeting_date: string | null;
     min_age: number | null; max_age: number | null; created_at: string;
-    lat: number | null; lng: number | null;
+    lat: number | null; lng: number | null; image_url: string | null;
     author: { first_name: string } | null;
     comments: { count: number | string }[] | null;
   }>> => {
@@ -43,7 +43,7 @@ const getCachedPosts = unstable_cache(
       .from("posts")
       .select(
         `id, type, title, body, stadtteil,
-         meeting_location, meeting_date, min_age, max_age, created_at, lat, lng,
+         meeting_location, meeting_date, min_age, max_age, created_at, lat, lng, image_url,
          author:profiles!author_id ( first_name ),
          comments:comments ( count )`
       )
@@ -104,6 +104,7 @@ export async function getFeedPosts(): Promise<FeedPost[]> {
         isSaved:  savedIds.has(p.id),
         lat:      p.lat ?? null,
         lng:      p.lng ?? null,
+        imageUrl: p.image_url ?? null,
       } satisfies FeedPost;
     });
   } catch {
@@ -124,7 +125,7 @@ export async function getSearchResults(query: string): Promise<FeedPost[]> {
       .from("posts")
       .select(
         `id, type, title, body, stadtteil,
-         meeting_location, meeting_date, min_age, max_age, created_at,
+         meeting_location, meeting_date, min_age, max_age, created_at, image_url,
          author:profiles!author_id ( first_name ),
          comments:comments ( count )`
       )
@@ -159,6 +160,7 @@ export async function getSearchResults(query: string): Promise<FeedPost[]> {
         likes:    0,
         comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
         isSaved:  false,
+        imageUrl: (p as any).image_url ?? null,
       } satisfies FeedPost;
     });
   } catch {
@@ -182,7 +184,7 @@ export async function getSavedPosts(): Promise<FeedPost[]> {
         `post_id,
          post:posts (
            id, type, title, body, stadtteil,
-           meeting_location, meeting_date, min_age, max_age, created_at,
+           meeting_location, meeting_date, min_age, max_age, created_at, image_url,
            author:profiles!author_id ( first_name ),
            comments:comments ( count )
          )`
@@ -220,6 +222,7 @@ export async function getSavedPosts(): Promise<FeedPost[]> {
           likes:    0,
           comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
           isSaved:  true,
+          imageUrl: (p.image_url as string | null) ?? null,
         } as FeedPost;
       })
       .filter((p): p is FeedPost => p !== null);
@@ -301,7 +304,7 @@ export async function getTreffenPosts(): Promise<FeedPost[]> {
       .from("posts")
       .select(
         `id, type, title, body, stadtteil,
-         meeting_location, meeting_date, min_age, max_age, created_at,
+         meeting_location, meeting_date, min_age, max_age, created_at, image_url,
          author:profiles!author_id ( first_name ),
          comments:comments ( count )`
       )
@@ -336,6 +339,7 @@ export async function getTreffenPosts(): Promise<FeedPost[]> {
         meeting,
         likes:    0,
         comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
+        imageUrl: (p as any).image_url ?? null,
       } satisfies FeedPost;
     });
   } catch {
@@ -367,7 +371,7 @@ export async function getPostWithComments(id: string): Promise<{
         .from("posts")
         .select(
           `id, type, title, body, stadtteil,
-           meeting_location, meeting_date, min_age, max_age, created_at,
+           meeting_location, meeting_date, min_age, max_age, created_at, image_url,
            author:profiles!author_id ( first_name )`
         )
         .eq("id", id)
@@ -411,6 +415,7 @@ export async function getPostWithComments(id: string): Promise<{
                           : undefined,
       min_age:          p.min_age ?? undefined,
       max_age:          p.max_age ?? undefined,
+      image_url:        (p as any).image_url ?? null,
     };
 
     const comments: CommentItem[] = (commentsRes.data ?? []).map((c) => {

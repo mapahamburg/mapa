@@ -5,6 +5,7 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { MapPin, Calendar } from "lucide-react";
 import { createPost } from "@/app/actions/posts";
+import { ImageUpload } from "@/components/app/ImageUpload";
 import { STADTTEILE } from "@/types";
 import type { PostType } from "@/types";
 
@@ -253,6 +254,9 @@ export function NewPostForm({ defaultStadtteil }: { defaultStadtteil?: string })
             </p>
           )}
         </div>
+
+        {/* ── 2b. Photo ─────────────────────────────────────────────────────── */}
+        <ImageUpload labelStyle={labelStyle} />
 
         {/* ── 3. Type pills ─────────────────────────────────────────────────── */}
         <div>

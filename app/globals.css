@@ -255,6 +255,9 @@ html, body {
   50%       { opacity: 0.45; }
 }
 
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 0.8s linear infinite; }
+
 @keyframes slot-reel {
   0%   { transform: translateY(-130%); filter: blur(6px); opacity: 0.6; }
   45%  { transform: translateY(-10%);  filter: blur(3px); opacity: 1; }

@@ -101,6 +101,24 @@ export function PostCard({ post }: { post: FeedPost }) {
         </p>
       )}
 
+      {/* Photo */}
+      {post.imageUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={post.imageUrl}
+          alt=""
+          loading="lazy"
+          style={{
+            width: "100%",
+            maxHeight: 360,
+            objectFit: "cover",
+            borderRadius: 14,
+            border: "1px solid var(--color-line-soft)",
+            display: "block",
+          }}
+        />
+      )}
+
       {/* Meeting chip */}
       {post.meeting && <MeetingChip {...post.meeting} />}
 
@@ -268,9 +286,25 @@ export function CompactPost({ post }: { post: FeedPost }) {
         </div>
       </div>
 
-      {/* Tag — top-aligned right column */}
-      <div style={{ position: "relative", zIndex: 1 }}>
+      {/* Tag + optional thumbnail — top-aligned right column */}
+      <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 10 }}>
         <Tag type={post.type} />
+        {post.imageUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={post.imageUrl}
+            alt=""
+            loading="lazy"
+            style={{
+              width: 64,
+              height: 64,
+              objectFit: "cover",
+              borderRadius: 10,
+              border: "1px solid var(--color-line-soft)",
+              display: "block",
+            }}
+          />
+        )}
       </div>
     </article>
   );

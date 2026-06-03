@@ -51,6 +51,8 @@ export async function createPost(
     (formData.get("meeting_location") as string | null)?.trim() || null;
   const meeting_date =
     (formData.get("meeting_date") as string | null) || null;
+  const image_url =
+    (formData.get("image_url") as string | null)?.trim() || null;
   const min_age_raw = formData.get("min_age") as string | null;
   const max_age_raw = formData.get("max_age") as string | null;
   const min_age =
@@ -101,6 +103,7 @@ export async function createPost(
     max_age,
     lat,
     lng,
+    image_url,
   });
 
   if (error) {

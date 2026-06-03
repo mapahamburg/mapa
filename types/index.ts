@@ -25,6 +25,7 @@ export interface FeedPost {
   isSaved?: boolean;
   lat?:     number | null;
   lng?:     number | null;
+  imageUrl?: string | null;
 }
 
 /**
@@ -43,6 +44,7 @@ export interface PostDetail {
   meeting_date?:    string;  // formatted German date string
   min_age?:         number;
   max_age?:         number;
+  image_url?:       string | null;
 }
 
 /** A single comment in the PostDetail view. */

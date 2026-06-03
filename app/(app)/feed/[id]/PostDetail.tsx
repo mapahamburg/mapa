@@ -231,6 +231,24 @@ export function PostDetail({
               </p>
             )}
 
+            {/* Photo */}
+            {post.image_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={post.image_url}
+                alt=""
+                style={{
+                  width: "100%",
+                  maxHeight: 480,
+                  objectFit: "cover",
+                  borderRadius: 14,
+                  border: "1px solid var(--color-line-soft)",
+                  marginTop: 20,
+                  display: "block",
+                }}
+              />
+            )}
+
             {/* Meeting block */}
             {(post.meeting_location || post.meeting_date) && (
               <div

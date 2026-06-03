@@ -79,6 +79,7 @@ export type Database = {
           created_at: string;
           lat: number | null;
           lng: number | null;
+          image_url: string | null;
         };
         Insert: {
           id?: string;
@@ -95,6 +96,7 @@ export type Database = {
           created_at?: string;
           lat?: number | null;
           lng?: number | null;
+          image_url?: string | null;
         };
         Update: {
           id?: string;
@@ -111,6 +113,7 @@ export type Database = {
           created_at?: string;
           lat?: number | null;
           lng?: number | null;
+          image_url?: string | null;
         };
         Relationships: [
           {
