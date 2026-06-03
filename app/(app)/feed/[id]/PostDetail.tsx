@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, MapPin, Calendar, Users, MessageSquare, Send, Heart } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Tag } from "@/components/ui/Tag";
+import { ReportButton } from "@/components/app/ReportButton";
 import { createComment, type CommentState } from "@/app/actions/comments";
 import { toggleReaction } from "@/app/actions/reactions";
 import type { PostDetail as PostDetailData, CommentItem, PostType } from "@/types";
@@ -406,6 +407,11 @@ export function PostDetail({
             </div>
           )}
         </section>
+
+        {/* Report */}
+        <div style={{ marginTop: 32, paddingTop: 20, borderTop: "1px solid var(--color-line-soft)" }}>
+          <ReportButton postId={post.id} />
+        </div>
       </article>
 
       <StickyComposer postId={post.id} />

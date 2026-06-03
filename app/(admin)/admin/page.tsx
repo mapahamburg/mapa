@@ -7,15 +7,17 @@ import {
   getAdminKPIs,
   getStadtteilStats,
   getRecentActivity,
+  getOpenReports,
 } from "@/lib/admin";
 
 export const metadata = { title: "Dashboard · mapa Admin" };
 
 export default async function AdminDashboardPage() {
-  const [kpis, stadtteile, activity] = await Promise.all([
+  const [kpis, stadtteile, activity, reports] = await Promise.all([
     getAdminKPIs(),
     getStadtteilStats(),
     getRecentActivity(),
+    getOpenReports(),
   ]);
 
   const maxMembers = stadtteile.reduce(
@@ -203,7 +205,7 @@ export default async function AdminDashboardPage() {
         }}
       >
         <ActivityFeed items={activity} />
-        <ModerationQueue />
+        <ModerationQueue reports={reports} />
       </div>
     </div>
   );

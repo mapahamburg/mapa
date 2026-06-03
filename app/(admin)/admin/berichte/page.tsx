@@ -1,8 +1,11 @@
 import { ModerationQueue } from "@/components/admin/ModerationQueue";
+import { getOpenReports } from "@/lib/admin";
 
 export const metadata = { title: "Berichte · mapa Admin" };
 
-export default function BerichtePage() {
+export default async function BerichtePage() {
+  const reports = await getOpenReports();
+
   return (
     <div
       style={{
@@ -38,23 +41,7 @@ export default function BerichtePage() {
         </p>
       </div>
 
-      {/* Development notice */}
-      <div
-        style={{
-          background: "var(--mapa-peach-50)",
-          border: "1px solid var(--mapa-line)",
-          borderRadius: "var(--radius-md, 12px)",
-          padding: "16px 20px",
-          marginBottom: 32,
-          fontFamily: "var(--font-ui)",
-          fontSize: 13,
-          color: "var(--fg-muted)",
-        }}
-      >
-        Meldesystem in Entwicklung. Berichte werden bald hier erscheinen.
-      </div>
-
-      <ModerationQueue />
+      <ModerationQueue reports={reports} />
     </div>
   );
 }

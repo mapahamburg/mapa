@@ -297,6 +297,51 @@ export type Database = {
           }
         ];
       };
+      reports: {
+        Row: {
+          id: string;
+          post_id: string | null;
+          reporter_id: string | null;
+          reason: string;
+          details: string | null;
+          status: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          post_id?: string | null;
+          reporter_id?: string | null;
+          reason: string;
+          details?: string | null;
+          status?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          post_id?: string | null;
+          reporter_id?: string | null;
+          reason?: string;
+          details?: string | null;
+          status?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "reports_post_id_fkey";
+            columns: ["post_id"];
+            isOneToOne: false;
+            referencedRelation: "posts";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "reports_reporter_id_fkey";
+            columns: ["reporter_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

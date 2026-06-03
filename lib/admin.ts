@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 // ─────────────────────────────────────────────
 // Helpers
@@ -207,4 +208,69 @@ export async function getRecentMembers(): Promise<
     stadtteil: row.stadtteil,
     joinedAt: formatDate(row.joined_at),
   }));
+}
+
+// ─────────────────────────────────────────────
+// Reports / Moderation queue
+// ─────────────────────────────────────────────
+
+const REASON_LABEL: Record<string, string> = {
+  spam: "Spam oder Werbung",
+  unangemessen: "Unangemessener Inhalt",
+  falsch: "Falsche Information",
+  fehl_am_platz: "Gehört nicht hierher",
+  sonstiges: "Etwas anderes",
+};
+
+// Severity ranking by reason (drives the badge in the queue)
+const REASON_SEVERITY: Record<string, "HIGH" | "MED" | "LOW"> = {
+  unangemessen: "HIGH",
+  falsch: "MED",
+  spam: "MED",
+  fehl_am_platz: "LOW",
+  sonstiges: "LOW",
+};
+
+export async function getOpenReports(): Promise<
+  Array<{
+    id: string;
+    severity: "HIGH" | "MED" | "LOW";
+    reason: string;
+    snippet: string;
+    reporter: string;
+    time: string;
+    postId: string | null;
+  }>
+> {
+  // Reads via service role — admin access is gated at the /admin layout layer.
+  try {
+    const admin = createAdminClient();
+    const { data } = await (admin as any)
+      .from("reports")
+      .select(
+        `id, reason, details, status, created_at, post_id,
+         post:posts ( title ),
+         reporter:profiles!reporter_id ( first_name )`
+      )
+      .eq("status", "open")
+      .order("created_at", { ascending: false })
+      .limit(50);
+
+    return (data ?? []).map((r: any) => {
+      const postTitle = (r.post as { title: string } | null)?.title ?? "Beitrag gelöscht";
+      const reporter = (r.reporter as { first_name: string } | null)?.first_name ?? "Anonym";
+      const detail = r.details ? ` · ${r.details}` : "";
+      return {
+        id: r.id as string,
+        severity: REASON_SEVERITY[r.reason] ?? "LOW",
+        reason: REASON_LABEL[r.reason] ?? r.reason,
+        snippet: `${postTitle}${detail}`,
+        reporter,
+        time: relativeTime(r.created_at as string),
+        postId: r.post_id as string | null,
+      };
+    });
+  } catch {
+    return [];
+  }
 }
