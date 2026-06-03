@@ -164,6 +164,64 @@ export default function HausregelnPage() {
           ))}
         </div>
 
+        {/* Fotos & Tauschbörse */}
+        <section style={{ marginTop: 48 }}>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontStyle: "italic",
+              fontSize: 24,
+              fontWeight: 400,
+              color: "var(--fg)",
+              letterSpacing: "-0.015em",
+              margin: "0 0 16px 0",
+            }}
+          >
+            Fotos, Inhalte und Tauschbörse.
+          </h2>
+
+          <article
+            style={{
+              background: "var(--bg-elevated)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius-lg)",
+              padding: 24,
+              boxShadow: "var(--shadow-m)",
+              marginBottom: 16,
+            }}
+          >
+            <p style={{ fontFamily: "var(--font-ui)", fontSize: 15, fontWeight: 600, color: "var(--fg)", margin: "0 0 10px 0" }}>
+              Fotos und Inhalte
+            </p>
+            <p style={{ fontFamily: "var(--font-ui)", fontSize: 14, color: "var(--fg-muted)", lineHeight: 1.65, margin: "0 0 12px 0" }}>
+              Teile nur Inhalte, die dir gehören, die du selbst fotografiert hast oder für die du die Erlaubnis hast.
+            </p>
+            <p style={{ fontFamily: "var(--font-ui)", fontSize: 14, color: "var(--fg-muted)", lineHeight: 1.65, margin: 0 }}>
+              Bitte keine erkennbaren Fotos fremder Kinder, keine privaten Adressen, keine Kennzeichen, keine Screenshots privater Chats und keine medizinischen Unterlagen. Keine Werbung, kein Spam.
+            </p>
+          </article>
+
+          <article
+            style={{
+              background: "var(--bg-elevated)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius-lg)",
+              padding: 24,
+              boxShadow: "var(--shadow-m)",
+            }}
+          >
+            <p style={{ fontFamily: "var(--font-ui)", fontSize: 15, fontWeight: 600, color: "var(--fg)", margin: "0 0 10px 0" }}>
+              Tauschbörse
+            </p>
+            <p style={{ fontFamily: "var(--font-ui)", fontSize: 14, color: "var(--fg-muted)", lineHeight: 1.65, margin: "0 0 12px 0" }}>
+              mapa ist keine anonyme Verkaufsplattform. Beschreib ehrlich, bleib lokal und respektvoll. Abholung im Viertel ist meist die schönste Lösung. Nutze sichere Treffpunkte.
+            </p>
+            <p style={{ fontFamily: "var(--font-ui)", fontSize: 14, color: "var(--fg-muted)", lineHeight: 1.65, margin: 0 }}>
+              Für private Verkäufe und Tauschaktionen übernimmt mapa keine Haftung. Verschenken, Suchen und lokale Tipps stehen im Mittelpunkt, nicht der schnelle Handel.
+            </p>
+          </article>
+        </section>
+
         {/* Moderation note */}
         <div
           style={{

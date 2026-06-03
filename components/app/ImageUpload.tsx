@@ -215,6 +215,27 @@ export function ImageUpload({ labelStyle }: ImageUploadProps) {
           {error}
         </p>
       )}
+
+      {/* Quiet upload nudge */}
+      <p
+        style={{
+          marginTop: 8,
+          fontFamily: "var(--font-ui)",
+          fontSize: 12.5,
+          color: "var(--color-subtle)",
+          lineHeight: 1.5,
+          margin: "8px 0 0 0",
+        }}
+      >
+        Bitte teile nur Fotos, die dir gehören. Keine erkennbaren Gesichter
+        fremder Kinder, keine privaten Adressen oder Kennzeichen.{" "}
+        <a
+          href="/hausregeln"
+          style={{ color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: 3 }}
+        >
+          Hausregeln
+        </a>
+      </p>
     </div>
   );
 }

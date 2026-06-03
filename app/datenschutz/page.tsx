@@ -97,14 +97,28 @@ export default function DatenschutzPage() {
         mit deiner ausdrücklichen Einwilligung gesetzt.
       </p>
 
-      <h2 style={h2Style}>6. Speicherdauer</h2>
+      <h2 style={h2Style}>6. Fotos und hochgeladene Inhalte</h2>
+      <p style={pStyle}>
+        Wenn du ein Foto zu einem Beitrag hinzufügst, wird es bei unserem Hosting-Anbieter
+        (Supabase Storage, Serverstandort EU) gespeichert und ist über den Beitrag öffentlich
+        abrufbar. Lade nur Bilder hoch, die du selbst erstellt hast oder für die du die nötigen
+        Rechte besitzt.
+      </p>
+      <p style={pStyle}>
+        Achte darauf, keine personenbezogenen Daten Dritter zu veröffentlichen, etwa erkennbare
+        Gesichter fremder Personen, private Adressen oder Kennzeichen. Du kannst deine Beiträge und
+        die zugehörigen Fotos jederzeit löschen. Bei Kontolöschung werden auch deine hochgeladenen
+        Bilder entfernt.
+      </p>
+
+      <h2 style={h2Style}>7. Speicherdauer</h2>
       <p style={pStyle}>
         Deine Daten werden gelöscht, sobald sie für den Zweck der Verarbeitung nicht mehr benötigt
         werden. Account-Daten werden bei Kontolöschung vollständig entfernt. Server-Logs werden nach
         30 Tagen automatisch gelöscht.
       </p>
 
-      <h2 style={h2Style}>7. Deine Rechte</h2>
+      <h2 style={h2Style}>8. Deine Rechte</h2>
       <p style={pStyle}>Du hast folgende Rechte gemäß DSGVO:</p>
       <BulletList
         items={[
@@ -120,7 +134,7 @@ export default function DatenschutzPage() {
         Zur Ausübung dieser Rechte wende dich an: datenschutz@mapa.hamburg
       </p>
 
-      <h2 style={h2Style}>8. Beschwerderecht</h2>
+      <h2 style={h2Style}>9. Beschwerderecht</h2>
       <p style={pStyle}>
         Du hast das Recht, dich bei einer Aufsichtsbehörde zu beschweren. Zuständige
         Aufsichtsbehörde in Hamburg ist der Hamburgische Beauftragte für Datenschutz und
