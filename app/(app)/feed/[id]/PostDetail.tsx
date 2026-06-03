@@ -2,12 +2,14 @@
 
 import { useState, useRef, useEffect, useActionState } from "react";
 import Link from "next/link";
-import { ArrowLeft, MapPin, Calendar, Users, MessageSquare, Send, Heart } from "lucide-react";
+import { ArrowLeft, MapPin, Calendar, Users, MessageSquare, Send, Heart, Pencil, X } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Tag } from "@/components/ui/Tag";
 import { ReportButton } from "@/components/app/ReportButton";
+import { ImageUpload } from "@/components/app/ImageUpload";
 import { createComment, type CommentState } from "@/app/actions/comments";
 import { toggleReaction } from "@/app/actions/reactions";
+import { updatePost } from "@/app/actions/posts";
 import type { PostDetail as PostDetailData, CommentItem, PostType } from "@/types";
 
 // Accent bar color per post type — matches feed card treatment
@@ -120,17 +122,118 @@ function StickyComposer({ postId }: { postId: string }) {
   );
 }
 
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  background: "var(--color-paper)",
+  border: "1px solid var(--color-line)",
+  borderRadius: 10,
+  padding: "11px 14px",
+  fontFamily: "var(--font-ui)",
+  fontSize: 15,
+  color: "var(--color-ink)",
+  outline: "none",
+  boxSizing: "border-box",
+  transition: "border-color 200ms",
+};
+
+function EditForm({ post, onCancel }: { post: PostDetailData; onCancel: () => void }) {
+  const [state, formAction, isPending] = useActionState(updatePost, {});
+
+  if (state.error === undefined && !isPending && state !== null) {
+    // success if no error and has been submitted (state is mutated)
+  }
+
+  return (
+    <form action={formAction} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+      <input type="hidden" name="post_id" value={post.id} />
+
+      {/* Title */}
+      <div>
+        <label style={{ display: "block", fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600, color: "var(--color-muted)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>
+          Titel
+        </label>
+        <input name="title" type="text" defaultValue={post.title} required maxLength={200} style={inputStyle} />
+      </div>
+
+      {/* Body */}
+      <div>
+        <label style={{ display: "block", fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600, color: "var(--color-muted)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>
+          Text <span style={{ fontWeight: 400, letterSpacing: 0 }}>(wenn du magst)</span>
+        </label>
+        <textarea
+          name="body"
+          rows={5}
+          maxLength={2000}
+          defaultValue={post.body ?? ""}
+          style={{ ...inputStyle, resize: "vertical", lineHeight: 1.6 }}
+        />
+      </div>
+
+      {/* Photo */}
+      <ImageUpload
+        labelStyle={{ fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600, color: "var(--color-muted)", textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: 8, display: "block" }}
+        initialUrl={post.image_url ?? undefined}
+      />
+
+      {state.error && (
+        <p style={{ fontFamily: "var(--font-ui)", fontSize: 13, color: "var(--color-danger)", margin: 0 }}>
+          {state.error}
+        </p>
+      )}
+
+      <div style={{ display: "flex", gap: 10 }}>
+        <button
+          type="submit"
+          disabled={isPending}
+          style={{
+            background: isPending ? "var(--color-cobalt-soft)" : "var(--color-cobalt)",
+            color: isPending ? "var(--color-muted)" : "#fff",
+            border: "none",
+            borderRadius: 999,
+            padding: "10px 22px",
+            fontFamily: "var(--font-ui)",
+            fontSize: 14,
+            fontWeight: 500,
+            cursor: isPending ? "default" : "pointer",
+          }}
+        >
+          {isPending ? "Wird gespeichert…" : "Speichern"}
+        </button>
+        <button
+          type="button"
+          onClick={onCancel}
+          style={{
+            background: "none",
+            border: "1px solid var(--color-line)",
+            borderRadius: 999,
+            padding: "10px 18px",
+            fontFamily: "var(--font-ui)",
+            fontSize: 14,
+            color: "var(--color-muted)",
+            cursor: "pointer",
+          }}
+        >
+          Abbrechen
+        </button>
+      </div>
+    </form>
+  );
+}
+
 export function PostDetail({
   post,
   comments,
   userHasReacted,
+  isOwner = false,
 }: {
   post: PostDetailData;
   comments: CommentItem[];
   userHasReacted: boolean;
+  isOwner?: boolean;
 }) {
   const [reacted, setReacted] = useState(userHasReacted);
   const [isPending, setIsPending] = useState(false);
+  const [editing, setEditing] = useState(false);
   const accentColor = ACCENT_COLOR[post.type as PostType];
 
   return (
@@ -178,9 +281,63 @@ export function PostDetail({
           )}
 
           <div style={{ padding: 32, paddingTop: accentColor ? 36 : 32 }}>
-            {/* Type pill — uses the same Tag component as the feed */}
-            <Tag type={post.type as PostType} />
+            {/* Type pill + owner edit button */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <Tag type={post.type as PostType} />
+              {isOwner && !editing && (
+                <button
+                  type="button"
+                  onClick={() => setEditing(true)}
+                  aria-label="Beitrag bearbeiten"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    background: "none",
+                    border: "1px solid var(--color-line)",
+                    borderRadius: 999,
+                    padding: "6px 14px",
+                    fontFamily: "var(--font-ui)",
+                    fontSize: 13,
+                    color: "var(--color-muted)",
+                    cursor: "pointer",
+                  }}
+                >
+                  <Pencil size={13} strokeWidth={1.5} />
+                  Bearbeiten
+                </button>
+              )}
+              {isOwner && editing && (
+                <button
+                  type="button"
+                  onClick={() => setEditing(false)}
+                  aria-label="Bearbeitung abbrechen"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    fontFamily: "var(--font-ui)",
+                    fontSize: 13,
+                    color: "var(--color-subtle)",
+                    cursor: "pointer",
+                  }}
+                >
+                  <X size={14} strokeWidth={1.5} />
+                  Abbrechen
+                </button>
+              )}
+            </div>
 
+            {/* Edit form — replaces title/body/photo when active */}
+            {editing ? (
+              <div style={{ marginTop: 20 }}>
+                <EditForm post={post} onCancel={() => setEditing(false)} />
+              </div>
+            ) : (
+              <>
             {/* Title */}
             <h1
               style={{
@@ -332,6 +489,8 @@ export function PostDetail({
                 Hilfreich
               </button>
             </div>
+              </>
+            )}
           </div>
         </div>
 

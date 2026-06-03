@@ -32,11 +32,12 @@ async function compress(file: File): Promise<Blob> {
 
 interface ImageUploadProps {
   labelStyle: React.CSSProperties;
+  initialUrl?: string;
 }
 
-export function ImageUpload({ labelStyle }: ImageUploadProps) {
-  const [url, setUrl] = useState("");
-  const [preview, setPreview] = useState("");
+export function ImageUpload({ labelStyle, initialUrl }: ImageUploadProps) {
+  const [url, setUrl] = useState(initialUrl ?? "");
+  const [preview, setPreview] = useState(initialUrl ?? "");
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);

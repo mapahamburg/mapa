@@ -21,9 +21,9 @@ export default async function PostDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { post, comments, userHasReacted } = await getPostWithComments(id);
+  const { post, comments, userHasReacted, isOwner } = await getPostWithComments(id);
 
   if (!post) notFound();
 
-  return <PostDetail post={post} comments={comments} userHasReacted={userHasReacted} />;
+  return <PostDetail post={post} comments={comments} userHasReacted={userHasReacted} isOwner={isOwner} />;
 }

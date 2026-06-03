@@ -357,8 +357,9 @@ export async function getPostWithComments(id: string): Promise<{
   post: PostDetail | null;
   comments: CommentItem[];
   userHasReacted: boolean;
+  isOwner: boolean;
 }> {
-  if (!hasSupabase()) return { post: null, comments: [], userHasReacted: false };
+  if (!hasSupabase()) return { post: null, comments: [], userHasReacted: false, isOwner: false };
 
   try {
     const supabase = await createClient();
@@ -372,6 +373,7 @@ export async function getPostWithComments(id: string): Promise<{
         .select(
           `id, type, title, body, stadtteil,
            meeting_location, meeting_date, min_age, max_age, created_at, image_url,
+           author_id,
            author:profiles!author_id ( first_name )`
         )
         .eq("id", id)
@@ -396,7 +398,7 @@ export async function getPostWithComments(id: string): Promise<{
         : Promise.resolve({ data: null }),
     ]);
 
-    if (postRes.error || !postRes.data) return { post: null, comments: [], userHasReacted: false };
+    if (postRes.error || !postRes.data) return { post: null, comments: [], userHasReacted: false, isOwner: false };
 
     const p      = postRes.data;
     const pAuthor = p.author as { first_name: string } | null;
@@ -428,8 +430,9 @@ export async function getPostWithComments(id: string): Promise<{
       };
     });
 
-    return { post, comments, userHasReacted: !!reactionRes.data };
+    const isOwner = !!user && user.id === (p as any).author_id;
+    return { post, comments, userHasReacted: !!reactionRes.data, isOwner };
   } catch {
-    return { post: null, comments: [], userHasReacted: false };
+    return { post: null, comments: [], userHasReacted: false, isOwner: false };
   }
 }

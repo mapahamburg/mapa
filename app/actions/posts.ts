@@ -5,6 +5,38 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import type { PostType } from "@/types";
 
+// ─── Update post ─────────────────────────────────────────────────────────────
+
+export async function updatePost(
+  _prevState: PostState,
+  formData: FormData
+): Promise<PostState> {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { error: "Nicht eingeloggt." };
+
+  const postId   = formData.get("post_id") as string;
+  const title    = (formData.get("title") as string | null)?.trim() ?? "";
+  const body     = (formData.get("body") as string | null)?.trim() || null;
+  const imageUrl = (formData.get("image_url") as string | null)?.trim() || null;
+
+  if (!title || title.length < 3) return { error: "Der Titel muss mindestens 3 Zeichen lang sein." };
+  if (title.length > 200)         return { error: "Der Titel darf maximal 200 Zeichen lang sein." };
+  if (body && body.length > 2000) return { error: "Der Text darf maximal 2000 Zeichen lang sein." };
+
+  const { error } = await supabase
+    .from("posts")
+    .update({ title, body, image_url: imageUrl })
+    .eq("id", postId)
+    .eq("author_id", user.id); // RLS + extra safety
+
+  if (error) return { error: "Beitrag konnte nicht gespeichert werden." };
+
+  revalidatePath(`/feed/${postId}`);
+  revalidatePath("/feed");
+  return { error: undefined };
+}
+
 // ─── Nominatim geocoding (OpenStreetMap, free, no API key) ───────────────────
 
 async function geocode(address: string): Promise<{ lat: number; lng: number } | null> {
