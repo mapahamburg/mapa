@@ -5,6 +5,24 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import type { PostType } from "@/types";
 
+// ─── Delete post ─────────────────────────────────────────────────────────────
+
+export async function deletePost(postId: string): Promise<void> {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+
+  await supabase
+    .from("posts")
+    .delete()
+    .eq("id", postId)
+    .eq("author_id", user.id);
+
+  revalidatePath("/feed");
+  revalidatePath("/treffen");
+  redirect("/feed");
+}
+
 // ─── Update post ─────────────────────────────────────────────────────────────
 
 export async function updatePost(
@@ -32,8 +50,9 @@ export async function updatePost(
 
   if (error) return { error: "Beitrag konnte nicht gespeichert werden." };
 
-  revalidatePath(`/feed/${postId}`);
-  revalidatePath("/feed");
+  revalidatePath(`/feed/${postId}`, "page");
+  revalidatePath("/feed", "page");
+  revalidatePath("/treffen", "page");
   return { error: undefined };
 }
 

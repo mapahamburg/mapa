@@ -161,3 +161,22 @@ async function sendCommentNotification({
     `,
   });
 }
+
+// ─── Delete comment ───────────────────────────────────────────────────────────
+
+export async function deleteComment(
+  commentId: string,
+  postId: string
+): Promise<void> {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+
+  await supabase
+    .from("comments")
+    .delete()
+    .eq("id", commentId)
+    .eq("author_id", user.id);
+
+  revalidatePath(`/feed/${postId}`, "page");
+}

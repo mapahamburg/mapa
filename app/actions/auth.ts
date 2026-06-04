@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { Resend } from "resend";
 
 // ─── Shared state type ───────────────────────────────────────────────────────
 
@@ -149,13 +150,48 @@ export async function createProfile(
   } as any);
 
   if (error) {
-    // Profile may already exist (e.g. user hit back and re-submitted).
-    if (error.code === "23505") {
-      redirect("/feed");
+    if (error.code === "23505") redirect("/feed");
+    return { error: "Profil konnte nicht erstellt werden. Bitte versuch es erneut." };
+  }
+
+  // Send welcome e-mail (non-fatal)
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mapa.hamburg";
+  const resendKey = process.env.RESEND_API_KEY;
+  if (resendKey && user.email) {
+    try {
+      const resend = new Resend(resendKey);
+      await resend.emails.send({
+        from: "mapa <hey@mapa.hamburg>",
+        to:   user.email,
+        subject: `Willkommen in ${stadtteil}, ${first_name}.`,
+        html: `
+          <div style="font-family:sans-serif;max-width:520px;color:#1C1A17;line-height:1.6">
+            <p style="font-size:16px;margin:0 0 16px">Hallo ${first_name},</p>
+            <p style="margin:0 0 16px">
+              schön, dass du dabei bist. Du bist jetzt Teil der mapa-Community
+              in <strong>${stadtteil}</strong>.
+            </p>
+            <p style="margin:0 0 16px">
+              Im Feed siehst du, was in deinem Viertel los ist. Teile
+              Empfehlungen, stell Fragen, vereinbare Treffen.
+            </p>
+            <p style="margin:0 0 24px">
+              <a href="${siteUrl}/feed"
+                 style="display:inline-block;background:#2540D6;color:#fff;text-decoration:none;
+                        padding:12px 24px;border-radius:999px;font-size:15px;font-weight:500">
+                Zum Feed
+              </a>
+            </p>
+            <p style="font-size:13px;color:#9A9189;margin:0">
+              mapa · Die lokale Community für Familien in Hamburg<br>
+              <a href="${siteUrl}" style="color:#6F855A;text-decoration:none">mapa.hamburg</a>
+            </p>
+          </div>
+        `,
+      });
+    } catch {
+      // Non-fatal — profile was created successfully
     }
-    return {
-      error: "Profil konnte nicht erstellt werden. Bitte versuch es erneut.",
-    };
   }
 
   redirect("/feed");

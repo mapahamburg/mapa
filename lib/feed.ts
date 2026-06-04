@@ -382,7 +382,7 @@ export async function getPostWithComments(id: string): Promise<{
       supabase
         .from("comments")
         .select(
-          `id, body, created_at,
+          `id, body, created_at, author_id,
            author:profiles!author_id ( first_name )`
         )
         .eq("post_id", id)
@@ -427,6 +427,7 @@ export async function getPostWithComments(id: string): Promise<{
         author_name: cAuthor?.first_name ?? "Nachbar",
         body:        c.body,
         created_at:  timeAgo(c.created_at),
+        is_own:      !!user && user.id === (c as any).author_id,
       };
     });
 

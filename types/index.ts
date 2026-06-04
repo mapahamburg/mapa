@@ -53,6 +53,7 @@ export interface CommentItem {
   author_name: string;
   body:        string;
   created_at:  string;  // formatted relative time
+  is_own:      boolean; // true if the current user wrote this comment
 }
 
 // ─── Post types ──────────────────────────────────────────────────────────────

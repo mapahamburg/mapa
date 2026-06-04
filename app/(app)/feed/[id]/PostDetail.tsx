@@ -7,9 +7,9 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Tag } from "@/components/ui/Tag";
 import { ReportButton } from "@/components/app/ReportButton";
 import { ImageUpload } from "@/components/app/ImageUpload";
-import { createComment, type CommentState } from "@/app/actions/comments";
+import { createComment, deleteComment, type CommentState } from "@/app/actions/comments";
 import { toggleReaction } from "@/app/actions/reactions";
-import { updatePost } from "@/app/actions/posts";
+import { updatePost, deletePost } from "@/app/actions/posts";
 import type { PostDetail as PostDetailData, CommentItem, PostType } from "@/types";
 
 // Accent bar color per post type — matches feed card treatment
@@ -234,6 +234,7 @@ export function PostDetail({
   const [reacted, setReacted] = useState(userHasReacted);
   const [isPending, setIsPending] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const accentColor = ACCENT_COLOR[post.type as PostType];
 
   return (
@@ -281,50 +282,46 @@ export function PostDetail({
           )}
 
           <div style={{ padding: 32, paddingTop: accentColor ? 36 : 32 }}>
-            {/* Type pill + owner edit button */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            {/* Type pill + owner controls */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
               <Tag type={post.type as PostType} />
               {isOwner && !editing && (
-                <button
-                  type="button"
-                  onClick={() => setEditing(true)}
-                  aria-label="Beitrag bearbeiten"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 6,
-                    background: "none",
-                    border: "1px solid var(--color-line)",
-                    borderRadius: 999,
-                    padding: "6px 14px",
-                    fontFamily: "var(--font-ui)",
-                    fontSize: 13,
-                    color: "var(--color-muted)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Pencil size={13} strokeWidth={1.5} />
-                  Bearbeiten
-                </button>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <button
+                    type="button"
+                    onClick={() => { setEditing(true); setConfirmDelete(false); }}
+                    aria-label="Beitrag bearbeiten"
+                    style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "1px solid var(--color-line)", borderRadius: 999, padding: "6px 14px", fontFamily: "var(--font-ui)", fontSize: 13, color: "var(--color-muted)", cursor: "pointer" }}
+                  >
+                    <Pencil size={13} strokeWidth={1.5} />
+                    Bearbeiten
+                  </button>
+                  {!confirmDelete ? (
+                    <button
+                      type="button"
+                      onClick={() => setConfirmDelete(true)}
+                      aria-label="Beitrag löschen"
+                      style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "1px solid var(--color-line)", borderRadius: 999, padding: "6px 14px", fontFamily: "var(--font-ui)", fontSize: 13, color: "var(--color-subtle)", cursor: "pointer" }}
+                    >
+                      <X size={13} strokeWidth={1.5} />
+                      Löschen
+                    </button>
+                  ) : (
+                    <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                      <form action={deletePost.bind(null, post.id)}>
+                        <button type="submit" style={{ background: "var(--color-danger)", color: "#fff", border: "none", borderRadius: 999, padding: "6px 14px", fontFamily: "var(--font-ui)", fontSize: 13, cursor: "pointer" }}>
+                          Ja, löschen
+                        </button>
+                      </form>
+                      <button type="button" onClick={() => setConfirmDelete(false)} style={{ background: "none", border: "none", fontFamily: "var(--font-ui)", fontSize: 13, color: "var(--color-subtle)", cursor: "pointer" }}>
+                        Abbrechen
+                      </button>
+                    </div>
+                  )}
+                </div>
               )}
               {isOwner && editing && (
-                <button
-                  type="button"
-                  onClick={() => setEditing(false)}
-                  aria-label="Bearbeitung abbrechen"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 6,
-                    background: "none",
-                    border: "none",
-                    padding: 0,
-                    fontFamily: "var(--font-ui)",
-                    fontSize: 13,
-                    color: "var(--color-subtle)",
-                    cursor: "pointer",
-                  }}
-                >
+                <button type="button" onClick={() => setEditing(false)} style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "none", padding: 0, fontFamily: "var(--font-ui)", fontSize: 13, color: "var(--color-subtle)", cursor: "pointer" }}>
                   <X size={14} strokeWidth={1.5} />
                   Abbrechen
                 </button>
@@ -534,14 +531,7 @@ export function PostDetail({
                     borderBottom: "1px solid var(--color-line-soft)",
                   }}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 8,
-                      marginBottom: 8,
-                    }}
-                  >
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
                     <Avatar letter={comment.author_name[0]} size={32} />
                     <span style={{ fontSize: 13, fontWeight: 500, color: "var(--color-ink)" }}>
                       {comment.author_name}
@@ -549,16 +539,22 @@ export function PostDetail({
                     <span style={{ fontSize: 12, color: "var(--color-subtle)" }}>
                       {comment.created_at}
                     </span>
+                    {comment.is_own && (
+                      <form
+                        action={deleteComment.bind(null, comment.id, post.id)}
+                        style={{ marginLeft: "auto" }}
+                      >
+                        <button
+                          type="submit"
+                          aria-label="Kommentar löschen"
+                          style={{ background: "none", border: "none", cursor: "pointer", color: "var(--color-subtle)", display: "flex", alignItems: "center", padding: 4 }}
+                        >
+                          <X size={13} strokeWidth={1.5} />
+                        </button>
+                      </form>
+                    )}
                   </div>
-                  <p
-                    style={{
-                      fontSize: 14,
-                      lineHeight: 1.65,
-                      color: "var(--color-muted)",
-                      margin: 0,
-                      paddingLeft: 40,
-                    }}
-                  >
+                  <p style={{ fontSize: 14, lineHeight: 1.65, color: "var(--color-muted)", margin: 0, paddingLeft: 40 }}>
                     {comment.body}
                   </p>
                 </article>
