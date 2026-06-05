@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { CookieBanner } from "@/components/ui/CookieBanner";
+import { MetaPixel } from "@/components/analytics/MetaPixel";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -64,6 +65,7 @@ export default function RootLayout({
     >
       <body>
         <CookieBanner />
+        <MetaPixel />
         {children}
       </body>
     </html>

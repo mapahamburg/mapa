@@ -12,6 +12,8 @@ export function CookieBanner() {
 
   const accept = () => {
     localStorage.setItem("mapa-cookie-consent", "accepted");
+    // Inform MetaPixel (and any other analytics) that consent was just given
+    window.dispatchEvent(new Event("mapa-consent-changed"));
     setVisible(false);
   };
 

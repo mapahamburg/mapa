@@ -87,6 +87,7 @@ export default function DatenschutzPage() {
         items={[
           "Supabase (Datenbank und Authentifizierung) — Verarbeitung in der EU",
           "Vercel (Hosting) — Serverstandorte in der EU",
+          "Meta Platforms Ireland Ltd. (Meta Pixel) — nur bei ausdrücklicher Einwilligung in Marketing-Cookies. Datenübertragung in die USA auf Basis von Standardvertragsklauseln.",
         ]}
       />
 

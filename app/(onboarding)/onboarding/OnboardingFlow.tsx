@@ -458,7 +458,13 @@ export function OnboardingFlow() {
 
   // ── Step 4: Hausregeln ───────────────────────────────────────────────────────
   const stepHausregeln = (
-    <form action={formAction}>
+    <form
+      action={formAction}
+      onSubmit={() => {
+        // Set flag so MetaPixel fires CompleteRegistration after redirect to /feed
+        localStorage.setItem("mapa-just-registered", "1");
+      }}
+    >
       {/* Hidden fields carry all collected data */}
       <input type="hidden" name="first_name" value={firstName} />
       <input type="hidden" name="bio" value={bio} />
