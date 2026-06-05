@@ -6,6 +6,7 @@ import { NowCard } from "@/components/app/NowCard";
 import { PulseStrip } from "@/components/app/PulseStrip";
 import { SectionDivider } from "@/components/app/SectionDivider";
 import { QuietQuestionList } from "@/components/app/QuietQuestionList";
+import { TauschboerseStrip } from "@/components/app/TauschboerseStrip";
 import { CompactRow } from "@/components/app/CompactRow";
 import { FeedEndState } from "@/components/app/FeedEndState";
 import { InFeedHostCard } from "@/components/app/InFeedHostCard";
@@ -70,10 +71,21 @@ export function FeedColumn({
   // "Heute" compact cards: all heute posts except the jetzt hero
   const heuteCards = heutePosts.filter((p) => p !== jetzt);
 
-  // "Brauchen Hilfe": all unanswered fragen from any section
+  // "Offene Fragen": unanswered fragen from any section
   const unanswered = visible.filter(
     (p) => p.type === "frage" && p.comments === 0
   );
+
+  // "Suche & Weitergeben": suche posts + "abzugeben" empfehlungen (max 6)
+  const tauschboerse = visible
+    .filter((p) =>
+      p.type === "suche" ||
+      (p.type === "empfehlung" &&
+        (p.title.toLowerCase().includes("abzugeben") ||
+         p.title.toLowerCase().includes("verschenken") ||
+         p.title.toLowerCase().includes("zu verkaufen")))
+    )
+    .slice(0, 6);
 
   // Today's date string for the eyebrow
   const today = new Date().toLocaleDateString("de-DE", {
@@ -217,10 +229,10 @@ export function FeedColumn({
         </>
       )}
 
-      {/* ── Brauchen Hilfe ── */}
+      {/* ── Offene Fragen ── */}
       {unanswered.length > 0 && (
         <>
-          <SectionDivider label="Brauchen Hilfe" variant="hilfe" />
+          <SectionDivider label="Offene Fragen" variant="hilfe" />
           <QuietQuestionList questions={unanswered} />
         </>
       )}
@@ -236,6 +248,14 @@ export function FeedColumn({
               <CompactRow key={p.id} post={p} isFirst={i === 0} />
             ))}
           </div>
+        </>
+      )}
+
+      {/* ── Suche & Weitergeben ── */}
+      {tauschboerse.length > 0 && (
+        <>
+          <SectionDivider label="Suche & Weitergeben" />
+          <TauschboerseStrip posts={tauschboerse} />
         </>
       )}
 

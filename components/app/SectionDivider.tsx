@@ -22,7 +22,6 @@ export function SectionDivider({ label, variant = "default", count }: SectionDiv
     letterSpacing: "0.14em",
     textTransform: "uppercase",
     color: variant === "hilfe" ? "var(--color-clay-deep)" : "var(--color-subtle)",
-    opacity: variant === "hilfe" ? 0.75 : 1,
     whiteSpace: "nowrap",
   };
 
