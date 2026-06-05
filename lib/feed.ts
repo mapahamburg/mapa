@@ -38,7 +38,7 @@ const getCachedPosts = unstable_cache(
     comments: { count: number | string }[] | null;
   }>> => {
     const supabase = await createClient();
-    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
     const { data, error } = await supabase
       .from("posts")
       .select(
@@ -47,7 +47,7 @@ const getCachedPosts = unstable_cache(
          author:profiles!author_id ( first_name ),
          comments:comments ( count )`
       )
-      .gte("created_at", sevenDaysAgo)
+      .gte("created_at", thirtyDaysAgo)
       .order("created_at", { ascending: false })
       .limit(60);
     if (error || !data) return [];
