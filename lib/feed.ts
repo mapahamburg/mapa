@@ -54,7 +54,7 @@ const getCachedPosts = unstable_cache(
     return data as any;
   },
   ["feed-posts"],
-  { revalidate: 60, tags: ["feed-posts"] }
+  { revalidate: 0, tags: ["feed-posts"] }
 );
 
 export async function getFeedPosts(): Promise<FeedPost[]> {
