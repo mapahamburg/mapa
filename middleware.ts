@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createMiddlewareClient } from "@/lib/supabase/middleware";
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   // Skip auth logic entirely when Supabase is not yet configured.
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     return NextResponse.next({ request });
