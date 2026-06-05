@@ -1,11 +1,5 @@
 "use client";
 
-/**
- * Meta Pixel — DSGVO-konform
- * Lädt das Pixel via direktem Script-Inject (kein next/script),
- * da next/script konditionell gerenderte Scripts nicht zuverlässig injiziert.
- */
-
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
@@ -13,45 +7,42 @@ const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 declare global {
   interface Window {
-    fbq?: (...args: unknown[]) => void;
-    _fbq?: unknown;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fbq: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    _fbq: any;
   }
 }
 
-function loadPixel(pixelId: string) {
+function injectPixel(id: string) {
+  if (typeof window === "undefined") return;
   if (window.fbq) return; // already loaded
 
-  // Inline fbq stub
-  const fbq: Window["fbq"] = function (...args) {
-    (fbq as unknown as { callMethod?: (...a: unknown[]) => void; queue: unknown[][] }).callMethod
-      ? (fbq as unknown as { callMethod: (...a: unknown[]) => void }).callMethod(...args)
-      : ((fbq as unknown as { queue: unknown[][] }).queue =
-          (fbq as unknown as { queue: unknown[][] }).queue || []).push(args);
-  };
-  (fbq as unknown as { push: typeof fbq; loaded: boolean; version: string; queue: unknown[][] }).push = fbq;
-  (fbq as unknown as { loaded: boolean }).loaded = true;
-  (fbq as unknown as { version: string }).version = "2.0";
-  (fbq as unknown as { queue: unknown[][] }).queue = [];
-  window.fbq = fbq;
-  if (!window._fbq) window._fbq = fbq;
+  // Standard Meta Pixel base code
+  /* eslint-disable */
+  (function(f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
+    if (f.fbq) return;
+    n = f.fbq = function() {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+    };
+    if (!f._fbq) f._fbq = n;
+    n.push = n; n.loaded = true; n.version = "2.0"; n.queue = [];
+    t = b.createElement(e); t.async = true;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+  })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+  /* eslint-enable */
 
-  // Inject the external script
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = "https://connect.facebook.net/en_US/fbevents.js";
-  document.head.appendChild(script);
-
-  // Init + initial PageView
-  window.fbq("init", pixelId);
+  window.fbq("init", id);
   window.fbq("track", "PageView");
 }
 
 export function MetaPixel() {
   const [consented, setConsented] = useState(false);
   const pathname = usePathname();
-  const initialPageView = useRef(true); // skip first path change (pixel fires on load)
+  const firstNav = useRef(true);
 
-  // ── Consent prüfen & auf Änderungen hören ────────────────────────────────────
   useEffect(() => {
     const check = () => {
       setConsented(localStorage.getItem("mapa-cookie-consent") === "accepted");
@@ -61,23 +52,17 @@ export function MetaPixel() {
     return () => window.removeEventListener("mapa-consent-changed", check);
   }, []);
 
-  // ── Script laden wenn Consent erteilt ────────────────────────────────────────
   useEffect(() => {
     if (!consented || !PIXEL_ID) return;
-    loadPixel(PIXEL_ID);
+    injectPixel(PIXEL_ID);
   }, [consented]);
 
-  // ── SPA PageView bei Pfadwechsel (kein Duplikat beim ersten Load) ─────────────
   useEffect(() => {
-    if (initialPageView.current) {
-      initialPageView.current = false;
-      return;
-    }
+    if (firstNav.current) { firstNav.current = false; return; }
     if (!consented || !window.fbq) return;
     window.fbq("track", "PageView");
   }, [pathname, consented]);
 
-  // ── CompleteRegistration nach Onboarding ─────────────────────────────────────
   useEffect(() => {
     if (!consented || !window.fbq) return;
     if (localStorage.getItem("mapa-just-registered") === "1") {
@@ -86,5 +71,5 @@ export function MetaPixel() {
     }
   }, [consented, pathname]);
 
-  return null; // kein JSX — Script wird per DOM-API injiziert
+  return null;
 }
