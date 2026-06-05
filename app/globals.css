@@ -464,6 +464,7 @@ a, button, [role="button"] {
 
 /* ─── Section component helpers ─── */
 .hero-btns     { display: flex; gap: 12px; align-items: center; margin-top: 36px; }
+.mob-show      { display: none; }
 .card-pad      { padding: 32px; }
 .cta-inner     { padding: 52px 48px 48px; }
 .nav-login     { font-family: var(--font-ui); font-size: 14.5px; color: var(--fg); text-decoration: none; padding: 8px; white-space: nowrap; }
@@ -738,6 +739,7 @@ a, button, [role="button"] {
 
   /* Utilities */
   .mob-hide   { display: none !important; }
+  .mob-show   { display: block !important; }
   .mob-full   { max-width: 100% !important; }
 }
 
