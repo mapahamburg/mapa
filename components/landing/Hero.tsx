@@ -1,4 +1,5 @@
 import { Logo } from "@/components/ui/Logo";
+import { MobileHeroPreview } from "@/components/landing/MobileHeroPreview";
 import { Avatar } from "@/components/ui/Avatar";
 import { Tag } from "@/components/ui/Tag";
 import { MemberCount } from "@/components/landing/MemberCount";
@@ -358,6 +359,9 @@ export async function Hero() {
               So funktioniert&apos;s
             </a>
           </div>
+
+          {/* Mobile-only app preview (client component, no hydration issues) */}
+          <MobileHeroPreview isLoggedIn={isLoggedIn} />
 
           {/* Avatar stack + social proof */}
           <div
