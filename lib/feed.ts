@@ -4,7 +4,6 @@
  * or Server Actions only. Never import this file from "use client" code.
  */
 
-import { unstable_cache } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { timeAgo, feedSection, formatMeetingDate, formatAgeRange } from "@/lib/format";
 import type { FeedPost, PostDetail, CommentItem } from "@/types";
@@ -20,63 +19,40 @@ function hasSupabase() {
 
 // ─── Feed list ────────────────────────────────────────────────────────────────
 
-/**
- * Fetch the last 7 days of posts, newest first, with author name +
- * comment count. Returns [] if Supabase is not configured.
- */
-// ─── Cached public post fetcher (no user-specific data) ──────────────────────
-// Posts are public — cache for 60s to avoid a DB hit on every navigation.
-// Invalidated on new posts via revalidatePath("/feed").
-
-const getCachedPosts = unstable_cache(
-  async (): Promise<Array<{
-    id: string; type: string; title: string; body: string | null;
-    stadtteil: string; meeting_location: string | null; meeting_date: string | null;
-    min_age: number | null; max_age: number | null; created_at: string;
-    lat: number | null; lng: number | null; image_url: string | null;
-    author: { first_name: string } | null;
-    comments: { count: number | string }[] | null;
-  }>> => {
-    const supabase = await createClient();
-    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-    const { data, error } = await supabase
-      .from("posts")
-      .select(
-        `id, type, title, body, stadtteil,
-         meeting_location, meeting_date, min_age, max_age, created_at, lat, lng, image_url,
-         author:profiles!author_id ( first_name ),
-         comments:comments ( count )`
-      )
-      .gte("created_at", thirtyDaysAgo)
-      .order("created_at", { ascending: false })
-      .limit(60);
-    if (error || !data) return [];
-    return data as any;
-  },
-  ["feed-posts"],
-  { revalidate: 0, tags: ["feed-posts"] }
-);
-
 export async function getFeedPosts(): Promise<FeedPost[]> {
   if (!hasSupabase()) return [];
 
   try {
     const supabase = await createClient();
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+
     const { data: { user } } = await supabase.auth.getUser();
 
-    // Posts from cache + saved IDs from DB (user-specific, not cached)
-    const [posts, savedRes] = await Promise.all([
-      getCachedPosts(),
+    const [postsRes, savedRes] = await Promise.all([
+      supabase
+        .from("posts")
+        .select(
+          `id, type, title, body, stadtteil,
+           meeting_location, meeting_date, min_age, max_age, created_at, lat, lng, image_url,
+           author:profiles!author_id ( first_name ),
+           comments:comments ( count )`
+        )
+        .gte("created_at", thirtyDaysAgo)
+        .order("created_at", { ascending: false })
+        .limit(60),
       user
         ? (supabase as any).from("saved_posts").select("post_id").eq("user_id", user.id)
         : Promise.resolve({ data: [] }),
     ]);
 
+    if (postsRes.error || !postsRes.data) return [];
+    const posts = postsRes.data as any[];
+
     const savedIds = new Set<string>(
       (savedRes.data ?? []).map((r: { post_id: string }) => r.post_id)
     );
 
-    return posts.map((p) => {
+    return posts.map((p: any) => {
       const author   = p.author   as { first_name: string } | null;
       const comments = p.comments as { count: number | string }[] | null;
 
