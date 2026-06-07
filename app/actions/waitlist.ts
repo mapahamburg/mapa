@@ -80,12 +80,16 @@ export async function joinWaitlist(
               Bis dahin: keine weiteren Mails, kein Spam.
             </p>
 
-            <p style="margin:0 0 32px">
-              <a href="${siteUrl}/start"
+            <p style="margin:0 0 8px">
+              <a href="${siteUrl}/signup"
                  style="display:inline-block;background:#2540D6;color:#fff;text-decoration:none;
                         padding:12px 24px;border-radius:999px;font-size:15px;font-weight:500">
-                mapa.hamburg/start
+                Jetzt schon mitmachen
               </a>
+            </p>
+
+            <p style="margin:0 0 32px;font-size:13px;color:#9A9189">
+              mapa läuft schon in der Beta. Du kannst dich sofort anmelden und den Feed entdecken.
             </p>
 
             <hr style="border:none;border-top:1px solid #E0D8C6;margin:0 0 24px" />
