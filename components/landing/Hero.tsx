@@ -2,8 +2,6 @@ import { Logo } from "@/components/ui/Logo";
 import { MobileHeroPreview } from "@/components/landing/MobileHeroPreview";
 import { Avatar } from "@/components/ui/Avatar";
 import { Tag } from "@/components/ui/Tag";
-import { MemberCount } from "@/components/landing/MemberCount";
-import { getMemberCount } from "@/lib/queries";
 
 function HeroVisual() {
   return (
@@ -272,7 +270,6 @@ function HeroVisual() {
 }
 
 export async function Hero() {
-  const memberCount = await getMemberCount();
   const avatarLetters = ["L", "M", "S", "J", "N"] as const;
   const { createClient } = await import("@/lib/supabase/server");
   const supabase = await createClient();
@@ -286,16 +283,38 @@ export async function Hero() {
         <div>
           <div
             style={{
-              fontSize: 12,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: "var(--cobalt-500)",
-              fontWeight: 500,
-              fontFamily: "var(--font-mono)",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "6px 13px 6px 11px",
+              borderRadius: 999,
+              background: "var(--cobalt-50)",
+              border: "1px solid var(--cobalt-100)",
               marginBottom: 24,
             }}
           >
-            mapa.hamburg · Beta
+            <span
+              className="pulse-dot"
+              style={{
+                width: 7,
+                height: 7,
+                borderRadius: 999,
+                background: "var(--cobalt-500)",
+                flexShrink: 0,
+              }}
+            />
+            <span
+              style={{
+                fontSize: 11.5,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "var(--cobalt-700)",
+                fontWeight: 600,
+                fontFamily: "var(--font-mono)",
+              }}
+            >
+              Aufbau-Phase · Winterhude &amp; Eppendorf
+            </span>
           </div>
 
           <h1
@@ -316,14 +335,49 @@ export async function Hero() {
             style={{
               fontFamily: "var(--font-ui)",
               fontWeight: 400,
-              lineHeight: 1.55,
+              lineHeight: 1.6,
               letterSpacing: 0,
               color: "var(--ash-v2-600)",
               marginTop: 20,
             }}
           >
-            Empfehlungen, Veranstaltungen, Treffen und ehrlicher Austausch. Chronologisch, stadtteilgefiltert, moderiert von echten Nachbarinnen und Nachbarn.
+            Empfehlungen, Treffen und ehrliche Antworten aus deinem Stadtteil. Von echten Familien, nicht von einem Algorithmus.
           </p>
+
+          {/* Launch context — community im Aufbau, frühe Mitglieder zählen */}
+          <div
+            style={{
+              marginTop: 20,
+              padding: "14px 16px",
+              background: "var(--cobalt-50)",
+              border: "1px solid var(--cobalt-100)",
+              borderRadius: 14,
+              fontFamily: "var(--font-ui)",
+              lineHeight: 1.5,
+            }}
+          >
+            <div
+              style={{
+                fontSize: 14,
+                fontWeight: 600,
+                color: "var(--cobalt-700)",
+              }}
+            >
+              mapa entsteht gerade in deinem Viertel.
+            </div>
+            <div
+              style={{
+                fontSize: 14,
+                color: "var(--cobalt-700)",
+                opacity: 0.82,
+                marginTop: 3,
+              }}
+            >
+              Wir starten in Winterhude und Eppendorf. Die ersten Familien
+              prägen, wie sich dein Stadtteil hier anfühlt. Genau dafür bist du
+              wichtig.
+            </div>
+          </div>
 
           <div className="hero-btns">
             <a
@@ -339,7 +393,7 @@ export async function Hero() {
                 fontWeight: 500,
               }}
             >
-              {isLoggedIn ? "Zum Feed" : "Jetzt mitmachen"}
+              {isLoggedIn ? "Zum Feed" : "Kostenlos beitreten"}
             </a>
             <a
               href="/so-funktionierts"
@@ -359,9 +413,6 @@ export async function Hero() {
               So funktioniert&apos;s
             </a>
           </div>
-
-          {/* Mobile-only app preview (client component, no hydration issues) */}
-          <MobileHeroPreview isLoggedIn={isLoggedIn} />
 
           {/* Avatar stack + social proof */}
           <div
@@ -395,13 +446,89 @@ export async function Hero() {
                 lineHeight: 1.45,
               }}
             >
-              <MemberCount initial={memberCount} fallback="1.247" />{" "}
-              in der Beta.
+              <strong style={{ color: "var(--fg)", fontWeight: 500 }}>
+                Viele Familien
+              </strong>{" "}
+              sind schon dabei.
               <br />
-              in Eppendorf, Winterhude, Ottensen, Eimsbüttel &amp; überall
-              dazwischen.
+              Sei eine der ersten in deinem Stadtteil.
             </div>
           </div>
+
+          {/* Local Host card — trust signal direkt am Conversion-Punkt */}
+          <div
+            style={{
+              marginTop: 20,
+              background: "var(--mapa-paper)",
+              borderRadius: 16,
+              padding: "16px 18px",
+              border: "1px solid var(--border)",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                marginBottom: 12,
+              }}
+            >
+              <Avatar letter="N" size={40} />
+              <div>
+                <div
+                  style={{
+                    fontFamily: "var(--font-ui)",
+                    fontWeight: 600,
+                    fontSize: 15,
+                    letterSpacing: "-0.01em",
+                    color: "var(--fg)",
+                  }}
+                >
+                  Nadine
+                </div>
+                <div style={{ fontSize: 12, color: "var(--fg-muted)", marginTop: 1 }}>
+                  Local Host · Winterhude
+                </div>
+              </div>
+            </div>
+            <p
+              style={{
+                fontFamily: "var(--font-display)",
+                fontStyle: "italic",
+                fontSize: 15,
+                lineHeight: 1.5,
+                color: "var(--fg)",
+                margin: "0 0 12px",
+              }}
+            >
+              „Ich bin seit acht Jahren in Winterhude. Kenne die guten
+              Spielplätze, die kinderfreundlichen Cafés, die Hebammen mit
+              echtem Wartelistentipp. Schreib mir gerne."
+            </p>
+            <div
+              style={{
+                display: "flex",
+                gap: 16,
+                paddingTop: 12,
+                borderTop: "1px solid var(--border-soft)",
+                fontFamily: "var(--font-ui)",
+                fontSize: 13,
+                color: "var(--fg-muted)",
+              }}
+            >
+              <span>
+                <strong style={{ color: "var(--fg)", fontWeight: 500 }}>32</strong>{" "}
+                Empfehlungen
+              </span>
+              <span>
+                <strong style={{ color: "var(--fg)", fontWeight: 500 }}>2</strong>{" "}
+                Treffen kuratiert
+              </span>
+            </div>
+          </div>
+
+          {/* Mobile-only app preview (client component, no hydration issues) */}
+          <MobileHeroPreview isLoggedIn={isLoggedIn} />
         </div>
 
         {/* Right: visual */}

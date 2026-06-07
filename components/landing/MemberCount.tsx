@@ -39,7 +39,7 @@ export function MemberCount({ initial, fallback = "1.247" }: MemberCountProps) {
 
   return (
     <strong style={{ color: "var(--fg)", fontWeight: 500 }}>
-      {display} Mitglieder
+      {display} Familien
     </strong>
   );
 }

@@ -2,7 +2,7 @@ const USP_ITEMS = [
   {
     eyebrow: "Empfehlungen",
     headline: "Echter Rat aus dem Stadtteil.",
-    body: "Eisdielen, Spielplätze, Hebammen, Kinderärzte — empfohlen von Familien, die wirklich dort wohnen.",
+    body: "Eisdielen, Spielplätze, Hebammen, Kinderärzte. Empfohlen von Familien, die wirklich dort wohnen.",
   },
   {
     eyebrow: "Treffen",
@@ -12,7 +12,7 @@ const USP_ITEMS = [
   {
     eyebrow: "Events",
     headline: "Was diese Woche los ist.",
-    body: "Kinderflohmarkt, Familienkonzert, Workshop — lokal, übersichtlich, ohne Werbung.",
+    body: "Kinderflohmarkt, Familienkonzert, Workshop. Lokal, übersichtlich, ohne Werbung.",
   },
   {
     eyebrow: "Austausch",

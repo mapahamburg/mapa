@@ -10,7 +10,7 @@ const POSTS = [
     tag: "Empfehlung",
     tagColor: "var(--cobalt-50)",
     tagText: "var(--cobalt-700)",
-    title: "Das Häwelmann Café — ruhig, kinderfreundlich, kein Gedränge.",
+    title: "Häwelmann Café. Ruhig, kinderfreundlich, kein Gedränge.",
   },
   {
     initial: "M",
@@ -34,9 +34,9 @@ const POSTS = [
 ];
 
 const BENEFITS = [
-  { label: "Chronologisch.", sub: "Kein Algorithmus" },
-  { label: "Dein Stadtteil.", sub: "Nur was nah ist" },
-  { label: "Keine Werbung.", sub: "Nie" },
+  { label: "Echte Local Hosts.", sub: "Kein Algorithmus" },
+  { label: "Dein Stadtteil zuerst.", sub: "Chronologisch, ruhig" },
+  { label: "Werbefrei.", sub: "Für immer" },
 ];
 
 export function MobileHeroPreview({ isLoggedIn }: { isLoggedIn: boolean }) {
