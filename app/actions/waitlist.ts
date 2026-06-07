@@ -33,7 +33,14 @@ export async function joinWaitlist(
     return { status: "error", error: "Bitte eine gültige E-Mail-Adresse eingeben." };
   }
 
-  const supabase = createAdminClient();
+  let supabase;
+  try {
+    supabase = createAdminClient();
+  } catch (e) {
+    console.error("createAdminClient failed:", e);
+    return { status: "error", error: "Konfigurationsfehler. Bitte melde dich bei hey@mapa.hamburg." };
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { error } = await (supabase as any)
     .from("newsletter")
@@ -41,10 +48,10 @@ export async function joinWaitlist(
 
   if (error) {
     // 23505 = unique_violation — E-Mail bereits vorhanden
-    if (error.code === "23505") {
+    if (error.code === "23505" || error.message?.includes("duplicate key")) {
       return { status: "duplicate" };
     }
-    console.error("Waitlist insert error:", error.message);
+    console.error("Newsletter insert error — code:", error.code, "message:", error.message, "details:", error.details);
     return { status: "error", error: "Etwas ist schiefgelaufen. Bitte versuche es noch einmal." };
   }
 
