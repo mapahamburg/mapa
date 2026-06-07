@@ -170,6 +170,7 @@ export function StartForm() {
 
       {/* Form */}
       <form action={action} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <input type="hidden" name="source" value="start" />
         <input
           name="email"
           type="email"

@@ -8,24 +8,26 @@ export type WaitlistState = {
 };
 
 /**
- * Speichert eine E-Mail-Adresse in der `waitlist`-Tabelle.
+ * Speichert eine E-Mail-Adresse in der `newsletter`-Tabelle.
+ * Dient als zentrale Liste für alle Anmeldungen (Waitlist + Newsletter).
+ * Das `source`-Feld zeigt, woher die Anmeldung kam (z.B. "start", "landing").
  *
  * Benötigte Supabase-Tabelle (einmalig anlegen):
- *   create table waitlist (
+ *   create table newsletter (
  *     id         uuid primary key default gen_random_uuid(),
  *     email      text not null unique,
  *     source     text,
  *     created_at timestamptz default now()
  *   );
- *   alter table waitlist enable row level security;
- *   -- Nur Service-Role darf lesen; Insert via anon key erlauben:
- *   create policy "anon insert" on waitlist for insert to anon with check (true);
+ *   alter table newsletter enable row level security;
+ *   create policy "anon insert" on newsletter for insert to anon with check (true);
  */
 export async function joinWaitlist(
   _prev: WaitlistState,
   formData: FormData
 ): Promise<WaitlistState> {
   const email = (formData.get("email") as string | null)?.trim().toLowerCase();
+  const source = (formData.get("source") as string | null) ?? "start";
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { status: "error", error: "Bitte eine gültige E-Mail-Adresse eingeben." };
@@ -34,8 +36,8 @@ export async function joinWaitlist(
   const supabase = await createClient();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { error } = await (supabase as any)
-    .from("waitlist")
-    .insert({ email, source: "start" });
+    .from("newsletter")
+    .insert({ email, source });
 
   if (error) {
     // 23505 = unique_violation — E-Mail bereits vorhanden
