@@ -1,6 +1,7 @@
 "use server";
 
 import { createAdminClient } from "@/lib/supabase/admin";
+import { Resend } from "resend";
 
 export type WaitlistState = {
   status?: "success" | "error" | "duplicate";
@@ -8,9 +9,8 @@ export type WaitlistState = {
 };
 
 /**
- * Speichert eine E-Mail-Adresse in der `newsletter`-Tabelle.
- * Dient als zentrale Liste für alle Anmeldungen (Waitlist + Newsletter).
- * Das `source`-Feld zeigt, woher die Anmeldung kam (z.B. "start", "landing").
+ * Speichert eine E-Mail-Adresse in der `newsletter`-Tabelle
+ * und schickt eine Bestätigungs-E-Mail via Resend.
  *
  * Benötigte Supabase-Tabelle (einmalig anlegen):
  *   create table newsletter (
@@ -46,6 +46,66 @@ export async function joinWaitlist(
     }
     console.error("Waitlist insert error:", error.message);
     return { status: "error", error: "Etwas ist schiefgelaufen. Bitte versuche es noch einmal." };
+  }
+
+  // Bestätigungs-E-Mail — non-fatal, Insert war schon erfolgreich
+  const resendKey = process.env.RESEND_API_KEY;
+  if (resendKey) {
+    try {
+      const resend = new Resend(resendKey);
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mapa.hamburg";
+      await resend.emails.send({
+        from: "mapa <hey@mapa.hamburg>",
+        to: email,
+        subject: "Du bist dabei. mapa startet in Winterhude & Eppendorf.",
+        html: `
+          <div style="font-family:sans-serif;max-width:520px;margin:0 auto;color:#1C1A17;line-height:1.6;background:#F5F0E8;padding:40px 32px;border-radius:16px">
+
+            <p style="font-size:22px;font-weight:600;letter-spacing:-0.02em;margin:0 0 4px">
+              mapa<span style="color:#C26A3F">.</span>
+            </p>
+            <p style="font-size:12px;color:#9A9189;margin:0 0 32px;letter-spacing:0.08em;text-transform:uppercase">
+              Winterhude &amp; Eppendorf
+            </p>
+
+            <p style="font-size:16px;margin:0 0 16px">Hallo,</p>
+
+            <p style="margin:0 0 16px">
+              schön, dass du dabei bist. Wir bauen gerade die ersten mapa-Nachbarschaften
+              in <strong>Winterhude</strong> und <strong>Eppendorf</strong> auf.
+            </p>
+
+            <p style="margin:0 0 24px">
+              Sobald es losgeht, bekommst du eine E-Mail mit allem, was du brauchst.
+              Bis dahin: keine weiteren Mails, kein Spam.
+            </p>
+
+            <p style="margin:0 0 32px">
+              <a href="${siteUrl}/start"
+                 style="display:inline-block;background:#2540D6;color:#fff;text-decoration:none;
+                        padding:12px 24px;border-radius:999px;font-size:15px;font-weight:500">
+                mapa.hamburg/start
+              </a>
+            </p>
+
+            <hr style="border:none;border-top:1px solid #E0D8C6;margin:0 0 24px" />
+
+            <p style="font-size:12px;color:#9A9189;margin:0;line-height:1.6">
+              Du erhältst diese E-Mail, weil du dich auf
+              <a href="${siteUrl}/start" style="color:#6F855A;text-decoration:none">mapa.hamburg/start</a>
+              angemeldet hast.<br>
+              <a href="mailto:hey@mapa.hamburg?subject=Abmeldung%20Newsletter&body=Bitte%20mich%20abmelden%3A%20${encodeURIComponent(email)}"
+                 style="color:#9A9189">
+                Abmelden
+              </a>
+            </p>
+          </div>
+        `,
+      });
+    } catch (mailErr) {
+      // Non-fatal — Anmeldung war erfolgreich, nur Mail ist fehlgeschlagen
+      console.error("Newsletter mail error:", mailErr);
+    }
   }
 
   return { status: "success" };
