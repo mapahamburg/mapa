@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 export type WaitlistState = {
   status?: "success" | "error" | "duplicate";
@@ -33,7 +33,7 @@ export async function joinWaitlist(
     return { status: "error", error: "Bitte eine gültige E-Mail-Adresse eingeben." };
   }
 
-  const supabase = await createClient();
+  const supabase = createAdminClient();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { error } = await (supabase as any)
     .from("newsletter")
