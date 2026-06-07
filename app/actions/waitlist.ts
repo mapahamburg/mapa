@@ -1,6 +1,6 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
 import { Resend } from "resend";
 
 export type WaitlistState = {
@@ -33,14 +33,7 @@ export async function joinWaitlist(
     return { status: "error", error: "Bitte eine gültige E-Mail-Adresse eingeben." };
   }
 
-  let supabase;
-  try {
-    supabase = createAdminClient();
-  } catch (e) {
-    console.error("createAdminClient failed:", e);
-    return { status: "error", error: "Konfigurationsfehler. Bitte melde dich bei hey@mapa.hamburg." };
-  }
-
+  const supabase = await createClient();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { error } = await (supabase as any)
     .from("newsletter")
