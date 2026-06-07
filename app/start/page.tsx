@@ -20,8 +20,8 @@ const WHY_ITEMS = [
     body: "Kein Algorithmus, keine Werbung, kein globaler Feed. Nur dein Stadtteil, chronologisch, mit einem Local Host, der die Nachbarschaft kennt.",
   },
   {
-    title: "Wir starten in Winterhude.",
-    body: "Die erste Nachbarschaft entsteht gerade. Wenn du in Winterhude wohnst oder regelmäßig dort unterwegs bist, freuen wir uns, wenn du dabei bist.",
+    title: "Wir starten in Winterhude und Eppendorf.",
+    body: "Die ersten Nachbarschaften entstehen gerade. Wenn du dort wohnst oder regelmäßig unterwegs bist, freuen wir uns, wenn du dabei bist.",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function StartPage() {
             marginBottom: 16,
           }}
         >
-          Winterhude · Jetzt im Aufbau
+          Winterhude & Eppendorf · Jetzt im Aufbau
         </div>
 
         {/* Headline */}
@@ -94,8 +94,8 @@ export default function StartPage() {
           }}
         >
           mapa ist die lokale Community für Eltern in Hamburg. Wir starten
-          gerade in Winterhude und sammeln die ersten Familien, Empfehlungen
-          und Veranstaltungen.
+          gerade in Winterhude und Eppendorf und sammeln die ersten Familien,
+          Empfehlungen und Veranstaltungen.
         </p>
 
         {/* Form card */}
