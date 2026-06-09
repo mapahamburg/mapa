@@ -26,13 +26,12 @@ export default async function GespeichertPage() {
           Deine Sammlung
         </p>
         <h1 style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-ui)",
           fontSize: 32,
-          fontWeight: 400,
+          fontWeight: 700,
           color: "var(--ink)",
           margin: "0 0 6px",
-          letterSpacing: "-0.01em",
+          letterSpacing: "-0.02em",
           lineHeight: 1.1,
         }}>
           Gespeichert
@@ -57,9 +56,9 @@ export default async function GespeichertPage() {
         }}>
           <Bookmark size={28} strokeWidth={1.5} color="var(--fg-subtle)" style={{ marginBottom: 14 }} />
           <p style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-ui)",
             fontSize: 18,
+            fontWeight: 500,
             color: "var(--fg-muted)",
             margin: "0 0 8px",
           }}>

@@ -85,13 +85,13 @@ function SuccessState({ duplicate }: { duplicate?: boolean }) {
       </div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
-          fontWeight: 400,
+          fontFamily: "var(--font-ui)",
+          fontWeight: 600,
           fontSize: 26,
           color: "var(--fg)",
           margin: "0 0 12px",
           lineHeight: 1.2,
+          letterSpacing: "-0.02em",
         }}
       >
         {duplicate ? "Du bist schon dabei." : "Du bist dabei."}

@@ -93,10 +93,10 @@ export function ContactModal({ recipientName, postId, postTitle, onClose }: Prop
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
           <div>
             <h2 style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
               fontSize: 22,
-              fontWeight: 400,
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
               margin: 0,
               lineHeight: 1.2,
             }}>

@@ -32,13 +32,13 @@ export function TauschboerseStrip({ posts }: { posts: FeedPost[] }) {
         <div>
           <p
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
               fontSize: 18,
-              fontWeight: 400,
+              fontWeight: 600,
               color: "var(--color-ink)",
               margin: "0 0 4px",
               lineHeight: 1.2,
+              letterSpacing: "-0.02em",
             }}
           >
             Suche &amp; Weitergeben.

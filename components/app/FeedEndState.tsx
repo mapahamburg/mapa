@@ -18,12 +18,11 @@ export function FeedEndState() {
       <div style={{ width: 32, height: 1, background: "var(--color-line)" }} />
       <div
         style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
-          fontWeight: 400,
+          fontFamily: "var(--font-ui)",
+          fontWeight: 600,
           fontSize: 28,
           color: "var(--color-ink)",
-          letterSpacing: "-0.01em",
+          letterSpacing: "-0.02em",
           marginTop: 4,
         }}
       >

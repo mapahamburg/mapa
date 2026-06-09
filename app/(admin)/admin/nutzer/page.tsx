@@ -17,9 +17,9 @@ export default async function NutzerPage() {
       <div style={{ marginBottom: 36 }}>
         <h1
           style={{
-            fontFamily: "var(--font-display)",
+            fontFamily: "var(--font-ui)",
             fontSize: 32,
-            fontWeight: 400,
+            fontWeight: 700,
             color: "var(--fg)",
             margin: 0,
             letterSpacing: "-0.02em",

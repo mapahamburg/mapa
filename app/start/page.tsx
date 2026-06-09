@@ -70,9 +70,8 @@ export default function StartPage() {
         {/* Headline */}
         <h1
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
-            fontWeight: 400,
+            fontFamily: "var(--font-ui)",
+            fontWeight: 700,
             fontSize: "clamp(32px, 8vw, 44px)",
             lineHeight: 1.1,
             letterSpacing: "-0.02em",

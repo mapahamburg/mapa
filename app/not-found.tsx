@@ -38,12 +38,11 @@ export default function NotFound() {
 
       <h1
         style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-ui)",
           fontSize: 28,
-          fontWeight: 400,
+          fontWeight: 700,
           color: "var(--color-ink)",
-          letterSpacing: "-0.015em",
+          letterSpacing: "-0.02em",
           lineHeight: 1.2,
           margin: "0 0 12px",
         }}

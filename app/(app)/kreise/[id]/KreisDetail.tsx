@@ -298,8 +298,8 @@ export function KreisDetail({ kreis, posts, isMember, isHost }: KreisDetailProps
         )}
         <div
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-ui)",
+            fontWeight: 700,
             fontSize: 32,
             lineHeight: 1.1,
             letterSpacing: "-0.02em",
@@ -431,8 +431,8 @@ export function KreisDetail({ kreis, posts, isMember, isHost }: KreisDetailProps
             <div style={{ textAlign: "center", padding: "48px 0" }}>
               <div
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
+                  fontFamily: "var(--font-ui)",
+                  fontWeight: 600,
                   fontSize: 20,
                   color: "var(--fg-muted)",
                   letterSpacing: "-0.01em",
@@ -461,8 +461,8 @@ export function KreisDetail({ kreis, posts, isMember, isHost }: KreisDetailProps
         >
           <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 700,
               fontSize: 22,
               color: "var(--ink)",
               letterSpacing: "-0.01em",

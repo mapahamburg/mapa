@@ -183,7 +183,7 @@ export function KarteView({ posts }: { posts: FeedPost[] }) {
             background: "rgba(245,241,232,0.92)", backdropFilter: "blur(12px)",
             borderRadius: 16, padding: "20px 28px", textAlign: "center",
           }}>
-            <div style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 18, color: "var(--ink)" }}>
+            <div style={{ fontFamily: "var(--font-ui)", fontSize: 18, fontWeight: 500, color: "var(--ink)" }}>
               Noch keine Beiträge auf der Karte.
             </div>
           </div>
@@ -218,9 +218,9 @@ export function KarteView({ posts }: { posts: FeedPost[] }) {
                 {TYPE_LABEL[selected.type] ?? selected.type}
               </span>
               <h3 style={{
-                fontFamily: "var(--font-display)", fontStyle: "italic",
-                fontSize: 20, fontWeight: 400, color: "var(--ink)",
-                margin: "0 0 6px", lineHeight: 1.2,
+                fontFamily: "var(--font-ui)",
+                fontSize: 20, fontWeight: 600, color: "var(--ink)",
+                margin: "0 0 6px", lineHeight: 1.2, letterSpacing: "-0.02em",
               }}>
                 {selected.title}
               </h3>

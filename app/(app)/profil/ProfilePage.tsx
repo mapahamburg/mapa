@@ -284,10 +284,10 @@ function ProfileView({
           <InitialsAvatar letter={profile.first_name[0]} size={72} />
           <div>
             <h1 style={{
-              fontFamily: "var(--font-display)",
-              fontStyle:  "italic",
+              fontFamily: "var(--font-ui)",
               fontSize:   32,
-              fontWeight: 400,
+              fontWeight: 700,
+              letterSpacing: "-0.025em",
               color:      "var(--ink)",
               margin:     "0 0 6px",
             }}>
@@ -512,10 +512,10 @@ function ProfileEditForm({
       {/* Top bar */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 32 }}>
         <h1 style={{
-          fontFamily: "var(--font-display)",
-          fontStyle:  "italic",
-          fontSize:   28,
-          fontWeight: 400,
+          fontFamily: "var(--font-ui)",
+          fontSize:   24,
+          fontWeight: 600,
+          letterSpacing: "-0.02em",
           color:      "var(--ink)",
           margin:     0,
         }}>

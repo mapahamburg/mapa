@@ -25,7 +25,7 @@ class MapErrorBoundary extends Component<
             border: "1px solid var(--border)",
             borderRadius: 16, padding: "24px 32px", maxWidth: 400, textAlign: "center",
           }}>
-            <div style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 18, color: "var(--ink)", marginBottom: 8 }}>
+            <div style={{ fontFamily: "var(--font-ui)", fontWeight: 600, fontSize: 18, color: "var(--ink)", marginBottom: 8 }}>
               Karte konnte nicht geladen werden.
             </div>
             <code style={{ fontSize: 12, color: "var(--fg-muted)", display: "block", wordBreak: "break-all" }}>
@@ -55,8 +55,8 @@ const KarteView = dynamic(
         background: "var(--surface-page)",
       }}>
         <span style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-ui)",
+          fontWeight: 500,
           fontSize: 18,
           color: "var(--fg-muted)",
         }}>

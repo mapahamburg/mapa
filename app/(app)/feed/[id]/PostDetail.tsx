@@ -338,10 +338,9 @@ export function PostDetail({
             {/* Title */}
             <h1
               style={{
-                fontFamily: "var(--font-display)",
-                fontStyle: "italic",
+                fontFamily: "var(--font-ui)",
                 fontSize: 30,
-                fontWeight: 400,
+                fontWeight: 700,
                 lineHeight: 1.2,
                 margin: "16px 0 0",
                 color: "var(--color-ink)",

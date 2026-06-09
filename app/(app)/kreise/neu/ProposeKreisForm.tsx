@@ -129,12 +129,12 @@ function ProposeKreisFormInner({ onReset }: { onReset: () => void }) {
           <p
             style={{
               margin: 0,
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
               fontSize: 20,
+              fontWeight: 600,
               color: "var(--ink)",
               lineHeight: 1.35,
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.02em",
             }}
           >
             {state.success}
@@ -199,8 +199,9 @@ function ProposeKreisFormInner({ onReset }: { onReset: () => void }) {
       <div
         className="feed-greeting"
         style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-ui)",
+          fontWeight: 700,
+          letterSpacing: "-0.025em",
           color: "var(--ink)",
           marginBottom: 8,
         }}

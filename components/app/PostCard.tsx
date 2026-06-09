@@ -13,7 +13,6 @@ import type { FeedPost } from "@/types";
 export type { FeedPost as Post };
 
 // ─── Full PostCard (detail pages, desktop sidebar) ────────────────────────────
-// Marketing rule: Serif is allowed here because it's editorial/detail context.
 
 export function PostCard({ post }: { post: FeedPost }) {
   const router = useRouter();
@@ -62,11 +61,11 @@ export function PostCard({ post }: { post: FeedPost }) {
         <Tag type={post.type} />
       </header>
 
-      {/* Title — Serif OK here, this is the full/detail card */}
+      {/* Title — font-ui, product UI context */}
       <h3 className="post-card-title" style={{
-        fontFamily: "var(--font-display)",
-        fontStyle: "italic",
-        fontWeight: 400,
+        fontFamily: "var(--font-ui)",
+        fontWeight: 600,
+        letterSpacing: "-0.02em",
         color: "var(--color-ink)",
         margin: 0,
       }}>

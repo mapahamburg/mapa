@@ -43,8 +43,8 @@ export function PulseStrip({ posts }: { posts: FeedPost[] }) {
           <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
             <span
               style={{
-                fontFamily: "var(--font-display)",
-                fontStyle: "italic",
+                fontFamily: "var(--font-ui)",
+                fontWeight: 700,
                 fontSize: 19,
                 color: "var(--color-ink)",
                 lineHeight: 1,

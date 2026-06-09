@@ -76,8 +76,8 @@ export function ModerationQueue({ reports = [] }: { reports?: QueueReport[] }) {
         <div style={{ padding: "32px 24px", textAlign: "center" }}>
           <p
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 500,
               fontSize: 16,
               color: "var(--fg-muted)",
               margin: 0,

@@ -136,8 +136,8 @@ export function MobileHeroPreview({ isLoggedIn }: { isLoggedIn: boolean }) {
           <div key={label} style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <span style={{
               flexShrink: 0,
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 600,
               fontSize: 14,
               background: "var(--cobalt-50)",
               color: "var(--cobalt-700)",

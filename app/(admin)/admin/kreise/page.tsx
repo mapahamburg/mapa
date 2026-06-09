@@ -27,9 +27,9 @@ export default async function AdminKreisePage() {
       >
         <h1
           style={{
-            fontFamily: "var(--font-display)",
+            fontFamily: "var(--font-ui)",
             fontSize: 32,
-            fontWeight: 400,
+            fontWeight: 700,
             color: "var(--fg)",
             margin: 0,
             letterSpacing: "-0.02em",
@@ -70,9 +70,9 @@ export default async function AdminKreisePage() {
         >
           <p
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
               fontSize: 20,
+              fontWeight: 500,
               color: "var(--fg-muted)",
               margin: 0,
               letterSpacing: "-0.01em",
@@ -100,8 +100,8 @@ export default async function AdminKreisePage() {
               {/* Name */}
               <div
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
+                  fontFamily: "var(--font-ui)",
+                  fontWeight: 600,
                   fontSize: 18,
                   color: "var(--fg)",
                   letterSpacing: "-0.01em",

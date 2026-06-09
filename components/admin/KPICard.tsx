@@ -44,9 +44,9 @@ export function KPICard({ label, value, trend, icon, accent }: KPICardProps) {
       {/* Value */}
       <div
         style={{
-          fontFamily: "var(--font-display)",
+          fontFamily: "var(--font-ui)",
           fontSize: 32,
-          fontWeight: 400,
+          fontWeight: 700,
           color: "var(--fg)",
           lineHeight: 1,
           letterSpacing: "-0.02em",

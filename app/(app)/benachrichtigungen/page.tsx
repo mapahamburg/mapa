@@ -22,13 +22,12 @@ export default function BenachrichtigungenPage() {
         </div>
         <div
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
-            fontWeight: 400,
+            fontFamily: "var(--font-ui)",
+            fontWeight: 700,
             fontSize: 36,
             lineHeight: 1.1,
             color: "var(--color-ink)",
-            letterSpacing: "-0.01em",
+            letterSpacing: "-0.02em",
             marginBottom: 8,
           }}
         >

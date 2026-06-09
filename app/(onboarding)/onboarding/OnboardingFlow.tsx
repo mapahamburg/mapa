@@ -190,11 +190,12 @@ export function OnboardingFlow() {
     <div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
+          fontFamily: "var(--font-ui)",
           fontSize: "24px",
-          fontWeight: 400,
+          fontWeight: 600,
           color: "var(--fg)",
           marginBottom: "8px",
+          letterSpacing: "-0.02em",
         }}
       >
         Wie heißt du?
@@ -256,12 +257,12 @@ export function OnboardingFlow() {
     <div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-ui)",
           fontSize: "24px",
-          fontWeight: 400,
+          fontWeight: 600,
           color: "var(--ink)",
           marginBottom: "8px",
+          letterSpacing: "-0.02em",
         }}
       >
         Sag kurz wer du bist.
@@ -322,11 +323,12 @@ export function OnboardingFlow() {
     <div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
+          fontFamily: "var(--font-ui)",
           fontSize: "24px",
-          fontWeight: 400,
+          fontWeight: 600,
           color: "var(--fg)",
           marginBottom: "8px",
+          letterSpacing: "-0.02em",
         }}
       >
         In welchem Stadtteil lebst du?
@@ -399,11 +401,12 @@ export function OnboardingFlow() {
     <div>
       <h2
         style={{
-          fontFamily: "var(--font-display)",
+          fontFamily: "var(--font-ui)",
           fontSize: "24px",
-          fontWeight: 400,
+          fontWeight: 600,
           color: "var(--fg)",
           marginBottom: "8px",
+          letterSpacing: "-0.02em",
         }}
       >
         Was interessiert dich?
@@ -475,11 +478,12 @@ export function OnboardingFlow() {
 
       <h2
         style={{
-          fontFamily: "var(--font-display)",
+          fontFamily: "var(--font-ui)",
           fontSize: "24px",
-          fontWeight: 400,
+          fontWeight: 600,
           color: "var(--fg)",
           marginBottom: "8px",
+          letterSpacing: "-0.02em",
         }}
       >
         Die fünf Hausregeln.

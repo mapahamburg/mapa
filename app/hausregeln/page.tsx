@@ -86,9 +86,9 @@ export default function HausregelnPage() {
         {/* Headline */}
         <h1
           style={{
-            fontFamily: "var(--font-display)",
+            fontFamily: "var(--font-ui)",
             fontSize: 36,
-            fontWeight: 400,
+            fontWeight: 700,
             color: "var(--fg)",
             margin: "0 0 8px 0",
             letterSpacing: "-0.02em",
@@ -127,9 +127,9 @@ export default function HausregelnPage() {
             >
               <p
                 style={{
-                  fontFamily: "var(--font-display)",
+                  fontFamily: "var(--font-ui)",
                   fontSize: 20,
-                  fontWeight: 400,
+                  fontWeight: 600,
                   color: "var(--mapa-sage-500)",
                   margin: "0 0 8px 0",
                   lineHeight: 1,
@@ -168,10 +168,9 @@ export default function HausregelnPage() {
         <section style={{ marginTop: 48 }}>
           <h2
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
               fontSize: 24,
-              fontWeight: 400,
+              fontWeight: 700,
               color: "var(--fg)",
               letterSpacing: "-0.015em",
               margin: "0 0 16px 0",

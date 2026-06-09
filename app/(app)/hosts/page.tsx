@@ -33,12 +33,11 @@ export default function HostsPage() {
 
         {/* Headline */}
         <h1 style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-ui)",
           fontSize: 30,
-          fontWeight: 400,
+          fontWeight: 700,
           color: "var(--color-ink)",
-          letterSpacing: "-0.015em",
+          letterSpacing: "-0.02em",
           lineHeight: 1.2,
           margin: "0 0 16px",
         }}>
@@ -122,11 +121,11 @@ export default function HostsPage() {
           <Avatar letter="N" size={48} />
           <div>
             <div style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
               fontSize: 18,
+              fontWeight: 600,
               color: "var(--color-ink)",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.02em",
               marginBottom: 4,
             }}>
               Nadine
@@ -165,12 +164,11 @@ export default function HostsPage() {
           padding: 28,
         }}>
           <h2 style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-ui)",
             fontSize: 22,
-            fontWeight: 400,
+            fontWeight: 700,
             color: "var(--color-ink)",
-            letterSpacing: "-0.01em",
+            letterSpacing: "-0.02em",
             margin: "0 0 10px",
           }}>
             Lust, deinen Stadtteil zu begleiten?

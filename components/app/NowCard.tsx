@@ -65,15 +65,14 @@ export function NowCard({ post }: { post: FeedPost }) {
       <Link href={`/feed/${post.id}`} style={{ textDecoration: "none" }}>
         <h2
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
-            fontWeight: 400,
+            fontFamily: "var(--font-ui)",
+            fontWeight: 700,
             fontSize: 34,
             lineHeight: 1.06,
             color: "var(--color-ink)",
             maxWidth: 520,
             margin: 0,
-            letterSpacing: "-0.01em",
+            letterSpacing: "-0.02em",
           }}
         >
           {post.title}

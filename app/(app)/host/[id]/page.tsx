@@ -99,13 +99,12 @@ export default async function HostProfilePage({
             <div>
               <h1
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
+                  fontFamily: "var(--font-ui)",
                   fontSize: 28,
-                  fontWeight: 400,
+                  fontWeight: 700,
                   color: "var(--color-ink)",
                   margin: "0 0 6px",
-                  letterSpacing: "-0.015em",
+                  letterSpacing: "-0.02em",
                 }}
               >
                 {host.first_name}
@@ -197,8 +196,8 @@ export default async function HostProfilePage({
                   <span
                     style={{
                       flex: 1,
-                      fontFamily: "var(--font-display)",
-                      fontStyle: "italic",
+                      fontFamily: "var(--font-ui)",
+                      fontWeight: 500,
                       fontSize: 15,
                       color: "var(--color-ink)",
                       overflow: "hidden",

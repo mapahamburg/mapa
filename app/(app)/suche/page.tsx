@@ -19,13 +19,12 @@ export default async function SuchePage({
       {/* Header */}
       <div style={{ marginBottom: 24 }}>
         <h1 style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-ui)",
           fontSize: 28,
-          fontWeight: 400,
+          fontWeight: 700,
           color: "var(--ink)",
           margin: "0 0 16px",
-          letterSpacing: "-0.01em",
+          letterSpacing: "-0.02em",
           lineHeight: 1.1,
         }}>
           {query ? `„${query}"` : "Suche"}
@@ -49,9 +48,9 @@ export default async function SuchePage({
           borderRadius: "var(--radius-l)",
         }}>
           <p style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-ui)",
             fontSize: 18,
+            fontWeight: 600,
             color: "var(--fg-muted)",
             margin: "0 0 8px",
           }}>

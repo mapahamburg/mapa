@@ -151,10 +151,10 @@ export async function RightSidebar({ stadtteil }: { stadtteil: string | null }) 
             <Avatar letter={host.name[0]} size={46} />
             <div
               style={{
-                fontFamily: "var(--font-display)",
-                fontStyle: "italic",
+                fontFamily: "var(--font-ui)",
+                fontWeight: 600,
                 fontSize: 19,
-                letterSpacing: "-0.01em",
+                letterSpacing: "-0.02em",
                 color: "var(--color-ink)",
               }}
             >
@@ -263,7 +263,7 @@ export async function RightSidebar({ stadtteil }: { stadtteil: string | null }) 
                       color: "var(--color-cobalt-ink)",
                       borderRadius: 10,
                       padding: "4px 0",
-                      fontFamily: "var(--font-display)",
+                      fontFamily: "var(--font-ui)",
                     }}
                   >
                     <div style={{ fontSize: 18, letterSpacing: "-0.02em", lineHeight: 1 }}>{t.day}</div>
@@ -272,10 +272,10 @@ export async function RightSidebar({ stadtteil }: { stadtteil: string | null }) 
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div
                       style={{
-                        fontFamily: "var(--font-display)",
-                        fontStyle: "italic",
+                        fontFamily: "var(--font-ui)",
+                        fontWeight: 600,
                         fontSize: 14.5,
-                        letterSpacing: "-0.01em",
+                        letterSpacing: "-0.02em",
                         lineHeight: 1.3,
                         display: "-webkit-box",
                         WebkitLineClamp: 2,
@@ -331,13 +331,13 @@ export async function RightSidebar({ stadtteil }: { stadtteil: string | null }) 
           </div>
           <div style={{ display: "flex", gap: 24, marginTop: 14 }}>
             <div>
-              <div style={{ fontFamily: "var(--font-display)", fontSize: 28, letterSpacing: "-0.02em", color: "var(--color-ink)" }}>
+              <div style={{ fontFamily: "var(--font-ui)", fontWeight: 700, fontSize: 28, letterSpacing: "-0.02em", color: "var(--color-ink)" }}>
                 {stats.members}
               </div>
               <div style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 2 }}>Mitglieder</div>
             </div>
             <div>
-              <div style={{ fontFamily: "var(--font-display)", fontSize: 28, letterSpacing: "-0.02em", color: "var(--color-ink)" }}>
+              <div style={{ fontFamily: "var(--font-ui)", fontWeight: 700, fontSize: 28, letterSpacing: "-0.02em", color: "var(--color-ink)" }}>
                 {stats.newThisWeek}
               </div>
               <div style={{ fontSize: 12, color: "var(--color-muted)", marginTop: 2 }}>diese Woche neu</div>

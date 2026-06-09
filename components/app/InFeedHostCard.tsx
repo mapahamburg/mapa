@@ -26,11 +26,11 @@ export function InFeedHostCard({ id, name, stadtteil, bio }: InFeedHostCardProps
         <div>
           <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 600,
               fontSize: 17,
               color: "var(--color-ink)",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.02em",
               lineHeight: 1.2,
             }}
           >

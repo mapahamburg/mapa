@@ -239,8 +239,9 @@ export default async function KreisePage() {
           <div
             className="feed-greeting"
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
               color: "var(--ink)",
             }}
           >
@@ -297,11 +298,11 @@ export default async function KreisePage() {
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
                   <div
                     style={{
-                      fontFamily: "var(--font-display)",
-                      fontStyle: "italic",
+                      fontFamily: "var(--font-ui)",
+                      fontWeight: 600,
                       fontSize: 17,
                       color: "var(--ink)",
-                      letterSpacing: "-0.01em",
+                      letterSpacing: "-0.02em",
                       lineHeight: 1.25,
                     }}
                   >
@@ -392,11 +393,11 @@ export default async function KreisePage() {
         >
           <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 600,
               fontSize: 22,
               color: "var(--fg-muted)",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.02em",
             }}
           >
             Noch keine Kreise hier.

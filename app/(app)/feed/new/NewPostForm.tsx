@@ -115,14 +115,13 @@ export function NewPostForm({ defaultStadtteil }: { defaultStadtteil?: string })
     >
       <h1
         style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-ui)",
           fontSize: 28,
-          fontWeight: 400,
+          fontWeight: 700,
           color: "var(--color-ink)",
           margin: "0 0 32px 0",
           lineHeight: 1.2,
-          letterSpacing: "-0.015em",
+          letterSpacing: "-0.02em",
         }}
       >
         Neuer Beitrag

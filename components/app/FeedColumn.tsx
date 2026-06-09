@@ -137,8 +137,8 @@ export function FeedColumn({
         <div
           className="feed-greeting"
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-ui)",
+            fontWeight: 600,
             color: "var(--color-ink)",
           }}
         >
@@ -271,11 +271,11 @@ export function FeedColumn({
         >
           <div
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 600,
               fontSize: 20,
               color: "var(--color-muted)",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.02em",
             }}
           >
             In {userDistrict} ist es noch ruhig.

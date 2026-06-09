@@ -27,13 +27,12 @@ export default async function VeranstaltungenPage() {
           Im Viertel
         </p>
         <h1 style={{
-          fontFamily: "var(--font-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-ui)",
           fontSize: 32,
-          fontWeight: 400,
+          fontWeight: 700,
           color: "var(--ink)",
           margin: "0 0 6px",
-          letterSpacing: "-0.01em",
+          letterSpacing: "-0.02em",
           lineHeight: 1.1,
         }}>
           Veranstaltungen
@@ -82,9 +81,9 @@ export default async function VeranstaltungenPage() {
           borderRadius: "var(--radius-l)",
         }}>
           <p style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-ui)",
             fontSize: 18,
+            fontWeight: 500,
             color: "var(--fg-muted)",
             margin: 0,
           }}>

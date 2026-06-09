@@ -33,11 +33,11 @@ export function LegalLayout({ eyebrow, title, lastUpdated, children }: LegalLayo
         <h1
           className="legal-h1"
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
-            fontWeight: 400,
+            fontFamily: "var(--font-ui)",
+            fontWeight: 700,
             color: "var(--ink)",
             margin: "0 0 12px",
+            letterSpacing: "-0.02em",
           }}
         >
           {title}
