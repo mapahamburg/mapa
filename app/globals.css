@@ -486,7 +486,7 @@ a, button, [role="button"] {
 
 /* ─── PostCard ─── */
 /* Title scales down on mobile — always use this class, never inline fontSize */
-.post-card-title { font-size: 28px; line-height: 1.2; letter-spacing: -0.005em; }
+.post-card-title { font-size: 18px; line-height: 1.3; letter-spacing: -0.01em; }
 
 /* ─── Feed ─── */
 .feed-greeting { font-size: 32px; letter-spacing: -0.02em; line-height: 1.1; }
@@ -689,7 +689,7 @@ a, button, [role="button"] {
   .notonmapa-item { font-size: 18px !important; }
 
   /* PostCard */
-  .post-card-title { font-size: 21px !important; line-height: 1.25 !important; letter-spacing: -0.01em !important; }
+  .post-card-title { font-size: 18px !important; line-height: 1.3 !important; letter-spacing: -0.01em !important; }
 
   /* Feed greeting — etwas kleiner auf Desktop, mehr Kontext sichtbar */
   .feed-greeting { font-size: 28px !important; }
