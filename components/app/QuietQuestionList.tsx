@@ -1,119 +1,104 @@
 import Link from "next/link";
 import type { FeedPost } from "@/types";
 
+// ─── QuietQuestionList — "Offene Fragen" ─────────────────────────────────────
+// Sans-serif titles. "Antworten →" never truncated (right-side anchor removed,
+// embedded in the title row to avoid mobile overflow).
+
 export function QuietQuestionList({ questions }: { questions: FeedPost[] }) {
   if (questions.length === 0) return null;
 
   return (
-    <div
-      style={{
-        background: "rgba(194,106,63,0.07)",
-        border: "1px solid rgba(194,106,63,0.18)",
-        borderRadius: 18,
-        padding: "22px 24px",
-      }}
-    >
+    <div style={{
+      background: "rgba(194,106,63,0.06)",
+      border: "1px solid rgba(194,106,63,0.16)",
+      borderRadius: 14,
+      padding: "16px 18px",
+    }}>
       {/* Header */}
-      <div style={{ marginBottom: 18 }}>
-        <p
-          style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
-            fontWeight: 400,
-            fontSize: 20,
-            lineHeight: 1.3,
-            color: "var(--color-ink)",
-            margin: "0 0 6px",
-          }}
-        >
-          {questions.length === 1
-            ? "Eine offene Frage aus deinem Stadtteil."
-            : `${questions.length} offene Fragen aus deinem Stadtteil.`}
+      <div style={{ marginBottom: 14 }}>
+        <p style={{
+          fontFamily: "var(--font-ui)",
+          fontWeight: 600,
+          fontSize: 13,
+          color: "var(--color-clay-deep)",
+          margin: "0 0 2px",
+          letterSpacing: "0.01em",
+          textTransform: "uppercase",
+        }}>
+          {questions.length === 1 ? "1 offene Frage" : `${questions.length} offene Fragen`}
         </p>
-        <p
-          style={{
-            fontFamily: "var(--font-ui)",
-            fontSize: 14,
-            color: "var(--color-muted)",
-            margin: 0,
-            lineHeight: 1.5,
-          }}
-        >
+        <p style={{
+          fontFamily: "var(--font-ui)",
+          fontSize: 13,
+          color: "var(--color-muted)",
+          margin: 0,
+          lineHeight: 1.4,
+        }}>
           Vielleicht weißt du die Antwort.
         </p>
       </div>
 
       {/* Question list */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         {questions.map((q, i) => (
           <Link
             key={q.id}
             href={`/feed/${q.id}`}
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 14,
-              padding: "12px 0",
-              borderBottom:
-                i < questions.length - 1
-                  ? "1px solid rgba(194,106,63,0.12)"
-                  : "none",
+              display: "block",
+              padding: "10px 0",
+              borderBottom: i < questions.length - 1
+                ? "1px solid rgba(194,106,63,0.12)"
+                : "none",
               textDecoration: "none",
             }}
           >
-            {/* Dot */}
-            <div
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "var(--color-clay-deep)",
-                flexShrink: 0,
-                marginTop: 2,
-              }}
-            />
-
-            {/* Title */}
-            <div
-              style={{
-                flex: 1,
-                fontFamily: "var(--font-display)",
-                fontStyle: "italic",
-                fontSize: 17,
-                color: "var(--color-ink)",
-                lineHeight: 1.3,
-              }}
-            >
+            {/* Title — 2-line clamp, sans */}
+            <div style={{
+              fontFamily: "var(--font-ui)",
+              fontWeight: 600,
+              fontSize: 14,
+              lineHeight: 1.35,
+              color: "var(--color-ink)",
+              letterSpacing: "-0.01em",
+              marginBottom: 5,
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}>
               {q.title}
             </div>
 
-            {/* Meta */}
-            <div
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 11,
-                color: "var(--color-subtle)",
-                letterSpacing: "0.06em",
-                whiteSpace: "nowrap",
-                flexShrink: 0,
-              }}
-            >
-              {q.district} · {q.time}
-            </div>
-
-            {/* CTA */}
-            <span
-              style={{
+            {/* Meta + CTA in one row */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 8,
+            }}>
+              <span style={{
                 fontFamily: "var(--font-ui)",
-                fontSize: 13,
-                fontWeight: 500,
+                fontSize: 11,
+                color: "var(--color-muted)",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}>
+                {q.district} · {q.time}
+              </span>
+              <span style={{
+                fontFamily: "var(--font-ui)",
+                fontSize: 12,
+                fontWeight: 600,
                 color: "var(--color-clay-deep)",
                 whiteSpace: "nowrap",
                 flexShrink: 0,
-              }}
-            >
-              Antworten →
-            </span>
+              }}>
+                Antworten →
+              </span>
+            </div>
           </Link>
         ))}
       </div>
