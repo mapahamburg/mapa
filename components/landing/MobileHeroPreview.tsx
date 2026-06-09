@@ -76,45 +76,54 @@ export function MobileHeroPreview({ isLoggedIn }: { isLoggedIn: boolean }) {
             Hallo Anna.
           </div>
 
-          {/* Post cards */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {/* Post cards — neue Hierarchie: Titel zuerst, Meta danach */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
             {POSTS.map((p) => (
               <div key={p.name + p.tag} style={{
                 background: "var(--mapa-ivory)",
                 border: "1px solid var(--border)",
-                borderRadius: 12,
-                padding: "9px 11px",
+                borderRadius: 10,
+                padding: "8px 10px",
               }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 5 }}>
-                  {/* Avatar */}
+                {/* ROW 1 — Titel dominant, sans 600 */}
+                <div style={{
+                  fontFamily: "var(--font-ui)",
+                  fontWeight: 600,
+                  fontSize: 11.5,
+                  lineHeight: 1.3,
+                  letterSpacing: "-0.01em",
+                  color: "var(--fg)",
+                  marginBottom: 5,
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}>
+                  {p.title}
+                </div>
+                {/* ROW 2 — Avatar · District + Tag */}
+                <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
                   <div style={{
-                    width: 20, height: 20, borderRadius: "50%",
+                    width: 13, height: 13, borderRadius: "50%",
                     background: "var(--ash-100)", flexShrink: 0,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "var(--font-ui)", fontSize: 9, fontWeight: 600, color: "var(--fg-muted)",
-                  }}>
-                    {p.initial}
-                  </div>
-                  <span style={{ fontSize: 9.5, fontWeight: 500, color: "var(--fg)", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {p.name} · {p.district}
-                  </span>
-                  {/* Tag pill */}
+                  }} />
                   <span style={{
-                    fontSize: 8.5, fontWeight: 600, fontFamily: "var(--font-ui)",
+                    fontFamily: "var(--font-ui)",
+                    fontSize: 9,
+                    color: "var(--fg-muted)",
+                    flex: 1,
+                    overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                  }}>
+                    {p.district}
+                  </span>
+                  <span style={{
+                    fontSize: 8, fontWeight: 600, fontFamily: "var(--font-ui)",
                     background: p.tagColor, color: p.tagText,
-                    borderRadius: 999, padding: "2px 7px", flexShrink: 0,
+                    borderRadius: 999, padding: "2px 6px", flexShrink: 0,
                   }}>
                     {p.tag}
                   </span>
                 </div>
-                <div style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 12, lineHeight: 1.3, color: "var(--fg)" }}>
-                  {p.title}
-                </div>
-                {p.meta && (
-                  <div style={{ marginTop: 5, background: "var(--mapa-cream)", borderRadius: 6, padding: "3px 7px", fontSize: 9.5, color: "var(--fg-muted)" }}>
-                    {p.meta}
-                  </div>
-                )}
               </div>
             ))}
           </div>
