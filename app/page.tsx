@@ -1,12 +1,10 @@
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
+import { StayConnected } from "@/components/landing/StayConnected";
 import { USP } from "@/components/landing/USP";
 import { LocalHosts } from "@/components/landing/LocalHosts";
-import { Districts } from "@/components/landing/Districts";
-import { StayConnected } from "@/components/landing/StayConnected";
 import { NotOnMapa } from "@/components/landing/NotOnMapa";
 import { FinalCTA } from "@/components/landing/FinalCTA";
-import { InstagramBand } from "@/components/landing/InstagramBand";
 import { Footer } from "@/components/landing/Footer";
 
 export default function LandingPage() {
@@ -15,19 +13,16 @@ export default function LandingPage() {
       <Nav />
       {/* 1. Was ist mapa + Beta-Kontext + Conversion */}
       <Hero />
-      {/* 2. Was du konkret bekommst */}
-      <USP />
-      {/* 3. Echte Local Hosts statt Algorithmus */}
-      <LocalHosts />
-      {/* 4. Dein Stadtteil, im Aufbau */}
-      <Districts />
-      {/* 5. Retention: du verpasst nichts */}
+      {/* 2. Stärkster Differentiator: keine App, E-Mail-Benachrichtigung */}
       <StayConnected />
-      {/* 6. Vertrauen: was mapa bewusst nicht ist */}
+      {/* 3. Was du konkret bekommst — mit Mid-Page-CTA */}
+      <USP />
+      {/* 4. Echte Local Hosts statt Algorithmus */}
+      <LocalHosts />
+      {/* 5. Was mapa bewusst nicht ist — 3 Items */}
       <NotOnMapa />
-      {/* 7. Conversion-Abschluss */}
+      {/* 6. Conversion-Abschluss */}
       <FinalCTA />
-      <InstagramBand />
       <Footer />
     </div>
   );

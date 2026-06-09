@@ -110,33 +110,16 @@ export function LocalHosts() {
             Wartelistentipp. Schreib mir gerne."
           </div>
 
-          <div
-            className="lh-stats-row"
-            style={{
-              marginTop: 24,
-              color: "var(--fg-muted)",
-              paddingTop: 20,
-              borderTop: "1px solid var(--border-soft)",
-            }}
-          >
-            <div>
-              <strong style={{ color: "var(--fg)", fontWeight: 500 }}>
-                184
-              </strong>{" "}
-              Empfehlungen
-            </div>
-            <div>
-              <strong style={{ color: "var(--fg)", fontWeight: 500 }}>
-                23
-              </strong>{" "}
-              Treffen kuratiert
-            </div>
-            <div>
-              <strong style={{ color: "var(--fg)", fontWeight: 500 }}>
-                312
-              </strong>{" "}
-              Familien begleitet
-            </div>
+          <div style={{
+            marginTop: 24,
+            paddingTop: 20,
+            borderTop: "1px solid var(--border-soft)",
+            fontFamily: "var(--font-ui)",
+            fontSize: 13,
+            color: "var(--fg-muted)",
+            lineHeight: 1.5,
+          }}>
+            Local Host · Winterhude · seit Beta-Start dabei
           </div>
         </div>
       </div>

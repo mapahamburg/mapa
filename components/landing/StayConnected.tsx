@@ -1,15 +1,20 @@
-import { Mail, BellOff } from "lucide-react";
+import { Mail, BellOff, Smartphone } from "lucide-react";
 
 const ITEMS = [
   {
+    Icon: Smartphone,
+    title: "Keine App nötig.",
+    sub: "mapa läuft im Browser. Kein Download, kein Update, kein Speicherplatz.",
+  },
+  {
     Icon: Mail,
-    title: "Antwort auf deine Frage? Du bekommst eine ruhige E-Mail.",
-    sub: "Sobald jemand aus deinem Stadtteil antwortet. Nicht später, nicht lauter.",
+    title: "Jemand antwortet? Du bekommst eine E-Mail.",
+    sub: "Sobald jemand aus deinem Stadtteil antwortet — ruhig, direkt, einmalig. Kein Thread-Chaos.",
   },
   {
     Icon: BellOff,
-    title: "Kein Dauer-Ping, kein Spam.",
-    sub: "Du entscheidest, was dich erreicht. Jederzeit in den Einstellungen.",
+    title: "Kein Algorithmus, der dich festhält.",
+    sub: "Wir melden uns nur wenn etwas passiert. Nicht um dich zurückzubringen.",
   },
 ];
 
@@ -40,9 +45,9 @@ export function StayConnected() {
               fontWeight: 400,
             }}
           >
-            Du verpasst nichts.
+            Keine App.
             <br />
-            <span>Auch ohne ständig zu schauen.</span>
+            <span>Keine Push-Hölle.</span>
           </h2>
           <p
             style={{
@@ -53,8 +58,7 @@ export function StayConnected() {
               maxWidth: 440,
             }}
           >
-            mapa holt dich zurück, wenn es wirklich etwas gibt. Ruhig, per
-            E-Mail, ohne den Drang, dich endlos festzuhalten.
+            mapa läuft im Browser und meldet sich per E-Mail, wenn jemand aus deinem Stadtteil antwortet. Kein Download. Kein Algorithmus, der dich festhält.
           </p>
         </div>
 

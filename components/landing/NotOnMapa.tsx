@@ -1,9 +1,8 @@
+// 3 stärkste Items — weniger negatives Framing, mehr Klarheit
 const ITEMS = [
-  ["Keine Likes-Wettbewerbe", "Du folgst Themen, nicht Menschen."],
-  ["Keine Werbung im Feed", ""],
-  ["Kein Algorithmus, der dich länger fesselt", "Chronologisch. Dein Stadtteil zuerst."],
-  ["Keine Foto-Pflicht", "Profile sind reduziert. Du teilst, was du willst."],
-  ["Keine globalen Diskussionen", "mapa ist Hamburg. Lokal heißt lokal."],
+  ["Kein Algorithmus.", "Chronologisch. Was zuletzt passiert ist, siehst du zuerst. Dein Stadtteil. Fertig."],
+  ["Keine Werbung im Feed.", "Kein Unternehmen zahlt sich nach oben. Was du siehst, hat jemand aus deinem Viertel geschrieben."],
+  ["Keine Likes-Zähler.", "Du siehst nicht, wie viele Personen etwas gut fanden. Das macht den Unterschied."],
 ] as const;
 
 export function NotOnMapa() {
@@ -33,9 +32,11 @@ export function NotOnMapa() {
               fontWeight: 400,
             }}
           >
-            Nicht alles muss
+            Kein Algorithmus.
             <br />
-            <span>überall sein.</span>
+            Keine Werbung.
+            <br />
+            <span>Kein Bullshit.</span>
           </h2>
           <p
             style={{
@@ -50,8 +51,7 @@ export function NotOnMapa() {
             <strong style={{ color: "var(--fg)", fontWeight: 500 }}>
               nicht
             </strong>{" "}
-            ein. Damit mapa auch in drei Jahren noch ein Ort ist, an den man
-            gerne zurückkehrt.
+            ein. Damit mapa auch in drei Jahren noch ein Ort ist, an den man gerne zurückkehrt.
           </p>
         </div>
 

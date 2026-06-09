@@ -344,39 +344,21 @@ export async function Hero() {
             Empfehlungen, Treffen und ehrliche Antworten aus deinem Stadtteil. Von echten Familien, nicht von einem Algorithmus.
           </p>
 
-          {/* Launch context — community im Aufbau, frühe Mitglieder zählen */}
+          {/* Beta-Kontext — 1 Satz, klar */}
           <div
             style={{
               marginTop: 20,
-              padding: "14px 16px",
+              padding: "11px 15px",
               background: "var(--cobalt-50)",
               border: "1px solid var(--cobalt-100)",
-              borderRadius: 14,
+              borderRadius: 12,
               fontFamily: "var(--font-ui)",
-              lineHeight: 1.5,
+              fontSize: 14,
+              color: "var(--cobalt-700)",
+              lineHeight: 1.45,
             }}
           >
-            <div
-              style={{
-                fontSize: 14,
-                fontWeight: 600,
-                color: "var(--cobalt-700)",
-              }}
-            >
-              mapa entsteht gerade in deinem Viertel.
-            </div>
-            <div
-              style={{
-                fontSize: 14,
-                color: "var(--cobalt-700)",
-                opacity: 0.82,
-                marginTop: 3,
-              }}
-            >
-              Wir starten in Winterhude und Eppendorf. Die ersten Familien
-              prägen, wie sich dein Stadtteil hier anfühlt. Genau dafür bist du
-              wichtig.
-            </div>
+            Wir starten gerade in Winterhude und Eppendorf. Die ersten Familien prägen, wie sich das Viertel hier anfühlt.
           </div>
 
           <div className="hero-btns">
@@ -393,26 +375,22 @@ export async function Hero() {
                 fontWeight: 500,
               }}
             >
-              {isLoggedIn ? "Zum Feed" : "Kostenlos beitreten"}
-            </a>
-            <a
-              href="/so-funktionierts"
-              style={{
-                background: "transparent",
-                color: "var(--fg)",
-                border: "1px solid var(--border)",
-                padding: "15px 26px",
-                borderRadius: 999,
-                fontFamily: "var(--font-ui)",
-                fontSize: 16,
-                fontWeight: 500,
-                textDecoration: "none",
-                display: "inline-block",
-              }}
-            >
-              So funktioniert&apos;s
+              {isLoggedIn ? "Zum Feed" : "Jetzt dabei sein"}
             </a>
           </div>
+
+          {/* Nach Sign-up — Unsicherheit beseitigen */}
+          {!isLoggedIn && (
+            <p style={{
+              marginTop: 10,
+              fontFamily: "var(--font-ui)",
+              fontSize: 12,
+              color: "var(--fg-subtle)",
+              lineHeight: 1.4,
+            }}>
+              Sofortiger Zugang. Keine App nötig. Läuft im Browser.
+            </p>
+          )}
 
           {/* Avatar stack + social proof */}
           <div
