@@ -181,7 +181,7 @@ export default function HostsPage() {
             margin: "0 0 20px",
           }}>
             Wir bauen mapa Stadtteil für Stadtteil auf. Wenn du Lust hast,
-            Local Host in deinem Viertel zu werden, schreib uns kurz.
+            Local Host in deinem Stadtteil zu werden, schreib uns kurz.
             Kein Formular, kein Auswahlverfahren.
           </p>
           <a

@@ -24,7 +24,7 @@ export default async function VeranstaltungenPage() {
           color: "var(--fg-subtle)",
           margin: "0 0 8px",
         }}>
-          Im Viertel
+          Im Stadtteil
         </p>
         <h1 style={{
           fontFamily: "var(--font-ui)",

@@ -24,7 +24,7 @@ export default async function TreffenPage() {
           color: "var(--fg-subtle)",
           margin: "0 0 8px",
         }}>
-          Im Viertel
+          Im Stadtteil
         </p>
         <h1 style={{
           fontFamily: "var(--font-ui)",
@@ -43,7 +43,7 @@ export default async function TreffenPage() {
           color: "var(--fg-muted)",
           margin: 0,
         }}>
-          Spontane Treffen und Verabredungen aus dem Viertel.
+          Spontane Treffen und Verabredungen aus dem Stadtteil.
         </p>
       </div>
 

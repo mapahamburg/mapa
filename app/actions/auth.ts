@@ -172,7 +172,7 @@ export async function createProfile(
               in <strong>${stadtteil}</strong>.
             </p>
             <p style="margin:0 0 16px">
-              Im Feed siehst du, was in deinem Viertel los ist. Teile
+              Im Feed siehst du, was in deinem Stadtteil los ist. Teile
               Empfehlungen, stell Fragen, vereinbare Treffen.
             </p>
             <p style="margin:0 0 24px">

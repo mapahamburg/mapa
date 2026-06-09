@@ -341,7 +341,7 @@ export async function Hero() {
               lineHeight: 1.45,
             }}
           >
-            Wir starten gerade in Winterhude und Eppendorf. Die ersten Familien prägen, wie sich das Viertel hier anfühlt.
+            Wir starten gerade in Winterhude und Eppendorf. Die ersten Familien prägen, wie sich der Stadtteil hier anfühlt.
           </div>
 
           <div className="hero-btns">

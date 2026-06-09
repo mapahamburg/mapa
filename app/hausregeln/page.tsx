@@ -213,7 +213,7 @@ export default function HausregelnPage() {
               Tauschbörse
             </p>
             <p style={{ fontFamily: "var(--font-ui)", fontSize: 14, color: "var(--fg-muted)", lineHeight: 1.65, margin: "0 0 12px 0" }}>
-              mapa ist keine anonyme Verkaufsplattform. Beschreib ehrlich, bleib lokal und respektvoll. Abholung im Viertel ist meist die schönste Lösung. Nutze sichere Treffpunkte.
+              mapa ist keine anonyme Verkaufsplattform. Beschreib ehrlich, bleib lokal und respektvoll. Abholung im Stadtteil ist meist die schönste Lösung. Nutze sichere Treffpunkte.
             </p>
             <p style={{ fontFamily: "var(--font-ui)", fontSize: 14, color: "var(--fg-muted)", lineHeight: 1.65, margin: 0 }}>
               Für private Verkäufe und Tauschaktionen übernimmt mapa keine Haftung. Verschenken, Suchen und lokale Tipps stehen im Mittelpunkt, nicht der schnelle Handel.

@@ -19,7 +19,7 @@ const LOCATIONS = [
   "in Eimsbüttel",
   "auf dem Spielplatz um die Ecke",
   "beim Café mit Hochstuhl",
-  "beim ehrlichen Tipp aus dem Viertel",
+  "beim ehrlichen Tipp aus dem Stadtteil",
 ];
 
 const EYEBROW: React.CSSProperties = {

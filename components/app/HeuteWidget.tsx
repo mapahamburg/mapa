@@ -31,7 +31,7 @@ export function HeuteWidget({ posts }: { posts: FeedPost[] }) {
           marginBottom: 12,
         }}
       >
-        Heute im Viertel
+        Heute im Stadtteil
       </div>
 
       {/* Horizontale Chip-Leiste */}

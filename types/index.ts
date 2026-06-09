@@ -138,7 +138,7 @@ export type Interest =
   | "Familiencafés"
   | "Spielplätze & Treffen"
   | "Kurse & Sport"
-  | "Events im Viertel"
+  | "Events im Stadtteil"
   | "Lokale Empfehlungen"
   | "Babysitter & Hebammen"
   | "Kita & Krabbelgruppe"
@@ -148,7 +148,7 @@ export const INTERESTS: Interest[] = [
   "Spielplätze & Treffen",
   "Kita & Krabbelgruppe",
   "Familiencafés",
-  "Events im Viertel",
+  "Events im Stadtteil",
   "Kurse & Sport",
   "Babysitter & Hebammen",
   "Flohmärkte & Tauschen",

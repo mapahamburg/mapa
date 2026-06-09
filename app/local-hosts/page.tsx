@@ -348,7 +348,7 @@ export default function LocalHostsPage() {
           >
             mapa wächst stadtteilweise, und jeder neue Stadtteil braucht
             einen Menschen, der den Anfang macht. Wenn du Lust hast,
-            Local Host in deinem Viertel zu werden, meld dich einfach.
+            Local Host in deinem Stadtteil zu werden, meld dich einfach.
             Kein Formular, kein Auswahlverfahren. Eine kurze Mail reicht.
           </p>
           <a
