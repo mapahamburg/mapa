@@ -39,27 +39,16 @@ export function StayConnected() {
           <h2
             className="fs-h2-m"
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 700,
+              letterSpacing: "-0.025em",
               margin: "16px 0 0",
-              fontWeight: 400,
             }}
           >
             Keine App.
             <br />
-            <span>Keine Push-Hölle.</span>
+            Keine Push-Hölle.
           </h2>
-          <p
-            style={{
-              fontSize: 17,
-              lineHeight: 1.55,
-              color: "var(--fg-muted)",
-              marginTop: 24,
-              maxWidth: 440,
-            }}
-          >
-            mapa läuft im Browser und meldet sich per E-Mail, wenn jemand aus deinem Stadtteil antwortet. Kein Download. Kein Algorithmus, der dich festhält.
-          </p>
         </div>
 
         {/* Right: list */}

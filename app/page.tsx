@@ -1,5 +1,6 @@
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
+import { BetaStatus } from "@/components/landing/BetaStatus";
 import { StayConnected } from "@/components/landing/StayConnected";
 import { USP } from "@/components/landing/USP";
 import { LocalHosts } from "@/components/landing/LocalHosts";
@@ -11,17 +12,19 @@ export default function LandingPage() {
   return (
     <div style={{ background: "var(--mapa-cream)" }}>
       <Nav />
-      {/* 1. Was ist mapa + Beta-Kontext + Conversion */}
+      {/* 1. Was ist mapa + Conversion */}
       <Hero />
-      {/* 2. Stärkster Differentiator: keine App, E-Mail-Benachrichtigung */}
+      {/* 2. Beta-Status — ehrlich, konkret, frühe Mitglieder gesucht */}
+      <BetaStatus />
+      {/* 3. Stärkster Differentiator: keine App, E-Mail statt Push */}
       <StayConnected />
-      {/* 3. Was du konkret bekommst — mit Mid-Page-CTA */}
+      {/* 4. Was du konkret bekommst — mit Mid-Page-CTA */}
       <USP />
-      {/* 4. Echte Local Hosts statt Algorithmus */}
+      {/* 5. Echte Local Hosts statt Algorithmus */}
       <LocalHosts />
-      {/* 5. Was mapa bewusst nicht ist — 3 Items */}
+      {/* 6. Was mapa bewusst nicht ist */}
       <NotOnMapa />
-      {/* 6. Conversion-Abschluss */}
+      {/* 7. Conversion-Abschluss */}
       <FinalCTA />
       <Footer />
     </div>

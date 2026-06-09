@@ -115,20 +115,20 @@ export async function USP() {
         {/* Mid-Page CTA — für "frühe Entscheider" */}
         {!isLoggedIn && (
           <div style={{
-            marginTop: 48,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 10,
-            paddingTop: 40,
+            marginTop: 36,
+            paddingTop: 32,
             borderTop: "1px solid var(--border-soft)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 16,
+            flexWrap: "wrap",
           }}>
             <p style={{
               fontFamily: "var(--font-ui)",
               fontSize: 16,
               color: "var(--fg-muted)",
               margin: 0,
-              textAlign: "center",
             }}>
               Das klingt nach deinem Stadtteil?
             </p>
@@ -138,14 +138,15 @@ export async function USP() {
                 background: "var(--cobalt-500)",
                 color: "var(--mapa-paper)",
                 textDecoration: "none",
-                padding: "14px 28px",
+                padding: "13px 24px",
                 borderRadius: 999,
                 fontFamily: "var(--font-ui)",
                 fontSize: 15,
                 fontWeight: 500,
+                whiteSpace: "nowrap",
               }}
             >
-              Jetzt dabei sein
+              Kostenlos beitreten
             </Link>
           </div>
         )}

@@ -65,7 +65,7 @@ export async function FinalCTA() {
               color: "var(--color-cobalt)",
             }}
           >
-            {isLoggedIn ? "Zum Feed" : "Jetzt dabei sein"}
+            {isLoggedIn ? "Zum Feed" : "Kostenlos beitreten"}
           </Link>
         </div>
       </div>

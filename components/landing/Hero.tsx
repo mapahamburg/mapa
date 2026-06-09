@@ -358,7 +358,7 @@ export async function Hero() {
                 fontWeight: 500,
               }}
             >
-              {isLoggedIn ? "Zum Feed" : "Jetzt dabei sein"}
+              {isLoggedIn ? "Zum Feed" : "Kostenlos beitreten"}
             </a>
           </div>
 
@@ -408,11 +408,9 @@ export async function Hero() {
               }}
             >
               <strong style={{ color: "var(--fg)", fontWeight: 500 }}>
-                Viele Familien
+                Erste Familien
               </strong>{" "}
-              sind schon dabei.
-              <br />
-              Sei eine der ersten in deinem Stadtteil.
+              aus Winterhude &amp; Eppendorf sind dabei.
             </div>
           </div>
 

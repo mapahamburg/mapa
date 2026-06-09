@@ -26,17 +26,17 @@ export function NotOnMapa() {
           <h2
             className="fs-h2-m"
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
+              fontFamily: "var(--font-ui)",
+              fontWeight: 700,
+              letterSpacing: "-0.025em",
               margin: "16px 0 0",
-              fontWeight: 400,
             }}
           >
             Kein Algorithmus.
             <br />
             Keine Werbung.
             <br />
-            <span>Kein Bullshit.</span>
+            Kein Bullshit.
           </h2>
           <p
             style={{

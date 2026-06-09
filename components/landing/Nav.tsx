@@ -78,7 +78,7 @@ export async function Nav() {
                   fontFamily: "var(--font-ui)",
                 }}
               >
-                Jetzt dabei sein
+                Kostenlos beitreten
               </a>
             </>
           )}
