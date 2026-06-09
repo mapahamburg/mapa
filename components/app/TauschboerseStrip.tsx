@@ -121,14 +121,15 @@ export function TauschboerseStrip({ posts }: { posts: FeedPost[] }) {
               <span
                 style={{
                   flex: 1,
-                  fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
-                  fontSize: 15,
+                  fontFamily: "var(--font-ui)",
+                  fontWeight: 500,
+                  fontSize: 14,
                   color: "var(--color-ink)",
                   lineHeight: 1.3,
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
+                  letterSpacing: "-0.01em",
                 }}
               >
                 {p.title}
