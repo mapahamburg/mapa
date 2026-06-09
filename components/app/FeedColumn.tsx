@@ -35,6 +35,10 @@ export function FeedColumn({
   const [activeDistricts, setActiveDistricts] = useState<Set<string>>(
     new Set([stadtteil])
   );
+  const [wocheExpanded, setWocheExpanded] = useState(false);
+  const WOCHE_PREVIEW = 5;
+  const [tauschExpanded, setTauschExpanded] = useState(false);
+  const TAUSCH_PREVIEW = 3;
 
   function toggleDistrict(d: string) {
     const key = d.replace(/^\+ /, "");
@@ -76,7 +80,7 @@ export function FeedColumn({
     (p) => p.type === "frage" && p.comments === 0
   );
 
-  // "Suche & Weitergeben": suche posts + "abzugeben" empfehlungen (max 6)
+  // "Suche & Weitergeben": suche posts + "abzugeben" empfehlungen
   const tauschboerse = visible
     .filter((p) =>
       p.type === "suche" ||
@@ -84,8 +88,7 @@ export function FeedColumn({
         (p.title.toLowerCase().includes("abzugeben") ||
          p.title.toLowerCase().includes("verschenken") ||
          p.title.toLowerCase().includes("zu verkaufen")))
-    )
-    .slice(0, 6);
+    );
 
   // Today's date string for the eyebrow
   const today = new Date().toLocaleDateString("de-DE", {
@@ -133,12 +136,13 @@ export function FeedColumn({
           </span>
         </div>
 
-        {/* Greeting */}
+        {/* Greeting — Untouchable: Instrument Serif Italic */}
         <div
           className="feed-greeting"
           style={{
-            fontFamily: "var(--font-ui)",
-            fontWeight: 600,
+            fontFamily: "var(--font-display)",
+            fontStyle: "italic",
+            fontWeight: 400,
             color: "var(--color-ink)",
           }}
         >
@@ -176,6 +180,7 @@ export function FeedColumn({
       {/* ── District filters ── */}
       <div className="district-filter-row">
         {DISTRICTS.map((d) => {
+          const isHome = !d.startsWith("+");
           const key = d.replace(/^\+ /, "");
           const isActive =
             key === "Alle Stadtteile"
@@ -185,7 +190,7 @@ export function FeedColumn({
             <button
               key={d}
               type="button"
-              onClick={() => toggleDistrict(d)}
+              onClick={isHome ? undefined : () => toggleDistrict(d)}
               className="district-filter-chip"
               style={{
                 background: isActive ? "var(--color-ink)" : "var(--color-paper)",
@@ -193,11 +198,17 @@ export function FeedColumn({
                 border: isActive ? "none" : "1px solid var(--color-line)",
                 fontFamily: "var(--font-ui)",
                 fontWeight: isActive ? 500 : 400,
-                cursor: "pointer",
+                cursor: isHome ? "default" : "pointer",
                 transition: `background var(--dur-base), color var(--dur-base)`,
+                display: "flex",
+                alignItems: "center",
+                gap: 5,
               }}
             >
               {d}
+              {!isHome && isActive && (
+                <span style={{ opacity: 0.55, fontSize: 15, lineHeight: 1, marginTop: -1 }}>×</span>
+              )}
             </button>
           );
         })}
@@ -244,10 +255,29 @@ export function FeedColumn({
             label={`Diese Woche · ${wochePosts.length} weitere`}
           />
           <div>
-            {wochePosts.map((p, i) => (
+            {(wocheExpanded ? wochePosts : wochePosts.slice(0, WOCHE_PREVIEW)).map((p, i) => (
               <CompactRow key={p.id} post={p} isFirst={i === 0} />
             ))}
           </div>
+          {!wocheExpanded && wochePosts.length > WOCHE_PREVIEW && (
+            <button
+              type="button"
+              onClick={() => setWocheExpanded(true)}
+              style={{
+                background: "none",
+                border: "none",
+                padding: "12px 0 4px",
+                fontFamily: "var(--font-ui)",
+                fontSize: 13,
+                fontWeight: 500,
+                color: "var(--color-muted)",
+                cursor: "pointer",
+                textAlign: "left",
+              }}
+            >
+              Noch {wochePosts.length - WOCHE_PREVIEW} weitere diese Woche →
+            </button>
+          )}
         </>
       )}
 
@@ -255,7 +285,28 @@ export function FeedColumn({
       {tauschboerse.length > 0 && (
         <>
           <SectionDivider label="Suche & Weitergeben" />
-          <TauschboerseStrip posts={tauschboerse} />
+          <TauschboerseStrip
+            posts={tauschExpanded ? tauschboerse : tauschboerse.slice(0, TAUSCH_PREVIEW)}
+          />
+          {!tauschExpanded && tauschboerse.length > TAUSCH_PREVIEW && (
+            <button
+              type="button"
+              onClick={() => setTauschExpanded(true)}
+              style={{
+                background: "none",
+                border: "none",
+                padding: "12px 0 4px",
+                fontFamily: "var(--font-ui)",
+                fontSize: 13,
+                fontWeight: 500,
+                color: "var(--color-muted)",
+                cursor: "pointer",
+                textAlign: "left",
+              }}
+            >
+              Noch {tauschboerse.length - TAUSCH_PREVIEW} weitere →
+            </button>
+          )}
         </>
       )}
 

@@ -478,7 +478,7 @@ a, button, [role="button"] {
 .card-pad      { padding: 32px; }
 .cta-inner     { padding: 52px 48px 48px; }
 .nav-login     { font-family: var(--font-ui); font-size: 14.5px; color: var(--fg); text-decoration: none; padding: 8px; white-space: nowrap; }
-.host-quote    { font-family: var(--font-ui); font-weight: 600; font-size: 22px; line-height: 1.35; letter-spacing: -0.01em; }
+.host-quote    { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 22px; line-height: 1.55; letter-spacing: -0.005em; }
 .lh-stats-row  { display: flex; gap: 24px; font-size: 13px; }
 .for-whom-item { font-size: 26px; line-height: 1.3; letter-spacing: -0.02em; }
 .vision-pad    { padding: 48px; }
@@ -489,7 +489,7 @@ a, button, [role="button"] {
 .post-card-title { font-size: 28px; line-height: 1.2; letter-spacing: -0.005em; }
 
 /* ─── Feed ─── */
-.feed-greeting { font-size: 36px; letter-spacing: -0.025em; line-height: 1.05; }
+.feed-greeting { font-size: 32px; letter-spacing: -0.02em; line-height: 1.1; }
 
 /* ─── App page containers (replace all hardcoded inline padding) ─── */
 .app-main-pad  { flex: 1; padding: 40px 48px; min-width: 0; }
@@ -691,8 +691,8 @@ a, button, [role="button"] {
   /* PostCard */
   .post-card-title { font-size: 21px !important; line-height: 1.25 !important; letter-spacing: -0.01em !important; }
 
-  /* Feed greeting — smaller on mobile, serif stays (it's the greeting, not content) */
-  .feed-greeting { font-size: 24px !important; }
+  /* Feed greeting — etwas kleiner auf Desktop, mehr Kontext sichtbar */
+  .feed-greeting { font-size: 28px !important; }
 
   /* App page containers */
   .app-main-pad  { padding: 24px 16px 96px !important; }

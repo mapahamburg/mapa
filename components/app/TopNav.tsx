@@ -67,12 +67,12 @@ export async function TopNav() {
         <Plus size={14} strokeWidth={1.5} /> Neuer Beitrag
       </Link>
 
-      {/* Bell */}
+      {/* Bell — no background/border, flush with avatar */}
       <Link
         href="/benachrichtigungen"
         style={{
-          background: "var(--surface-card)",
-          border: "1px solid var(--border)",
+          background: "transparent",
+          border: "none",
           width: 44,
           height: 44,
           borderRadius: 999,

@@ -8,6 +8,9 @@ import type { FeedPost } from "@/types";
 export function QuietQuestionList({ questions }: { questions: FeedPost[] }) {
   if (questions.length === 0) return null;
 
+  const visible = questions.slice(0, 3);
+  const hiddenCount = questions.length - visible.length;
+
   return (
     <div style={{
       background: "rgba(194,106,63,0.06)",
@@ -39,16 +42,16 @@ export function QuietQuestionList({ questions }: { questions: FeedPost[] }) {
         </p>
       </div>
 
-      {/* Question list */}
+      {/* Question list — max. 3 */}
       <div style={{ display: "flex", flexDirection: "column" }}>
-        {questions.map((q, i) => (
+        {visible.map((q, i) => (
           <Link
             key={q.id}
             href={`/feed/${q.id}`}
             style={{
               display: "block",
               padding: "10px 0",
-              borderBottom: i < questions.length - 1
+              borderBottom: i < visible.length - 1
                 ? "1px solid rgba(194,106,63,0.12)"
                 : "none",
               textDecoration: "none",
@@ -102,6 +105,23 @@ export function QuietQuestionList({ questions }: { questions: FeedPost[] }) {
           </Link>
         ))}
       </div>
+
+      {hiddenCount > 0 && (
+        <Link
+          href="/fragen"
+          style={{
+            display: "block",
+            marginTop: 12,
+            fontFamily: "var(--font-ui)",
+            fontSize: 13,
+            fontWeight: 500,
+            color: "var(--color-clay-deep)",
+            textDecoration: "none",
+          }}
+        >
+          Alle {questions.length} Fragen ansehen →
+        </Link>
+      )}
     </div>
   );
 }

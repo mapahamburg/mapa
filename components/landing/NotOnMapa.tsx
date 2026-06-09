@@ -1,7 +1,7 @@
 // 3 stärkste Items — weniger negatives Framing, mehr Klarheit
 const ITEMS = [
-  ["Kein Algorithmus.", "Chronologisch. Was zuletzt passiert ist, siehst du zuerst. Dein Stadtteil. Fertig."],
-  ["Keine Werbung im Feed.", "Kein Unternehmen zahlt sich nach oben. Was du siehst, hat jemand aus deinem Viertel geschrieben."],
+  ["Kein Doomscrolling.", "Chronologisch. Was zuletzt passiert ist, siehst du zuerst. Dein Stadtteil. Fertig."],
+  ["Keine Werbung im Feed.", "Kein Unternehmen zahlt sich nach oben. Was du siehst, hat jemand aus deinem Stadtteil geschrieben."],
   ["Keine Likes-Zähler.", "Du siehst nicht, wie viele Personen etwas gut fanden. Das macht den Unterschied."],
 ] as const;
 
@@ -27,7 +27,7 @@ export function NotOnMapa() {
             className="fs-h2-m"
             style={{
               fontFamily: "var(--font-ui)",
-              fontWeight: 700,
+              fontWeight: 600,
               letterSpacing: "-0.025em",
               margin: "16px 0 0",
             }}

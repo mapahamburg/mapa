@@ -11,7 +11,7 @@ const USP_ITEMS = [
   {
     eyebrow: "Treffen",
     headline: "Spielplatz, Café, Stadtpark.",
-    body: "Spontan verabreden oder regelmäßig treffen. Kleine, echte Begegnungen im Viertel.",
+    body: "Spontan verabreden oder regelmäßig treffen. Kleine, echte Begegnungen im Stadtteil.",
     example: '„Spielplatztreffen Samstag 10:30 im Stadtpark. Wer kommt?“',
   },
   {
