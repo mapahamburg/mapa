@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { MessageCircle, MapPin } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Tag } from "@/components/ui/Tag";
 import { MeetingChip } from "@/components/app/MeetingChip";
@@ -108,151 +108,131 @@ export function PostCard({ post }: { post: FeedPost }) {
   );
 }
 
-// ─── CompactPost — the feed card ─────────────────────────────────────────────
+// ─── CompactPost — Feed-Karte ─────────────────────────────────────────────────
 //
-// Design rule: Produkt = Sans. Serif stays on marketing/landing pages only.
+// Hierarchie (Produkt = Sans, kein Serif im Feed):
+//   ROW 1 — Titel         dominant, Geist 600 14px, max 2 Zeilen + Ellipsis
+//   ROW 2 — Stadtteil · Zeit  11px muted + Badge rechts
+//   ROW 3 — CTA           Antworten-Count links, Link rechts
 //
-// Hierarchy per spec:
-//   1. Titel (dominant, sans 600, max 2 Zeilen)
-//   2. Stadtteil · Zeitpunkt (muted, 12px)
-//   3. Badge (Tag pill)
-//   4. CTA (Antworten)
-//
-// Target: 3–4 cards visible on iPhone 13 Mini (375×812) without scrolling.
+// Ziel: 4 Karten auf iPhone 13 Mini (375×812) sichtbar.
 
 export function CompactPost({ post }: { post: FeedPost }) {
   const isUnanswered = post.comments === 0;
   const ctaColor = isUnanswered ? "var(--color-clay-deep)" : "var(--color-cobalt)";
 
   return (
-    <article style={{
-      position: "relative",
-      background: "var(--color-ivory)",
-      border: "1px solid var(--color-line-soft)",
-      borderRadius: 14,
-      padding: "14px 16px",
-      cursor: "pointer",
-      transition: "border-color 150ms ease",
-    }}
+    <article
+      style={{
+        position: "relative",
+        background: "var(--color-ivory)",
+        border: "1px solid var(--color-line-soft)",
+        borderRadius: 12,
+        padding: "10px 13px",
+        cursor: "pointer",
+        transition: "border-color 150ms ease",
+      }}
       onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--color-line)")}
       onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--color-line-soft)")}
     >
-      {/* Full-card overlay link */}
+      {/* Full-card overlay */}
       <Link
         href={`/feed/${post.id}`}
         style={{ position: "absolute", inset: 0, zIndex: 0, borderRadius: "inherit" }}
         aria-label={post.title}
       />
 
-      {/* Row 1: avatar · name · district · time + tag */}
-      <div style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 6,
-        marginBottom: 7,
-        position: "relative",
-        zIndex: 1,
-        minWidth: 0,
-      }}>
-        <Avatar letter={post.author[0]} size={20} />
-        <span style={{
+      {/* ROW 1 — Titel: ZUERST, DOMINANT */}
+      <div
+        style={{
           fontFamily: "var(--font-ui)",
-          fontSize: 12,
-          fontWeight: 500,
-          color: "var(--color-ink-2)",
-          flexShrink: 0,
-        }}>
-          {post.author}
-        </span>
-        <span style={{
-          fontFamily: "var(--font-ui)",
-          fontSize: 12,
-          color: "var(--color-muted)",
+          fontWeight: 600,
+          fontSize: 14,
+          lineHeight: 1.3,
+          letterSpacing: "-0.015em",
+          color: "var(--color-ink)",
+          marginBottom: 5,
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
           overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap",
-          flex: 1,
-          minWidth: 0,
-        }}>
-          · {post.district} · {post.time}
-        </span>
-        <div style={{ flexShrink: 0, marginLeft: 4 }}>
-          <Tag type={post.type} />
-        </div>
-      </div>
-
-      {/* Row 2: Title — SANS, 600, 2-line max */}
-      <div style={{
-        fontFamily: "var(--font-ui)",
-        fontWeight: 600,
-        fontSize: 15,
-        lineHeight: 1.35,
-        letterSpacing: "-0.01em",
-        color: "var(--color-ink)",
-        marginBottom: 9,
-        display: "-webkit-box",
-        WebkitLineClamp: 2,
-        WebkitBoxOrient: "vertical",
-        overflow: "hidden",
-        position: "relative",
-        zIndex: 1,
-      }}>
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         {post.title}
       </div>
 
-      {/* Row 3: CTA row */}
-      <div style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-        position: "relative",
-        zIndex: 1,
-        fontFamily: "var(--font-ui)",
-        fontSize: 12,
-      }}>
-        {post.meeting?.where && (
-          <span style={{
-            display: "inline-flex", alignItems: "center", gap: 3,
-            color: "var(--color-muted)", flexShrink: 0,
-          }}>
-            <MapPin size={11} strokeWidth={1.5} />
-            {post.meeting.where}
-          </span>
-        )}
-
-        <span style={{
-          display: "inline-flex", alignItems: "center", gap: 4,
-          color: "var(--color-muted)",
-        }}>
-          <MessageCircle size={12} strokeWidth={1.5} />
-          {post.comments} {post.comments === 1 ? "Antwort" : "Antworten"}
+      {/* ROW 2 — Stadtteil · Zeit + Badge */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 5,
+          marginBottom: 6,
+          minWidth: 0,
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        <Avatar letter={post.author[0]} size={14} />
+        <span
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: 11,
+            color: "var(--color-muted)",
+            flex: 1,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            minWidth: 0,
+          }}
+        >
+          {post.district} · {post.time}
         </span>
+        <Tag type={post.type} />
+      </div>
 
-        <div style={{ flex: 1 }} />
-
-        {/* CTA — elevated z-index so click registers over the overlay link */}
+      {/* ROW 3 — CTA */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: 11,
+            color: "var(--color-muted)",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 3,
+          }}
+        >
+          <MessageCircle size={11} strokeWidth={1.5} />
+          {post.comments === 0
+            ? "Noch keine Antwort"
+            : `${post.comments} ${post.comments === 1 ? "Antwort" : "Antworten"}`}
+        </span>
         <Link
           href={`/feed/${post.id}`}
           style={{
-            color: ctaColor,
-            fontWeight: 600,
+            fontFamily: "var(--font-ui)",
             fontSize: 12,
+            fontWeight: 600,
+            color: ctaColor,
             textDecoration: "none",
             whiteSpace: "nowrap",
             position: "relative",
             zIndex: 2,
           }}
         >
-          {isUnanswered ? "Als erste antworten →" : "Antworten →"}
+          {isUnanswered ? "Als erste →" : "Antworten →"}
         </Link>
-
-        <div style={{ position: "relative", zIndex: 2 }}>
-          <ContactButton
-            recipientName={post.author}
-            postId={post.id}
-            postTitle={post.title}
-          />
-        </div>
       </div>
     </article>
   );

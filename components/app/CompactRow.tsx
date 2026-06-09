@@ -19,7 +19,7 @@ export function CompactRow({ post, isFirst }: CompactRowProps) {
         gridTemplateColumns: "24px 1fr auto",
         gap: 10,
         alignItems: "center",
-        padding: "11px 4px",
+        padding: "9px 4px",
         borderTop: isFirst ? "1px solid var(--color-line-soft)" : undefined,
         borderBottom: "1px solid var(--color-line-soft)",
         cursor: "pointer",

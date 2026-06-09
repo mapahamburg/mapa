@@ -221,7 +221,7 @@ export function FeedColumn({
             label={`Heute in ${userDistrict}`}
             count={heuteCards.length}
           />
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
             {heuteCards.map((p) => (
               <CompactPost key={p.id} post={p} />
             ))}
