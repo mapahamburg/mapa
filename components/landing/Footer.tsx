@@ -5,17 +5,15 @@ const LINKS = [
     "Produkt",
     [
       { label: "So funktioniert's", href: "/so-funktionierts" },
-      { label: "Stadtteile", href: "#" },
-      { label: "Local Hosts", href: "#" },
-      { label: "App laden", href: "#" },
+      { label: "Local Hosts", href: "/local-hosts" },
+      { label: "Feed", href: "/feed" },
     ],
   ],
   [
     "Unternehmen",
     [
       { label: "Über uns", href: "/ueber-uns" },
-      { label: "Karriere", href: "#" },
-      { label: "Presse", href: "#" },
+      { label: "Presse", href: "mailto:hey@mapa.hamburg" },
       { label: "Kontakt", href: "mailto:hey@mapa.hamburg" },
     ],
   ],
@@ -25,7 +23,6 @@ const LINKS = [
       { label: "Impressum", href: "/impressum" },
       { label: "Datenschutz", href: "/datenschutz" },
       { label: "Hausregeln", href: "/hausregeln" },
-      { label: "Cookies", href: "/datenschutz#cookies" },
     ],
   ],
 ] as const;

@@ -123,50 +123,35 @@ function HeroVisual() {
           </div>
         </div>
 
-        {/* Post card */}
+        {/* Post card — neue Hierarchie: Titel zuerst */}
         <div
           style={{
             marginTop: 10,
             background: "var(--mapa-ivory)",
-            borderRadius: 14,
-            padding: 12,
+            borderRadius: 12,
+            padding: "10px 12px",
             border: "1px solid var(--border)",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 7,
-              marginBottom: 6,
-            }}
-          >
-            <Avatar letter="L" size={22} />
-            <div
-              style={{
-                fontSize: 10,
-                fontWeight: 500,
-                flex: 1,
-                minWidth: 0,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Lina · vor 2 Std
-            </div>
-            <Tag type="empfehlung" size="s" />
-          </div>
+          {/* ROW 1 — Titel dominant */}
           <div
             style={{
               fontFamily: "var(--font-ui)",
               fontWeight: 600,
-              fontSize: 13,
-              lineHeight: 1.2,
+              fontSize: 12.5,
+              lineHeight: 1.3,
               letterSpacing: "-0.01em",
+              color: "var(--color-ink)",
+              marginBottom: 5,
             }}
           >
             DeliKate · direkt am Hayns Park.
+          </div>
+          {/* ROW 2 — Meta + Badge */}
+          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+            <div style={{ width: 12, height: 12, borderRadius: "50%", background: "var(--ash-100)", flexShrink: 0 }} />
+            <span style={{ fontSize: 9, color: "var(--fg-muted)", flex: 1 }}>Eppendorf · vor 2 Std</span>
+            <Tag type="empfehlung" size="s" />
           </div>
         </div>
       </div>
@@ -185,33 +170,31 @@ function HeroVisual() {
           boxShadow: "0 16px 40px -16px rgba(60,48,28,0.25)",
         }}
       >
+        {/* Treffen-Card: Titel zuerst, dann Autor-Kontext */}
+        <div
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontWeight: 700,
+            fontSize: 17,
+            lineHeight: 1.2,
+            letterSpacing: "-0.02em",
+            color: "var(--color-ink)",
+            marginBottom: 10,
+          }}
+        >
+          Spielplatztreffen am Samstag. Wer kommt mit?
+        </div>
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 10,
+            gap: 8,
             marginBottom: 10,
           }}
         >
-          <Avatar letter="M" size={32} />
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 13, fontWeight: 500 }}>Mira</div>
-            <div style={{ fontSize: 11, color: "var(--fg-muted)" }}>
-              Winterhude · vor 4 Std
-            </div>
-          </div>
+          <Avatar letter="M" size={22} />
+          <span style={{ fontSize: 11, color: "var(--fg-muted)", flex: 1 }}>Mira · Winterhude · vor 4 Std</span>
           <Tag type="treffen" size="s" />
-        </div>
-        <div
-          style={{
-            fontFamily: "var(--font-ui)",
-            fontWeight: 600,
-            fontSize: 18,
-            lineHeight: 1.2,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          Spielplatztreffen am Samstag. Wer kommt mit?
         </div>
         <div
           style={{

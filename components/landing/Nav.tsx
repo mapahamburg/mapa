@@ -78,7 +78,7 @@ export async function Nav() {
                   fontFamily: "var(--font-ui)",
                 }}
               >
-                mapa beitreten
+                Jetzt dabei sein
               </a>
             </>
           )}
