@@ -108,7 +108,7 @@ export function QuietQuestionList({ questions }: { questions: FeedPost[] }) {
 
       {hiddenCount > 0 && (
         <Link
-          href="/fragen"
+          href="/feed"
           style={{
             display: "block",
             marginTop: 12,
