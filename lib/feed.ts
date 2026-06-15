@@ -323,6 +323,55 @@ export async function getTreffenPosts(): Promise<FeedPost[]> {
   }
 }
 
+// ─── Fragen ───────────────────────────────────────────────────────────────────
+
+export async function getFragenPosts(): Promise<FeedPost[]> {
+  if (!hasSupabase()) return [];
+
+  try {
+    const supabase = await createClient();
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+
+    const { data, error } = await supabase
+      .from("posts")
+      .select(
+        `id, type, title, body, stadtteil,
+         meeting_location, meeting_date, min_age, max_age, created_at, image_url,
+         author:profiles!author_id ( first_name ),
+         comments:comments ( count )`
+      )
+      .eq("type", "frage")
+      .gte("created_at", thirtyDaysAgo)
+      .order("created_at", { ascending: false })
+      .limit(60);
+
+    if (error || !data) return [];
+
+    return data.map((p) => {
+      const author   = p.author   as { first_name: string }        | null;
+      const comments = p.comments as { count: number | string }[] | null;
+
+      return {
+        id:       p.id,
+        type:     p.type as FeedPost["type"],
+        author:   author?.first_name ?? "Nachbar",
+        district: p.stadtteil,
+        time:     timeAgo(p.created_at),
+        section:  feedSection(p.created_at),
+        title:    p.title,
+        body:     p.body ?? undefined,
+        meeting:  undefined,
+        likes:    0,
+        comments: parseInt(String(comments?.[0]?.count ?? "0"), 10),
+        isSaved:  false,
+        imageUrl: (p as any).image_url ?? null,
+      } satisfies FeedPost;
+    });
+  } catch {
+    return [];
+  }
+}
+
 // ─── Post detail ──────────────────────────────────────────────────────────────
 
 /**
