@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CompactPost } from "@/components/app/PostCard";
 import { NowCard } from "@/components/app/NowCard";
 import { PulseStrip } from "@/components/app/PulseStrip";
@@ -35,6 +35,15 @@ export function FeedColumn({
   const [activeDistricts, setActiveDistricts] = useState<Set<string>>(
     new Set([stadtteil])
   );
+  const [firstVisitToday, setFirstVisitToday] = useState(false);
+
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    const lastSeen = localStorage.getItem("mapa_last_seen");
+    if (lastSeen !== today) setFirstVisitToday(true);
+    localStorage.setItem("mapa_last_seen", today);
+  }, []);
+
   const [wocheExpanded, setWocheExpanded] = useState(false);
   const WOCHE_PREVIEW = 5;
   const [tauschExpanded, setTauschExpanded] = useState(false);
@@ -161,8 +170,10 @@ export function FeedColumn({
             }}
           >
             {jetzt
-              ? `Ein Treffen heute in ${userDistrict}. ${unanswered.length > 0 ? `${unanswered.length} ${unanswered.length === 1 ? "Frage wartet" : "Fragen warten"} noch auf eine Antwort.` : ""}`
-              : `${visible.length} neue ${visible.length === 1 ? "Beitrag" : "Beiträge"} in deinem Stadtteil.`}
+              ? `Ein Treffen heute in ${userDistrict}.${unanswered.length > 0 ? ` ${unanswered.length} ${unanswered.length === 1 ? "Frage wartet" : "Fragen warten"} noch auf eine Antwort.` : ""}`
+              : firstVisitToday && heuteCards.length > 0
+                ? `${heuteCards.length} ${heuteCards.length === 1 ? "neuer Beitrag" : "neue Beiträge"} heute in ${userDistrict}.`
+                : `Was diese Woche in ${userDistrict} passiert.`}
           </div>
         )}
       </div>

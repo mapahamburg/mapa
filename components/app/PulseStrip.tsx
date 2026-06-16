@@ -11,7 +11,6 @@ export function PulseStrip({ posts }: { posts: FeedPost[] }) {
   const stats = [
     { n: heuteTreffen, label: "Treffen heute" },
     { n: fragenWarten, label: "Fragen warten" },
-    { n: neueBeitraege, label: "neue Beiträge" },
   ].filter((s) => s.n > 0);
 
   if (stats.length === 0) return null;
