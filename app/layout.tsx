@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { CookieBanner } from "@/components/ui/CookieBanner";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
 
@@ -64,6 +65,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
       <body>
+        <Analytics />
         <CookieBanner />
         <MetaPixel />
         {children}
