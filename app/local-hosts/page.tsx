@@ -3,9 +3,10 @@ import { Footer } from "@/components/landing/Footer";
 import { Avatar } from "@/components/ui/Avatar";
 
 export const metadata = {
-  title: "Local Host werden · mapa",
+  title: "Local Host werden — mapa Hamburg",
   description:
-    "Gestalte mapa in deinem Stadtteil mit. Als Local Host bist du der Anker für neue Familien in deinem Stadtteil.",
+    "Werde Local Host in deinem Hamburger Stadtteil. mapa sucht engagierte Eltern in Winterhude, Eppendorf, Ottensen und anderen Stadtteilen, die neue Familien willkommen heißen.",
+  alternates: { canonical: "https://mapa.hamburg/local-hosts" },
 };
 
 const TASKS = [

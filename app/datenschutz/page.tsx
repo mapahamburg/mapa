@@ -1,7 +1,9 @@
 import { LegalLayout } from "@/components/legal/LegalLayout";
 
 export const metadata = {
-  title: "Datenschutz — mapa",
+  title: "Datenschutz — mapa Hamburg",
+  description: "Datenschutzerklärung der mapa-Community für Familien in Hamburg.",
+  alternates: { canonical: "https://mapa.hamburg/datenschutz" },
 };
 
 const h2Style: React.CSSProperties = {

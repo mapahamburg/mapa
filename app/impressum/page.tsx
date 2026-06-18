@@ -1,7 +1,9 @@
 import { LegalLayout } from "@/components/legal/LegalLayout";
 
 export const metadata = {
-  title: "Impressum — mapa",
+  title: "Impressum — mapa Hamburg",
+  description: "Impressum der mapa-Community für Familien in Hamburg.",
+  alternates: { canonical: "https://mapa.hamburg/impressum" },
 };
 
 const h2Style: React.CSSProperties = {

@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 
-export const metadata: Metadata = { title: "Hausregeln · mapa" };
+export const metadata: Metadata = {
+  title: "Hausregeln — mapa Hamburg",
+  description:
+    "Die fünf Hausregeln der mapa-Community für Familien in Hamburg. Freundlicher, lokaler Austausch — respektvoll, ehrlich und ohne Streit.",
+  alternates: { canonical: "https://mapa.hamburg/hausregeln" },
+};
 
 const rules = [
   {

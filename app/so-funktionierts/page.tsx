@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { Tag } from "@/components/ui/Tag";
+
+export const metadata: Metadata = {
+  title: "So funktioniert mapa — Familien-Community Hamburg",
+  description:
+    "Empfehlungen, Fragen, Treffen, Suche und Veranstaltungen — so tauschen sich Familien in Hamburg auf mapa aus. Lokal, chronologisch, ohne Algorithmus.",
+  alternates: { canonical: "https://mapa.hamburg/so-funktionierts" },
+};
 
 const POST_TYPES = [
   {

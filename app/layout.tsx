@@ -22,12 +22,15 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument",
 });
 
-const TITLE = "mapa. Die lokale Community für Familien in Hamburg";
+const TITLE = "mapa — Familien-Community in Hamburg | Tipps, Treffen, Empfehlungen";
 const DESCRIPTION =
-  "Empfehlungen, Veranstaltungen, Treffen und ehrlicher Austausch für Familien in Hamburg.";
+  "mapa ist die lokale Community für Familien in Hamburg. Echte Empfehlungen, spontane Treffen und ehrlicher Austausch — in Winterhude, Eppendorf, Ottensen und ganz Hamburg.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: {
+    default: TITLE,
+    template: "%s | mapa Hamburg",
+  },
   description: DESCRIPTION,
   metadataBase: new URL("https://mapa.hamburg"),
   openGraph: {
@@ -42,7 +45,7 @@ export const metadata: Metadata = {
         url: "/mapa-link-vorschau-1200x630.png",
         width: 1200,
         height: 630,
-        alt: TITLE,
+        alt: "mapa — Familien-Community in Hamburg",
       },
     ],
   },

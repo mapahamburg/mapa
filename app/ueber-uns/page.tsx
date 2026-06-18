@@ -2,9 +2,10 @@ import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 
 export const metadata = {
-  title: "Über uns — mapa",
+  title: "Über mapa — Familien-Community in Hamburg",
   description:
-    "mapa bringt Familien in Hamburg zusammen — ruhig, lokal und ohne Social-Media-Lärm.",
+    "mapa verbindet Familien in Hamburg — ohne Algorithmus, ohne Lärm. Erfahre, wie wir Eltern in Winterhude, Eppendorf, Ottensen und anderen Stadtteilen zusammenbringen.",
+  alternates: { canonical: "https://mapa.hamburg/ueber-uns" },
 };
 
 const KEINE_ITEMS = [
