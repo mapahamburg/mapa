@@ -11,7 +11,6 @@ import {
   Bookmark,
   User,
   Settings,
-  ChevronDown,
   LogOut,
 } from "lucide-react";
 import { logout } from "@/app/actions/auth";
@@ -98,15 +97,12 @@ export function LeftNav({ stadtteil }: { stadtteil?: string | null }) {
       >
         Dein Stadtteil
       </div>
-      <button
-        type="button"
+      <div
         style={{
           background: "var(--color-sunk)",
           border: "1px solid var(--color-line)",
           padding: "12px 14px",
           borderRadius: 12,
-          textAlign: "left",
-          cursor: "pointer",
           display: "flex",
           alignItems: "center",
           gap: 12,
@@ -126,13 +122,11 @@ export function LeftNav({ stadtteil }: { stadtteil?: string | null }) {
             fontSize: 14,
             fontWeight: 500,
             color: "var(--ink)",
-            flex: 1,
           }}
         >
-          {stadtteil ?? "Stadtteil wählen"}
+          {stadtteil ?? "Winterhude"}
         </span>
-        <ChevronDown size={14} strokeWidth={1.5} color="var(--ash-600)" />
-      </button>
+      </div>
 
       {/* Logout — pushed to bottom */}
       <div style={{ marginTop: "auto", paddingTop: 16, borderTop: "1px solid var(--border-soft)" }}>
