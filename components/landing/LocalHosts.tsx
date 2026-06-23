@@ -51,8 +51,7 @@ export function LocalHosts() {
             maxWidth: 520,
           }}
         >
-          Jeder Stadtteil hat eine engagierte Person, die neue Familien begrüßt,
-          Treffen unterstützt und lokale Empfehlungen sammelt.
+          Jede Nachbarschaft hat einen Local Host.
         </p>
 
         {/* Nadine card — compact */}

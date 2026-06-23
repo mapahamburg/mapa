@@ -310,7 +310,7 @@ export async function Hero() {
               color: "var(--fg)",
             }}
           >
-            Die lokale Community für Familien in Hamburg.
+            Kinderarzt. Kita. Spielplatz. Frag die Nachbarschaft.
           </h1>
 
           <p
@@ -324,7 +324,7 @@ export async function Hero() {
               marginTop: 20,
             }}
           >
-            Empfehlungen, Treffen und ehrliche Antworten aus deinem Stadtteil. Von echten Familien, nicht von einem Algorithmus.
+            Empfehlungen, Treffen und ehrliche Antworten aus deinem Stadtteil.
           </p>
 
           {/* Beta-Kontext — 1 Satz, klar */}

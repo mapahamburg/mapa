@@ -1,15 +1,15 @@
 const ITEMS = [
   {
     label: "Keine App.",
-    desc: "Läuft im Browser. Kein Download, kein Update, kein Account-Stress.",
+    desc: "Läuft im Browser. Kein Download.",
   },
   {
     label: "Keine Push-Hölle.",
-    desc: "Kein Feed der nie aufhört. Du entscheidest, wann du schaust.",
+    desc: "Kein Feed der nie aufhört.",
   },
   {
     label: "Keine Werbung im Feed.",
-    desc: "Was du siehst, hat jemand aus deinem Stadtteil geschrieben. Kein Unternehmen zahlt sich nach oben.",
+    desc: "Kein Unternehmen zahlt sich nach oben.",
   },
 ];
 
