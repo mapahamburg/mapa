@@ -225,9 +225,8 @@ html, body {
 
 /* ─── Editorial accent class ─── */
 .editorial {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
+  font-family: var(--font-ui);
+  font-weight: 600;
   letter-spacing: -0.005em;
 }
 
