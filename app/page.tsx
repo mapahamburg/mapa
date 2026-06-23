@@ -50,10 +50,10 @@ export default function LandingPage() {
       <Hero />
       {/* 2. Was du konkret bekommst — mit Mid-Page-CTA */}
       <USP />
-      {/* 3. Echte Local Hosts statt Algorithmus */}
-      <LocalHosts />
-      {/* 4. Conversion-Abschluss */}
+      {/* 3. Conversion */}
       <FinalCTA />
+      {/* 4. Vertrauen — Local Hosts als Signal, nicht Feature */}
+      <LocalHosts />
       <Footer />
     </div>
   );
