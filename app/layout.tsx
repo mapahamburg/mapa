@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { CookieBanner } from "@/components/ui/CookieBanner";
@@ -15,12 +15,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-const instrumentSerif = Instrument_Serif({
-  weight: ["400"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  variable: "--font-instrument",
-});
 
 const TITLE = "mapa — Familien-Community in Hamburg | Tipps, Treffen, Empfehlungen";
 const DESCRIPTION =
@@ -65,7 +59,7 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
         <Analytics />
