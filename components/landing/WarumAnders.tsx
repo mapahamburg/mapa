@@ -15,12 +15,7 @@ const ITEMS = [
 
 export function WarumAnders() {
   return (
-    <section
-      style={{
-        background: "var(--mapa-cream)",
-        padding: "80px 24px",
-      }}
-    >
+    <section className="warum-section">
       <div style={{ maxWidth: 720, margin: "0 auto" }}>
         {/* Eyebrow */}
         <div
@@ -41,37 +36,17 @@ export function WarumAnders() {
           {ITEMS.map((item, i) => (
             <div
               key={item.label}
+              className="warum-row"
               style={{
-                display: "flex",
-                gap: 24,
-                alignItems: "baseline",
-                padding: "20px 0",
                 borderBottom: i < ITEMS.length - 1
                   ? "1px solid var(--border-soft)"
                   : "none",
               }}
             >
-              <div
-                style={{
-                  fontFamily: "var(--font-ui)",
-                  fontWeight: 600,
-                  fontSize: 24,
-                  color: "var(--ink)",
-                  lineHeight: 1.3,
-                  minWidth: 220,
-                  flexShrink: 0,
-                }}
-              >
+              <div className="warum-label">
                 {item.label}
               </div>
-              <div
-                style={{
-                  fontFamily: "var(--font-ui)",
-                  fontSize: 13,
-                  color: "var(--fg-muted)",
-                  lineHeight: 1.55,
-                }}
-              >
+              <div className="warum-desc">
                 {item.desc}
               </div>
             </div>

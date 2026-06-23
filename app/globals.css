@@ -569,6 +569,15 @@ a, button, [role="button"] {
 .usp-headline { font-size: 42px; }
 .usp-body     { font-size: 14px; }
 
+/* ─── WarumAnders ─── */
+.warum-section  { background: var(--mapa-cream); padding: 80px 24px; }
+.warum-row      { display: flex; gap: 24px; align-items: baseline; padding: 20px 0; }
+.warum-label    { font-family: var(--font-ui); font-weight: 600; font-size: 24px; color: var(--ink); line-height: 1.3; min-width: 220px; flex-shrink: 0; }
+.warum-desc     { font-family: var(--font-ui); font-size: 13px; color: var(--fg-muted); line-height: 1.55; }
+
+/* ─── LocalHosts section headline ─── */
+.lh-section-headline { font-family: var(--font-ui); font-weight: 700; font-size: 36px; color: var(--ink); margin: 0 0 16px; line-height: 1.2; letter-spacing: -0.02em; }
+
 /* ─── NotOnMapa manifesto ─── */
 .manifesto-list { display: flex; flex-direction: column; }
 .manifesto-item { font-size: 52px; }
@@ -682,6 +691,15 @@ a, button, [role="button"] {
   .usp-card     { padding: 22px 20px !important; border-radius: 14px !important; }
   .usp-headline { font-size: 26px !important; }
   .usp-body     { font-size: 13px !important; }
+
+  /* WarumAnders */
+  .warum-section  { padding: 52px 20px !important; }
+  .warum-row      { flex-direction: column !important; gap: 6px !important; padding: 16px 0 !important; }
+  .warum-label    { font-size: 18px !important; min-width: 0 !important; }
+  .warum-desc     { font-size: 13px !important; }
+
+  /* LocalHosts */
+  .lh-section-headline { font-size: 24px !important; }
 
   /* NotOnMapa manifesto */
   .manifesto-item { font-size: 30px !important; }

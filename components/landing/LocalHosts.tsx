@@ -26,17 +26,7 @@ export function LocalHosts() {
         </div>
 
         {/* Headline */}
-        <h2
-          style={{
-            fontFamily: "var(--font-ui)",
-            fontWeight: 700,
-            fontSize: 36,
-            color: "var(--ink)",
-            margin: "0 0 16px",
-            lineHeight: 1.2,
-            letterSpacing: "-0.02em",
-          }}
-        >
+        <h2 className="lh-section-headline">
           Aus deinem Stadtteil. Nicht aus einem Büro.
         </h2>
 
