@@ -22,8 +22,7 @@ export async function FinalCTA() {
         <p
           className="cta-intro"
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-ui)",
             fontWeight: 400,
             lineHeight: 1,
             margin: "0 0 4px 4px",
