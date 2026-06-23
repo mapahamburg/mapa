@@ -91,8 +91,7 @@ export function LocalHosts() {
             </div>
             <div
               style={{
-                fontFamily: "var(--font-display)",
-                fontStyle: "italic",
+                fontFamily: "var(--font-ui)",
                 fontSize: 15,
                 lineHeight: 1.5,
                 color: "var(--ink)",
