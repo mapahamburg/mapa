@@ -345,6 +345,51 @@ export async function RightSidebar({ stadtteil }: { stadtteil: string | null }) 
           </div>
         </div>
       )}
+
+      {/* Feedback CTA */}
+      <div
+        style={{
+          borderRadius: 20,
+          border: "1px solid var(--color-line-soft)",
+          padding: 20,
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "var(--font-display)",
+            fontStyle: "italic",
+            fontSize: 16,
+            lineHeight: 1.45,
+            color: "var(--color-ink)",
+            marginBottom: 10,
+          }}
+        >
+          mapa ist noch im Aufbau.
+        </div>
+        <p
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: 13,
+            lineHeight: 1.6,
+            color: "var(--color-muted)",
+            margin: "0 0 14px",
+          }}
+        >
+          Etwas stört dich? Etwas fehlt? Wir freuen uns über ehrliches Feedback.
+        </p>
+        <a
+          href="mailto:feedback@mapa.hamburg"
+          style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: 13,
+            fontWeight: 500,
+            color: "var(--color-cobalt)",
+            textDecoration: "none",
+          }}
+        >
+          feedback@mapa.hamburg →
+        </a>
+      </div>
     </aside>
   );
 }
