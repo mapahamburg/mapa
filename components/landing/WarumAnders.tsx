@@ -55,7 +55,7 @@ export function WarumAnders() {
                 style={{
                   fontFamily: "var(--font-ui)",
                   fontWeight: 600,
-                  fontSize: 18,
+                  fontSize: 24,
                   color: "var(--ink)",
                   lineHeight: 1.3,
                   minWidth: 220,
@@ -67,7 +67,7 @@ export function WarumAnders() {
               <div
                 style={{
                   fontFamily: "var(--font-ui)",
-                  fontSize: 15,
+                  fontSize: 13,
                   color: "var(--fg-muted)",
                   lineHeight: 1.55,
                 }}

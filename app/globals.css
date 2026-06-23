@@ -567,8 +567,8 @@ a, button, [role="button"] {
 /* ─── USP grid (replaces WhatYouFind on homepage) ─── */
 .usp-grid     { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .usp-card     { background: var(--mapa-cream); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; }
-.usp-headline { font-size: 32px; }
-.usp-body     { font-size: 15px; }
+.usp-headline { font-size: 42px; }
+.usp-body     { font-size: 14px; }
 
 /* ─── NotOnMapa manifesto ─── */
 .manifesto-list { display: flex; flex-direction: column; }
@@ -681,8 +681,8 @@ a, button, [role="button"] {
   /* USP */
   .usp-grid     { grid-template-columns: 1fr !important; gap: 12px !important; }
   .usp-card     { padding: 22px 20px !important; border-radius: 14px !important; }
-  .usp-headline { font-size: 22px !important; }
-  .usp-body     { font-size: 14px !important; }
+  .usp-headline { font-size: 26px !important; }
+  .usp-body     { font-size: 13px !important; }
 
   /* NotOnMapa manifesto */
   .manifesto-item { font-size: 30px !important; }

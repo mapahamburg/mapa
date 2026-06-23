@@ -30,7 +30,7 @@ export function LocalHosts() {
           style={{
             fontFamily: "var(--font-ui)",
             fontWeight: 700,
-            fontSize: 26,
+            fontSize: 36,
             color: "var(--ink)",
             margin: "0 0 16px",
             lineHeight: 1.2,
@@ -43,7 +43,7 @@ export function LocalHosts() {
         <p
           style={{
             fontFamily: "var(--font-ui)",
-            fontSize: 15,
+            fontSize: 14,
             color: "var(--fg-muted)",
             lineHeight: 1.6,
             margin: "0 0 32px",
