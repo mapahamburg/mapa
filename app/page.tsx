@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
 import { USP } from "@/components/landing/USP";
+import { WarumAnders } from "@/components/landing/WarumAnders";
 import { LocalHosts } from "@/components/landing/LocalHosts";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
@@ -50,10 +51,12 @@ export default function LandingPage() {
       <Hero />
       {/* 2. Was du konkret bekommst — mit Mid-Page-CTA */}
       <USP />
-      {/* 3. Conversion */}
-      <FinalCTA />
-      {/* 4. Vertrauen — Local Hosts als Signal, nicht Feature */}
+      {/* 3. Warum anders */}
+      <WarumAnders />
+      {/* 4. Vertrauen — Local Hosts */}
       <LocalHosts />
+      {/* 5. Conversion */}
+      <FinalCTA />
       <Footer />
     </div>
   );
