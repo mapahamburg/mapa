@@ -310,7 +310,7 @@ export async function Hero() {
               color: "var(--fg)",
             }}
           >
-            Kinderarzt. Kita. Spielplatz. Frag die Nachbarschaft.
+            Die lokale Community für Familien in Hamburg.
           </h1>
 
           <p
