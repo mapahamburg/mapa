@@ -11,7 +11,6 @@ import { Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
 import { USP } from "@/components/landing/USP";
 import { LocalHosts } from "@/components/landing/LocalHosts";
-import { NotOnMapa } from "@/components/landing/NotOnMapa";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 
@@ -53,9 +52,7 @@ export default function LandingPage() {
       <USP />
       {/* 3. Echte Local Hosts statt Algorithmus */}
       <LocalHosts />
-      {/* 4. Was mapa bewusst nicht ist */}
-      <NotOnMapa />
-      {/* 5. Conversion-Abschluss */}
+      {/* 4. Conversion-Abschluss */}
       <FinalCTA />
       <Footer />
     </div>
