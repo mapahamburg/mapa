@@ -28,14 +28,13 @@ export function LocalHosts() {
         {/* Headline */}
         <h2
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
-            fontWeight: 400,
-            fontSize: 28,
+            fontFamily: "var(--font-ui)",
+            fontWeight: 700,
+            fontSize: 26,
             color: "var(--ink)",
             margin: "0 0 16px",
             lineHeight: 1.2,
-            letterSpacing: "-0.01em",
+            letterSpacing: "-0.02em",
           }}
         >
           Aus deinem Stadtteil. Nicht aus einem Büro.

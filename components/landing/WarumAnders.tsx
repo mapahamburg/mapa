@@ -53,9 +53,9 @@ export function WarumAnders() {
             >
               <div
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
-                  fontSize: 20,
+                  fontFamily: "var(--font-ui)",
+                  fontWeight: 600,
+                  fontSize: 18,
                   color: "var(--ink)",
                   lineHeight: 1.3,
                   minWidth: 220,

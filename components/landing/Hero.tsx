@@ -303,9 +303,9 @@ export async function Hero() {
           <h1
             className="fs-hero"
             style={{
-              fontFamily: "var(--font-display)",
-              fontStyle: "italic",
-              fontWeight: 400,
+              fontFamily: "var(--font-ui)",
+              fontWeight: 700,
+              letterSpacing: "-0.03em",
               margin: 0,
               color: "var(--fg)",
             }}
